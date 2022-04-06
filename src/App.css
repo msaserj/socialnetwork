@@ -1,26 +1,37 @@
-.App {
-  display: grid;
+.app-wrapper {
+    margin: 0 auto;
+    display: grid;
+    width: 1200px;
 
-  grid-template-areas:
+
+    grid-template-areas:
   "h h"
-  "n c"
-;
-  grid-template-rows: 60px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  "n c";
+    grid-template-rows: 60px 1fr;
+    grid-template-columns: 2fr 10fr;
+    grid-gap: 10px;
 }
 
 .header {
-  grid-area: h;
+    background-color: #59db55;
+    grid-area: h;
 }
+
 .header img {
-  width: 60px;
+    background-color: #428d26;
+    width: 60px;
 }
 
 .nav {
-  grid-area: n;
+    background-color: #3d8832;
+    grid-area: n;
 }
 
 .content {
-  grid-area: c;
+    grid-area: c;
+}
+
+.content img {
+  object-fit: cover;
+  width: 1000px;
 }
