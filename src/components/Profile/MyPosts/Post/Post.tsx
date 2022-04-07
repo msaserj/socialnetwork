@@ -1,13 +1,18 @@
 import React from "react";
 import classes from './Post.module.css'
 
-export const Post = () => {
+type MessageType = {
+    message: string
+    likes: string
+}
+
+export const Post = (props: MessageType) => {
     return (
         <div className={classes.item}>
             <img src="https://cabinet.miem.hse.ru/public-api/user/7/avatar" alt="ava"/>
-            post 1
+            {props.message}
             <div>
-                <span>like</span>
+                <span>like {props.likes}</span>
             </div>
         </div>
     )

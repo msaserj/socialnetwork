@@ -2,6 +2,8 @@ import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
+
+
 export const MyPosts = () => {
     return (
         <div>
@@ -13,9 +15,8 @@ export const MyPosts = () => {
                     New Post
                 </div>
                 <div className={classes.item}>
-                    <Post/>
-                    <Post/>
-                    <Post/>
+                    <Post message="hi, how are you?" likes="15" />
+                    <Post message="It`s my first post." likes="6" />
                 </div>
             </div>
         </div>
