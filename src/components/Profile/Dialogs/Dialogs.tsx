@@ -2,31 +2,44 @@ import React from "react";
 import classes from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
 
+type DialogItemType = {
+    id: string
+    nameDialog: string
+}
+
+type MessageType = {
+    message: string
+}
+
+const DialogItem  = (props: DialogItemType) => {
+    let path = "/dialogs/" + props.id;
+    return <div className={classes.dialog + ' ' + classes.active}>
+        <NavLink to={path}>{props.nameDialog}</NavLink>
+    </div>
+}
+
+const Message = (props: MessageType) => {
+    return(
+        <div className={classes.message}>{props.message}</div>
+    )
+}
+
 
 export const Dialogs = () => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogItems}>
-                <div className={classes.dialog + ' ' + classes.active}>
-                    <NavLink to="/dialogs/1">Serj</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/2">Alex</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/3">Petr</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/4">Valera</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to="/dialogs/5">Viktor</NavLink>
-                </div>
+                <DialogItem nameDialog="Serj" id="1"/>
+                <DialogItem nameDialog="Alex" id="2"/>
+                <DialogItem nameDialog="Petr" id="3"/>
+                <DialogItem nameDialog="Valera" id="4"/>
+                <DialogItem nameDialog="Viktor" id="5"/>
             </div>
             <div className={classes.messages}>
-                <div className={classes.message}>Hi</div>
-                <div className={classes.message}>Hello</div>
-                <div className={classes.message}>How are you?</div>
+               <Message message="Hi"/>
+               <Message message="Hello"/>
+               <Message message="How are you?"/>
+
             </div>
         </div>
     )

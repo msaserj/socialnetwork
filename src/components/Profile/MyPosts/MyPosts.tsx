@@ -6,11 +6,11 @@ import {Post} from "./Post/Post";
 
 export const MyPosts = () => {
     return (
-        <div>
-            My posts
+        <div className={classes.postsBlock}>
+            <h3>My posts</h3>
             <div>
-                <textarea>Add post</textarea>
-                <button>Add post</button>
+                <div><textarea>Add post</textarea></div>
+                <div><button>Add post</button></div>
                 <div className={classes.item}>
                     New Post
                 </div>
