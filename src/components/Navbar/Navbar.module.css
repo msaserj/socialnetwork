@@ -4,10 +4,12 @@
     padding: 20px;
 }
 
-.item a{
+.inactiveLink{
     color: white;
     text-decoration: none;
 }
-.item a:focus {
+
+.activeLink {
     color: black;
+    text-decoration: none;
 }
