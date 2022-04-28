@@ -34,6 +34,7 @@ export const Dialogs = () => {
                 <DialogItem nameDialog="Petr" id="3"/>
                 <DialogItem nameDialog="Valera" id="4"/>
                 <DialogItem nameDialog="Viktor" id="5"/>
+                <DialogItem nameDialog="Valera" id="5"/>
             </div>
             <div className={classes.messages}>
                <Message message="Hi"/>
