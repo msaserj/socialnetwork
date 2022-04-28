@@ -1,10 +1,19 @@
 import React from "react";
 import classes from './MyPosts.module.css'
-import {Post} from "./Post/Post";
+import {MessageType, Post} from "./Post/Post";
 
 
 
-export const MyPosts = () => {
+export const MyPosts = (props: MessageType) => {
+
+    const postData: Array<MessageType>  = [
+        {id: 1, message: "Hi", likesCount: 5},
+        {id: 2, message: "How is your it-kamasutra", likesCount: 6},
+        {id: 3, message: "Yo", likesCount: 10},
+        {id: 4, message: "Yo", likesCount: 20},
+        {id: 5, message: "Yo", likesCount: 30}
+
+    ]
     return (
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
@@ -15,8 +24,9 @@ export const MyPosts = () => {
                     New Post
                 </div>
                 <div className={classes.item}>
-                    <Post message="hi, how are you?" likes="15" />
-                    <Post message="It`s my first post." likes="6" />
+                    <Post id={1} message={postData[0].message} likesCount={postData[0].likesCount} />
+                    <Post id={2} message={postData[1].message} likesCount={postData[1].likesCount} />
+
                 </div>
             </div>
         </div>
