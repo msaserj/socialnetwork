@@ -5,13 +5,6 @@ import {v1} from "uuid";
 import {DialogItem} from "./Dialogitem/Dialogsitem";
 import {Message} from "./Message/Message";
 
-// type DialogItemType = {
-//     id: string
-//     name: string
-// }
-// type MessageType = {
-//     message: string
-// }
 type dialogsDataType =  {
     id: string
     name: string
@@ -20,10 +13,6 @@ type messagesDataType = {
     id: string
     message: string
 }
-
-
-
-
 
 export const Dialogs = () => {
 
