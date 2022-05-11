@@ -4,7 +4,7 @@ import {MessageType, Post} from "./Post/Post";
 
 
 
-export const MyPosts = (props: MessageType) => {
+export const MyPosts = () => {
 
     const postData: Array<MessageType>  = [
         {id: 1, message: "Hi", likesCount: 5},
