@@ -1,15 +1,17 @@
 import React from "react";
 import classes from './Dialogs.module.css'
-import {NavLink} from "react-router-dom";
-import {v1} from "uuid";
 
-type DialogItemType = {
-    id: string
-    name: string
-}
-type MessageType = {
-    message: string
-}
+import {v1} from "uuid";
+import {DialogItem} from "./Dialogitem/Dialogsitem";
+import {Message} from "./Message/Message";
+
+// type DialogItemType = {
+//     id: string
+//     name: string
+// }
+// type MessageType = {
+//     message: string
+// }
 type dialogsDataType =  {
     id: string
     name: string
@@ -19,20 +21,9 @@ type messagesDataType = {
     message: string
 }
 
-const DialogItem = (props: DialogItemType) => {
 
-    const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
-    let path = "/dialogs/" + props.id;
-    return <div className={classes.dialog + ' ' + classes.active}>
-        <NavLink className={setActive} to={path}>{props.name}</NavLink>
-    </div>
-}
 
-const Message = (props: MessageType) => {
-    return (
-        <div className={classes.message}>{props.message}</div>
-    )
-}
+
 
 export const Dialogs = () => {
 
