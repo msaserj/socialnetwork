@@ -18,14 +18,15 @@ type messagesDataType = {
     message: string
 }
 
-
 const DialogItem = (props: DialogItemType) => {
+
     const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
     let path = "/dialogs/" + props.id;
     return <div className={classes.dialog + ' ' + classes.active}>
         <NavLink className={setActive} to={path}>{props.name}</NavLink>
     </div>
 }
+
 const Message = (props: MessageType) => {
     return (
         <div className={classes.message}>{props.message}</div>

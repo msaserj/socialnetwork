@@ -18,8 +18,12 @@ export const MyPosts = () => {
         <div className={classes.postsBlock}>
             <h3>My posts</h3>
             <div>
-                <div><textarea>Add post</textarea></div>
-                <div><button>Add post</button></div>
+                <div>
+                    <textarea>Add post</textarea>
+                </div>
+                <div>
+                    <button>Add post</button>
+                </div>
                 <div className={classes.item}>
                     <h3>New Post</h3>
                 </div>

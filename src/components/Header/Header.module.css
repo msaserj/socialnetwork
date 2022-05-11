@@ -4,6 +4,7 @@
 }
 
 .header img {
-    background-color: #428d26;
-    width: 60px;
+    /*background-color: #428d26;*/
+    width: 50px;
+    padding: 5px 10px ;
 }
