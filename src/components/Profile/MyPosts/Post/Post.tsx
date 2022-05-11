@@ -9,8 +9,6 @@ export type MessageType = {
 
 
 export const Post = (props: MessageType) => {
-
-
     return (
         <div className={classes.item}>
             <img src="https://cabinet.miem.hse.ru/public-api/user/7/avatar" alt="ava"/>

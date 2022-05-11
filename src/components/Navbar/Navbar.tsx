@@ -3,9 +3,10 @@ import { NavLink } from "react-router-dom";
 import classes from './Navbar.module.css'
 
 
-const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
+
 
 export const Navbar = () => {
+    const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
     return(
         <nav className={classes.nav}>
             <div>

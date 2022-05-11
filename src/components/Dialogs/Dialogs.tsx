@@ -6,21 +6,17 @@ type DialogItemType = {
     id: number
     name: string
 }
-
 type MessageType = {
     message: string
 }
-
 type dialogsDataType =  {
     id: number
     name: string
 }
-
 type messagesDataType = {
     id: number
     message: string
 }
-
 
 const DialogItem = (props: DialogItemType) => {
     let path = "/dialogs/" + props.id;
