@@ -7,9 +7,9 @@
     padding: 20px;
 }
 
-.dialogItems .active {
-    color: red;
-}
+/*.dialogItems .active {*/
+/*    color: red;*/
+/*}*/
 
 .messages {
 padding: 20px;
@@ -17,4 +17,14 @@ padding: 20px;
 
 .messages .message {
 
+}
+
+.inactiveLink{
+    color: #8484f1;
+    text-decoration: none;
+}
+
+.activeLink {
+    color: black;
+    text-decoration: none;
 }
