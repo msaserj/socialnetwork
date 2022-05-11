@@ -1,20 +1,21 @@
 import React from "react";
 import classes from './Dialogs.module.css'
 import {NavLink} from "react-router-dom";
+import {v1} from "uuid";
 
 type DialogItemType = {
-    id: number
+    id: string
     name: string
 }
 type MessageType = {
     message: string
 }
 type dialogsDataType =  {
-    id: number
+    id: string
     name: string
 }
 type messagesDataType = {
-    id: number
+    id: string
     message: string
 }
 
@@ -36,20 +37,20 @@ const Message = (props: MessageType) => {
 export const Dialogs = () => {
 
     const dialogsData: Array<dialogsDataType> = [
-        {id: 1, name: "Serj"},
-        {id: 2, name: "Alex"},
-        {id: 3, name: "Petr"},
-        {id: 4, name: "Valera"},
-        {id: 5, name: "Viktor"},
-        {id: 6, name: "Valera"}
+        {id: v1(), name: "Serj"},
+        {id: v1(), name: "Alex"},
+        {id: v1(), name: "Petr"},
+        {id: v1(), name: "Valera"},
+        {id: v1(), name: "Viktor"},
+        {id: v1(), name: "Valera"}
     ]
 
     const messagesData: Array<messagesDataType>  = [
-        {id: 1, message: "Hi"},
-        {id: 2, message: "How is your it-kamasutra"},
-        {id: 3, message: "Yo"},
-        {id: 4, message: "Yo"},
-        {id: 5, message: "Yo"},
+        {id: v1(), message: "Hi"},
+        {id: v1(), message: "How is your it-kamasutra"},
+        {id: v1(), message: "Yo"},
+        {id: v1(), message: "Yo"},
+        {id: v1(), message: "Yo"},
     ]
 
     return (
