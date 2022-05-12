@@ -27,9 +27,9 @@ export const MyPosts = (props: AppStateType) => {
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
     const addPost = () => {
-        if (newPostElement.current !== null) {
-            alert(newPostElement.current.value)
-        }
+            //Если current существует, то отображай!!! То есть знак вопроса.
+            alert(newPostElement.current?.value)
+
     }
 
     return (
