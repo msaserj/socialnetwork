@@ -1,4 +1,4 @@
-import React, {ChangeEvent, useRef} from "react";
+import React, { useRef} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
