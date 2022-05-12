@@ -26,7 +26,10 @@ type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
+
 }
+
+
 
 export const state: RootStateType = {
     profilePage: {
@@ -56,4 +59,13 @@ export const state: RootStateType = {
         ]
     },
     sidebar: {}
+}
+
+export let addPost = (postMessage: string)=> {
+    let newPost = {
+        id: v1(),
+        message: postMessage,
+        likesCount: 5
+    };
+    state.profilePage.posts.push(newPost)
 }
