@@ -14,6 +14,11 @@ type AppStateType = {
     posts: Array<postType>
 }
 
+type MessageType = {
+    message: string
+    addPostCallBack: (postText: string) => void
+}
+
 
 
 export const MyPosts = (props: AppStateType) => {
@@ -25,9 +30,12 @@ export const MyPosts = (props: AppStateType) => {
 
     let newPostElement = useRef<HTMLTextAreaElement>(null)
 
-    const addPost = () => {
+    const addPost = (props: MessageType) => {
             //Если current существует, то отображай!!! То есть знак вопроса.
-            alert(newPostElement.current?.value)
+        if (newPostElement.current) {
+            props.addPostCallBack(newPostElement.current.value)
+        }
+
 
     }
 

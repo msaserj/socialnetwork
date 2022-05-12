@@ -8,6 +8,7 @@ import {Routes, Route, BrowserRouter} from 'react-router-dom';
 import {addPost, state} from "./redux/state.js";
 
 
+
 const App = () => {
 
     return (
@@ -17,8 +18,10 @@ const App = () => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path="/dialogs/*" element={<Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} />}/>
-                        <Route path="/profile/*" element={<Profile posts={state.profilePage.posts}  addPostCallBack={addPost}/>}/>
+                        {/*<Route path="/dialogs/*" element={<Dialogs dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages} />}/>*/}
+                        {/*<Route path="/profile/*" element={<Profile posts={state.profilePage.posts}  addPostCallBack={addPost}/>}/>*/}
+                        <Route path="/dialogs/*" element={<Dialogs  dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
+                        <Route path="/profile/*" element={<Profile  addPostCallBack={addPost}  posts={state.profilePage.posts} />}/>
                         {/*<Route path="/news" element={<News />}/>*/}
                         {/*<Route path="/music" element={<Music />}/>*/}
                         {/*<Route path="/settings" element={<Settings />}/>*/}

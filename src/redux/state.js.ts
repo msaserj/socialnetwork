@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import {rerenderEntireTree} from "../rerender";
 
 type MessageType = {
     id: string
@@ -22,14 +23,11 @@ type DialogPageType = {
 }
 type SidebarType = {}
 
-type RootStateType = {
+export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
-
 }
-
-
 
 export const state: RootStateType = {
     profilePage: {
@@ -68,4 +66,5 @@ export let addPost = (postMessage: string)=> {
         likesCount: 5
     };
     state.profilePage.posts.push(newPost)
+    rerenderEntireTree(state);
 }
