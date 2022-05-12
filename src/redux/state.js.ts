@@ -62,7 +62,7 @@ export const state: RootStateType = {
 }
 
 export let addPost = (postMessage: string)=> {
-    let newPost = {
+    const newPost: PostType = {
         id: v1(),
         message: postMessage,
         likesCount: 5

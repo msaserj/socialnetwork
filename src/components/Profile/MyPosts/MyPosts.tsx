@@ -12,7 +12,6 @@ type postType = {
 
 type AppStateType = {
     posts: Array<postType>
-
 }
 
 

@@ -10,6 +10,7 @@ type PostType = {
 }
 type ProfilePageType = {
     posts: Array<PostType>
+    addPostCallBack: (message: string)=> void
 }
 
 
@@ -19,7 +20,7 @@ export const Profile = (props: ProfilePageType) => {
         <div>
             <h2>Main content</h2>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}  />
+            <MyPosts posts={props.posts}   />
         </div>
     )
 }
