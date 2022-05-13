@@ -8,10 +8,9 @@ type postType = {
     message: string
     likesCount: number
 }
-
-
 type AppStateType = {
     posts: Array<postType>
+    addPost: (postName: string) => void
 }
 
 type MessageType = {
@@ -20,23 +19,16 @@ type MessageType = {
 }
 
 
-
 export const MyPosts = (props: AppStateType) => {
-
-
-    // Post!!!
 
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
-    let newPostElement = useRef<HTMLTextAreaElement>(null)
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    const addPost = (props: MessageType) => {
-            //Если current существует, то отображай!!! То есть знак вопроса.
+    const addPostHandler = (props: MessageType) => {
         if (newPostElement.current) {
             props.addPostCallBack(newPostElement.current.value)
         }
-
-
     }
 
     return (
@@ -47,7 +39,7 @@ export const MyPosts = (props: AppStateType) => {
                     <textarea ref={newPostElement}>Add post</textarea>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={addPostHandler}>Add post</button>
                 </div>
                 <div className={classes.item}>
                     <h3>New Post</h3>

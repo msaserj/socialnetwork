@@ -2,6 +2,9 @@ import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {addPost} from "../../redux/state.js";
+
+// import {addPost} from "../../redux/state.js";
 
 type PostType = {
     id: string
@@ -15,12 +18,15 @@ type ProfilePageType = {
 
 
 export const Profile = (props: ProfilePageType) => {
+    const addPostHandler = (postName: string) => {
+        addPost(postName);
+    }
 
     return(
         <div>
             <h2>Main content</h2>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}   />
+            <MyPosts posts={props.posts} addPostCallBack={addPostHandler} />
         </div>
     )
 }

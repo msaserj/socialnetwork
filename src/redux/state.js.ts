@@ -59,10 +59,10 @@ export const state: RootStateType = {
     sidebar: {}
 }
 
-export let addPost = (postMessage: string)=> {
+export let addPost = (postText: string)=> {
     const newPost: PostType = {
         id: v1(),
-        message: postMessage,
+        message: postText,
         likesCount: 5
     };
     state.profilePage.posts.push(newPost)
