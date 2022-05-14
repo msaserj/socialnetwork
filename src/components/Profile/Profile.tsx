@@ -2,7 +2,7 @@ import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
 import classes from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {addPost, updateNewPostText} from "../../redux/state.js";
+// import {addPost, updateNewPostText} from "../../redux/state.js";
 
 // import {addPost} from "../../redux/state.js";
 
@@ -27,6 +27,7 @@ export const Profile = (props: ProfilePageType) => {
 
     function onPostChange(newText: string) {
         updateNewPostText(newText)
+
     }
 
     return(
