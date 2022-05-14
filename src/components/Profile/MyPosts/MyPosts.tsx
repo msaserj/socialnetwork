@@ -1,4 +1,4 @@
-import React, { useRef} from "react";
+import React from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
@@ -10,22 +10,20 @@ type postType = {
 }
 type AppStateType = {
     posts: Array<postType>
-    addPost: (postName: string) => void
+    addPostCallBack: (postName: string) => void
 }
-
-type MessageType = {
-    message: string
-    addPostCallBack: (postText: string) => void
-}
+// type MessageType = {
+//     message: string
+//
+// }
 
 
 export const MyPosts = (props: AppStateType) => {
 
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
-
     let newPostElement = React.createRef<HTMLTextAreaElement>()
 
-    const addPostHandler = (props: MessageType) => {
+    const addPostHandler = () => {
         if (newPostElement.current) {
             props.addPostCallBack(newPostElement.current.value)
         }
