@@ -1,4 +1,4 @@
-import React from "react";
+import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 
@@ -11,6 +11,8 @@ type postType = {
 type AppStateType = {
     posts: Array<postType>
     addPostCallBack: (postName: string) => void
+    updateNewPostText: (postName: string) => void
+    newPostText: string
 }
 // type MessageType = {
 //     message: string
@@ -19,14 +21,22 @@ type AppStateType = {
 
 
 export const MyPosts = (props: AppStateType) => {
-
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
-    let newPostElement = React.createRef<HTMLTextAreaElement>()
 
+    //let newPostElement = React.createRef<HTMLTextAreaElement>()
+    // const addPostHandler = () => {
+    //     if (newPostElement.current) {
+    //         props.addPostCallBack(newPostElement.current.value)
+    //     }
+    // }
     const addPostHandler = () => {
-        if (newPostElement.current) {
-            props.addPostCallBack(newPostElement.current.value)
-        }
+        props.addPostCallBack(props.newPostText)
+        props.updateNewPostText("")
+    }
+
+    function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
+        props.updateNewPostText(e.currentTarget.value)
+        // props.updateNewPostText("");
     }
 
     return (
@@ -34,7 +44,8 @@ export const MyPosts = (props: AppStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}>Add post</textarea>
+                    {/*ref={newPostElement}*/}
+                    <textarea onChange={onPostChange}  value={props.newPostText}>Add post</textarea>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>

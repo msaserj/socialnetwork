@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
-import {addPost, state} from "./redux/state.js";
+import {addPost, state, updateNewPostText} from "./redux/state.js";
 
 
 
@@ -20,7 +20,7 @@ const App = () => {
                     <Routes>
 
                         <Route path="/dialogs/*" element={<Dialogs  dialogs={state.dialogsPage.dialogs} messages={state.dialogsPage.messages}/>}/>
-                        <Route path="/profile/*" element={<Profile  posts={state.profilePage.posts}  addPostCallBack={addPost}/>}/>
+                        <Route path="/profile/*" element={<Profile  posts={state.profilePage.posts} updateNewPostTextCallBack={updateNewPostText} addPostCallBack={addPost} newPostText={state.profilePage.newPostText}/>}/>
 
 
                         {/*<Route path="/news" element={<News />}/>*/}
