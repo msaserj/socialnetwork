@@ -1,5 +1,9 @@
 import {v1} from "uuid";
-import {rerenderEntireTree} from "../rerender";
+
+
+let rerenderEntireTree = (state: RootStateType)=> {
+    console.log('hk')
+}
 
 type MessageType = {
     id: string
@@ -61,7 +65,7 @@ export const state: RootStateType = {
     sidebar: {}
 }
 
-export let addPost = (postText: string)=> {
+export const addPost = (postText: string)=> {
     const newPost: PostType = {
         id: v1(),
         message: postText,
@@ -70,7 +74,11 @@ export let addPost = (postText: string)=> {
     state.profilePage.posts.push(newPost)
     rerenderEntireTree(state);
 }
-export let updateNewPostText = (newText: string)=> {
+export const updateNewPostText = (newText: string)=> {
     state.profilePage.newPostText = newText;
     rerenderEntireTree(state)
-    };
+};
+
+export const subscribe = (observer: any) => {
+   rerenderEntireTree = observer
+}
