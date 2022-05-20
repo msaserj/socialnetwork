@@ -47,19 +47,3 @@ export const MyPosts = (props: AppStateType) => {
         </div>
     )
 }
-
-
-
-
-
-// const addPost = (postName: string) => {
-//     // props.addPostCallBack(postName);
-//     props.dispatch({type: "ADD-POST", newPost: props.newPost})
-// }
-//
-//
-// function onPost(newText: string) {
-//     // props.updateNewPostTextCallBack(newText)
-//     props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: props.newText})
-//
-// }

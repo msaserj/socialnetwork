@@ -14,8 +14,6 @@ export let rerenderTree = () => {
         document.getElementById('root') );
 }
 
-
-
 rerenderTree();
 
 store.subscribe(rerenderTree);

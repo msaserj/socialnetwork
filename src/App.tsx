@@ -6,8 +6,6 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
 import {StoreType} from "./redux/state.js";
-// import {addPost, state, updateNewPostText} from "./redux/state.js";
-
 
 type PropsType = {
     store: StoreType
@@ -38,7 +36,6 @@ const App: React.FC<PropsType> = (props) => {
                     </Routes>
                 </div>
             </div>
-
     );
 }
 export default App;

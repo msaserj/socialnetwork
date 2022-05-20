@@ -16,7 +16,6 @@ type ProfilePageType = {
     newPostText: string
 }
 
-
 export const Profile = (props: ProfilePageType) => {
 
     return(
@@ -30,20 +29,3 @@ export const Profile = (props: ProfilePageType) => {
         </div>
     )
 }
-
-
-
-
-
-
-// const addPostHandler = (postName: string) => {
-//     // props.addPostCallBack(postName);
-//     props.dispatch({type: "ADD-POST", newPost: props.newPost})
-// }
-//
-//
-// function onPostChange(newText: string) {
-//     // props.updateNewPostTextCallBack(newText)
-//    props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: props.newText})
-//
-// }
