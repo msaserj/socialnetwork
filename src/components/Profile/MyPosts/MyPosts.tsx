@@ -12,9 +12,7 @@ type postType = {
 type AppStateType = {
     posts: Array<postType>
     // addPostCallBack: (postName: string) => void
-    updateNewPostText: (postName: string) => void
     newPostText: string
-    newPost: string
     dispatch: (action: ActionsType) => void
 }
 
@@ -22,12 +20,11 @@ export const MyPosts = (props: AppStateType) => {
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
     const addPostHandler = () => {
-        props.dispatch(addPostAC(props.newPost))
+        props.dispatch(addPostAC(props.newPostText))
     }
 
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
-        props.updateNewPostText(e.currentTarget.value)
-        props.dispatch(updateNewPostAC(props.newPostText))
+        props.dispatch(updateNewPostAC(e.currentTarget.value))
     }
 
     return (

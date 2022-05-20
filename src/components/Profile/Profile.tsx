@@ -13,9 +13,7 @@ type PostType = {
 type ProfilePageType = {
     posts: Array<PostType>
     dispatch: (action: ActionsType) => void
-    newPost: string
     newPostText: string
-    updateNewPostText: (postName: string) => void
 }
 
 
@@ -27,9 +25,8 @@ export const Profile = (props: ProfilePageType) => {
             <ProfileInfo/>
             <MyPosts posts={props.posts}
                      dispatch={props.dispatch}
-                     newPost={props.newPost}
                      newPostText={props.newPostText}
-                     updateNewPostText={props.updateNewPostText}/>
+            />
         </div>
     )
 }

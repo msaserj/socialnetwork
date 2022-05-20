@@ -37,7 +37,6 @@ export type StoreType = {
     _onChange: () => void
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
-    updateNewPostText: (newPostText: string) => void
 }
 
 /// ACTIONS
@@ -96,10 +95,8 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
-    updateNewPostText(newPostText) {
-        this._state.profilePage.newTextState = newPostText;
-        this._onChange()
-    },
+    // удалить updateNewPostText
+
     dispatch(action) { // {type: "ADD-POST"}
         if (action.type === "ADD-POST") {
             const newPost: PostType = {
