@@ -5,15 +5,17 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
-import {store, StoreType} from "./redux/state.js";
+import {StoreType} from "./redux/state.js";
 // import {addPost, state, updateNewPostText} from "./redux/state.js";
+
+
 type PropsType = {
     store: StoreType
 }
 
-
 const App: React.FC<PropsType> = (props) => {
     const state = props.store.getState();
+    console.log(props.store)
     return (
             <div className='app-wrapper'>
                 <Header/>
@@ -27,9 +29,9 @@ const App: React.FC<PropsType> = (props) => {
                         />}/>
                         <Route path="/profile/*" element={<Profile
                             posts={state.profilePage.posts}
-                            updateNewPostTextCallBack={props.store.updateNewPostText.bind(props.store)}
-                            addPostCallBack={props.store.addPost.bind(props.store)}
-                            newPostText={state.profilePage.newPostText}
+                            dispatch={props.store.dispatch.bind(props.store)}
+                            newPost={state.profilePage.newPostText}
+                            newText={state.profilePage.}
                         />}/>
                         {/*<Route path="/news" element={<News />}/>*/}
                         {/*<Route path="/music" element={<Music />}/>*/}

@@ -23,12 +23,6 @@ type AppStateType = {
 export const MyPosts = (props: AppStateType) => {
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
-    //let newPostElement = React.createRef<HTMLTextAreaElement>()
-    // const addPostHandler = () => {
-    //     if (newPostElement.current) {
-    //         props.addPostCallBack(newPostElement.current.value)
-    //     }
-    // }
     const addPostHandler = () => {
         props.addPostCallBack(props.newPostText)
         props.updateNewPostText("")
@@ -36,7 +30,6 @@ export const MyPosts = (props: AppStateType) => {
 
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
         props.updateNewPostText(e.currentTarget.value)
-        // props.updateNewPostText("");
     }
 
     return (

@@ -1,4 +1,5 @@
 import {v1} from "uuid";
+import app from "../App";
 
 
 type MessageType = {
@@ -32,12 +33,22 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (newText: string) => void
-    addPost: (postText: string) => void
     subscribe: (callBack: () => void) => void
-    _rerenderEntireTree: () => void
-    getState: ()=> RootStateType
+    _onChange: () => void
+    getState: () => RootStateType
+    dispatch: (action: ActionsType) => void
 }
+
+type AddPostActionType ={
+    type: "ADD-POST"
+    newPost: string
+}
+type UpdateNewPostTextType ={
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+
+export type ActionsType = AddPostActionType | UpdateNewPostTextType
 
 export const store: StoreType = {
     _state: {
@@ -70,26 +81,28 @@ export const store: StoreType = {
         },
         sidebar: {}
     },
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._rerenderEntireTree()
-    },
-    addPost(postText: string) {
-        const newPost: PostType = {
-            id: v1(),
-            message: postText,
-            likesCount: 5
-        };
-        this._state.profilePage.posts.push(newPost)
-        this._rerenderEntireTree();
-    },
+
     subscribe(callBack) {
-        this._rerenderEntireTree = callBack
+        this._onChange = callBack
     },
-    _rerenderEntireTree() {
+    _onChange() {
         console.log('State was changed')
     },
     getState() {
         return this._state
+    },
+    dispatch(action) { // {type: "ADD-POST"}
+        if (action.type === "ADD-POST") {
+            const newPost: PostType = {
+                id: v1(),
+                message: action.newPost,
+                likesCount: 5
+            };
+            this._state.profilePage.posts.push(newPost)
+            this._onChange();
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newText;
+            this._onChange()
+        }
     }
 }
