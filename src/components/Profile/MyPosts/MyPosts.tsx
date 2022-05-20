@@ -1,6 +1,7 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {ActionsType, addPostAC, updateNewPostAC} from "../../../redux/state.js";
 
 
 type postType = {
@@ -10,26 +11,23 @@ type postType = {
 }
 type AppStateType = {
     posts: Array<postType>
-    addPostCallBack: (postName: string) => void
+    // addPostCallBack: (postName: string) => void
     updateNewPostText: (postName: string) => void
     newPostText: string
+    newPost: string
+    dispatch: (action: ActionsType) => void
 }
-// type MessageType = {
-//     message: string
-//
-// }
-
 
 export const MyPosts = (props: AppStateType) => {
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
     const addPostHandler = () => {
-        props.addPostCallBack(props.newPostText)
-        props.updateNewPostText("")
+        props.dispatch(addPostAC(props.newPost))
     }
 
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
         props.updateNewPostText(e.currentTarget.value)
+        props.dispatch(updateNewPostAC(props.newPostText))
     }
 
     return (
@@ -37,7 +35,6 @@ export const MyPosts = (props: AppStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    {/*ref={newPostElement}*/}
                     <textarea onChange={onPostChange}  value={props.newPostText}>Add post</textarea>
                 </div>
                 <div>
@@ -54,3 +51,18 @@ export const MyPosts = (props: AppStateType) => {
     )
 }
 
+
+
+
+
+// const addPost = (postName: string) => {
+//     // props.addPostCallBack(postName);
+//     props.dispatch({type: "ADD-POST", newPost: props.newPost})
+// }
+//
+//
+// function onPost(newText: string) {
+//     // props.updateNewPostTextCallBack(newText)
+//     props.dispatch({type: "UPDATE-NEW-POST-TEXT", newText: props.newText})
+//
+// }

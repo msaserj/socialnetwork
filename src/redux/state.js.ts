@@ -1,7 +1,20 @@
 import {v1} from "uuid";
-import app from "../App";
 
-
+/// PROFILE
+type ProfilePageType = {
+    posts: Array<PostType>
+    newTextState: string
+}
+type PostType = {
+    id: string
+    message: string
+    likesCount: number
+}
+/// DIALOGS
+type DialogPageType = {
+    dialogs: Array<DialogType>
+    messages: Array<MessageType>
+}
 type MessageType = {
     id: string
     message: string
@@ -10,46 +23,38 @@ type DialogType = {
     id: string
     name: string
 }
-type PostType = {
-    id: string
-    message: string
-    likesCount: number
-}
-type ProfilePageType = {
-    posts: Array<PostType>
-    newPostText: string
-}
-type DialogPageType = {
-    dialogs: Array<DialogType>
-    messages: Array<MessageType>
-}
 type SidebarType = {}
 
+/// ROOT STORE
 export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogPageType
     sidebar: SidebarType
 }
-
 export type StoreType = {
     _state: RootStateType
     subscribe: (callBack: () => void) => void
     _onChange: () => void
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
+    updateNewPostText: (newPostText: string) => void
 }
 
-type AddPostActionType ={
-    type: "ADD-POST"
-    newPost: string
+/// ACTIONS
+export type ActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostAC>
+export const addPostAC = (newPost: string) => {
+    return {
+        type: "ADD-POST",
+        newPost: newPost
+    } as const
 }
-type UpdateNewPostTextType ={
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
+export const updateNewPostAC = (newPostText: string) => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        newPostText: newPostText
+    } as const
 }
-
-export type ActionsType = AddPostActionType | UpdateNewPostTextType
-
+/// STORE
 export const store: StoreType = {
     _state: {
         profilePage: {
@@ -60,7 +65,7 @@ export const store: StoreType = {
                 {id: v1(), message: "Yo", likesCount: 20},
                 {id: v1(), message: "Yo", likesCount: 30}
             ],
-            newPostText: ""
+            newTextState: ""
         },
         dialogsPage: {
             dialogs: [
@@ -91,6 +96,10 @@ export const store: StoreType = {
     getState() {
         return this._state
     },
+    updateNewPostText(newPostText) {
+        this._state.profilePage.newTextState = newPostText;
+        this._onChange()
+    },
     dispatch(action) { // {type: "ADD-POST"}
         if (action.type === "ADD-POST") {
             const newPost: PostType = {
@@ -101,7 +110,7 @@ export const store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._onChange();
         } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText;
+            this._state.profilePage.newTextState = action.newPostText;
             this._onChange()
         }
     }

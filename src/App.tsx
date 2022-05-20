@@ -5,7 +5,7 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
-import {StoreType} from "./redux/state.js";
+import {store, StoreType} from "./redux/state.js";
 // import {addPost, state, updateNewPostText} from "./redux/state.js";
 
 
@@ -30,8 +30,9 @@ const App: React.FC<PropsType> = (props) => {
                         <Route path="/profile/*" element={<Profile
                             posts={state.profilePage.posts}
                             dispatch={props.store.dispatch.bind(props.store)}
-                            newPost={state.profilePage.newPostText}
-                            newText={state.profilePage.}
+                            newPost={state.profilePage.newTextState}
+                            newPostText={state.profilePage.newTextState}
+                            updateNewPostText={store.updateNewPostText}
                         />}/>
                         {/*<Route path="/news" element={<News />}/>*/}
                         {/*<Route path="/music" element={<Music />}/>*/}
