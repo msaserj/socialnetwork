@@ -2,8 +2,7 @@ import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {addPostAC, updateNewPostAC} from "../../../redux/profile-reducer";
-import {ActionsType} from "../../../redux/store";
-
+import {DispatchStoreType} from "../../../redux/redux-store";
 
 
 type postType = {
@@ -15,12 +14,12 @@ type AppStateType = {
     posts: Array<postType>
     // addPostCallBack: (postName: string) => void
     newPostText: string
-    dispatch: (action: ActionsType) => void
+    dispatch: DispatchStoreType
 }
 
 export const MyPosts = (props: AppStateType) => {
     let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
-
+    console.log(props.newPostText)
     const addPostHandler = () => {
         props.dispatch(addPostAC(props.newPostText))
     }
@@ -34,7 +33,7 @@ export const MyPosts = (props: AppStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange}  value={props.newPostText}>Add post</textarea>
+                    <textarea onChange={onPostChange} value={props.newPostText}>Add post</textarea>
                 </div>
                 <div>
                     <button onClick={addPostHandler}>Add post</button>
