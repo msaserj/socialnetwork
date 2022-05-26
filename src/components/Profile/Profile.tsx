@@ -5,6 +5,7 @@ import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {ActionsType} from "../../redux/state.js";
 
 
+
 type PostType = {
     id: string
     message: string
