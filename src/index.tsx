@@ -17,15 +17,8 @@ export let rerenderTree = () => {
         document.getElementById('root') );
 }
 
-
-
-
 store.subscribe(rerenderTree)
-
 rerenderTree()
-
-
-
 
 // type RootStateType = {
 //     dialogPage: Array<DialogPageType>
