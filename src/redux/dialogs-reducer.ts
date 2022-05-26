@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {ActionsType, DialogPageType} from "./state.js";
+import {ActionsType, DialogPageType} from "./store";
+
 
 export type DialogsActionsType = ReturnType<typeof updateNewMessageAC>
     | ReturnType<typeof sendNewMessageAC>

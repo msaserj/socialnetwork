@@ -1,5 +1,6 @@
 import {v1} from "uuid";
-import {ActionsType, ProfilePageType} from "./state.js";
+import {ActionsType, ProfilePageType} from "./store";
+
 
 type PostType = {
     id: string

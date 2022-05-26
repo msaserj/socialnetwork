@@ -47,36 +47,6 @@ export type StoreType = {
 // ACTIONS
 export type ActionsType = DialogsActionsType | ProfileActionsType
 
-
-
-
-// export type ActionsType = ReturnType<typeof updateNewMessageAC>
-//     | ReturnType<typeof sendNewMessageAC>
-// export const addPostAC = (newPost: string) => {
-//     return {
-//         type: "ADD-POST",
-//         newPost: newPost
-//     } as const
-// }
-// export const updateNewPostAC = (newPostText: string) => {
-//     return {
-//         type: "UPDATE-NEW-POST-TEXT",
-//         newPostText: newPostText
-//     } as const
-// }
-// export const updateNewMessageAC = (newMessage: string) => {
-//     return {
-//         type: "UPDATE-NEW-MESSAGE-TEXT",
-//         newMessage: newMessage
-//     } as const
-// }
-// export const sendNewMessageAC = (message: string) => {
-//     return {
-//         type: "SEND-NEW-MESSAGE",
-//         newMessage: message
-//     } as const
-// }
-
 /// STORE
 export const store: StoreType = {
     _state: {
@@ -123,8 +93,6 @@ export const store: StoreType = {
         this._state.profilePage = profileReducer(this._state.profilePage, action)
         this._state.sidebar = sidebarReducer(this._state.sidebar, action)
         this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
-
-
         this._onChange(this._state)
     }
 }
