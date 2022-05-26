@@ -1,10 +1,7 @@
 import React from "react";
 import {MyPosts} from "./MyPosts/MyPosts";
-import classes from './Profile.module.css'
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsType} from "../../redux/store";
-
-
+import {DispatchStoreType} from "../../redux/redux-store";
 
 
 type PostType = {
@@ -14,7 +11,7 @@ type PostType = {
 }
 type ProfilePageType = {
     posts: Array<PostType>
-    dispatch: (action: ActionsType) => void
+    dispatch: DispatchStoreType
     newPostText: string
 }
 
