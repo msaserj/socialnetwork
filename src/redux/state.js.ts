@@ -1,7 +1,7 @@
 import {v1} from "uuid";
-import {profileReducer} from "./profile-reducer";
+import {ProfileActionsType, profileReducer} from "./profile-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
-import {dialogsReducer} from "./dialogs-reducer";
+import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
 
 
 /// PROFILE
@@ -45,34 +45,37 @@ export type StoreType = {
 }
 
 // ACTIONS
-export type ActionsType = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewPostAC>
-    | ReturnType<typeof updateNewMessageAC>
-    | ReturnType<typeof sendNewMessageAC>
-export const addPostAC = (newPost: string) => {
-    return {
-        type: "ADD-POST",
-        newPost: newPost
-    } as const
-}
-export const updateNewPostAC = (newPostText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newPostText: newPostText
-    } as const
-}
-export const updateNewMessageAC = (newMessage: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-TEXT",
-        newMessage: newMessage
-    } as const
-}
-export const sendNewMessageAC = (message: string) => {
-    return {
-        type: "SEND-NEW-MESSAGE",
-        newMessage: message
-    } as const
-}
+export type ActionsType = DialogsActionsType | ProfileActionsType
+
+
+
+
+// export type ActionsType = ReturnType<typeof updateNewMessageAC>
+//     | ReturnType<typeof sendNewMessageAC>
+// export const addPostAC = (newPost: string) => {
+//     return {
+//         type: "ADD-POST",
+//         newPost: newPost
+//     } as const
+// }
+// export const updateNewPostAC = (newPostText: string) => {
+//     return {
+//         type: "UPDATE-NEW-POST-TEXT",
+//         newPostText: newPostText
+//     } as const
+// }
+// export const updateNewMessageAC = (newMessage: string) => {
+//     return {
+//         type: "UPDATE-NEW-MESSAGE-TEXT",
+//         newMessage: newMessage
+//     } as const
+// }
+// export const sendNewMessageAC = (message: string) => {
+//     return {
+//         type: "SEND-NEW-MESSAGE",
+//         newMessage: message
+//     } as const
+// }
 
 /// STORE
 export const store: StoreType = {
