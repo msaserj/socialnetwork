@@ -1,7 +1,11 @@
 import {v1} from "uuid";
+import {profileReducer} from "./profile-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
+import {dialogsReducer} from "./dialogs-reducer";
+
 
 /// PROFILE
-type ProfilePageType = {
+export type ProfilePageType = {
     posts: Array<PostType>
     newTextState: string
 }
@@ -11,7 +15,7 @@ type PostType = {
     likesCount: number
 }
 /// DIALOGS
-type DialogPageType = {
+export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageState: string
@@ -24,7 +28,7 @@ type DialogType = {
     id: string
     name: string
 }
-type SidebarType = {}
+export type SidebarType = {}
 
 /// ROOT STORE
 export type RootStateType = {
@@ -35,12 +39,12 @@ export type RootStateType = {
 export type StoreType = {
     _state: RootStateType
     subscribe: (callBack: () => void) => void
-    _onChange: () => void
+    _onChange: (_state: RootStateType) => void
     getState: () => RootStateType
     dispatch: (action: ActionsType) => void
 }
 
-/// ACTIONS
+// ACTIONS
 export type ActionsType = ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewPostAC>
     | ReturnType<typeof updateNewMessageAC>
@@ -78,8 +82,6 @@ export const store: StoreType = {
                 {id: v1(), message: "Hi", likesCount: 5},
                 {id: v1(), message: "How is your it-kamasutra", likesCount: 6},
                 {id: v1(), message: "Yo", likesCount: 10},
-                {id: v1(), message: "Yo", likesCount: 20},
-                {id: v1(), message: "Yo", likesCount: 30}
             ],
             newTextState: ""
         },
@@ -114,25 +116,12 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) { // {type: "ADD-POST"}
-        if (action.type === "ADD-POST") {
-            const newPost: PostType = {
-                id: v1(),
-                message: action.newPost,
-                likesCount: 5
-            };
-            this._state.profilePage.posts.push(newPost)
-            this._onChange();
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newTextState = action.newPostText;
-            this._onChange()
-        } else if (action.type === "UPDATE-NEW-MESSAGE-TEXT") {
-            this._state.dialogsPage.newMessageState = action.newMessage;
-            this._onChange()
-        } else if (action.type === "SEND-NEW-MESSAGE") {
-            let message = this._state.dialogsPage.newMessageState;
-            this._state.dialogsPage.newMessageState = "";
-            this._state.dialogsPage.messages.push({id: v1(), message: message});
-            this._onChange()
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+
+
+        this._onChange(this._state)
     }
 }
