@@ -5,31 +5,31 @@ import {Navbar} from "./components/Navbar/Navbar";
 import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
-import {StoreType} from "./redux/store";
-
+import {AppStoreType, DispatchStoreType} from "./redux/redux-store";
 
 type PropsType = {
-    store: StoreType
+    store: AppStoreType
+    dispatch: DispatchStoreType
 }
 
 const App: React.FC<PropsType> = (props) => {
-    const state = props.store.getState();
-    console.log(props.store)
+
+    const state = props.store;
+
     return (
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-
                         <Route path="/dialogs/*" element={<Dialogs
                             dialogs={state.dialogsPage.dialogs}
                             messages={state.dialogsPage.messages}
-                            dispatch={props.store.dispatch.bind(props.store)}
+                            dispatch={props.dispatch}
                             newMessageState={state.dialogsPage.newMessageState}/>}/>
                         <Route path="/profile/*" element={<Profile
                             posts={state.profilePage.posts}
-                            dispatch={props.store.dispatch.bind(props.store)}
+                            dispatch={props.dispatch}
                             newPostText={state.profilePage.newTextState}
                          />}/>
                         {/*<Route path="/news" element={<News />}/>*/}
