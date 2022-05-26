@@ -3,8 +3,7 @@ import classes from './Dialogs.module.css'
 import {DialogItem} from "./Dialogitem/Dialogsitem";
 import {Message} from "./Message/Message";
 import {sendNewMessageAC, updateNewMessageAC} from "../../redux/dialogs-reducer";
-import {ActionsType} from "../../redux/store";
-
+import {DispatchStoreType} from "../../redux/redux-store";
 
 
 type DialogType = {
@@ -20,7 +19,7 @@ type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
     newMessageState: string
-    dispatch: (action: ActionsType) => void
+    dispatch: DispatchStoreType
 }
 
 
