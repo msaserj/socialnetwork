@@ -1,6 +1,22 @@
 import {v1} from "uuid";
 import {ActionsType, DialogPageType} from "./state.js";
 
+export type DialogsActionsType = ReturnType<typeof updateNewMessageAC>
+    | ReturnType<typeof sendNewMessageAC>
+
+export const updateNewMessageAC = (newMessage: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-TEXT",
+        newMessage: newMessage
+    } as const
+}
+export const sendNewMessageAC = (message: string) => {
+    return {
+        type: "SEND-NEW-MESSAGE",
+        newMessage: message
+    } as const
+}
+
 export const dialogsReducer = (state: DialogPageType, action: ActionsType) => {
 
     switch (action.type) {
