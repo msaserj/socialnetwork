@@ -16,8 +16,10 @@ export let rerenderTree = () => {
         </BrowserRouter>,
         document.getElementById('root') );
 }
-
+// rerender
 store.subscribe(rerenderTree)
+
+// first render
 rerenderTree()
 
 // type RootStateType = {
