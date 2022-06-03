@@ -49,7 +49,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return state
         case "UPDATE-NEW-POST-TEXT":
             // state.newTextState = action.newPostText;
-            return {...state,newTextState:action.newPostText}
+            return {...state, newTextState:action.newPostText}
         default:
             return state
     }

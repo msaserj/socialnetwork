@@ -46,7 +46,7 @@ export const Dialogs = (props: DialogPageType) => {
                 <div>{messagesElement}</div>
                 <div>
                     <div>
-                        <textarea value={newMessageState} onChange={onChangeHandler} placeholder="Enter your message"></textarea>
+                        <textarea value={newMessageState} onChange={onChangeHandler} placeholder="Enter your message"/>
                     </div>
                     <div>
                         <button onClick={onClickHandler}>Send</button>
