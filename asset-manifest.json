@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/it-incubator-socialnetwork/static/css/main.e54e9f88.css",
+    "main.js": "/it-incubator-socialnetwork/static/js/main.6c6258fd.js",
+    "index.html": "/it-incubator-socialnetwork/index.html",
+    "main.e54e9f88.css.map": "/it-incubator-socialnetwork/static/css/main.e54e9f88.css.map",
+    "main.6c6258fd.js.map": "/it-incubator-socialnetwork/static/js/main.6c6258fd.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e54e9f88.css",
+    "static/js/main.6c6258fd.js"
+  ]
+}
