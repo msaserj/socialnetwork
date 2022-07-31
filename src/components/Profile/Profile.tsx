@@ -17,13 +17,14 @@ type ProfilePageType = {
 
 export const Profile = (props: ProfilePageType) => {
 
-    return(
+    return (
         <div>
             <h2>Main content</h2>
             <ProfileInfo/>
-            <MyPostsContainer posts={props.posts}
-                     dispatch={props.dispatch}
-                     newPostText={props.newPostText}
+            <MyPostsContainer
+                posts={props.posts}
+                dispatch={props.dispatch}
+                newPostText={props.newPostText}
             />
         </div>
     )

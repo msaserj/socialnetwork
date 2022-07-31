@@ -13,7 +13,6 @@ type PropsType = {
 }
 
 const App: React.FC<PropsType> = (props) => {
-
     const state = props.store;
 
     return (
