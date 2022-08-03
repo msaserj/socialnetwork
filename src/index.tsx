@@ -22,28 +22,3 @@ store.subscribe(rerenderTree)
 // first render
 rerenderTree()
 
-// type RootStateType = {
-//     dialogPage: Array<DialogPageType>
-//     post: Array<PostType>
-//     sidebar: Array<SidebarType>
-// }
-// type PostType = {
-//     id: string
-//     message: string
-//     likesCount: number
-// }
-
-// type DialogPageType = {
-//     dialogs: Array<DialogType>
-//     messages: Array<MessageType>
-//     newMessageState: string
-// }
-// type MessageType = {
-//     id: string
-//     message: string
-// }
-// type DialogType = {
-//     id: string
-//     name: string
-// }
-// type SidebarType = {}

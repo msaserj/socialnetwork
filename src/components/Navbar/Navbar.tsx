@@ -4,8 +4,6 @@ import classes from './Navbar.module.css'
 import {Sidebar} from "./Sidebar/Sidebar";
 
 
-
-
 export const Navbar = () => {
     const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
     return(
