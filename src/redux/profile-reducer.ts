@@ -45,7 +45,7 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 likesCount: 5
             };
             state.newTextState = ""
-            state.posts.push(newPost)
+            state.posts.unshift(newPost)
             return state
         case "UPDATE-NEW-POST-TEXT":
             // state.newTextState = action.newPostText;
