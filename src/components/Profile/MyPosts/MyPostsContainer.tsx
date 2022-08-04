@@ -23,6 +23,9 @@ export const MyPostsContainer = (props: AppStateType) => {
         props.dispatch(action)
     }
     return (
-        <MyPosts updateNewPostText={onPostChange} addPostHandler={addPost} posts={props.posts} newPostText={props.newPostText}/>
+        <MyPosts updateNewPostText={onPostChange}
+                 addPostHandler={addPost}
+                 posts={props.posts}
+                 newPostText={props.newPostText}/>
     )
 }
