@@ -14,9 +14,9 @@ let reducers = combineReducers({
 export let store = createStore(reducers)
 //export const dispatch = store.dispatch
 
-
 export type AppStoreType = ReturnType<typeof reducers>
 export type DispatchStoreType = typeof store.dispatch
+
 
 export type ActionsType = DialogsActionsType | ProfileActionsType
 

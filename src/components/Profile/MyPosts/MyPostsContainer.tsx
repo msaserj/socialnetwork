@@ -1,22 +1,23 @@
 import React from "react";
 import {addPostAC, updateNewPostAC} from "../../../redux/profile-reducer";
-import {DispatchStoreType} from "../../../redux/redux-store";
+import {AppStoreType, DispatchStoreType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 
-type postType = {
+export type postsType = {
     id: string
     message: string
     likesCount: number
 }
-type AppStateType = {
-    posts: Array<postType>
-    newPostText: string
+type MyPostsStateType = {
     dispatch: DispatchStoreType
+    state: AppStoreType
 }
 
-export const MyPostsContainer = (props: AppStateType) => {
+export const MyPostsContainer = (props: MyPostsStateType) => {
+    let state = props.state.profilePage
     const addPost = () => {
-        props.dispatch(addPostAC(props.newPostText))
+        props.dispatch(addPostAC(state.newTextState))
+
     }
     function onPostChange(text: string) {
         let action = updateNewPostAC(text)
@@ -25,7 +26,7 @@ export const MyPostsContainer = (props: AppStateType) => {
     return (
         <MyPosts updateNewPostText={onPostChange}
                  addPostHandler={addPost}
-                 posts={props.posts}
-                 newPostText={props.newPostText}/>
+                 posts={state.posts}
+                 newPostText={state.newTextState}/>
     )
 }

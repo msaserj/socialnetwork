@@ -1,18 +1,15 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
+import {postsType} from "./MyPostsContainer";
 
 
-type postType = {
-    id: string
-    message: string
-    likesCount: number
-}
+
 type AppStateType = {
-    posts: Array<postType>
-    newPostText: string
     updateNewPostText: (newPostText: string) => void
     addPostHandler: () => void
+    posts: Array<postsType>
+    newPostText: string
 }
 
 export const MyPosts = (props: AppStateType) => {
@@ -22,7 +19,6 @@ export const MyPosts = (props: AppStateType) => {
     const onAddPost = () => {
         props.addPostHandler()
     }
-
     function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
         // props.dispatch(updateNewPostAC(e.currentTarget.value))
         props.updateNewPostText(e.currentTarget.value)
