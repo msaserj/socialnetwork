@@ -4,16 +4,16 @@ import {Header} from "./components/Header/Header";
 import {Navbar} from "./components/Navbar/Navbar";
 import {Profile} from "./components/Profile/Profile";
 import {Routes, Route} from 'react-router-dom';
-import {AppStoreType, DispatchStoreType} from "./redux/redux-store";
+import {AppStateType, DispatchStoreType} from "./redux/redux-store";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 type PropsType = {
-    store: AppStoreType
+    store: any
     dispatch: DispatchStoreType
 }
 
 const App: React.FC<PropsType> = (props) => {
-    const state = props.store;
+   // const state = props.store;
 
     return (
             <div className='app-wrapper'>
@@ -22,11 +22,13 @@ const App: React.FC<PropsType> = (props) => {
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path="/dialogs/*" element={<DialogsContainer
-                            dispatch={props.dispatch}
-                            state={state}/>}/>
+                            //dispatch={props.dispatch}
+                            //state={state}
+                        />}/>
                         <Route path="/profile/*" element={<Profile
                             dispatch={props.dispatch}
-                            state={state}/>}/>
+                            state={props.store}
+                        />}/>
 
                         {/*<Route path="/news" element={<News />}/>*/}
                         {/*<Route path="/music" element={<Music />}/>*/}

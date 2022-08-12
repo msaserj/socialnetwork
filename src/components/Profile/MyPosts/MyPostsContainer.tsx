@@ -1,6 +1,6 @@
 import React from "react";
 import {addPostAC, updateNewPostAC} from "../../../redux/profile-reducer";
-import {AppStoreType, DispatchStoreType} from "../../../redux/redux-store";
+import {AppStateType, DispatchStoreType} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 
 export type postsType = {
@@ -10,18 +10,18 @@ export type postsType = {
 }
 type MyPostsStateType = {
     dispatch: DispatchStoreType
-    state: AppStoreType
+    state: AppStateType
 }
 
 export const MyPostsContainer = (props: MyPostsStateType) => {
     let state = props.state.profilePage
     const addPost = () => {
-        props.dispatch(addPostAC(state.newTextState))
+       props.dispatch(addPostAC(state.newTextState))
 
     }
     function onPostChange(text: string) {
         let action = updateNewPostAC(text)
-        props.dispatch(action)
+       props.dispatch(action)
     }
     return (
         <MyPosts updateNewPostText={onPostChange}

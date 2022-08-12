@@ -5,16 +5,18 @@ import {ActionsType} from "./redux-store";
 export type DialogsActionsType = ReturnType<typeof updateNewMessageAC>
     | ReturnType<typeof sendNewMessageAC>
 
+
 export const updateNewMessageAC = (newMessage: string) => {
     return {
         type: "UPDATE-NEW-MESSAGE-TEXT",
         newMessage: newMessage
     } as const
 }
-export const sendNewMessageAC = (message: string) => {
+//message: string
+export const sendNewMessageAC = () => {
     return {
         type: "SEND-NEW-MESSAGE",
-        newMessage: message
+       // newMessage: message
     } as const
 }
 
@@ -51,7 +53,7 @@ const initialState: DialogPageType = {
     newMessageState: ""
 }
 
-export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType) => {
+export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
 
     switch (action.type) {
         case "UPDATE-NEW-MESSAGE-TEXT":

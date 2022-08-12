@@ -1,12 +1,12 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {AppStoreType, DispatchStoreType} from "../../redux/redux-store";
+import {AppStateType, DispatchStoreType} from "../../redux/redux-store";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
 
 type ProfilePageType = {
     dispatch: DispatchStoreType
-    state: AppStoreType
+    state: AppStateType
 }
 
 export const Profile = (props: ProfilePageType) => {
