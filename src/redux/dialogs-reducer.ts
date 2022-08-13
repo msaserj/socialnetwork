@@ -56,13 +56,15 @@ const initialState: DialogPageType = {
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
 
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-TEXT":
-            state.newMessageState = action.newMessage;
-            return state
+        //onClick
         case "SEND-NEW-MESSAGE":
             let message = state.newMessageState;
             state.newMessageState = "";
             state.messages.push({id: v1(), message: message});
+            return state
+        //onChange
+        case "UPDATE-NEW-MESSAGE-TEXT":
+            state.newMessageState = action.newMessage;
             return state
         default:
             return state

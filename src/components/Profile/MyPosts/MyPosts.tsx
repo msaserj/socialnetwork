@@ -1,14 +1,15 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {postsType} from "./MyPostsContainer";
+import {PostType} from "../../../redux/profile-reducer";
+
 
 
 
 type AppStateType = {
     updateNewPostText: (newPostText: string) => void
     addPostHandler: () => void
-    posts: Array<postsType>
+    posts: Array<PostType>
     newPostText: string
 }
 

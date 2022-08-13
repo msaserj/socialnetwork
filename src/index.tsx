@@ -3,7 +3,7 @@ import './index.css';
 import ReactDOM from "react-dom";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import {AppStateType, store} from "./redux/redux-store";
+import {store} from "./redux/redux-store";
 import {Provider} from "react-redux";
 
 // type ProvederSyoreType = {
@@ -12,14 +12,14 @@ import {Provider} from "react-redux";
 
 
 export let rerenderTree = () => {
-  const state = store
-    const dispatch = store.dispatch
+  //const state = store
+    //const dispatch = store.dispatch
 
 
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={store}>
-                <App  dispatch={dispatch} store={state}/>
+                <App />
             </Provider>
         </BrowserRouter>,
         document.getElementById('root') );
