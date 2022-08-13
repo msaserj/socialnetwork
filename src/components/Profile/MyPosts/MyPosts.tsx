@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {PostType} from "../../../redux/profile-reducer";
+import {ProfilePageType} from "../../../redux/profile-reducer";
 
 
 
@@ -9,13 +9,14 @@ import {PostType} from "../../../redux/profile-reducer";
 type AppStateType = {
     updateNewPostText: (newPostText: string) => void
     addPostHandler: () => void
-    posts: Array<PostType>
-    newPostText: string
+    profilePage: ProfilePageType
+    //posts: Array<PostType>
+    //newPostText: string
 }
 
 export const MyPosts = (props: AppStateType) => {
 
-    let postsElements = props.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
+    let postsElements = props.profilePage.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
     const onAddPost = () => {
         props.addPostHandler()
@@ -30,7 +31,7 @@ export const MyPosts = (props: AppStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} value={props.newPostText}>Add post</textarea>
+                    <textarea onChange={onPostChange} value={props.profilePage.newTextState}>Add post</textarea>
                 </div>
                 <div>
                     <button onClick={onAddPost}>Add post</button>
