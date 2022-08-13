@@ -10,17 +10,9 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer
 })
 
-
 export let store = createStore(rootReducer)
-//export const dispatch = store.dispatch
-
 export type AppStateType = ReturnType<typeof rootReducer>
 export type DispatchStoreType = typeof store.dispatch
-export type StoreType = typeof store
-
-let state: AppStateType;
-
-
 
 export type ActionsType = DialogsActionsType | ProfileActionsType
 
