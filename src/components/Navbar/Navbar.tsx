@@ -16,7 +16,7 @@ export const Navbar = () => {
                     <NavLink to="/dialogs" className = {setActive}>Messages</NavLink>
                 </div>
                 <div>
-                    <NavLink to="/news" className = {setActive} >News</NavLink>
+                    <NavLink to="/users" className = {setActive} >Users</NavLink>
                 </div>
                 <div>
                     <NavLink to="/music" className = {setActive}>Music</NavLink>
