@@ -3,15 +3,15 @@ import {ActionsType} from "./redux-store";
 
 
 
-export type ProfileActionsType = ReturnType<typeof addPostAC> | ReturnType<typeof updateNewPostAC>
+export type ProfileActionsType = ReturnType<typeof addPostOnClickAC> | ReturnType<typeof newPostTextOnChangeAC>
 
-export const addPostAC = () => {
+export const addPostOnClickAC = () => {
     return {
         type: "ADD-POST",
         //newPost: newPost
     } as const
 }
-export const updateNewPostAC = (newPostText: string) => {
+export const newPostTextOnChangeAC = (newPostText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newPostText: newPostText

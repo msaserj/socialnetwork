@@ -11,7 +11,7 @@ export const Profile = () => {
         <div>
             <h2>Main content</h2>
             <ProfileInfo/>
-            <MyPostsContainer />
+            <MyPostsContainer  />
         </div>
     )
 }

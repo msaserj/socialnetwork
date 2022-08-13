@@ -2,18 +2,18 @@ import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 
 
-export type DialogsActionsType = ReturnType<typeof updateNewMessageAC>
-    | ReturnType<typeof sendNewMessageAC>
+export type DialogsActionsType = ReturnType<typeof newMessageOnChangeAC>
+    | ReturnType<typeof newMessageOnClickAC>
 
 
-export const updateNewMessageAC = (newMessage: string) => {
+export const newMessageOnChangeAC = (newMessage: string) => {
     return {
         type: "UPDATE-NEW-MESSAGE-TEXT",
         newMessage: newMessage
     } as const
 }
 //message: string
-export const sendNewMessageAC = () => {
+export const newMessageOnClickAC = () => {
     return {
         type: "SEND-NEW-MESSAGE",
        // newMessage: message

@@ -4,26 +4,22 @@ import {Post} from "./Post/Post";
 import {ProfilePageType} from "../../../redux/profile-reducer";
 
 
-
-
 type AppStateType = {
-    updateNewPostText: (newPostText: string) => void
-    addPostHandler: () => void
+    newPostTextOnChange: (newPostText: string) => void
+    addPostOnClick: () => void
     profilePage: ProfilePageType
-    //posts: Array<PostType>
-    //newPostText: string
 }
 
 export const MyPosts = (props: AppStateType) => {
 
     let postsElements = props.profilePage.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 
-    const onAddPost = () => {
-        props.addPostHandler()
+    const postOnClickHandler = () => {
+        props.addPostOnClick()
     }
-    function onPostChange(e: ChangeEvent<HTMLTextAreaElement>) {
+    const postOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         // props.dispatch(updateNewPostAC(e.currentTarget.value))
-        props.updateNewPostText(e.currentTarget.value)
+        props.newPostTextOnChange(e.currentTarget.value)
     }
 
     return (
@@ -31,10 +27,10 @@ export const MyPosts = (props: AppStateType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} value={props.profilePage.newTextState}>Add post</textarea>
+                    <textarea onChange={postOnChangeHandler} value={props.profilePage.newTextState}>Add post</textarea>
                 </div>
                 <div>
-                    <button onClick={onAddPost}>Add post</button>
+                    <button onClick={postOnClickHandler}>Add post</button>
                 </div>
                 <div className={classes.item}>
                     <h3>New Post</h3>
