@@ -10,44 +10,45 @@ export type UsersActionsType =
 // ActionCreators
 export const followAC = (userId: string) => ({type: "FOLLOW", userId} as const)
 export const unFollowAC = (userId: string) => ({type: "UNFOLLOW", userId} as const)
-export const setUsersAC = (users: any) => ({type: "SET-USERS", users} as const)
+export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const)
 
 
 // types for InitialState
 
-export type LocationType = {
+export type UserLocationType = {
     city: string
     country: string
 }
 
-export type UsersType = {
-    id: string,
+export type UserType = {
+    id: string
+    photoUrl: string
     followed: boolean
-    fullName: string,
-    status: string,
-    location: LocationType
+    fullName: string
+    status: string
+    location: UserLocationType
 }
 
 export type UsersPageType = {
-    users: Array<UsersType>
+    users: Array<UserType>
 }
+
 
 
 const initialState: UsersPageType = {
     users: [
-        {id: v1(), followed: false, fullName: "Alex", status: "Loking for a job", location: {city: "Tagil", country: "Russia"}},
-        {id: v1(), followed: true, fullName: "Nikolai", status: "I flying in the clouds", location: {city: "E-burg", country: "Russia"}},
-        {id: v1(), followed: true, fullName: "Evgeniy", status: "It's my status", location: {city: "Moscow", country: "Russia"}},
-        {id: v1(), followed: true, fullName: "Lisa", status: "At home", location: {city: "Tver", country: "Russia"}},
-        {id: v1(), followed: false, fullName: "Katya", status: "freedom", location: {city: "Tambov", country: "Russia"}},
+        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: false, fullName: "Alex", status: "Loking for a job", location: {city: "Tagil", country: "Russia"}},
+        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: true, fullName: "Nikolai", status: "I flying in the clouds", location: {city: "E-burg", country: "Russia"}},
+        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: true, fullName: "Lisa", status: "At home", location: {city: "Tver", country: "Russia"}},
+        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: false, fullName: "Katya", status: "freedom", location: {city: "Tambov", country: "Russia"}},
     ]
 }
 
 // reducer
-export const usersReducer = (state: any = initialState, action: ActionsType) => {
+export const usersReducer = (state: UsersPageType = initialState, action: ActionsType): UsersPageType => {
     switch (action.type) {
         case "FOLLOW":
-            return {
+            return <UsersPageType>{
                 ...state,
                 users: state.users.map((usr: { id: string; }) => {
                     if (usr.id === action.userId) {
@@ -57,7 +58,7 @@ export const usersReducer = (state: any = initialState, action: ActionsType) => 
                 })
             }
         case "UNFOLLOW":
-            return {
+            return <UsersPageType>{
                 ...state,
                 users: state.users.map((usr: { id: string; }) => {
                     if (usr.id === action.userId) {

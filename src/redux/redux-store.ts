@@ -8,8 +8,8 @@ import {UsersActionsType, usersReducer} from "./users-reducer";
 let rootReducer = combineReducers({
     profilePage: profileReducer,
     sidebar: sidebarReducer ,
-    dialogsPage: dialogsReducer,
-    usersReducer: usersReducer
+    usersPage: usersReducer,
+    dialogsPage: dialogsReducer
 })
 
 export let store = createStore(rootReducer)

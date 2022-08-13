@@ -5,21 +5,21 @@ import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
 
-type mapStateToPropsType = {
+type MapStateToPropsType = {
     dialogsPage: DialogPageType
 }
-type mapDispatchToPropsType = {
+type MapDispatchToPropsType = {
     newTextMessageOnChange: (text: string) => void
     addMessageOnClick: () => void
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
     return {
         dialogsPage: state.dialogsPage,
     }
 }
-const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
+const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
     return {
         newTextMessageOnChange: (text: string)=>{
             let action = newMessageOnChangeAC(text)
