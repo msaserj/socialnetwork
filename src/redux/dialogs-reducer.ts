@@ -1,25 +1,25 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 
-
-export type DialogsActionsType = ReturnType<typeof newMessageOnChangeAC>
+// typeof ActionCreators
+export type DialogsActionsType =
+    | ReturnType<typeof newMessageOnChangeAC>
     | ReturnType<typeof newMessageOnClickAC>
 
-
+// ActionCreators
 export const newMessageOnChangeAC = (newMessage: string) => {
     return {
         type: "UPDATE-NEW-MESSAGE-TEXT",
         newMessage: newMessage
     } as const
 }
-//message: string
 export const newMessageOnClickAC = () => {
     return {
         type: "SEND-NEW-MESSAGE",
-       // newMessage: message
     } as const
 }
 
+// types for InitialState
 export type DialogPageType = {
     dialogs: Array<DialogType>
     messages: Array<MessageType>
@@ -52,20 +52,19 @@ const initialState: DialogPageType = {
     ],
     newMessageState: ""
 }
-
+// reducer
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
-
     switch (action.type) {
         //onClick
         case "SEND-NEW-MESSAGE":
             let message = state.newMessageState;
-            state.newMessageState = "";
-            state.messages.push({id: v1(), message: message});
-            return state
+            let stateCopy = {...state}
+            stateCopy.messages.push({id: v1(), message: message});
+            stateCopy.newMessageState = "";
+            return stateCopy
         //onChange
         case "UPDATE-NEW-MESSAGE-TEXT":
-            state.newMessageState = action.newMessage;
-            return state
+            return {...state, newMessageState:action.newMessage}
         default:
             return state
     }

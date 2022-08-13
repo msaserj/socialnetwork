@@ -1,10 +1,12 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
 
+// typeof ActionCreators
+export type ProfileActionsType =
+    | ReturnType<typeof addPostOnClickAC>
+    | ReturnType<typeof newPostTextOnChangeAC>
 
-
-export type ProfileActionsType = ReturnType<typeof addPostOnClickAC> | ReturnType<typeof newPostTextOnChangeAC>
-
+// ActionCreators
 export const addPostOnClickAC = () => {
     return {
         type: "ADD-POST",
@@ -18,6 +20,7 @@ export const newPostTextOnChangeAC = (newPostText: string) => {
     } as const
 }
 
+// types for InitialState
 export type ProfilePageType = {
     posts: Array<PostType>
     newTextState: string
@@ -37,6 +40,7 @@ const initialState: ProfilePageType = {
     newTextState: ""
 }
 
+// reducer
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType) => {
     switch (action.type) {
         //onClick
@@ -46,9 +50,11 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
                 message: state.newTextState,
                 likesCount: 5
             };
-            state.newTextState = ""
-            state.posts.unshift(newPost)
-            return state
+            let stateCopy = {...state}
+            stateCopy.posts = [...state.posts]
+            stateCopy.posts.unshift(newPost)
+            stateCopy.newTextState = ""
+            return stateCopy
         //onChange
         case "UPDATE-NEW-POST-TEXT":
             // state.newTextState = action.newPostText;
@@ -56,5 +62,4 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
         default:
             return state
     }
-
 }
