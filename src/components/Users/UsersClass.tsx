@@ -5,22 +5,26 @@ import axios from "axios";
 import userPhoto from "../../assets/images/profileImage.png"
 
 
-export const Users = (props: UsersPropsType) => {
-
-    let getUsers = () => {
-        if (props.usersPage.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then(res => {
-                //debugger
-                props.setUsers(res.data.items)
-            })
-        }
+class Users extends React.Component<UsersPropsType> {
+    constructor(props: UsersPropsType) {
+        super(props);
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(res => {
+            //debugger
+            this.props.setUsers(res.data.items)
+        })
     }
 
-    return (
-        <div>
-            <button onClick={getUsers}>GetUsers</button>
-            {
-                props.usersPage.users.map(usr => <div key={usr.id}>
+    getUsers = () => {
+
+    }
+
+    render() {
+        return (
+            <div>
+                <button onClick={this.getUsers}>GetUsers</button>
+                {
+
+                    this.props.usersPage.users.map(usr => <div key={usr.id}>
                   <span>
                       <div>
                           <img className={classes.userPhoto} src={usr.photos.small != null
@@ -29,14 +33,14 @@ export const Users = (props: UsersPropsType) => {
                       <div>
                           {usr.followed
                               ? <button onClick={() => {
-                                  props.unFollow(usr.id)
+                                  this.props.unFollow(usr.id)
                               }}>Unfollow</button>
                               : <button onClick={() => {
-                                  props.follow(usr.id)
+                                  this.props.follow(usr.id)
                               }}>Follow</button>}
                       </div>
                   </span>
-                    <span>
+                        <span>
                       <span>
                           <div>{usr.name}</div>
                           <div>{usr.status}</div>
@@ -46,8 +50,11 @@ export const Users = (props: UsersPropsType) => {
                           <div>{"usr.location.city"}</div>
                       </span>
                   </span>
-                </div>)
-            }
-        </div>
-    )
+                    </div>)
+                }
+            </div>
+        );
+    }
 }
+
+export default Users;

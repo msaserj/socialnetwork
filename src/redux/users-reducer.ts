@@ -71,7 +71,7 @@ const initialState: UsersPageType = {
 export const usersReducer = (state: UsersPageType = initialState, action: ActionsType): UsersPageType => {
     switch (action.type) {
         case "FOLLOW":
-            return <UsersPageType>{
+            return {
                 ...state,
                 users: state.users.map((usr: { id: string; }) => {
                     if (usr.id === action.userId) {
@@ -79,9 +79,9 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                     }
                     return usr;
                 })
-            }
+            } as UsersPageType
         case "UNFOLLOW":
-            return <UsersPageType>{
+            return {
                 ...state,
                 users: state.users.map((usr: { id: string; }) => {
                     if (usr.id === action.userId) {
@@ -89,7 +89,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                     }
                     return usr;
                 })
-            }
+            } as UsersPageType
         case "SET-USERS":
             return {...state, users: [...state.users, ...action.users]}
         default:
