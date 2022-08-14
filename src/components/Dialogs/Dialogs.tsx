@@ -12,7 +12,6 @@ type DialogsPageType = {
     dialogsPage: DialogPageType
  }
 
-
 export const Dialogs = (props: DialogsPageType) => {
 
     let dialogsElement = props.dialogsPage.dialogs.map(el=> <DialogItem key={el.id} name={el.name} id={el.id}/>);

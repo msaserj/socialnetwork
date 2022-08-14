@@ -5,10 +5,10 @@ import axios from "axios";
 import userPhoto from "../../assets/images/profileImage.png"
 
 
-class Users extends React.Component<UsersPropsType> {
+class Users extends React.Component<UsersPropsType>  {
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then(res => {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users?page=5").then(res => {
             //debugger
             this.props.setUsers(res.data.items)
         })
@@ -19,12 +19,22 @@ class Users extends React.Component<UsersPropsType> {
     }
 
     render() {
+
+        let pagesCount = this.props.totalUsersCount / this.props.pageSize
+        let pages = []
+        for (let i = 0; i <= pagesCount; i++) {
+            pages.push(i)
+        }
         return (
             <div>
                 <button onClick={this.getUsers}>GetUsers</button>
+                <div>
+                    {pages.map(pgs => {
+                        <span className={true && classes.selectedPage}>{pgs}</span>
+                    })}
+                </div>
                 {
-
-                    this.props.usersPage.users.map(usr => <div key={usr.id}>
+                    this.props.users.map(usr => <div key={usr.id}>
                   <span>
                       <div>
                           <img className={classes.userPhoto} src={usr.photos.small != null

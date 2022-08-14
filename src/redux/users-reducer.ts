@@ -35,6 +35,9 @@ export type UserType = {
 
 export type UsersPageType = {
     users: Array<UserType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 
 
@@ -64,7 +67,10 @@ const initialState: UsersPageType = {
             status: "At home",
             location: {city: "Tver", country: "Russia"}
         },
-    ]
+    ],
+    pageSize: 5,
+    totalUsersCount: 0,
+    currentPage: 1
 }
 
 // reducer

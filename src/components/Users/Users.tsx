@@ -8,7 +8,7 @@ import userPhoto from "../../assets/images/profileImage.png"
 export const Users = (props: UsersPropsType) => {
 
     let getUsers = () => {
-        if (props.usersPage.users.length === 0) {
+        if (props.users.length === 0) {
             axios.get("https://social-network.samuraijs.com/api/1.0/users").then(res => {
                 //debugger
                 props.setUsers(res.data.items)
@@ -20,7 +20,7 @@ export const Users = (props: UsersPropsType) => {
         <div>
             <button onClick={getUsers}>GetUsers</button>
             {
-                props.usersPage.users.map(usr => <div key={usr.id}>
+                props.users.map(usr => <div key={usr.id}>
                   <span>
                       <div>
                           <img className={classes.userPhoto} src={usr.photos.small != null
