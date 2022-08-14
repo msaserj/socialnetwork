@@ -10,7 +10,7 @@ import {
     unFollowAC,
     UserType
 } from "../../redux/users-reducer";
-import UsersClass from "./UsersClass";
+import UsersClass from "./UsersApiComponent";
 
 type MapStateToPropsType = {
     users: Array<UserType>
