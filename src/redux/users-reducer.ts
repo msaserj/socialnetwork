@@ -19,12 +19,16 @@ export type UserLocationType = {
     city: string
     country: string
 }
+export type PhotosType = {
+    small: string
+    large: string
+}
 
 export type UserType = {
     id: string
-    photoUrl: string
+    photos: PhotosType
     followed: boolean
-    fullName: string
+    name: string
     status: string
     location: UserLocationType
 }
@@ -34,13 +38,32 @@ export type UsersPageType = {
 }
 
 
-
 const initialState: UsersPageType = {
     users: [
-        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: false, fullName: "Alex", status: "Loking for a job", location: {city: "Tagil", country: "Russia"}},
-        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: true, fullName: "Nikolai", status: "I flying in the clouds", location: {city: "E-burg", country: "Russia"}},
-        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: true, fullName: "Lisa", status: "At home", location: {city: "Tver", country: "Russia"}},
-        {id: v1(), photoUrl: "https://thispersondoesnotexist.com/image", followed: false, fullName: "Katya", status: "freedom", location: {city: "Tambov", country: "Russia"}},
+        {
+            id: v1(),
+            photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
+            followed: false,
+            name: "Alex",
+            status: "Loking for a job",
+            location: {city: "Tagil", country: "Russia"}
+        },
+        {
+            id: v1(),
+            photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
+            followed: true,
+            name: "Nikolai",
+            status: "I flying in the clouds",
+            location: {city: "E-burg", country: "Russia"}
+        },
+        {
+            id: v1(),
+            photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
+            followed: true,
+            name: "Lisa",
+            status: "At home",
+            location: {city: "Tver", country: "Russia"}
+        },
     ]
 }
 
