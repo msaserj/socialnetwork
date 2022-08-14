@@ -5,32 +5,39 @@ import axios from "axios";
 import userPhoto from "../../assets/images/profileImage.png"
 
 
-class Users extends React.Component<UsersPropsType>  {
+class Users extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users?page=5").then(res => {
-            //debugger
-            this.props.setUsers(res.data.items)
-        })
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then(res => {
+                this.props.setUsers(res.data.items)
+                this.props.setTotalUsersCount(res.data.totalCount)
+            })
     }
 
-    getUsers = () => {
-
+    onPageChanged = (pageNumber: number) => {
+        this.props.setCurrentPage(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then(res => {
+                this.props.setUsers(res.data.items)
+            })
     }
 
     render() {
 
-        let pagesCount = this.props.totalUsersCount / this.props.pageSize
+        let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
         let pages = []
-        for (let i = 0; i <= pagesCount; i++) {
+        for (let i = 1; i <= pagesCount; i++) {
             pages.push(i)
         }
         return (
             <div>
-                <button onClick={this.getUsers}>GetUsers</button>
+
                 <div>
                     {pages.map(pgs => {
-                        <span className={true && classes.selectedPage}>{pgs}</span>
+                        return <span className={this.props.currentPage === pgs ? classes.selectedPage : ""}
+                                     onClick={()=>this.onPageChanged(pgs)}
+                        >{pgs}</span>
                     })}
                 </div>
                 {
