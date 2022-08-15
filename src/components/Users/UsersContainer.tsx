@@ -12,6 +12,7 @@ import {
 } from "../../redux/users-reducer";
 import axios from "axios";
 import {Users} from "./Users";
+import {Preloader} from "../common/preloader/Preloader";
 
 
 class UsersContainer extends React.Component<UsersPropsType> {
@@ -39,11 +40,9 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
 
     render() {
-        const divStyle = {
-            height: '100px'
-        }
+
         return <>
-            {this.props.isFetching ? <img alt="preloader" style={divStyle} src="https://v.fastcdn.co/u/430e104e/57579327-0-Loaders-3.svg"/> : null}
+            {this.props.isFetching ? <Preloader />: null}
             <Users
             onPageChanged={this.onPageChanged.bind(this)} usersComponent={this.props}/>
             </>;
