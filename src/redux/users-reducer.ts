@@ -3,20 +3,20 @@ import {ActionsType} from "./redux-store";
 
 // typeof ActionCreators
 export type UsersActionsType =
-    | ReturnType<typeof followAC>
-    | ReturnType<typeof unFollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
-    | ReturnType<typeof toggleIsFetchingAC>
+    | ReturnType<typeof follow>
+    | ReturnType<typeof unFollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
 
 // ActionCreators
-export const followAC = (userId: string) => ({type: "FOLLOW", userId} as const)
-export const unFollowAC = (userId: string) => ({type: "UNFOLLOW", userId} as const)
-export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const)
-export const setCurrentPageAC = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage} as const)
-export const setTotalUsersCountAC = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", totalCount} as const)
-export const toggleIsFetchingAC = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
+export const follow = (userId: string) => ({type: "FOLLOW", userId} as const)
+export const unFollow = (userId: string) => ({type: "UNFOLLOW", userId} as const)
+export const setUsers = (users: Array<UserType>) => ({type: "SET-USERS", users} as const)
+export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage} as const)
+export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", totalCount} as const)
+export const toggleIsFetching = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
 
 
 // types for InitialState
