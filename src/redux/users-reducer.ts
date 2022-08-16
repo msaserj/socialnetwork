@@ -1,4 +1,4 @@
-import {v1} from "uuid";
+
 import {ActionsType} from "./redux-store";
 
 // typeof ActionCreators
@@ -11,8 +11,8 @@ export type UsersActionsType =
     | ReturnType<typeof toggleIsFetching>
 
 // ActionCreators
-export const follow = (userId: string) => ({type: "FOLLOW", userId} as const)
-export const unFollow = (userId: string) => ({type: "UNFOLLOW", userId} as const)
+export const follow = (userId: number) => ({type: "FOLLOW", userId} as const)
+export const unFollow = (userId: number) => ({type: "UNFOLLOW", userId} as const)
 export const setUsers = (users: Array<UserType>) => ({type: "SET-USERS", users} as const)
 export const setCurrentPage = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage} as const)
 export const setTotalUsersCount = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", totalCount} as const)
@@ -31,7 +31,7 @@ export type PhotosType = {
 }
 
 export type UserType = {
-    id: string
+    id: number
     photos: PhotosType
     followed: boolean
     name: string
@@ -51,7 +51,7 @@ export type UsersPageType = {
 const initialState: UsersPageType = {
     users: [
         {
-            id: v1(),
+            id: 1,
             photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
             followed: false,
             name: "Alex",
@@ -59,7 +59,7 @@ const initialState: UsersPageType = {
             location: {city: "Tagil", country: "Russia"}
         },
         {
-            id: v1(),
+            id: 2,
             photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
             followed: true,
             name: "Nikolai",
@@ -67,7 +67,7 @@ const initialState: UsersPageType = {
             location: {city: "E-burg", country: "Russia"}
         },
         {
-            id: v1(),
+            id: 3,
             photos: {small: "https://thispersondoesnotexist.com/image", large: ""},
             followed: true,
             name: "Lisa",
@@ -87,7 +87,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case "FOLLOW":
             return {
                 ...state,
-                users: state.users.map((usr: { id: string; }) => {
+                users: state.users.map((usr: { id: number }) => {
                     if (usr.id === action.userId) {
                         return {...usr, followed: true}
                     }
@@ -97,7 +97,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case "UNFOLLOW":
             return {
                 ...state,
-                users: state.users.map((usr: { id: string; }) => {
+                users: state.users.map((usr: { id: number }) => {
                     if (usr.id === action.userId) {
                         return {...usr, followed: false}
                     }

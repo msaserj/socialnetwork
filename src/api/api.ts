@@ -14,9 +14,12 @@ export const usersAPI = {
     getUsers (currentPage: number, pageSize: number) {
         return apiInstanse.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
-    follow (usrId: number) {
-        return apiInstanse.get(`follow/${usrId}`).then(res => res.data)
-    }
+    unFollow (usrId: number) {
+        return apiInstanse.delete(`follow/${usrId}`).then(res => res.data)
+    },
+    follow(usrId: number) {
+        return apiInstanse.post(`follow/${usrId}`).then(res => res.data)
+    },
 }
 
 
