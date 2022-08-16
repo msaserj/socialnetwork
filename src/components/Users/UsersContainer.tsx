@@ -77,28 +77,3 @@ type MapDispatchToPropsType = {
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
-
-// !!!OLD mapDispatchToProps
-// const mapDispatchToProps = (dispatch: Dispatch): MapDispatchToPropsType => {
-//     return {
-//         follow: (userId: string) => {
-//             let action = followAC(userId)
-//             dispatch(action)
-//         },
-//         unFollow: (userId: string) => {
-//             dispatch(unFollowAC(userId))
-//         },
-//         setUsers: (users: Array<UserType>) => {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentPage: (pageNumber) => {
-//             dispatch(setCurrentPageAC(pageNumber))
-//         },
-//         setTotalUsersCount: (totalCount) => {
-//             dispatch(setTotalUsersCountAC(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(toggleIsFetchingAC(isFetching))
-//         }
-//     }
-// }
