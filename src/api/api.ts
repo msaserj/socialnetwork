@@ -11,15 +11,21 @@ const apiInstanse = axios.create({
 })
 
 export const usersAPI = {
-    getUsers (currentPage: number, pageSize: number) {
+    getUsers(currentPage: number, pageSize: number) {
         return apiInstanse.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
     },
-    unFollow (usrId: number) {
+    unFollow(usrId: number) {
         return apiInstanse.delete(`follow/${usrId}`).then(res => res.data)
     },
-    follow(usrId: number) {
+    follow (usrId: number) {
         return apiInstanse.post(`follow/${usrId}`).then(res => res.data)
     },
+    getProfile (profileId: string) {
+        return apiInstanse.get(`profile/` + profileId).then(res => res.data)
+    },
+    getAuthMe() {
+        return apiInstanse.post(`auth/me`).then(res => res.data)
+    }
 }
 
 
