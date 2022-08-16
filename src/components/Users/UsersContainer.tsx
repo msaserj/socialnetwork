@@ -36,10 +36,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
             })
     }
 
-
-
     render() {
-
         return <>
             {this.props.isFetching ? <Preloader />: null}
             <Users
@@ -73,7 +70,7 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     follow: (userId: string) => void
     unFollow: (userId: string) => void
-    setUsers: (userId: Array<UserType>) => void
+    setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number)=> void
     setTotalUsersCount: (totalCount: number)=> void
     toggleIsFetching: (isFetching: boolean)=> void

@@ -4,13 +4,13 @@ import {Post} from "./Post/Post";
 import {ProfilePageType} from "../../../redux/profile-reducer";
 
 
-type AppStateType = {
+type MyPostType = {
     newPostTextOnChange: (newPostText: string) => void
     addPostOnClick: () => void
     profilePage: ProfilePageType
 }
 
-export const MyPosts = (props: AppStateType) => {
+export const MyPosts = (props: MyPostType) => {
 
     let postsElements = props.profilePage.posts.map(el=> <Post id={el.id} message={el.message} likesCount={el.likesCount} /> )
 

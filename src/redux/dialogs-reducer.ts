@@ -3,17 +3,17 @@ import {ActionsType} from "./redux-store";
 
 // typeof ActionCreators
 export type DialogsActionsType =
-    | ReturnType<typeof newMessageOnChangeAC>
-    | ReturnType<typeof newMessageOnClickAC>
+    | ReturnType<typeof newTextMessageOnChange>
+    | ReturnType<typeof addMessageOnClick>
 
 // ActionCreators
-export const newMessageOnChangeAC = (newMessage: string) => {
+export const newTextMessageOnChange = (newMessage: string) => {
     return {
         type: "UPDATE-NEW-MESSAGE-TEXT",
         newMessage: newMessage
     } as const
 }
-export const newMessageOnClickAC = () => {
+export const addMessageOnClick = () => {
     return {
         type: "SEND-NEW-MESSAGE",
     } as const
