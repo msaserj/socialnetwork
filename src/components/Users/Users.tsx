@@ -38,25 +38,27 @@ export const Users = (props: UsersComponentPropsType) => {
                       </div>
                       <div>
                           {usr.followed
-                              ? <button disabled={datas.followingInProgress}  onClick={() => {
-                                  datas.toggleIsFollowing(true)
-                                  usersAPI.unFollow(usr.id).then(data => {
-                                          if (data.resultCode === 0) {
-                                              datas.unFollow(usr.id)
-                                          }
-                                      datas.toggleIsFollowing(false)
-                                      })
+                              ? <button disabled={datas.followingInProgress.some(id => id === usr.id)}
+                                        onClick={() => {
+                                            datas.toggleIsFollowing(true, usr.id)
+                                            usersAPI.unFollow(usr.id).then(data => {
+                                                if (data.resultCode === 0) {
+                                                    datas.unFollow(usr.id)
+                                                }
+                                                datas.toggleIsFollowing(false, usr.id)
+                                            })
 
-                              }}>Unfollow</button>
-                              : <button disabled={datas.followingInProgress} onClick={() => {
-                                  datas.toggleIsFollowing(true)
-                                  usersAPI.follow(usr.id).then(data => {
-                                      if (data.resultCode === 0) {
-                                          datas.follow(usr.id)
-                                      }
-                                      datas.toggleIsFollowing(false)
-                                  })
-                              }}>Follow</button>}
+                                        }}>Unfollow</button>
+                              : <button disabled={datas.followingInProgress.some(id => id === usr.id)}
+                                        onClick={() => {
+                                            datas.toggleIsFollowing(true, usr.id)
+                                            usersAPI.follow(usr.id).then(data => {
+                                                if (data.resultCode === 0) {
+                                                    datas.follow(usr.id)
+                                                }
+                                                datas.toggleIsFollowing(false, usr.id)
+                                            })
+                                        }}>Follow</button>}
                       </div>
                   </span>
                     <span>
