@@ -12,7 +12,8 @@ type UsersComponentPropsType = {
 }
 
 export const Users = (props: UsersComponentPropsType) => {
-    let pagesCount = Math.ceil(props.usersComponent.totalUsersCount / props.usersComponent.pageSize)
+    let datas = props.usersComponent
+    let pagesCount = Math.ceil(datas.totalUsersCount / datas.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
@@ -21,13 +22,13 @@ export const Users = (props: UsersComponentPropsType) => {
         <div>
             <div>
                 {pages.map(pgs => {
-                    return <span className={props.usersComponent.currentPage === pgs ? classes.selectedPage : ""}
+                    return <span className={datas.currentPage === pgs ? classes.selectedPage : ""}
                                  onClick={() => props.onPageChanged(pgs)}
                     > {pgs} </span>
                 })}
             </div>
             {
-                props.usersComponent.users.map(usr => <div key={usr.id}>
+                datas.users.map(usr => <div key={usr.id}>
                   <span>
                       <div>
                           <NavLink to={"/profile/" + usr.id}> <img className={classes.userPhoto}
@@ -37,18 +38,23 @@ export const Users = (props: UsersComponentPropsType) => {
                       </div>
                       <div>
                           {usr.followed
-                              ? <button onClick={() => {
+                              ? <button disabled={datas.followingInProgress}  onClick={() => {
+                                  datas.toggleIsFollowing(true)
                                   usersAPI.unFollow(usr.id).then(data => {
                                           if (data.resultCode === 0) {
-                                              props.usersComponent.unFollow(usr.id)
+                                              datas.unFollow(usr.id)
                                           }
+                                      datas.toggleIsFollowing(false)
                                       })
+
                               }}>Unfollow</button>
-                              : <button onClick={() => {
+                              : <button disabled={datas.followingInProgress} onClick={() => {
+                                  datas.toggleIsFollowing(true)
                                   usersAPI.follow(usr.id).then(data => {
                                       if (data.resultCode === 0) {
-                                          props.usersComponent.follow(usr.id)
+                                          datas.follow(usr.id)
                                       }
+                                      datas.toggleIsFollowing(false)
                                   })
                               }}>Follow</button>}
                       </div>
