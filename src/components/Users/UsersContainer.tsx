@@ -54,7 +54,6 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
     {follow, unFollow, toggleIsFollowing, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching})
 (UsersContainer)
