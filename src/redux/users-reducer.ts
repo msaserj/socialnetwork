@@ -1,5 +1,5 @@
-
 import {ActionsType} from "./redux-store";
+import {usersAPI} from "../api/api";
 
 // typeof ActionCreators
 export type UsersActionsType =
@@ -118,11 +118,25 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
         case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.isFetching}
         case "TOGGLE-IS-FOLLOWING":
-            return {...state, followingInProgress: action.isFetching
+            return {
+                ...state, followingInProgress: action.isFetching
                     ? [...state.followingInProgress, action.userId]
-                    : state.followingInProgress.filter(id => id != action.userId)
+                    : state.followingInProgress.filter(id => id !== action.userId)
             } as UsersPageType
         default:
             return state
+    }
+}
+
+//thunks
+export const getUsersTC = (currentPage: number, pageSize: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleIsFetching(true));
+
+        usersAPI.getUsers(currentPage, pageSize).then(data => {
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+            dispatch(toggleIsFetching(false))
+        })
     }
 }
