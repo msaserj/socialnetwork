@@ -29,10 +29,10 @@ export const UsersFunc = (props: UsersPropsType) => {
                       <div>
                           {usr.followed
                               ? <button onClick={() => {
-                                  props.unFollow(usr.id)
+                                  props.unFollowTC(usr.id)
                               }}>Unfollow</button>
                               : <button onClick={() => {
-                                  props.follow(usr.id)
+                                  props.followTC(usr.id)
                               }}>Follow</button>}
                       </div>
                   </span>

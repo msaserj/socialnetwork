@@ -1,13 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {
-    follow, getUsersTC,
-    setCurrentPage,
-    setUsers, toggleIsFollowing,
-    unFollow,
-    UserType
-} from "../../redux/users-reducer";
+import {followTC, getUsersTC, setCurrentPage, setUsers, unFollowTC, UserType} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 
@@ -42,7 +36,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 export default connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-    {follow, unFollow, toggleIsFollowing, setUsers, setCurrentPage, getUsers: getUsersTC})
+    {followTC, unFollowTC, setUsers, setCurrentPage, getUsers: getUsersTC})
 (UsersContainer)
 
 // types
@@ -55,11 +49,10 @@ type MapStateToPropsType = {
     followingInProgress: []
 }
 type MapDispatchToPropsType = {
-    follow: (userId: number) => void
-    unFollow: (userId: number) => void
+    followTC: (userId: number) => void
+    unFollowTC: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
-    toggleIsFollowing: (isFetching: boolean, userId: number) => void
     getUsers: (currentPage: number, pageSize: number) => void
 }
 

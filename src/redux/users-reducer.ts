@@ -140,3 +140,26 @@ export const getUsersTC = (currentPage: number, pageSize: number) => {
         })
     }
 }
+
+export const followTC = (userId: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleIsFollowing(true, userId))
+        usersAPI.follow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(follow(userId))
+            }
+            dispatch(toggleIsFollowing(false, userId))
+        })
+    }
+}
+export const unFollowTC = (userId: number) => {
+    return (dispatch: any) => {
+        dispatch(toggleIsFollowing(true, userId))
+        usersAPI.unFollow(userId).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(unFollow(userId))
+            }
+            dispatch(toggleIsFollowing(false, userId))
+        })
+    }
+}
