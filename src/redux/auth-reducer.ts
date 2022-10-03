@@ -1,4 +1,5 @@
 import {ActionsType} from "./redux-store";
+import {authAPI} from "../api/api";
 
 // typeof ActionCreators
 export type AuthActionsType =
@@ -41,3 +42,17 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
             return state
     }
 }
+
+// thunk
+export const getAuthUserDataTC = () => {
+    return (dispatch: any) => {
+        authAPI.me().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(setAuthData(data))
+            }
+        })
+    }
+}
+
+
+

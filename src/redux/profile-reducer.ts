@@ -1,5 +1,6 @@
 import {v1} from "uuid";
 import {ActionsType} from "./redux-store";
+import {usersAPI} from "../api/api";
 
 // typeof ActionCreators
 export type ProfileActionsType =
@@ -10,10 +11,7 @@ export type ProfileActionsType =
 // ActionCreators
 export const addPostOnClickAC = () => ({type: "ADD-POST"} as const)
 export const newPostTextOnChangeAC = (newPostText: string) => ({type: "UPDATE-NEW-POST-TEXT", newPostText} as const)
-export const setUserProfile = (profile: UserProfileType) => {
-
-    return ({type: "SET-USER-PROFILE", profile} as const)
-}
+export const setUserProfile = (profile: UserProfileType) => ({type: "SET-USER-PROFILE", profile} as const)
 
 // types for InitialState
 export type ProfilePageType = {
@@ -80,5 +78,14 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, userProfile: action.profile}
         default:
             return state
+    }
+}
+
+// thunk
+export const getUserProfileTC = (profileId: string) => {
+    return (dispatch: any) => {
+        usersAPI.getProfile(profileId).then(data => {
+            dispatch(setUserProfile(data))
+        })
     }
 }

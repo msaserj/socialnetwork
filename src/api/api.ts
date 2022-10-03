@@ -23,8 +23,11 @@ export const usersAPI = {
     },
     getProfile (profileId: string) {
         return apiInstance.get(`profile/` + profileId).then(res => res.data)
-    },
-    getAuthMe() {
+    }
+}
+
+export const authAPI = {
+    me() {
         return apiInstance.post(`auth/me`).then(res => res.data)
     }
 }
