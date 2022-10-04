@@ -18,12 +18,22 @@ export const usersAPI = {
     unFollow(usrId: number) {
         return apiInstance.delete(`follow/${usrId}`).then(res => res.data)
     },
-    follow (usrId: number) {
+    follow(usrId: number) {
         return apiInstance.post(`follow/${usrId}`).then(res => res.data)
-    },
+    }
+
+}
+export const profileAPI = {
     getProfile (profileId: string) {
         return apiInstance.get(`profile/` + profileId).then(res => res.data)
-    }
+    },
+    getStatus (profileId: string) {
+        return apiInstance.get(`profile/status/` + profileId).then(res => res.data)
+    },
+    updateStatus (status: string) {
+        return apiInstance.put(`profile/status/`, {status: status}).then(res => res.data)
+    },
+
 }
 
 export const authAPI = {

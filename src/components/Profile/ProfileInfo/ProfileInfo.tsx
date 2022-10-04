@@ -7,6 +7,8 @@ import {ProfileStatus} from "./ProfileStatus";
 
 type ProfileType = {
     userProfile: UserProfileType | null
+    getStatus: (status: string) => void
+    status: string
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -24,7 +26,7 @@ export const ProfileInfo = (props: ProfileType) => {
                 <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"
                      alt="la_batie"/>
             </div>
-            <ProfileStatus status="status"/>
+            <ProfileStatus status={props.status}/>
             <div className={classes.descriptionBlock}>
                 <img className={classes.userPhoto} src={data.photos != null
                     ? data.photos.small : userPhoto} alt=""/>

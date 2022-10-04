@@ -8,6 +8,8 @@ import {Navigate} from "react-router-dom";
 export type ProfileType = {
     userProfile: UserProfileType | null
     isAuth: boolean
+    status: string
+    getStatus: (status: string) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -15,7 +17,7 @@ export const Profile = (props: ProfileType) => {
     return (
         <div>
             <h2>Main content</h2>
-            <ProfileInfo    userProfile={props.userProfile}/>
+            <ProfileInfo  status={props.status} getStatus={props.getStatus} userProfile={props.userProfile}/>
             <MyPostsContainer  />
         </div>
     )
