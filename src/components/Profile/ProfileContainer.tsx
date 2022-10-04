@@ -3,8 +3,9 @@ import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
 import {getUserProfileTC, UserProfileType} from "../../redux/profile-reducer";
-import {Navigate, useParams} from "react-router-dom";
+import {useParams} from "react-router-dom";
 import {compose} from "redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 
 function withRouter(Component: any) {
@@ -20,7 +21,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         this.props.getUserProfile(this.props.userId)
     }
     render() {
-        if(this.props.isAuth) return <Navigate to="/login"/>
+
         return (
             <Profile userProfile={this.props.profile} isAuth/>
         );
@@ -30,19 +31,24 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.userProfile,
-        isAuth: state.auth.isAuth
     }
 }
 
-export default compose<React.ComponentType>(connect(mapStateToProps, {
-    getUserProfile: getUserProfileTC
-}), withRouter)(ProfileContainer)
+
+// compose allows us to add new HOCs, that is wrap our component to HOCs with universal options
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getUserProfile: getUserProfileTC}),
+    withRouter,
+    WithAuthRedirect
+)(ProfileContainer)
+
+
 
 // types
 type MapStateToPropsType = {
     profile: UserProfileType | null
-    isAuth: boolean
 }
+
 type MapDispatchToPropsType = {
     getUserProfile: (profileId: string) => void
 }

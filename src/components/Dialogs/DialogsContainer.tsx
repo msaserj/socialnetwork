@@ -3,6 +3,8 @@ import {DialogPageType, addMessageOnClick, newTextMessageOnChange} from "../../r
 import {AppStateType} from "../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 type MapStateToPropsType = {
     dialogsPage: DialogPageType
@@ -20,5 +22,11 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const DialogsContainer = connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
-(mapStateToProps, {newTextMessageOnChange, addMessageOnClick})(Dialogs)
+// compose allows us to add new HOCs, that is wrap our component to HOCs with universal options
+
+export const DialogsContainer = compose(
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
+    (mapStateToProps, {newTextMessageOnChange, addMessageOnClick}),
+    WithAuthRedirect
+)(Dialogs)
+
