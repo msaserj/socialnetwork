@@ -25,20 +25,20 @@ export const usersAPI = {
 }
 export const profileAPI = {
     getProfile (profileId: string) {
-        return apiInstance.get(`profile/` + profileId).then(res => res.data)
+        return apiInstance.get(`profile/` + profileId)
     },
     getStatus (profileId: string) {
-        return apiInstance.get(`profile/status/` + profileId).then(res => res.data)
+        return apiInstance.get(`profile/status/` + profileId)
     },
     updateStatus (status: string) {
-        return apiInstance.put(`profile/status/`, {status: status}).then(res => res.data)
+        return apiInstance.put(`profile/status`, {status}).then(response => response.data)
     },
 
 }
 
 export const authAPI = {
     me() {
-        return apiInstance.post(`auth/me`).then(res => res.data)
+        return apiInstance.get(`auth/me`).then(res => res.data)
     }
 }
 

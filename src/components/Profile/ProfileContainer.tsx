@@ -11,7 +11,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 function withRouter(Component: any) {
     function ComponentWithRouterProp(props: any) {
         let params = useParams();
-        return <Component{...props} userId={params.userId}/>
+        return <Component{...props} userId={params.userId ? params.userId : "24212"}/>
     }
     return ComponentWithRouterProp;
 }
@@ -28,6 +28,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
             <Profile
                 status={this.props.status}
                 userProfile={this.props.profile}
+                updateStatus={this.props.updateStatus}
                 getStatus={this.props.getStatus}
                 isAuth/>
         );

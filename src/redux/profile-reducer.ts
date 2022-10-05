@@ -90,24 +90,25 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 // thunk
 export const getUserProfileTC = (profileId: string) => {
     return (dispatch: any) => {
-        profileAPI.getProfile(profileId).then(data => {
-            dispatch(setUserProfile(data))
+        profileAPI.getProfile(profileId).then(res => {
+            dispatch(setUserProfile(res.data))
         })
     }
 }
 
 export const getStatusTC = (profileId: string) => {
     return (dispatch: any) => {
-        profileAPI.getStatus(profileId).then(data => {
-            dispatch(setStatus(data))
+        profileAPI.getStatus(profileId).then(res => {
+            console.log(res.data)
+            dispatch(setStatus(res.data))
         })
     }
 }
 export const updateStatusTC = (status: string) => {
     return (dispatch: any) => {
-        profileAPI.updateStatus(status).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setStatus(data))
+        profileAPI.updateStatus(status).then(res => {
+            if (res.data.resultCode === 0) {
+                dispatch(setStatus(res.data))
             }
         })
     }

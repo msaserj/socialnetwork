@@ -9,7 +9,8 @@ export type ProfileType = {
     userProfile: UserProfileType | null
     isAuth: boolean
     status: string
-    getStatus: (status: string) => void
+    updateStatus: (status: string) => void
+    getStatus: (profileId: string) => void
 }
 
 export const Profile = (props: ProfileType) => {
@@ -17,7 +18,12 @@ export const Profile = (props: ProfileType) => {
     return (
         <div>
             <h2>Main content</h2>
-            <ProfileInfo  status={props.status} getStatus={props.getStatus} userProfile={props.userProfile}/>
+            <ProfileInfo
+                status={props.status}
+                updateStatus={props.updateStatus}
+                getStatus={props.getStatus}
+                userProfile={props.userProfile}
+            />
             <MyPostsContainer  />
         </div>
     )
