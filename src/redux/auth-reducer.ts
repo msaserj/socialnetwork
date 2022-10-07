@@ -4,9 +4,11 @@ import {authAPI} from "../api/api";
 // typeof ActionCreators
 export type AuthActionsType =
     | ReturnType<typeof setAuthData>
+    | ReturnType<typeof resetAuthDataAC>
 
 // ActionCreators
-export const setAuthData = (data: AuthType) => ({type: "SET-USER-DATA", data} as const)
+export const setAuthData = (payload: AuthType) => ({type: "SET-USER-DATA", payload} as const)
+export const resetAuthDataAC = () => ({type: "RESET-USER-AUTH-DATA"} as const)
 
 // types for InitialState
 export type AuthType = {
@@ -37,7 +39,12 @@ const initialState: AuthType = {
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case "SET-USER-DATA":
-            return {...state, ...action.data}
+            return {...state, ...action.payload, isAuth: true}
+        case "RESET-USER-AUTH-DATA":
+            return {
+                ...state,
+                ...initialState
+            }
         default:
             return state
     }
@@ -53,6 +60,23 @@ export const getAuthUserDataTC = () => {
         })
     }
 }
+export const loginTC = (email: string, password: string, rememberMe: boolean) => {
+    return (dispatch: any) => {
+        authAPI.login(email, password, rememberMe).then(data => {
+            if (data.resultCode === 0) {
+                dispatch(getAuthUserDataTC())
+            }
+        })
+    }
+}
 
-
+export const logoutTC = () => {
+    return (dispatch: any) => {
+        authAPI.logout().then(data => {
+            if (data.resultCode === 0) {
+                dispatch(resetAuthDataAC())
+            }
+        })
+    }
+}
 

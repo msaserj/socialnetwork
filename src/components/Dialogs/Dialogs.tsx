@@ -3,7 +3,6 @@ import classes from './Dialogs.module.css'
 import {DialogItem} from "./Dialogitem/Dialogsitem";
 import {Message} from "./Message/Message";
 import {DialogPageType} from "../../redux/dialogs-reducer";
-import {Navigate} from "react-router-dom";
 
 
 type DialogsPageType = {
@@ -25,8 +24,6 @@ export const Dialogs = (props: DialogsPageType) => {
     const messageOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         props.newTextMessageOnChange(e.currentTarget.value)
     }
-    if (props.isAuth) return <Navigate to="/login" />
-
 
     return (
         <div className={classes.dialogs}>

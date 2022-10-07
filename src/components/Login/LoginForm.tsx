@@ -9,7 +9,11 @@ type FormikErrorType = {
     rememberMe?: boolean
 }
 
-export const LoginForm = () => {
+type LoginFormType = {
+    loginTC: (email: string, password: string, rememberMe: boolean) => void
+}
+
+export const LoginForm = (props: LoginFormType) => {
     console.log("RERENDER")
     const formik = useFormik({
         initialValues: {
@@ -32,6 +36,7 @@ export const LoginForm = () => {
             return errors;
         },
         onSubmit: values => {
+            props.loginTC(values.email, values.password, values.rememberMe)
             alert(JSON.stringify(values));
         },
     });
