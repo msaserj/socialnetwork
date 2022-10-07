@@ -2,8 +2,13 @@ import React from 'react';
 import {LoginForm} from "./LoginForm";
 import {connect} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
+import {Navigate} from "react-router-dom";
+import {AppStateType} from "../../redux/redux-store";
 
 const Login = (props: ProfilePropsType) => {
+    if(props.isAuth) {
+        return <Navigate to={"/profile"}/>
+    }
     return (
         <div>
            <h1>Login</h1>
@@ -12,14 +17,23 @@ const Login = (props: ProfilePropsType) => {
     );
 };
 
-export default connect(null, {loginTC})(Login)
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth
+    }
+}
+
+
+export default connect(mapStateToProps, {loginTC})(Login)
 
 // types
 type MapStateToPropsType = {
-
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {
     loginTC: (email: string, password: string, rememberMe: boolean) => void
 }
+
+
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
