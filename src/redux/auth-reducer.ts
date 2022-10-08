@@ -65,6 +65,8 @@ export const loginTC = (email: string, password: string, rememberMe: boolean) =>
         authAPI.login(email, password, rememberMe).then(data => {
             if (data.resultCode === 0) {
                 dispatch(getAuthUserDataTC())
+            } else if (data.resultCode === 10){
+
             }
         })
     }

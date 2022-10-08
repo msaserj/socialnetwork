@@ -23,8 +23,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-
 export default connect(mapStateToProps, {loginTC})(Login)
+
 
 // types
 type MapStateToPropsType = {
@@ -34,6 +34,5 @@ type MapStateToPropsType = {
 type MapDispatchToPropsType = {
     loginTC: (email: string, password: string, rememberMe: boolean) => void
 }
-
 
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType

@@ -35,7 +35,7 @@ export const LoginForm = (props: LoginFormType) => {
             }
             return errors;
         },
-        onSubmit: values => {
+        onSubmit: (values,{setSubmitting, setStatus}) => {
             props.loginTC(values.email, values.password, values.rememberMe)
             alert(JSON.stringify(values));
         },
@@ -67,8 +67,6 @@ export const LoginForm = (props: LoginFormType) => {
             <div  className={css.fields}>
                 <button type="submit">Submit</button>
             </div>
-
-
         </form>
     );
 };
