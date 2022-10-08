@@ -11,7 +11,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 function withRouter(Component: any) {
     function ComponentWithRouterProp(props: any) {
         let params = useParams();
-        return <Component{...props} userId={params.userId ? params.userId : "24212"}/>
+        return <Component{...props} userId={params.userId ? params.userId : props.myId}/>
     }
     return ComponentWithRouterProp;
 }
@@ -38,7 +38,9 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         profile: state.profilePage.userProfile,
-        status: state.profilePage.status
+        status: state.profilePage.status,
+        myId: state.auth.data.id,
+        isAuth: state.auth.isAuth
     }
 }
 
@@ -56,6 +58,8 @@ export default compose<React.ComponentType>(
 type MapStateToPropsType = {
     profile: UserProfileType | null
     status: string
+    myId: number
+    isAuth: boolean
 }
 
 type MapDispatchToPropsType = {

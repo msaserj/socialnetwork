@@ -10,7 +10,7 @@ type FormikErrorType = {
 }
 
 type LoginFormType = {
-    loginTC: (email: string, password: string, rememberMe: boolean) => void
+    loginTC: (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => void
 }
 
 export const LoginForm = (props: LoginFormType) => {
@@ -35,8 +35,9 @@ export const LoginForm = (props: LoginFormType) => {
             }
             return errors;
         },
-        onSubmit: (values,{setSubmitting, setStatus}) => {
-            props.loginTC(values.email, values.password, values.rememberMe)
+        onSubmit: (values,onSubmitProps) => {
+            props.loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+            onSubmitProps.setSubmitting(true);
             alert(JSON.stringify(values));
         },
     });
@@ -65,6 +66,7 @@ export const LoginForm = (props: LoginFormType) => {
                 />
                 {formik.errors.rememberMe ? <div>{formik.errors.rememberMe}</div> : null}</div>
             <div  className={css.fields}>
+                {formik.status}
                 <button type="submit">Submit</button>
             </div>
         </form>

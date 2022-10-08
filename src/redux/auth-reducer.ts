@@ -60,14 +60,13 @@ export const getAuthUserDataTC = () => {
         })
     }
 }
-export const loginTC = (email: string, password: string, rememberMe: boolean) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => {
     return (dispatch: any) => {
-        authAPI.login(email, password, rememberMe).then(data => {
+        authAPI.login(email, password, rememberMe,).then(data => {
             if (data.resultCode === 0) {
                 dispatch(getAuthUserDataTC())
-            } else if (data.resultCode === 10){
-
-            }
+            } else {setStatus(data.messages) }
+            setSubmitting(false);
         })
     }
 }

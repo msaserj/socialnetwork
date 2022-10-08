@@ -32,7 +32,7 @@ type MapStateToPropsType = {
 }
 
 type MapDispatchToPropsType = {
-    loginTC: (email: string, password: string, rememberMe: boolean) => void
+    loginTC: (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => void
 }
 
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
