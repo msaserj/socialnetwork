@@ -36,6 +36,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    console.log("MAP-STATE-TO-PROPS")
     return {
         profile: state.profilePage.userProfile,
         status: state.profilePage.status,
