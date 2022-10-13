@@ -38,7 +38,7 @@ export const LoginForm = (props: LoginFormType) => {
         onSubmit: (values,onSubmitProps) => {
             props.loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             onSubmitProps.setSubmitting(true);
-            alert(JSON.stringify(values));
+            // alert(JSON.stringify(values));
         },
     });
     return (

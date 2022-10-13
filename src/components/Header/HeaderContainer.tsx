@@ -6,9 +6,7 @@ import {AppStateType} from "../../redux/redux-store";
 
 class HeaderContainer extends React.Component<AuthPropsType> {
 
-    componentDidMount() {
-        this.props.getAuthUserData()
-    }
+
     render() {
         return <Header authHeader={this.props.authData} logoutTC={this.props.logoutTC}/>
     }
