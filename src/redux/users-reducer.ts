@@ -1,6 +1,6 @@
 import {ActionsType} from "./redux-store";
 import {usersAPI} from "../api/api";
-import {updateObjectInArray} from "../utils/object-helpers";
+import {followUnfollow, updateObjectInArray} from "../utils/object-helpers";
 
 // typeof ActionCreators
 export type UsersActionsType =
@@ -136,14 +136,7 @@ export const getUsersTC = (currentPage: number, pageSize: number) => async (disp
 
 }
 
-const followUnfollow = async (dispatch: any, userId: number, apiMethod: any, actionCreator: any) => {
-    dispatch(toggleIsFollowing(true, userId))
-    let data = await apiMethod(userId)
-    if (data.resultCode === 0) {
-        dispatch(actionCreator(userId))
-    }
-    dispatch(toggleIsFollowing(false, userId))
-}
+
 
 export const followTC = (userId: number) => async (dispatch: any) => {
     let apiMethod = usersAPI.follow.bind(usersAPI)
