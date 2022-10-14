@@ -8,12 +8,14 @@ export type ProfileActionsType =
     | ReturnType<typeof newPostTextOnChangeAC>
     | ReturnType<typeof setUserProfile>
     | ReturnType<typeof setStatus>
+    | ReturnType<typeof deletePostAC>
 
 // ActionCreators
 export const addPostOnClickAC = () => ({type: "ADD-POST"} as const)
 export const newPostTextOnChangeAC = (newPostText: string) => ({type: "UPDATE-NEW-POST-TEXT", newPostText} as const)
 export const setUserProfile = (profile: UserProfileType) => ({type: "SET-USER-PROFILE", profile} as const)
 export const setStatus = (status: string) => ({type: "SET-STATUS", status} as const)
+export const deletePostAC = (postId: string) => ({type: "DELETE-POST", postId} as const)
 
 // types for InitialState
 export type ProfilePageType = {
@@ -82,6 +84,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, status: action.status}
         case "SET-USER-PROFILE":
             return {...state, userProfile: action.profile}
+        case "DELETE-POST":
+            return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
     }
