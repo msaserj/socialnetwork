@@ -13,7 +13,7 @@ type LoginFormType = {
     loginTC: (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => void
 }
 
-export const LoginForm = (props: LoginFormType) => {
+export const LoginForm: React.FC<LoginFormType> = ({loginTC}) => {
     console.log("RERENDER")
     const formik = useFormik({
         initialValues: {
@@ -36,7 +36,7 @@ export const LoginForm = (props: LoginFormType) => {
             return errors;
         },
         onSubmit: (values,onSubmitProps) => {
-            props.loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+            loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             onSubmitProps.setSubmitting(true);
             // alert(JSON.stringify(values));
         },
@@ -44,23 +44,17 @@ export const LoginForm = (props: LoginFormType) => {
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className={css.fields}> <label htmlFor="email">Email</label>
-                <input
-                    id="email"
-                    type="email"
+                <input id="email" type="email"
                     {...formik.getFieldProps("email")}
                 />
                 {formik.errors.email ? <div>{formik.errors.email}</div> : null}</div>
             <div  className={css.fields}> <label htmlFor="password">Password</label>
-                <input
-                    id="password"
-                    type="password"
+                <input id="password" type="password"
                     {...formik.getFieldProps("password")}
                 />
                 {formik.errors.password ? <div>{formik.errors.password}</div> : null}</div>
             <div  className={css.fields}> <label htmlFor="RememberMe">Remember Me</label>
-                <input
-                    id="checkbox"
-                    type="checkbox"
+                <input id="checkbox" type="checkbox"
                     {...formik.getFieldProps("rememberMe")}
                     checked={formik.values.rememberMe}
                 />

@@ -3,6 +3,8 @@ import classes from "./Users.module.css";
 import userPhoto from "../../assets/images/profileImage.png";
 import {UsersPropsType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
+import {Paginator} from "../common/paginator/Paginator";
+
 
 
 type UsersComponentPropsType = {
@@ -10,22 +12,14 @@ type UsersComponentPropsType = {
     usersComponent: UsersPropsType
 }
 
-export const Users = (props: UsersComponentPropsType) => {
-    let userData = props.usersComponent
-    let pagesCount = Math.ceil(userData.totalUsersCount / userData.pageSize)
-    let pages = []
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+export const Users: React.FC<UsersComponentPropsType> = ({usersComponent, onPageChanged}) => {
+    let userData = usersComponent
     return (
         <div>
-            <div>
-                {pages.map(pgs => {
-                    return <span className={userData.currentPage === pgs ? classes.selectedPage : ""}
-                                 onClick={() => props.onPageChanged(pgs)}
-                    > {pgs} </span>
-                })}
-            </div>
+            <Paginator currentPage={userData.currentPage}
+                       onPageChanged={onPageChanged}
+                       pageSize={userData.pageSize}
+                       totalUsersCount={userData.totalUsersCount}/>
             {
                 userData.users.map(usr => <div key={usr.id}>
                   <span>

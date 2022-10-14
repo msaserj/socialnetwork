@@ -5,14 +5,14 @@ import {loginTC} from "../../redux/auth-reducer";
 import {Navigate} from "react-router-dom";
 import {AppStateType} from "../../redux/redux-store";
 
-const Login = (props: ProfilePropsType) => {
-    if(props.isAuth) {
+const Login: React.FC<ProfilePropsType> = ({isAuth, loginTC}) => {
+    if(isAuth) {
         return <Navigate to={"/profile"}/>
     }
     return (
         <div>
            <h1>Login</h1>
-            <LoginForm loginTC={props.loginTC}/>
+            <LoginForm loginTC={loginTC}/>
         </div>
     );
 };
