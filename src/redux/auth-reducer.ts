@@ -5,9 +5,12 @@ import {authAPI} from "../api/api";
 export type AuthActionsType =
     | ReturnType<typeof setAuthData>
     | ReturnType<typeof resetAuthDataAC>
+    | ReturnType<typeof setIsAuth>
 
 // ActionCreators
 export const setAuthData = (payload: AuthType) => ({type: "SET-USER-DATA", payload} as const)
+export const setIsAuth = (isAuth: boolean) => ({type: "SET-IS-AUTH", isAuth} as const)
+
 export const resetAuthDataAC = () => ({type: "RESET-USER-AUTH-DATA"} as const)
 
 // types for InitialState
@@ -39,7 +42,10 @@ const initialState: AuthType = {
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
         case "SET-USER-DATA":
-            return {...state, ...action.payload, isAuth: true}
+            return {...state, ...action.payload}
+        case "SET-IS-AUTH":
+            return {...state, isAuth: action.isAuth}
+
         case "RESET-USER-AUTH-DATA":
             return {
                 ...state,
@@ -51,33 +57,30 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 }
 
 // thunk
-export const getAuthUserDataTC = () => {
-    return (dispatch: any) => {
-        authAPI.me().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(setAuthData(data))
-            }
-        })
-    }
-}
-export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => {
-    return (dispatch: any) => {
-        authAPI.login(email, password, rememberMe,).then(data => {
-            if (data.resultCode === 0) {
-                dispatch(getAuthUserDataTC())
-            } else {setStatus(data.messages) }
-            setSubmitting(false);
-        })
+export const getAuthUserDataTC = () => async (dispatch: any) => {
+    let data = await authAPI.me()
+    dispatch(setIsAuth(true))
+    if (data.resultCode === 0) {
+        dispatch(setAuthData(data))
     }
 }
 
-export const logoutTC = () => {
-    return (dispatch: any) => {
-        authAPI.logout().then(data => {
-            if (data.resultCode === 0) {
-                dispatch(resetAuthDataAC())
-            }
-        })
+
+export const loginTC = (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => async (dispatch: any) => {
+    let data = await authAPI.login(email, password, rememberMe)
+    if (data.resultCode === 0) {
+        dispatch(getAuthUserDataTC())
+    } else {
+        setStatus(data.messages)
+    }
+    setSubmitting(false);
+}
+
+
+export const logoutTC = () => async (dispatch: any) => {
+    let data = await authAPI.logout()
+    if (data.resultCode === 0) {
+        dispatch(resetAuthDataAC())
     }
 }
 

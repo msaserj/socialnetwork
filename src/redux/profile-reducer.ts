@@ -92,28 +92,20 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 }
 
 // thunk
-export const getUserProfileTC = (profileId: string) => {
-    return (dispatch: any) => {
-        profileAPI.getProfile(profileId).then(res => {
-            dispatch(setUserProfile(res.data))
-        })
-    }
+export const getUserProfileTC = (profileId: string) => async (dispatch: any) => {
+    let res = await profileAPI.getProfile(profileId)
+    dispatch(setUserProfile(res.data))
 }
 
-export const getStatusTC = (profileId: string) => {
-    return (dispatch: any) => {
-        profileAPI.getStatus(profileId).then(res => {
-            console.log(res.data)
-            dispatch(setStatus(res.data))
-        })
-    }
+export const getStatusTC = (profileId: string) => async (dispatch: any) => {
+    let res = await profileAPI.getStatus(profileId)
+    console.log(res.data)
+    dispatch(setStatus(res.data))
 }
-export const updateStatusTC = (status: string) => {
-    return (dispatch: any) => {
-        profileAPI.updateStatus(status).then(res => {
-            if (res.data.resultCode === 0) {
-                dispatch(setStatus(res.data))
-            }
-        })
+
+export const updateStatusTC = (status: string) => async (dispatch: any) => {
+    let res = await profileAPI.updateStatus(status)
+    if (res.data.resultCode === 0) {
+        dispatch(setStatus(res.data))
     }
 }
