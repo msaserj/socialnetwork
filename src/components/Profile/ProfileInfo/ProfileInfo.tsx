@@ -3,7 +3,7 @@ import classes from "./ProfileInfo.module.css"
 import {UserProfileType} from "../../../redux/profile-reducer";
 import userPhoto from "../../../assets/images/profileImage.png";
 import {Preloader} from "../../common/preloader/Preloader";
-import {ProfileStatus} from "./ProfileStatus";
+import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 
 type ProfileType = {
     userProfile: UserProfileType | null
@@ -27,7 +27,7 @@ export const ProfileInfo = (props: ProfileType) => {
                 <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"
                      alt="la_batie"/>
             </div>
-            <ProfileStatus status={props.status} updateStatus={props.updateStatus} getStatus={props.getStatus}/>
+            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} getStatus={props.getStatus}/>
             <div className={classes.descriptionBlock}>
                 <img className={classes.userPhoto} src={data.photos != null
                     ? data.photos.small : userPhoto} alt=""/>
