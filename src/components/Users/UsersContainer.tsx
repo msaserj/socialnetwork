@@ -30,7 +30,11 @@ class UsersContainer extends React.Component<UsersPropsType> {
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <Users
-                onPageChanged={this.onPageChanged.bind(this)} usersComponent={this.props}/>
+                onPageChanged={this.onPageChanged.bind(this)}
+                usersComponent={this.props}
+                followTC={this.props.followTC}
+                followingInProgress={this.props.followingInProgress}
+                unFollowTC={this.props.unFollowTC}/>
         </>;
     }
 }
@@ -63,7 +67,7 @@ type MapStateToPropsType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
-    followingInProgress: []
+    followingInProgress: string[]
 }
 type MapDispatchToPropsType = {
     followTC: (userId: number) => void
