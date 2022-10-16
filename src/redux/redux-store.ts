@@ -1,4 +1,4 @@
-import {applyMiddleware, combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, compose, createStore} from "redux";
 import {ProfileActionsType, profileReducer} from "./profile-reducer";
 import {sidebarReducer} from "./sidebar-reducer";
 import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";
@@ -17,7 +17,19 @@ let rootReducer = combineReducers({
     app: appReducer
 })
 
-export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
+
+// для работы с REDUX_DEVTOOLS: Window c Большой Буквы Window
+declare global {
+    interface Window {
+        __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
+    }
+}
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+export const store = createStore(rootReducer, /* preloadedState, */ composeEnhancers(
+    applyMiddleware(thunkMiddleware)
+));
+
+//export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 export type AppStateType = ReturnType<typeof rootReducer>
 export type DispatchStoreType = typeof store.dispatch
 
@@ -31,4 +43,4 @@ export type ActionsType =
     | AppActionsType
 
 // @ts-ignore
-window.store = store;
+// window.store = store;

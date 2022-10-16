@@ -16,12 +16,14 @@ export const Users: React.FC<UsersComponentPropsType> = ({usersComponent, onPage
     let userData = usersComponent
     return (
         <div>
-            <Paginator currentPage={userData.currentPage}
+            <Paginator
+                currentPage={userData.currentPage}
                        onPageChanged={onPageChanged}
                        pageSize={userData.pageSize}
                        totalUsersCount={userData.totalUsersCount}/>
             {
-                userData.users.map(usr => <User
+                userData.users.map((usr, index) => <User
+                    key={index}
                     usersComponent={usr}
                     followTC={followTC}
                     followingInProgress={followingInProgress}

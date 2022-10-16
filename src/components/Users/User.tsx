@@ -10,13 +10,12 @@ type UsersComponentPropsType = {
     followingInProgress: string[]
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
-
 }
 
 export const User: React.FC<UsersComponentPropsType> = ({usersComponent, followTC, unFollowTC, followingInProgress}) => {
     let usr = usersComponent
     return (
-        <div key={usr.id}>
+        <div>
                   <span>
                       <div>
                           <NavLink to={"/profile/" + usr.id}>
@@ -47,7 +46,5 @@ export const User: React.FC<UsersComponentPropsType> = ({usersComponent, followT
                       </span>
                   </span>
         </div>
-
-
     )
 }

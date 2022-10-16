@@ -22,8 +22,8 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
     }
     return (
         <div>
-            {pages.map(pgs => {
-                return <span className={currentPage === pgs ? css.selectedPage : ""}
+            {pages.map((pgs, index) => {
+                return <span key={index} className={currentPage === pgs ? css.selectedPage : ""}
                              onClick={() => onPageChanged(pgs)}
                 > {pgs} </span>
             })}
