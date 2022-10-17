@@ -20,7 +20,7 @@ export const Users: React.FC<UsersComponentPropsType> = ({usersComponent, onPage
                 currentPage={userData.currentPage}
                        onPageChanged={onPageChanged}
                        pageSize={userData.pageSize}
-                       totalUsersCount={userData.totalUsersCount}/>
+                       totalItemsCount={userData.totalUsersCount}/>
             {
                 userData.users.map((usr, index) => <User
                     key={index}

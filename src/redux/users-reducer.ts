@@ -80,7 +80,7 @@ const initialState: UsersPageType = {
             location: {city: "Tver", country: "Russia"}
         },
     ],
-    pageSize: 100,
+    pageSize: 15,
     totalUsersCount: 0,
     currentPage: 2,
     isFetching: false,
