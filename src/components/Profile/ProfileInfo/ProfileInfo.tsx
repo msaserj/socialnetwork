@@ -10,6 +10,7 @@ type ProfileType = {
     updateStatus: (status: string) => void
     getStatus: (profileId: string) => void
     status: string
+    isOwner: boolean
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -18,8 +19,9 @@ export const ProfileInfo = (props: ProfileType) => {
     }
     let data = props.userProfile
     let contacts = props.userProfile.contacts
-
+    console.log(props.isOwner)
     return (
+
 
         <div>
 
@@ -29,8 +31,11 @@ export const ProfileInfo = (props: ProfileType) => {
             </div>
             <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus} getStatus={props.getStatus}/>
             <div className={classes.descriptionBlock}>
-                <img className={classes.userPhoto} src={data.photos != null
+                {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
+
+                pic<img className={classes.userPhoto} src={data.photos != null || undefined
                     ? data.photos.small : userPhoto} alt=""/>
+                {props.isOwner && <input type={"file"}/>}
                 <div>{data.fullName}</div>
                 <div><p>About me: {data.aboutMe}</p></div>
                 {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}

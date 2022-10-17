@@ -15,14 +15,30 @@ function withRouter(Component: any) {
     }
     return ComponentWithRouterProp;
 }
-class ProfileContainer extends React.Component<ProfilePropsType> {
-    componentDidMount() {
-        // debugger
-        this.props.getUserProfile(this.props.userId)
 
+
+class ProfileContainer extends React.Component<ProfilePropsType> {
+
+    refreshProfile() {
+        this.props.getUserProfile(this.props.userId)
         this.props.getStatus(this.props.userId)
     }
+    componentDidMount() {
+        // debugger
+        this.refreshProfile()
+    }
+
+    componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
+        if(this.props.userId !== prevProps.userId) {
+            this.refreshProfile()
+        }
+
+    }
+
+
     render() {
+        console.log(this.props.myId)
+        console.log(this.props.userId)
 
         return (
             <Profile
@@ -30,13 +46,14 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
                 userProfile={this.props.profile}
                 updateStatus={this.props.updateStatus}
                 getStatus={this.props.getStatus}
-                isAuth/>
+                isAuth
+                isOwner={this.props.myId === +this.props.userId}/>
         );
     }
 }
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
-    console.log("MAP-STATE-TO-PROPS")
+    // console.log("MAP-STATE-TO-PROPS")
     return {
         profile: state.profilePage.userProfile,
         status: state.profilePage.status,

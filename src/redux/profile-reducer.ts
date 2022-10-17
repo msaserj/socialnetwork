@@ -99,7 +99,7 @@ export const getUserProfileTC = (profileId: string) => async (dispatch: any) => 
 
 export const getStatusTC = (profileId: string) => async (dispatch: any) => {
     let res = await profileAPI.getStatus(profileId)
-    console.log(res.data)
+    // console.log(res.data)
     dispatch(setStatus(res.data))
 }
 

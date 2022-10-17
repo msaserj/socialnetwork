@@ -19,7 +19,7 @@ export class MyPosts extends React.PureComponent<MyPostType> {
     // }
 
     render() {
-        console.log("MyPosts render")
+        // console.log("MyPosts render")
         let postsElements = this.props.profilePage.posts.map((el, index) => <Post key={index} id={el.id} message={el.message}
                                                                          likesCount={el.likesCount}/>)
         const postOnClickHandler = () => {
