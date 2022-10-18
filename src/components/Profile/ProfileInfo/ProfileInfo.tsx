@@ -11,6 +11,7 @@ type ProfileType = {
     getStatus: (profileId: string) => void
     status: string
     isOwner: boolean
+    savePhoto: (file: any) => void
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -20,6 +21,13 @@ export const ProfileInfo = (props: ProfileType) => {
     let data = props.userProfile
     let contacts = props.userProfile.contacts
     console.log(props.isOwner)
+
+    const loadPhotoHandler = (e: any) => {
+        if(e.target.files.length){
+           let file = e.target.files[0]
+            props.savePhoto(file)
+        }
+    }
     return (
 
 
@@ -35,7 +43,9 @@ export const ProfileInfo = (props: ProfileType) => {
 
                 pic<img className={classes.userPhoto} src={data.photos != null || undefined
                     ? data.photos.small : userPhoto} alt=""/>
-                {props.isOwner && <input type={"file"}/>}
+
+                {props.isOwner && <input type={"file"} onChange={loadPhotoHandler}/>}
+
                 <div>{data.fullName}</div>
                 <div><p>About me: {data.aboutMe}</p></div>
                 {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}

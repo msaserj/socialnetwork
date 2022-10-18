@@ -2,7 +2,7 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatusTC, getUserProfileTC, updateStatusTC, UserProfileType} from "../../redux/profile-reducer";
+import {getStatusTC, getUserProfileTC, savePhotoTC, updateStatusTC, UserProfileType} from "../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -47,7 +47,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
                 updateStatus={this.props.updateStatus}
                 getStatus={this.props.getStatus}
                 isAuth
-                isOwner={this.props.myId === +this.props.userId}/>
+                isOwner={this.props.myId === +this.props.userId} savePhoto={this.props.savePhoto}/>
         );
     }
 }
@@ -65,7 +65,12 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 // compose allows us to add new HOCs, that is wrap our component to HOCs with universal options
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile: getUserProfileTC, getStatus: getStatusTC, updateStatus: updateStatusTC}),
+    connect(mapStateToProps, {
+        getUserProfile: getUserProfileTC,
+        getStatus: getStatusTC,
+        updateStatus: updateStatusTC,
+        savePhoto: savePhotoTC
+    }),
     withRouter,
     WithAuthRedirect
 )(ProfileContainer)
@@ -82,9 +87,10 @@ type MapStateToPropsType = {
 
 type MapDispatchToPropsType = {
     getUserProfile: (profileId: string) => void
-    getUserStatus: (profileId: string) => void
+    //getUserStatus: (profileId: string) => void
     getStatus: (profileId: string) => void
     updateStatus: (status: string) => void
+    savePhoto: (file: any) => void
 }
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType & {
     userId: string

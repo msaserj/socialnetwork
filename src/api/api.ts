@@ -24,14 +24,23 @@ export const usersAPI = {
 
 }
 export const profileAPI = {
-    getProfile (profileId: string) {
+    getProfile(profileId: string) {
         return apiInstance.get(`profile/` + profileId)
     },
-    getStatus (profileId: string) {
+    getStatus(profileId: string) {
         return apiInstance.get(`profile/status/` + profileId)
     },
-    updateStatus (status: string) {
+    updateStatus(status: string) {
         return apiInstance.put(`profile/status`, {status}).then(response => response.data)
+    },
+    savePhoto(photoFile: any) {
+        const formData = new FormData()
+        formData.append("image", photoFile)
+        return apiInstance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(response => response.data)
     },
 
 }
