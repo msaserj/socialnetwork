@@ -1,9 +1,11 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from "./ProfileInfo.module.css"
 import {UserProfileType} from "../../../redux/profile-reducer";
 import userPhoto from "../../../assets/images/profileImage.png";
 import {Preloader} from "../../common/preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
+import {ProfileDataForm} from "./ProfileData/ProfileDataForm";
+import {ProfileData} from "./ProfileData/ProfileData";
 
 type ProfileType = {
     userProfile: UserProfileType | null
@@ -15,12 +17,21 @@ type ProfileType = {
 }
 
 export const ProfileInfo = (props: ProfileType) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
+
+
     if (!props.userProfile) {
         return <Preloader/>  //если нет профайла то крутилка
     }
     let data = props.userProfile
-    let contacts = props.userProfile.contacts
     console.log(props.isOwner)
+    const activateEditMode = () => {
+        setEditMode(true)
+    }
+    const deactivateEditMode = () => {
+        setEditMode(false)
+    }
+
 
     const loadPhotoHandler = (e: any) => {
         if (e.target.files.length) {
@@ -29,47 +40,40 @@ export const ProfileInfo = (props: ProfileType) => {
         }
     }
     return (
-
         <div>
             <div>
                 <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"
                      alt="la_batie"/>
             </div>
-            <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}
-                                    getStatus={props.getStatus}/>
             <div className={classes.descriptionBlock}>
                 {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
 
-                pic<img className={classes.userPhoto} src={data.photos != null || undefined
-                ? data.photos.small : userPhoto} alt=""/>
-
+                <img className={classes.userPhoto} src={data.photos != null || undefined
+                    ? data.photos.small : userPhoto} alt=""/>
                 {props.isOwner && <input type={"file"} onChange={loadPhotoHandler}/>}
 
-                <div><b>{data.fullName}</b></div>
-                <div><b>About me: {data.aboutMe}</b></div>
-                {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}
-                <p><b>Contacts:</b></p>
-                <ul>
-                    {Object.keys(contacts).map(key => {
-                        // @ts-ignore
-                        return <Contact key={key} contactTitle={key} contactValue={contacts[key]}/>
-                    })}
-                </ul>
 
+                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}
+                                        getStatus={props.getStatus}/>
+
+                {editMode
+                    ? <ProfileDataForm userProfile={props.userProfile}/>
+                    : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner} goToEditMode={activateEditMode}/>}
             </div>
         </div>)
 }
 
-type ContactType = {
-    contactTitle: string
-    contactValue: string
-}
-
-export const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
-    return (<li><b>{contactTitle}:</b> {contactValue}</li>)
-}
 
 
-export const ProfileData = () => {
 
-}
+// <p>Contacts:</p>
+// <ul>
+//     {contacts && <li>facebook: {contacts.facebook}</li>}
+//     {contacts && <li>vk: {contacts.vk}</li>}
+//     {contacts && <li>instagram: {contacts.instagram}</li>}
+//     {contacts && <li>twitter: {contacts.twitter}</li>}
+//     {contacts && <li>youtube: {contacts.youtube}</li>}
+//     {contacts && <li>github: {contacts.github}</li>}
+//     {contacts && <li>mainLink: {contacts.mainLink}</li>}
+//     {contacts && <li>website: {contacts.website}</li>}
+// </ul>
