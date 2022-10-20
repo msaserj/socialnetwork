@@ -29,7 +29,7 @@ export const ProfileData: React.FC<ProfileDataType> = (
         <div><p><b>Full Name:</b> {data.fullName}</p></div>
         <div><p><b>About me:</b> {data.aboutMe}</p></div>
 
-        {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}
+        Looking for a job: {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}
 
         <p><b>Contacts:</b></p>
         <ul>

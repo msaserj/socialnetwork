@@ -14,6 +14,7 @@ type ProfileType = {
     status: string
     isOwner: boolean
     savePhoto: (file: any) => void
+    saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -24,7 +25,7 @@ export const ProfileInfo = (props: ProfileType) => {
         return <Preloader/>  //если нет профайла то крутилка
     }
     let data = props.userProfile
-    console.log(props.isOwner)
+    // console.log(props.isOwner)
     const activateEditMode = () => {
         setEditMode(true)
     }
@@ -56,7 +57,7 @@ export const ProfileInfo = (props: ProfileType) => {
                                         getStatus={props.getStatus}/>
 
                 {editMode
-                    ? <ProfileDataForm userProfile={props.userProfile}/>
+                    ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile} deactivateEditMode={deactivateEditMode}/>
                     : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner} goToEditMode={activateEditMode}/>}
             </div>
         </div>)

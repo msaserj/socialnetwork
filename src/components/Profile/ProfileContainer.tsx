@@ -2,7 +2,14 @@ import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
 import {AppStateType} from "../../redux/redux-store";
-import {getStatusTC, getUserProfileTC, savePhotoTC, updateStatusTC, UserProfileType} from "../../redux/profile-reducer";
+import {
+    getStatusTC,
+    getUserProfileTC,
+    savePhotoTC,
+    saveProfileTC,
+    updateStatusTC,
+    UserProfileType
+} from "../../redux/profile-reducer";
 import {useParams} from "react-router-dom";
 import {compose} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -13,6 +20,7 @@ function withRouter(Component: any) {
         let params = useParams();
         return <Component{...props} userId={params.userId ? params.userId : props.myId}/>
     }
+
     return ComponentWithRouterProp;
 }
 
@@ -23,22 +31,24 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
         this.props.getUserProfile(this.props.userId)
         this.props.getStatus(this.props.userId)
     }
+
     componentDidMount() {
         // debugger
         this.refreshProfile()
     }
 
     componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if(this.props.userId !== prevProps.userId) {
+        if (this.props.userId !== prevProps.userId) {
             this.refreshProfile()
         }
+        // if (this.props.profile !== prevProps.profile) {
+        //     this.refreshProfile()
+        // }
 
     }
 
 
     render() {
-        console.log(this.props.myId)
-        console.log(this.props.userId)
 
         return (
             <Profile
@@ -47,7 +57,9 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
                 updateStatus={this.props.updateStatus}
                 getStatus={this.props.getStatus}
                 isAuth
-                isOwner={this.props.myId === +this.props.userId} savePhoto={this.props.savePhoto}/>
+                isOwner={this.props.myId === +this.props.userId}
+                savePhoto={this.props.savePhoto}
+                saveProfile={this.props.saveProfile}/>
         );
     }
 }
@@ -69,12 +81,12 @@ export default compose<React.ComponentType>(
         getUserProfile: getUserProfileTC,
         getStatus: getStatusTC,
         updateStatus: updateStatusTC,
-        savePhoto: savePhotoTC
+        savePhoto: savePhotoTC,
+        saveProfile: saveProfileTC
     }),
     withRouter,
     WithAuthRedirect
 )(ProfileContainer)
-
 
 
 // types
@@ -91,6 +103,7 @@ type MapDispatchToPropsType = {
     getStatus: (profileId: string) => void
     updateStatus: (status: string) => void
     savePhoto: (file: any) => void
+    saveProfile: (file: any,  setStatus: any, setSubmitting: any) => void
 }
 export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType & {
     userId: string

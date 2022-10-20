@@ -1,70 +1,110 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {UserProfileType} from "../../../../redux/profile-reducer";
 import {useFormik} from "formik";
-import {InputFormik} from "./InputFormik";
+import {InputFormik, TextAreaFormik} from "./InputFormik";
 
 
 type ProfileDataFormType = {
     userProfile: UserProfileType | null
-
+    saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
+    deactivateEditMode: () => void
 }
 type FormikErrorType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
+    fullName?: string
+    aboutMe?: string
+    lookingForAJob?: boolean
+    lookingForAJobDescription?: string
+    contacts: {
+        facebook?: string
+        website?: string
+        vk?: string
+        twitter?: string
+        instagram?: string
+        youtube?: string
+        github?: string
+        mainLink?: string
+    }
 }
 
-export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile}) => {
-    // if (!userProfile) {
-    //     return <Preloader/>  //если нет профайла то крутилка
-    // }
-
+export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, saveProfile, deactivateEditMode}) => {
     const formik = useFormik({
             initialValues: {
-                email: '',
-                password: '',
-                rememberMe: false,
                 fullName: '',
                 aboutMe: '',
-                // Contacts:
-                facebook: '',
-                website: '',
-                vk: '',
-                twitter: '',
-                instagram: '',
-                youtube: '',
-                github: '',
-                mainLink: '',
+                lookingForAJob: false,
+                lookingForAJobDescription: '',
+                contacts: {
+                    facebook: '',
+                    website: '',
+                    vk: '',
+                    twitter: '',
+                    instagram: '',
+                    youtube: '',
+                    github: '',
+                    mainLink: ''
+                }
             },
+        // validate: (values) => {
+        //     const errors: FormikErrorType = {contacts:{}};
+        //     // if (!values.contacts.facebook) {
+        //     //     // @ts-ignore
+        //     //     errors.contacts = 'required'
+        //     // }
+        //     // if (!values.contacts.vk) {
+        //     //     // @ts-ignore
+        //     //     errors.contacts = 'required'
+        //     // }
+        //     // if (!values.contacts.github) {
+        //     //     // @ts-ignore
+        //     //     errors.contacts = 'required'
+        //     // }
+        //     return errors;
+
             onSubmit: (values, onSubmitProps) => {
 
-                // alert(JSON.stringify(values));
-            },
-        })
-    ;
+                saveProfile(values, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+                // console.log("value: ", JSON.stringify(values))
+                onSubmitProps.setSubmitting(true);
+                if(formik.isValid) {
+                    formik.resetForm();
+                    formik.setTouched({});
+                    deactivateEditMode()
+                }
 
-    // let contacts = userProfile.contacts
-    let data = userProfile
+            },
+        });
+    useEffect(()=>{
+        if (userProfile) {
+            formik.setFieldValue("fullName", userProfile.fullName)
+            formik.setFieldValue("aboutMe", userProfile.aboutMe)
+            formik.setFieldValue("lookingForAJob", userProfile.lookingForAJob)
+            formik.setFieldValue("lookingForAJobDescription", userProfile.lookingForAJobDescription)
+            formik.setFieldValue("facebook", userProfile.contacts.facebook)
+
+            userProfile && Object.keys(userProfile.contacts).map(key => {
+                // @ts-ignore
+                return formik.setFieldValue("contacts." + key, userProfile.contacts[key])
+            })
+        }
+    },[userProfile])
     return (<div>
         form
-        {/*<div><p><b>{data.fullName}</b></p></div>*/}
-        {/*<div><p><b>About me:</b> {data.aboutMe}</p></div>*/}
-
-        {/*{data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}*/}
-
-        {/*<p><b>Contacts:</b></p>*/}
-        {/*<ul>*/}
-        {/*    {Object.keys(contacts).map(key => {*/}
-
-        {/*        // @ts-ignore*/}
-        {/*        return <Contact key={key} contactTitle={key} contactValue={contacts[key]}/>*/}
-        {/*    })}*/}
-        {/*</ul>*/}
         <form onSubmit={formik.handleSubmit}>
-            <InputFormik htmlFor={"email"} label={"Email"} getFieldProps={formik.getFieldProps("email")} errors={formik.errors.email}/>
+            <InputFormik htmlFor={"fullName"} label={"Full Name"} getFieldProps={formik.getFieldProps("fullName")}
+                         errors={formik.errors.fullName} type={"text"}/>
+            <TextAreaFormik htmlFor={"aboutMe"} label={"About Me"} getFieldProps={formik.getFieldProps("aboutMe")}
+                            errors={formik.errors.aboutMe} type={"textarea"}/>
+            <InputFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"} getFieldProps={formik.getFieldProps("lookingForAJob")}
+                         errors={formik.errors.lookingForAJob} type={"checkbox"}/>
+            <TextAreaFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
+                            getFieldProps={formik.getFieldProps("lookingForAJobDescription")} errors={formik.errors.lookingForAJobDescription}/>
 
-
-
+            <ul>
+                {userProfile && Object.keys(userProfile.contacts).map(key => {
+                    return <InputFormik key={key} htmlFor={key} label={key} getFieldProps={formik.getFieldProps("contacts." + key)}
+                                        errors={formik.errors.contacts} type={"text"} placeholder={"https://"}/>
+                })}
+            </ul>
             <div>
                 {formik.status}
                 <button type="submit">Submit</button>
@@ -72,58 +112,3 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile}) =>
         </form>
     </div>)
 }
-
-
-// export const LoginForm: React.FC<LoginFormType> = ({loginTC}) => {
-//     console.log("RERENDER")
-//     const formik = useFormik({
-//         initialValues: {
-//             email: '',
-//             password: '',
-//             rememberMe: false
-//         },
-//         validate: (values) => {
-//             const errors: FormikErrorType = {};
-//             if (!values.email) {
-//                 errors.email = 'required';
-//             } else if (!/^[A-Z\d._%+-]+@[A-Z\d.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
-//                 errors.email = 'invalid email address';
-//             }
-//             if (!values.password) {
-//                 errors.password = 'required'
-//             } else if (values.password.trim().length < 5) {
-//                 errors.password = "min 5 symbols"
-//             }
-//             return errors;
-//         },
-//         onSubmit: (values,onSubmitProps) => {
-//             loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
-//             onSubmitProps.setSubmitting(true);
-//             // alert(JSON.stringify(values));
-//         },
-//     });
-//     return (
-//         <form onSubmit={formik.handleSubmit}>
-//             <div className={css.fields}> <label htmlFor="email">Email</label>
-//                 <input id="email" type="email"
-//                        {...formik.getFieldProps("email")}
-//                 />
-//                 {formik.errors.email ? <div>{formik.errors.email}</div> : null}</div>
-//             <div  className={css.fields}> <label htmlFor="password">Password</label>
-//                 <input id="password" type="password"
-//                        {...formik.getFieldProps("password")}
-//                 />
-//                 {formik.errors.password ? <div>{formik.errors.password}</div> : null}</div>
-//             <div  className={css.fields}> <label htmlFor="RememberMe">Remember Me</label>
-//                 <input id="checkbox" type="checkbox"
-//                        {...formik.getFieldProps("rememberMe")}
-//                        checked={formik.values.rememberMe}
-//                 />
-//                 {formik.errors.rememberMe ? <div>{formik.errors.rememberMe}</div> : null}</div>
-//             <div  className={css.fields}>
-//                 {formik.status}
-//                 <button type="submit">Submit</button>
-//             </div>
-//         </form>
-//     );
-// };

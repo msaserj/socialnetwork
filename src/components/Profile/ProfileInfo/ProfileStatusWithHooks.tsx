@@ -10,8 +10,6 @@ type ProfileStatusType = {
 }
 
 export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
-    let select = useSelector<AppStateType>(state => state.usersPage.users.length)
-    console.log(select)
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
