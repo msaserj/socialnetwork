@@ -32,7 +32,6 @@ export const ProfileInfo = (props: ProfileType) => {
         setEditMode(false)
     }
 
-
     const loadPhotoHandler = (e: any) => {
         if (e.target.files.length) {
             let file = e.target.files[0]
