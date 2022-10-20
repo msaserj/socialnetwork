@@ -59,7 +59,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
                 isAuth
                 isOwner={this.props.myId === +this.props.userId}
                 savePhoto={this.props.savePhoto}
-                saveProfile={this.props.saveProfile}/>
+                saveProfile={this.props.saveProfile} resultCode={this.props.resultCode}/>
         );
     }
 }
@@ -67,6 +67,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     // console.log("MAP-STATE-TO-PROPS")
     return {
+        resultCode: state.profilePage.resultCode,
         profile: state.profilePage.userProfile,
         status: state.profilePage.status,
         myId: state.auth.data.id,
@@ -91,6 +92,7 @@ export default compose<React.ComponentType>(
 
 // types
 type MapStateToPropsType = {
+    resultCode: number
     profile: UserProfileType | null
     status: string
     myId: number

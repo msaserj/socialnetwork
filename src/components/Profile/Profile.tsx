@@ -14,6 +14,7 @@ export type ProfileType = {
     isOwner: boolean
     savePhoto: (file: any) => void
     saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
+    resultCode: number
 }
 
 export const Profile = (props: ProfileType) => {
@@ -28,7 +29,7 @@ export const Profile = (props: ProfileType) => {
                 userProfile={props.userProfile}
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
-             saveProfile={props.saveProfile}/>
+             saveProfile={props.saveProfile} resultCode={props.resultCode}/>
             <MyPostsContainer  />
         </div>
     )

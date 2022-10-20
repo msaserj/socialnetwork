@@ -10,7 +10,7 @@ export type ProfileActionsType =
     | ReturnType<typeof setStatusAC>
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoAC>
-    // | ReturnType<typeof saveProfileAC>
+    | ReturnType<typeof setResultCodeAC>
 
 // ActionCreators
 export const addPostOnClickAC = () => ({type: "ADD-POST"} as const)
@@ -18,7 +18,7 @@ export const newPostTextOnChangeAC = (newPostText: string) => ({type: "UPDATE-NE
 export const setUserProfile = (profile: UserProfileType) => ({type: "SET-USER-PROFILE", profile} as const)
 export const setStatusAC = (status: string) => ({type: "SET-STATUS", status} as const)
 export const savePhotoAC = (photoFile: any) => ({type: "SET-PHOTO", photoFile} as const)
-// export const saveProfileAC = (photoFile: UserProfileType) => ({type: "SET-PROFILE", photoFile} as const)
+export const setResultCodeAC = (code: number) => ({type: "SET-RESULT-CODE", code} as const)
 export const deletePostAC = (postId: string) => ({type: "DELETE-POST", postId} as const)
 
 // types for InitialState
@@ -27,6 +27,7 @@ export type ProfilePageType = {
     newTextState: string
     userProfile: UserProfileType
     status: string
+    resultCode: number
 }
 export type PostType = {
     id: string
@@ -67,7 +68,8 @@ const initialState: ProfilePageType = {
     ],
     newTextState: "",
     userProfile: {} as UserProfileType,
-    status: ""
+    status: "",
+    resultCode: 1
 }
 
 
@@ -90,6 +92,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, userProfile: {...state.userProfile, photos: action.photoFile}}
         case "SET-USER-PROFILE":
             return {...state, userProfile: action.profile}
+        case "SET-RESULT-CODE":
+            return {...state, resultCode: action.code}
         case "DELETE-POST":
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
@@ -128,8 +132,11 @@ export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmi
     let res = await profileAPI.saveProfile(profile)
     if (res.data.resultCode === 0) {
         dispatch(getUserProfileTC(myId))
+        dispatch(setResultCodeAC(0))
     } else {
+        dispatch(setResultCodeAC(1))
         setStatus(res.messages)
+        return await Promise.reject(res.data.message[0])
     }
     setSubmitting(false);
 }

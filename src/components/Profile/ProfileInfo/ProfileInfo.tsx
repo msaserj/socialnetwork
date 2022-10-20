@@ -14,7 +14,8 @@ type ProfileType = {
     status: string
     isOwner: boolean
     savePhoto: (file: any) => void
-    saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
+    saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
+    resultCode: number
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -52,28 +53,14 @@ export const ProfileInfo = (props: ProfileType) => {
                     ? data.photos.small : userPhoto} alt=""/>
                 {props.isOwner && <input type={"file"} onChange={loadPhotoHandler}/>}
 
-
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}
                                         getStatus={props.getStatus}/>
 
                 {editMode
-                    ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile} deactivateEditMode={deactivateEditMode}/>
-                    : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner} goToEditMode={activateEditMode}/>}
+                    ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}
+                                       deactivateEditMode={deactivateEditMode} resultCode={props.resultCode}/>
+                    : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner}
+                                   goToEditMode={activateEditMode}/>}
             </div>
         </div>)
 }
-
-
-
-
-// <p>Contacts:</p>
-// <ul>
-//     {contacts && <li>facebook: {contacts.facebook}</li>}
-//     {contacts && <li>vk: {contacts.vk}</li>}
-//     {contacts && <li>instagram: {contacts.instagram}</li>}
-//     {contacts && <li>twitter: {contacts.twitter}</li>}
-//     {contacts && <li>youtube: {contacts.youtube}</li>}
-//     {contacts && <li>github: {contacts.github}</li>}
-//     {contacts && <li>mainLink: {contacts.mainLink}</li>}
-//     {contacts && <li>website: {contacts.website}</li>}
-// </ul>

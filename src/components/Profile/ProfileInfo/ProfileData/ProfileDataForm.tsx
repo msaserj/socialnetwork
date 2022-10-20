@@ -6,8 +6,9 @@ import {InputFormik, TextAreaFormik} from "./InputFormik";
 
 type ProfileDataFormType = {
     userProfile: UserProfileType | null
-    saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
+    saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     deactivateEditMode: () => void
+    resultCode: number
 }
 type FormikErrorType = {
     fullName?: string
@@ -26,24 +27,24 @@ type FormikErrorType = {
     }
 }
 
-export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, saveProfile, deactivateEditMode}) => {
+export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, saveProfile, deactivateEditMode, resultCode}) => {
     const formik = useFormik({
-            initialValues: {
-                fullName: '',
-                aboutMe: '',
-                lookingForAJob: false,
-                lookingForAJobDescription: '',
-                contacts: {
-                    facebook: '',
-                    website: '',
-                    vk: '',
-                    twitter: '',
-                    instagram: '',
-                    youtube: '',
-                    github: '',
-                    mainLink: ''
-                }
-            },
+        initialValues: {
+            fullName: '',
+            aboutMe: '',
+            lookingForAJob: false,
+            lookingForAJobDescription: '',
+            contacts: {
+                facebook: '',
+                website: '',
+                vk: '',
+                twitter: '',
+                instagram: '',
+                youtube: '',
+                github: '',
+                mainLink: ''
+            }
+        },
         // validate: (values) => {
         //     const errors: FormikErrorType = {contacts:{}};
         //     // if (!values.contacts.facebook) {
@@ -60,20 +61,21 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
         //     // }
         //     return errors;
 
-            onSubmit: (values, onSubmitProps) => {
+        onSubmit: async (values, onSubmitProps) => {
 
-                saveProfile(values, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
-                // console.log("value: ", JSON.stringify(values))
-                onSubmitProps.setSubmitting(true);
-                if(formik.isValid) {
-                    formik.resetForm();
-                    formik.setTouched({});
-                    deactivateEditMode()
-                }
-
-            },
-        });
-    useEffect(()=>{
+            saveProfile(values, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+            //
+            await  onSubmitProps.setSubmitting(true);
+            console.log(resultCode)
+            if (!formik.status) {
+                formik.resetForm()
+                deactivateEditMode()
+            }
+            // formik.resetForm();
+            // formik.setTouched({});
+        },
+    });
+    useEffect(() => {
         if (userProfile) {
             formik.setFieldValue("fullName", userProfile.fullName)
             formik.setFieldValue("aboutMe", userProfile.aboutMe)
@@ -86,7 +88,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
                 return formik.setFieldValue("contacts." + key, userProfile.contacts[key])
             })
         }
-    },[userProfile])
+    }, [userProfile])
     return (<div>
         form
         <form onSubmit={formik.handleSubmit}>
@@ -94,14 +96,17 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
                          errors={formik.errors.fullName} type={"text"}/>
             <TextAreaFormik htmlFor={"aboutMe"} label={"About Me"} getFieldProps={formik.getFieldProps("aboutMe")}
                             errors={formik.errors.aboutMe} type={"textarea"}/>
-            <InputFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"} getFieldProps={formik.getFieldProps("lookingForAJob")}
+            <InputFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"}
+                         getFieldProps={formik.getFieldProps("lookingForAJob")}
                          errors={formik.errors.lookingForAJob} type={"checkbox"}/>
             <TextAreaFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
-                            getFieldProps={formik.getFieldProps("lookingForAJobDescription")} errors={formik.errors.lookingForAJobDescription}/>
+                            getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
+                            errors={formik.errors.lookingForAJobDescription}/>
 
             <ul>
                 {userProfile && Object.keys(userProfile.contacts).map(key => {
-                    return <InputFormik key={key} htmlFor={key} label={key} getFieldProps={formik.getFieldProps("contacts." + key)}
+                    return <InputFormik key={key} htmlFor={key} label={key}
+                                        getFieldProps={formik.getFieldProps("contacts." + key)}
                                         errors={formik.errors.contacts} type={"text"} placeholder={"https://"}/>
                 })}
             </ul>

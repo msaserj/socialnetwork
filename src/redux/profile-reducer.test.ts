@@ -8,7 +8,8 @@ const initialState: ProfilePageType = {
     ],
     newTextState: "",
     userProfile: {} as UserProfileType,
-    status: ""
+    status: "",
+    resultCode: 0
 }
 
 test('new post should be added', () => {
