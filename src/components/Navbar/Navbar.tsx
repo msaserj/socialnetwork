@@ -10,7 +10,7 @@ export const Navbar = () => {
         <nav className={classes.nav}>
             <div>
                 <div>
-                    <NavLink to="/profile" className = {setActive}>Profile</NavLink>
+                    <NavLink to="/" className = {setActive}>Profile</NavLink>
                 </div>
                 <div>
                     <NavLink to="/dialogs" className = {setActive}>Messages</NavLink>

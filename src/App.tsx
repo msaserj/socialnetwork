@@ -2,11 +2,9 @@ import React from 'react';
 import './App.css';
 import {Navbar} from "./components/Navbar/Navbar";
 import {Route, Routes} from 'react-router-dom';
-// import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
-//import Login from "./components/Login/Login";
 import {connect} from "react-redux";
 import {AppStateType} from "./redux/redux-store";
 import {compose} from "redux";
@@ -26,9 +24,14 @@ const Login = React.lazy(()=> import("./components/Login/Login"))
 
 
 class App extends React.Component<AuthPropsType> {
+    catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
+        alert(promiseRejectionEvent)
+    }
     componentDidMount() {
         this.props.initializeApp()
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
+
 
     render() {
         const DialogsContain = withSuspense(DialogsContainer)
@@ -37,19 +40,20 @@ class App extends React.Component<AuthPropsType> {
         if(!this.props.initialized) {
             return <Preloader />
         }
+
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Routes>
-                        <Route path="/dialogs/"
-                               element={<DialogsContain/>}/>
-                        <Route path='/profile/' element={<ProfileContainer/>}>
-                            <Route path=':userId' element={<ProfileContainer/>}/>
+                        <Route path="/dialogs/" element={<DialogsContain/>}/>
+                        <Route path='/' element={<ProfileContainer/>}>
+                            <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                         </Route>
                         <Route path="/users" element={<UsersContainer/>}/>
                         <Route path="/login" element={<LoginComponent/>}/>
+                        <Route path="*" element={<div>404</div>}/>
                         {/*<Route path="/settings" element={<Settings />}/>*/}
                     </Routes>
                 </div>

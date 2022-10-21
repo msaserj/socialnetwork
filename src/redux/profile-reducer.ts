@@ -114,9 +114,13 @@ export const getStatusTC = (profileId: string) => async (dispatch: any) => {
 }
 
 export const updateStatusTC = (status: string) => async (dispatch: any) => {
-    let res = await profileAPI.updateStatus(status)
-    if (res.data.resultCode === 0) {
-        dispatch(setStatusAC(res.data))
+    try {
+        let res = await profileAPI.updateStatus(status)
+        if (res.data.resultCode === 0) {
+            dispatch(setStatusAC(res.data))
+        }
+    } catch (err) {
+        alert(err)
     }
 }
 export const savePhotoTC = (photoFile: any) => async (dispatch: any) => {
