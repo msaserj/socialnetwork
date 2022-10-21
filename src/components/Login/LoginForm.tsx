@@ -7,19 +7,22 @@ type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+    captcha?: string
 }
 
 type LoginFormType = {
-    loginTC: (email: string, password: string, rememberMe: boolean, setStatus: any, setSubmitting: any) => void
+    loginTC: (email: string, password: string, rememberMe: boolean, captcha: string, setStatus: any, setSubmitting: any) => void
+    captchaUrl: string | null
 }
 
-export const LoginForm: React.FC<LoginFormType> = ({loginTC}) => {
+export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
     console.log("RERENDER")
     const formik = useFormik({
         initialValues: {
             email: '',
             password: '',
-            rememberMe: false
+            rememberMe: false,
+            captcha: ""
         },
         validate: (values) => {
             const errors: FormikErrorType = {};
@@ -36,7 +39,7 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC}) => {
             return errors;
         },
         onSubmit: (values,onSubmitProps) => {
-            loginTC(values.email, values.password, values.rememberMe, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+            loginTC(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             onSubmitProps.setSubmitting(true);
             // alert(JSON.stringify(values));
         },
@@ -61,6 +64,16 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC}) => {
                 {formik.errors.rememberMe ? <div>{formik.errors.rememberMe}</div> : null}</div>
             <div  className={css.fields}>
                 {formik.status}
+
+                {captchaUrl &&
+                    <div className={css.fields}>
+                    <img src={captchaUrl} alt="captchaUrl"/>
+                    <label htmlFor="captcha">Captcha</label>
+                    <input id="captcha" type="text"
+                {...formik.getFieldProps("captcha")}
+                    />
+                {formik.errors.captcha ? <div>{formik.errors.captcha}</div> : null}</div>
+                }
                 <button type="submit">Submit</button>
             </div>
         </form>
