@@ -19,7 +19,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         dialogsPage: state.dialogsPage,
         isAuth: state.auth.isAuth
-    }
+    } as MapStateToPropsType
 }
 
 // compose allows us to add new HOCs, that is wrap our component to HOCs with universal options

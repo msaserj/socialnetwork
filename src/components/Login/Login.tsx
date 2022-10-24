@@ -21,7 +21,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
         captchaUrl: state.auth.captcha
-    }
+    } as MapStateToPropsType
 }
 
 export default connect(mapStateToProps, {loginTC})(Login)

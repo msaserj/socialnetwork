@@ -6,7 +6,7 @@ import {connect} from "react-redux";
 const mapStateToPropsForRedirect = (state: AppStateType): MapStateToPropsForRedirectType => {
     return {
         isAuth: state.auth.isAuth
-    }
+    } as MapStateToPropsForRedirectType
 }
 
 export const WithAuthRedirect = (Component: any) => {

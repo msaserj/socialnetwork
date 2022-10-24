@@ -1,5 +1,5 @@
 import {ActionsType} from "./redux-store";
-import {authAPI, securityAPI} from "../api/api";
+import {authAPI, ResultCodeEnum, securityAPI} from "../api/api";
 
 // typeof ActionCreators
 export type AuthActionsType =
@@ -18,12 +18,12 @@ export const resetAuthDataAC = () => ({type: "RESET-USER-AUTH-DATA"} as const)
 // types for InitialState
 export type AuthType = {
     data: DataType
-    messages: []
-    fieldsErrors: []
+    messages: string[]
+    fieldsErrors?: []
     resultCode: number
 
-    isAuth: boolean
-    captcha: string | null
+    isAuth?: boolean
+    captcha?: string | null
 }
 
 type DataType = {
@@ -66,7 +66,7 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 export const getAuthUserDataTC = () => async (dispatch: any) => {
     let data = await authAPI.me()
     dispatch(setIsAuth(true))
-    if (data.resultCode === 0) {
+    if (data.resultCode === ResultCodeEnum.Success) {
         dispatch(setAuthData(data))
     }
 }
@@ -77,7 +77,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, ca
     if (data.resultCode === 0) {
         dispatch(getAuthUserDataTC())
     } else {
-        if (data.resultCode === 10) {
+        if (data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
             dispatch(getCaptchaTC())
         }
         setStatus(data.messages)

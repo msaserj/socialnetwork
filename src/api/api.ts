@@ -1,4 +1,5 @@
 import axios from "axios";
+import {UserProfileType} from "../redux/profile-reducer";
 // DAL
 
 
@@ -33,7 +34,7 @@ export const profileAPI = {
     updateStatus(status: string) {
         return apiInstance.put(`profile/status`, {status}).then(response => response.data)
     },
-    savePhoto(photoFile: any) {
+    savePhoto(photoFile: string | Blob) {
         const formData = new FormData()
         formData.append("image", photoFile)
         return apiInstance.put(`profile/photo`, formData, {
@@ -42,7 +43,7 @@ export const profileAPI = {
             }
         }).then(response => response.data)
     },
-    saveProfile(profile: any) {
+    saveProfile(profile: UserProfileType) {
         return apiInstance.put(`profile`, profile).then(response => response.data)
     },
 
@@ -50,14 +51,38 @@ export const profileAPI = {
 
 export const authAPI = {
     me() {
-        return apiInstance.get(`auth/me`).then(res => res.data)
+        return apiInstance.get<MeResType>(`auth/me`).then(res => res.data)
     },
     login(email: string, password: string, rememberMe?: boolean, captcha?: string | null) {
-        return apiInstance.post(`auth/login`, {email, password, rememberMe, captcha}).then(res => res.data)
+        return apiInstance.post<LoginResType>(`auth/login`, {email, password, rememberMe, captcha}).then(res => res.data)
     },
     logout() {
         return apiInstance.delete(`auth/login`).then(res => res.data)
     },
+}
+
+type MeResType = {
+    data: {
+        id: number
+        email: string
+        login: string
+    }
+    resultCode: number
+    messages: string[]
+}
+
+type LoginResType = {
+    data: {
+        userId: number
+    }
+    resultCode: number
+    messages: string[]
+}
+
+export enum ResultCodeEnum {
+    Success = 0,
+    Error = 1,
+    CaptchaIsRequired = 10
 }
 
 export const securityAPI = {
