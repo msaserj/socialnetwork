@@ -20,10 +20,19 @@ export const usersAPI = {
         return apiInstance.delete(`follow/${usrId}`).then(res => res.data)
     },
     follow(usrId: number) {
-        return apiInstance.post(`follow/${usrId}`).then(res => res.data)
+        return apiInstance.post<UserAPIResponseType>(`follow/${usrId}`).then(res => res.data)
     }
 
 }
+
+export type UserAPIResponseType = {
+    resultCode: number
+    messages: string[]
+    data: {}
+}
+
+
+
 export const profileAPI = {
     getProfile(profileId: number) {
         return apiInstance.get(`profile/` + profileId)

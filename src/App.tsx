@@ -6,7 +6,7 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import {connect} from "react-redux";
-import {AppStateType} from "./redux/redux-store";
+import {RootState} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
@@ -64,14 +64,14 @@ class App extends React.Component<AuthPropsType> {
 
 export type AuthPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: RootState): MapStateToPropsType => {
     return {
         initialized: state.app.initialized,
     }
 }
 
 export default compose(
-    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>
     (mapStateToProps, {initializeApp: initializeTC})(App));
 
 type MapStateToPropsType = {

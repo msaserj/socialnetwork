@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
-import {followTC, getUsersTC, setCurrentPage, setUsers, unFollowTC, UserType} from "../../redux/users-reducer";
+import {RootState} from "../../redux/redux-store";
+import {followTC, getUsersTC, setCurrentPageAC, setUsersAC, unFollowTC, UserType} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -39,7 +39,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: RootState): MapStateToPropsType => {
     return {
         users: getUsersSuperSelector(state),
         // users: getUsers(state),
@@ -53,8 +53,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
 
 // compose allows us to add new HOCs, that is wrap our component to HOCs with universal options
 export  default compose(
-    connect<MapStateToPropsType, MapDispatchToPropsType, {}, AppStateType>(mapStateToProps,
-        {followTC, unFollowTC, setUsers, setCurrentPage, getUsers: getUsersTC}),
+    connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>(mapStateToProps,
+        {followTC, unFollowTC, setUsers: setUsersAC, setCurrentPage: setCurrentPageAC, getUsers: getUsersTC}),
     WithAuthRedirect
 )(UsersContainer)
 

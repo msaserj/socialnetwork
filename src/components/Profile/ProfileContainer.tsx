@@ -1,7 +1,7 @@
 import React from "react";
 import {Profile} from "./Profile";
 import {connect} from "react-redux";
-import {AppStateType} from "../../redux/redux-store";
+import {RootState} from "../../redux/redux-store";
 import {
     getStatusTC,
     getUserProfileTC,
@@ -64,7 +64,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 }
 
-const mapStateToProps = (state: AppStateType): { isAuth: boolean | undefined; myId: number; profile: UserProfileType; resultCode: number; status: string } => {
+const mapStateToProps = (state: RootState): { isAuth: boolean | undefined; myId: number; profile: UserProfileType; resultCode: number; status: string } => {
     // console.log("MAP-STATE-TO-PROPS")
     return {
         resultCode: state.profilePage.resultCode,

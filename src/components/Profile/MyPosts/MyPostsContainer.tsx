@@ -1,6 +1,6 @@
 import React from "react";
 import {addPostOnClickAC, newPostTextOnChangeAC, ProfilePageType} from "../../../redux/profile-reducer";
-import {AppStateType} from "../../../redux/redux-store";
+import {RootState} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";
@@ -14,7 +14,7 @@ type mapDispatchToPropsType = {
     addPostOnClick: () => void
 }
 
-const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
+const mapStateToProps = (state: RootState): mapStateToPropsType => {
     return {
         profilePage: state.profilePage
     }

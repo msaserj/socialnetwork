@@ -1,5 +1,6 @@
-import {ActionsType} from "./redux-store";
+import {ActionsType, AppThunk} from "./redux-store";
 import {authAPI, ResultCodeEnum, securityAPI} from "../api/api";
+import {Dispatch} from "redux";
 
 // typeof ActionCreators
 export type AuthActionsType =
@@ -63,7 +64,7 @@ export const authReducer = (state: AuthType = initialState, action: ActionsType)
 }
 
 // thunk
-export const getAuthUserDataTC = () => async (dispatch: any) => {
+export const getAuthUserDataTC = () => async (dispatch: Dispatch) => {
     let data = await authAPI.me()
     dispatch(setIsAuth(true))
     if (data.resultCode === ResultCodeEnum.Success) {
@@ -72,13 +73,13 @@ export const getAuthUserDataTC = () => async (dispatch: any) => {
 }
 
 
-export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null, setStatus: any, setSubmitting: any) => async (dispatch: any) => {
+export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null, setStatus: any, setSubmitting: any): AppThunk => async (dispatch) => {
     let data = await authAPI.login(email, password, rememberMe, captcha)
     if (data.resultCode === 0) {
-        dispatch(getAuthUserDataTC())
+        await dispatch(getAuthUserDataTC())
     } else {
         if (data.resultCode === ResultCodeEnum.CaptchaIsRequired) {
-            dispatch(getCaptchaTC())
+            await dispatch(getCaptchaTC())
         }
         setStatus(data.messages)
     }
@@ -86,7 +87,7 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, ca
 }
 
 
-export const logoutTC = () => async (dispatch: any) => {
+export const logoutTC = (): AppThunk => async (dispatch) => {
     let data = await authAPI.logout()
     if (data.resultCode === 0) {
         dispatch(resetAuthDataAC())
@@ -94,7 +95,7 @@ export const logoutTC = () => async (dispatch: any) => {
 }
 
 
-export const getCaptchaTC = () => async (dispatch: any) => {
+export const getCaptchaTC = (): AppThunk => async (dispatch) => {
     let res = await securityAPI.getCaptcha()
     const captchaUrl = res.url
     dispatch(getCaptchaAC(captchaUrl))

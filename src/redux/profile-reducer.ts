@@ -1,7 +1,6 @@
 import {v1} from "uuid";
-import {ActionsType, AppStateType} from "./redux-store";
+import {ActionsType, AppThunk, RootState} from "./redux-store";
 import {profileAPI} from "../api/api";
-import {Dispatch} from "redux";
 
 // typeof ActionCreators
 export type ProfileActionsType =
@@ -103,18 +102,18 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
 }
 
 // thunk
-export const getUserProfileTC = (profileId: number) => async (dispatch: Dispatch<ProfileActionsType>) => {
+export const getUserProfileTC = (profileId: number): AppThunk => async (dispatch) => {
     let res = await profileAPI.getProfile(profileId)
     dispatch(setUserProfile(res.data))
 }
 
-export const getStatusTC = (profileId: string) => async (dispatch: Dispatch<ProfileActionsType>) => {
+export const getStatusTC = (profileId: string): AppThunk => async (dispatch) => {
     let res = await profileAPI.getStatus(profileId)
     // console.log(res.data)
     dispatch(setStatusAC(res.data))
 }
 
-export const updateStatusTC = (status: string) => async (dispatch: Dispatch<ProfileActionsType>) => {
+export const updateStatusTC = (status: string): AppThunk => async (dispatch) => {
     try {
         let res = await profileAPI.updateStatus(status)
         if (res.data.resultCode === 0) {
@@ -124,14 +123,14 @@ export const updateStatusTC = (status: string) => async (dispatch: Dispatch<Prof
         alert(err)
     }
 }
-export const savePhotoTC = (photoFile: any) => async (dispatch: Dispatch<ProfileActionsType>) => {
+export const savePhotoTC = (photoFile: any): AppThunk => async (dispatch) => {
     let res = await profileAPI.savePhoto(photoFile)
     if (res.data.resultCode === 0) {
         dispatch(savePhotoAC(res.data.photos))
     }
 }
-export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmitting: any) =>
-    async (dispatch: any, getState: () => AppStateType) => {
+export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmitting: any): AppThunk =>
+    async (dispatch, getState: () => RootState) => {
     const myId = getState().auth.data.id
     console.log("myid", myId)
     console.log("profile", profile)

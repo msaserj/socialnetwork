@@ -3,7 +3,7 @@ import {LoginForm} from "./LoginForm";
 import {connect} from "react-redux";
 import {loginTC} from "../../redux/auth-reducer";
 import {Navigate} from "react-router-dom";
-import {AppStateType} from "../../redux/redux-store";
+import {RootState} from "../../redux/redux-store";
 
 const Login: React.FC<ProfilePropsType> = ({isAuth, loginTC, captchaUrl}) => {
     if(isAuth) {
@@ -17,7 +17,7 @@ const Login: React.FC<ProfilePropsType> = ({isAuth, loginTC, captchaUrl}) => {
     );
 };
 
-const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+const mapStateToProps = (state: RootState): MapStateToPropsType => {
     return {
         isAuth: state.auth.isAuth,
         captchaUrl: state.auth.captcha
