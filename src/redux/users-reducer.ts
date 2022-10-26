@@ -11,11 +11,15 @@ export type UsersActionsType =
     | ReturnType<typeof setTotalUsersCountAC>
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof toggleIsFollowingAC>
+    | ReturnType<typeof setFilterAC>
+
+export type FilterType = typeof initialState.filter
 
 // ActionCreators
 export const followAC = (userId: number) => ({type: "FOLLOW", userId} as const)
 export const unFollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const)
 export const setUsersAC = (users: Array<UserType>) => ({type: "SET-USERS", users} as const)
+export const setFilterAC = (term: string) => ({type: "SET-FILTER", payload: {term}} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: "SET-CURRENT-PAGE", currentPage} as const)
 export const setTotalUsersCountAC = (totalCount: number) => ({type: "SET-TOTAL-USERS-COUNT", totalCount} as const)
 export const toggleIsFetchingAC = (isFetching: boolean) => ({type: "TOGGLE-IS-FETCHING", isFetching} as const)
@@ -50,6 +54,9 @@ export type UsersPageType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: []
+    filter: {
+        term: string
+    }
 }
 
 
@@ -84,7 +91,10 @@ const initialState: UsersPageType = {
     totalUsersCount: 0,
     currentPage: 1,
     isFetching: false,
-    followingInProgress: []
+    followingInProgress: [],
+    filter: {
+        term: ""
+    }
 }
 
 // reducer
@@ -102,6 +112,8 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             } as UsersPageType
         case "SET-USERS":
             return {...state, users: action.users}
+        case "SET-FILTER":
+            return {...state, filter: action.payload}
         case "SET-CURRENT-PAGE":
             return {...state, currentPage: action.currentPage}
         case "SET-TOTAL-USERS-COUNT":
@@ -120,10 +132,11 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
 }
 
 //thunks
-export const getUsersTC = (currentPage: number, pageSize: number): AppThunk => async (dispatch) => {
+export const getUsersTC = (currentPage: number, pageSize: number, term: string): AppThunk => async (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
     dispatch(setCurrentPageAC(currentPage));
-    let data = await usersAPI.getUsers(currentPage, pageSize)
+    dispatch(setFilterAC(term));
+    let data = await usersAPI.getUsers(currentPage, pageSize, term)
     dispatch(setUsersAC(data.items))
     dispatch(setTotalUsersCountAC(data.totalCount))
     dispatch(toggleIsFetchingAC(false))

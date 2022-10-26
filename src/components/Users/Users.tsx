@@ -2,20 +2,27 @@ import React from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Paginator} from "../common/paginator/Paginator";
 import {User} from "./User";
+import {SearchForm} from "./SearchForm";
+import {FilterType} from "../../redux/users-reducer";
 
 
 type UsersComponentPropsType = {
     onPageChanged: (pgs: number) => void
+    onFilterChanged: (filter: FilterType) => void
     usersComponent: UsersPropsType
     followingInProgress: string[]
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
 }
 
-export const Users: React.FC<UsersComponentPropsType> = ({usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress}) => {
+export const Users: React.FC<UsersComponentPropsType> = (
+    {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged}) => {
     let userData = usersComponent
     return (
         <div>
+            <div>
+                <SearchForm onFilterChanged={onFilterChanged}/>
+            </div>
             <Paginator
                 currentPage={userData.currentPage}
                        onPageChanged={onPageChanged}

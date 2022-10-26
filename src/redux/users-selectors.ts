@@ -12,8 +12,6 @@ export const getUsersSuperSelector = createSelector(getUsers, (users)=>{
 
 // createSelector - such as useEffect. Dependency from primitive Selectors
 
-
-
 export const gePageSize = (state: RootState) => {
     return state.usersPage.pageSize
 }

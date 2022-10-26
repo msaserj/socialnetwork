@@ -1,7 +1,15 @@
 import React from "react";
 import {connect} from "react-redux";
 import {RootState} from "../../redux/redux-store";
-import {followTC, getUsersTC, setCurrentPageAC, setUsersAC, unFollowTC, UserType} from "../../redux/users-reducer";
+import {
+    FilterType,
+    followTC,
+    getUsersTC,
+    setCurrentPageAC,
+    setUsersAC,
+    unFollowTC,
+    UserType
+} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -19,11 +27,16 @@ import {
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize);
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, "");
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize);
+        this.props.getUsers(pageNumber, this.props.pageSize, "");
+    }
+
+    onFilterChanged= (filter: FilterType) => {
+        const {currentPage, pageSize} = this.props
+        this.props.getUsers(currentPage, pageSize, filter.term);
     }
 
     render() {
@@ -31,6 +44,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
             {this.props.isFetching ? <Preloader/> : null}
             <Users
                 onPageChanged={this.onPageChanged.bind(this)}
+                onFilterChanged={this.onFilterChanged.bind(this)}
                 usersComponent={this.props}
                 followTC={this.props.followTC}
                 followingInProgress={this.props.followingInProgress}
@@ -74,7 +88,7 @@ type MapDispatchToPropsType = {
     unFollowTC: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize: number) => void
+    getUsers: (currentPage: number, pageSize: number, term: string) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType
