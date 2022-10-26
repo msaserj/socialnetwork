@@ -15,7 +15,7 @@ type UsersComponentPropsType = {
     unFollowTC: (userId: number) => void
 }
 
-export const Users: React.FC<UsersComponentPropsType> = (
+export const Users: React.FC<UsersComponentPropsType> = React.memo((
     {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged}) => {
     let userData = usersComponent
     return (
@@ -38,4 +38,4 @@ export const Users: React.FC<UsersComponentPropsType> = (
             }
         </div>
     )
-}
+})

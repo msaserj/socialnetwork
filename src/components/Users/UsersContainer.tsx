@@ -16,7 +16,7 @@ import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
     gePageSize,
-    getCurrentPage,
+    getCurrentPage, getFilter,
     getFollowingInProgress,
     getIsFetching,
     getTotalUsersCount,
@@ -27,16 +27,17 @@ import {
 class UsersContainer extends React.Component<UsersPropsType> {
 
     componentDidMount() {
-        this.props.getUsers(this.props.currentPage, this.props.pageSize, "");
+        this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.filter);
     }
 
     onPageChanged = (pageNumber: number) => {
-        this.props.getUsers(pageNumber, this.props.pageSize, "");
+        const {pageSize, filter} = this.props
+        this.props.getUsers(pageNumber, pageSize, filter);
     }
 
     onFilterChanged= (filter: FilterType) => {
         const {currentPage, pageSize} = this.props
-        this.props.getUsers(currentPage, pageSize, filter.term);
+        this.props.getUsers(currentPage, pageSize, filter);
     }
 
     render() {
@@ -61,7 +62,8 @@ const mapStateToProps = (state: RootState): MapStateToPropsType => {
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
         isFetching: getIsFetching(state),
-        followingInProgress: getFollowingInProgress(state)
+        followingInProgress: getFollowingInProgress(state),
+        filter: getFilter(state)
     }
 }
 
@@ -82,13 +84,14 @@ type MapStateToPropsType = {
     currentPage: number
     isFetching: boolean
     followingInProgress: string[]
+    filter: FilterType
 }
 type MapDispatchToPropsType = {
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
     setUsers: (users: Array<UserType>) => void
     setCurrentPage: (pageNumber: number) => void
-    getUsers: (currentPage: number, pageSize: number, term: string) => void
+    getUsers: (currentPage: number, pageSize: number, filter: FilterType) => void
 }
 
 export type UsersPropsType = MapStateToPropsType & MapDispatchToPropsType

@@ -38,12 +38,9 @@ export const User: React.FC<UsersComponentPropsType> = ({usersComponent, followT
             <span>
                       <span>
                           <div>{usr.name}</div>
-                          <div>{usr.status}</div>
+                          <div>STATUS: {usr.status}</div>
                       </span>
-                      <span>
-                          <div>{"usr.location.country"}</div>
-                          <div>{"usr.location.city"}</div>
-                      </span>
+
                   </span>
         </div>
     )
