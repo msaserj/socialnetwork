@@ -1,6 +1,7 @@
 import {Field, Form, Formik} from "formik";
 import {FilterType} from "../../redux/users-reducer";
 import React from "react";
+import {useAppSelector} from "../../hooks/hooks";
 
 
 const UsersSearchValidate = () => {
@@ -13,6 +14,7 @@ type SearchFormType = {
 }
 
 export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
+    const filter = useAppSelector(state => state.usersPage.filter)
 
     const submit = (values: FilterType, { setSubmitting}:{ setSubmitting: (isSubmitting: boolean) => void }) => {
         onFilterChanged(values)
@@ -23,7 +25,8 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
       <div>
           <h1>Any place in your app!</h1>
           <Formik
-              initialValues={{term: '', friend: false}}
+              enableReinitialize
+              initialValues={{term: filter.term, friend: filter.friend}}
               validate={UsersSearchValidate}
               onSubmit={submit}
           >
