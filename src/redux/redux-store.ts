@@ -28,7 +28,6 @@ export const store = createStore(rootReducer, /* preloadedState, */ composeEnhan
     applyMiddleware(thunkMiddleware)
 ));
 
-
 //export let store = createStore(rootReducer, applyMiddleware(thunkMiddleware))
 
 export type RootState = ReturnType<typeof rootReducer>
@@ -44,12 +43,5 @@ export type ActionsType =
     | UsersActionsType
     | AuthActionsType
     | AppActionsType
-
-
-// export type RootState = ReturnType<typeof store.getState>
-
-
-
-// export type AppRootStateType = ReturnType<RootReducerType>
 
 

@@ -9,12 +9,18 @@ export type AuthActionsType =
     | ReturnType<typeof setIsAuth>
     | ReturnType<typeof getCaptchaAC>
 
-// ActionCreators
-export const setAuthData = (payload: AuthType) => ({type: "SET-USER-DATA", payload} as const)
-export const setIsAuth = (isAuth: boolean) => ({type: "SET-IS-AUTH", isAuth} as const)
-export const getCaptchaAC = (captcha: string | null) => ({type: "GET-CAPTCHA", captcha} as const)
+// Actions
+const SET_USER_DATA = 'sn/auth/SET-USER-DATA'
+const SET_IS_AUTH = 'sn/auth/SET-IS-AUTH'
+const GET_CAPTCHA = 'sn/auth/GET-CAPTCHA'
+const REST_USER_AUTH_DATA = 'sn/auth/RESET-USER-AUTH-DATA'
 
-export const resetAuthDataAC = () => ({type: "RESET-USER-AUTH-DATA"} as const)
+// ActionCreators
+export const setAuthData = (payload: AuthType) => ({type: SET_USER_DATA, payload} as const)
+export const setIsAuth = (isAuth: boolean) => ({type: SET_IS_AUTH, isAuth} as const)
+export const getCaptchaAC = (captcha: string | null) => ({type: GET_CAPTCHA, captcha} as const)
+
+export const resetAuthDataAC = () => ({type: REST_USER_AUTH_DATA} as const)
 
 // types for InitialState
 export type AuthType = {
@@ -33,7 +39,6 @@ type DataType = {
     email: string
 }
 
-
 const initialState: AuthType = {
     data: {id: 0, login: "", email: ""},
     messages: [],
@@ -46,14 +51,13 @@ const initialState: AuthType = {
 // reducer
 export const authReducer = (state: AuthType = initialState, action: ActionsType): AuthType => {
     switch (action.type) {
-        case "SET-USER-DATA":
+        case SET_USER_DATA:
             return {...state, ...action.payload}
-        case "SET-IS-AUTH":
+        case SET_IS_AUTH:
             return {...state, isAuth: action.isAuth}
-        case "GET-CAPTCHA":
+        case GET_CAPTCHA:
             return {...state, captcha: action.captcha}
-
-        case "RESET-USER-AUTH-DATA":
+        case REST_USER_AUTH_DATA:
             return {
                 ...state,
                 ...initialState

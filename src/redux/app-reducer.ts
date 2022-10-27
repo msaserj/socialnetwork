@@ -5,9 +5,12 @@ import {getAuthUserDataTC} from "./auth-reducer";
 export type AppActionsType =
     | ReturnType<typeof initialAC>
 
-// ActionCreators
-export const initialAC = (initialized: boolean) => ({type: "SET-INITIALIZED", initialized} as const)
 
+// Actions
+const SET_INITIALIZED = 'sn/app/SET-INITIALIZED'
+
+// ActionCreators
+export const initialAC = (initialized: boolean) => ({type: SET_INITIALIZED, initialized} as const)
 
 // types for InitialState
 export type AppType = {
@@ -20,7 +23,7 @@ const initialState: AppType = {
 // reducer
 export const appReducer = (state: AppType = initialState, action: ActionsType): AppType => {
     switch (action.type) {
-        case "SET-INITIALIZED":
+        case SET_INITIALIZED:
             return {...state, initialized: action.initialized}
         default:
             return state

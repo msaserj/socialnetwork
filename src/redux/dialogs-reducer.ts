@@ -6,18 +6,16 @@ export type DialogsActionsType =
     | ReturnType<typeof newTextMessageOnChange>
     | ReturnType<typeof addMessageOnClick>
 
+// Actions
+const UPDATE_NEW_MESSAGE_TEXT = 'sn/dialogs/UPDATE-NEW-MESSAGE-TEXT'
+const SEND_NEW_MESSAGE = 'sn/dialogs/SEND-NEW-MESSAGE'
+
+
 // ActionCreators
 export const newTextMessageOnChange = (newMessage: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-TEXT",
-        newMessage: newMessage
-    } as const
-}
+    return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage} as const}
 export const addMessageOnClick = () => {
-    return {
-        type: "SEND-NEW-MESSAGE",
-    } as const
-}
+    return {type: SEND_NEW_MESSAGE} as const}
 
 // types for InitialState
 export type DialogPageType = {
@@ -56,14 +54,14 @@ const initialState: DialogPageType = {
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {
     switch (action.type) {
         //onClick
-        case "SEND-NEW-MESSAGE":
+        case  SEND_NEW_MESSAGE:
             return {
                 ...state,
                 newMessageState: "",
                 messages: [...state.messages, {id: v1(), message: state.newMessageState}]
             };
         //onChange
-        case "UPDATE-NEW-MESSAGE-TEXT":
+        case UPDATE_NEW_MESSAGE_TEXT:
             return {...state, newMessageState:action.newMessage}
         default:
             return state

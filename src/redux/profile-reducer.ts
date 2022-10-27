@@ -12,14 +12,25 @@ export type ProfileActionsType =
     | ReturnType<typeof savePhotoAC>
     | ReturnType<typeof setResultCodeAC>
 
+// Actions
+
+// Actions
+const ADD_POST = 'sn/profile/ADD-POST'
+const UPDATE_NEW_POST_TEXT = 'sn/profile/UPDATE-NEW-POST-TEXT'
+const SET_USER_PROFILE = 'sn/profile/SET-USER-PROFILE'
+const SET_STATUS = 'sn/profile/SET-STATUS'
+const SET_PHOTO = 'sn/profile/SET-PHOTO'
+const SET_RESULT_CODE = 'sn/profile/SET-RESULT-CODE'
+const DELETE_POST = 'sn/profile/DELETE-POST'
+
 // ActionCreators
-export const addPostOnClickAC = () => ({type: "ADD-POST"} as const)
-export const newPostTextOnChangeAC = (newPostText: string) => ({type: "UPDATE-NEW-POST-TEXT", newPostText} as const)
-export const setUserProfile = (profile: UserProfileType) => ({type: "SET-USER-PROFILE", profile} as const)
-export const setStatusAC = (status: string) => ({type: "SET-STATUS", status} as const)
-export const savePhotoAC = (photoFile: any) => ({type: "SET-PHOTO", photoFile} as const)
-export const setResultCodeAC = (code: number) => ({type: "SET-RESULT-CODE", code} as const)
-export const deletePostAC = (postId: string) => ({type: "DELETE-POST", postId} as const)
+export const addPostOnClickAC = () => ({type: ADD_POST} as const)
+export const newPostTextOnChangeAC = (newPostText: string) => ({type: UPDATE_NEW_POST_TEXT, newPostText} as const)
+export const setUserProfile = (profile: UserProfileType) => ({type: SET_USER_PROFILE, profile} as const)
+export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as const)
+export const savePhotoAC = (photoFile: any) => ({type: SET_PHOTO, photoFile} as const)
+export const setResultCodeAC = (code: number) => ({type: SET_RESULT_CODE, code} as const)
+export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
 
 // types for InitialState
 export type ProfilePageType = {
@@ -72,29 +83,28 @@ const initialState: ProfilePageType = {
     resultCode: 1
 }
 
-
 // reducer
 export const profileReducer = (state: ProfilePageType = initialState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         //onClick
-        case "ADD-POST":
+        case ADD_POST:
             return {
                 ...state,
                 newTextState: "",
                 posts: [{id: v1(), message: state.newTextState, likesCount: 5}, ...state.posts]
             }
         //onChange
-        case "UPDATE-NEW-POST-TEXT":
+        case UPDATE_NEW_POST_TEXT:
             return {...state, newTextState: action.newPostText}
-        case "SET-STATUS":
+        case SET_STATUS:
             return {...state, status: action.status}
-        case "SET-PHOTO":
+        case SET_PHOTO:
             return {...state, userProfile: {...state.userProfile, photos: action.photoFile}}
-        case "SET-USER-PROFILE":
+        case SET_USER_PROFILE:
             return {...state, userProfile: action.profile}
-        case "SET-RESULT-CODE":
+        case SET_RESULT_CODE:
             return {...state, resultCode: action.code}
-        case "DELETE-POST":
+        case DELETE_POST:
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
         default:
             return state
