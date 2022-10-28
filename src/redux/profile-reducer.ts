@@ -130,7 +130,7 @@ export const updateStatusTC = (status: string): AppThunk => async (dispatch) => 
             dispatch(setStatusAC(res.data))
         }
     } catch (err) {
-        alert(err)
+        console.log("profile", err)
     }
 }
 export const savePhotoTC = (photoFile: any): AppThunk => async (dispatch) => {

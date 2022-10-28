@@ -18,6 +18,9 @@ export const Navbar = () => {
                 <div>
                     <NavLink to="/users" className = {setActive} >Users</NavLink>
                 </div>
+                 <div>
+                    <NavLink to="/chat" className = {setActive} >Chat</NavLink>
+                </div>
                 <div>
                     <NavLink to="/music" className = {setActive}>Music</NavLink>
                 </div>

@@ -11,13 +11,19 @@ import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
+import {ChatPage} from "./pages/chat/ChatPage";
+
 
 const DialogsContainer = React.lazy(()=>
     import("./components/Dialogs/DialogsContainer")
         .then(({DialogsContainer}) => ({default: DialogsContainer}))
 )
-
 const Login = React.lazy(()=> import("./components/Login/Login"))
+//
+// const ChatPage = React.lazy(()=>
+//     import("./pages/chat/ChatPage")
+//         .then(({ChatPage}) => ({default: ChatPage}))
+// )
 
 
 
@@ -53,6 +59,7 @@ class App extends React.Component<AuthPropsType> {
                         </Route>
                         <Route path="/users" element={<UsersContainer/>}/>
                         <Route path="/login" element={<LoginComponent/>}/>
+                        <Route path="/chat" element={<ChatPage/>}/>
                         <Route path="*" element={<div>404</div>}/>
                         {/*<Route path="/settings" element={<Settings />}/>*/}
                     </Routes>
