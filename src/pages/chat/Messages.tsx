@@ -2,9 +2,6 @@ import React, {useEffect, useState} from 'react';
 import ChatMessage from "./ChatMessage";
 
 
-
-
-
 export type ChatMessageType = {
     message: string
     photo: string
