@@ -8,9 +8,6 @@ export type ChatMessageType = {
     userId: number
     userName: string
 }
-
-
-
 const Messages: React.FC<{wsChanel: WebSocket | null}> = ({wsChanel}) => {
 
     const[messages, setMessages] = useState<ChatMessageType[]>([])
