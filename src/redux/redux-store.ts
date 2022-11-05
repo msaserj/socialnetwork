@@ -6,6 +6,7 @@ import {UsersActionsType, usersReducer} from "./users-reducer";
 import {AuthActionsType, authReducer} from "./auth-reducer";
 import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {AppActionsType, appReducer} from "./app-reducer";
+import {ChatActionsType, chatReducer} from "./chat-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -13,7 +14,8 @@ let rootReducer = combineReducers({
     usersPage: usersReducer,
     dialogsPage: dialogsReducer,
     auth: authReducer,
-    app: appReducer
+    app: appReducer,
+    chat: chatReducer
 })
 
 // для работы с REDUX_DEVTOOLS: Window c Большой Буквы Window
@@ -42,5 +44,6 @@ export type ActionsType =
     | UsersActionsType
     | AuthActionsType
     | AppActionsType
+    | ChatActionsType
 
 

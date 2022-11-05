@@ -1,41 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import AddMessageForm from "./AddMessageForm";
 import Messages from "./Messages";
+import {useAppDispatch} from "../../hooks/hooks";
+import {startMessagesListeningTC, stopMessagesListeningTC} from "../../redux/chat-reducer";
 
 
 const Chat: React.FC = () => {
 
-    const [wsChanel, setWsChanel] = useState<WebSocket | null>(null)
+    const dispatch = useAppDispatch()
 
-    useEffect(() => {
-        let ws: WebSocket;
-        const closeHandler = () => {
-            console.log('close ws')
-            setTimeout(createChanel, 3000)
-        }
-
-        function createChanel() {
-            ws?.removeEventListener('close', closeHandler)
-            ws?.close()
-
-            ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
-            ws.addEventListener('close', closeHandler)
-            setWsChanel(ws)
-        }
-
-        createChanel();
+    useEffect(()=> {
+        dispatch(startMessagesListeningTC())
         return () => {
-            ws.removeEventListener('close', closeHandler);
-            ws.close()
+            dispatch(stopMessagesListeningTC())
         }
-    }, [])
+    },[])
+
 
 
     return (
         <div>
             Chat
-            <Messages wsChanel={wsChanel}/>
-            <AddMessageForm wsChanel={wsChanel}/>
+            <Messages />
+            <AddMessageForm />
         </div>
     );
 };

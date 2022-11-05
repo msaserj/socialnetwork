@@ -1,5 +1,6 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import ChatMessage from "./ChatMessage";
+import {useAppSelector} from "../../hooks/hooks";
 
 
 export type ChatMessageType = {
@@ -8,21 +9,10 @@ export type ChatMessageType = {
     userId: number
     userName: string
 }
-const Messages: React.FC<{wsChanel: WebSocket | null}> = ({wsChanel}) => {
+const Messages: React.FC = () => {
 
-    const[messages, setMessages] = useState<ChatMessageType[]>([])
+    const messages = useAppSelector(state => state.chat.messages)
 
-    useEffect(()=>{
-        const onMessageHandler = (e: MessageEvent) => {
-            let newMessage = JSON.parse(e.data);
-            setMessages((prevMessages) => [...prevMessages, ...newMessage])
-        };
-        wsChanel?.addEventListener('message', onMessageHandler)
-
-        return () => {
-            wsChanel?.removeEventListener('message', onMessageHandler)
-        }
-    },[wsChanel])
     console.log(messages)
     return (
         <div style={{height: '400px', overflowY: 'auto'}}>
