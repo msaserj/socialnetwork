@@ -5,13 +5,16 @@ import {chatApi, ChatMessageType} from "../api/chat-api";
 // typeof ActionCreators
 export type ChatActionsType =
     | ReturnType<typeof setMessages>
+    | ReturnType<typeof setStatus>
 
 // Actions
 const SET_MESSAGES = 'sn/chat/SET-MESSAGES'
+const SET_STATUS = 'sn/chat/SET-STATUS'
 
 
 // ActionCreators
 export const setMessages = (messages: ChatMessageType[]) => ({type: SET_MESSAGES, payload: {messages}} as const)
+export const setStatus = (status: 'pending' | 'ready') => ({type: SET_STATUS, payload: {status}} as const)
 
 
 // types for InitialState
@@ -20,8 +23,11 @@ export const setMessages = (messages: ChatMessageType[]) => ({type: SET_MESSAGES
 //     messages: ChatMessageType[]
 // }
 
+export type StatusType = 'pending' | 'ready'
+
 const initialState = {
-    messages: [] as ChatMessageType[]
+    messages: [] as ChatMessageType[],
+    status: 'pending' as StatusType
 }
 export type InitialStateType = typeof initialState
 // reducer
@@ -31,7 +37,10 @@ export const chatReducer = (state = initialState, action: ActionsType): InitialS
             return {...state,
             messages: [...state.messages, ...action.payload.messages]
             }
-
+        case SET_STATUS:
+            return {...state,
+                status: action.payload.status
+            }
         default:
             return state
     }
@@ -50,11 +59,11 @@ const newMessageHandlerCreator = (dispatch: Dispatch) => {
 
 export const startMessagesListeningTC = () => async (dispatch: Dispatch) => {
     chatApi.start()
-    chatApi.subscribe(newMessageHandlerCreator(dispatch))
+    chatApi.subscribe('messages-received', newMessageHandlerCreator(dispatch))
 }
 
 export const stopMessagesListeningTC = () => async (dispatch: Dispatch) => {
-    chatApi.unsubscribe(newMessageHandlerCreator(dispatch))
+    chatApi.unsubscribe('messages-received', newMessageHandlerCreator(dispatch))
     chatApi.stop()
 }
 

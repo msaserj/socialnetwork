@@ -1,7 +1,15 @@
-type SubscriberType = (messages: ChatMessageType[]) => void
+import {StatusType} from "../redux/chat-reducer";
 
-let subscribers = [] as SubscriberType[]
+type MessagesReceivedSubscriberType = (messages: ChatMessageType[]) => void
+type MessagesChangedSubscriberType = (status: StatusType) => void
+
+let subscribers = {
+    'messages-received': [] as MessagesReceivedSubscriberType[],
+    'status-changed': [] as MessagesChangedSubscriberType[]
+}
 let ws: WebSocket;
+
+type EventsType = 'messages-received' | 'status-changed'
 
 const closeHandler = () => {
     console.log('close ws')
@@ -10,11 +18,16 @@ const closeHandler = () => {
 
 const onMessageHandler = (e: MessageEvent) => {
     const newMessages = JSON.parse(e.data);
-    subscribers.forEach(s => s(newMessages))
-};
+    subscribers['messages-received'].forEach(s => s(newMessages))
+}
+
+const cleanUp = () => {
+    ws?.removeEventListener('close', closeHandler)
+    ws?.removeEventListener('message', onMessageHandler)
+}
 
 function createChanel() {
-    ws?.removeEventListener('close', closeHandler)
+    cleanUp()
     ws?.close()
     ws = new WebSocket('wss://social-network.samuraijs.com/handlers/ChatHandler.ashx');
     ws.addEventListener('close', closeHandler)
@@ -26,19 +39,23 @@ export const chatApi = {
         createChanel()
     },
     stop() {
-        subscribers = []
-        ws?.removeEventListener('close', closeHandler)
-        ws?.removeEventListener('message', onMessageHandler)
+        subscribers['messages-received'] = []
+        subscribers['status-changed'] = []
+        cleanUp()
         ws?.close()
     },
-    subscribe(callback: SubscriberType) {
-        subscribers.push(callback)
+    subscribe(eventName: EventsType,
+              callback: MessagesReceivedSubscriberType | MessagesChangedSubscriberType) {
+        // @ts-ignore
+        subscribers[eventName].push(callback)
         return () => {
-            subscribers = subscribers.filter(s => s !== callback)
+            // @ts-ignore
+            subscribers[eventName] = subscribers[eventName].filter(s => s !== callback)
         }
     },
-    unsubscribe(callback: SubscriberType) {
-        subscribers = subscribers.filter(s => s !== callback)
+    unsubscribe(eventName: EventsType, callback: MessagesReceivedSubscriberType) {
+        // @ts-ignore
+        subscribers[eventName] = subscribers[eventName].filter(s => s !== callback)
     },
     sendMessage(message: string) {
         ws?.send(message)
