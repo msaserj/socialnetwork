@@ -14,7 +14,7 @@ const SET_STATUS = 'sn/chat/SET-STATUS'
 
 // ActionCreators
 export const setMessages = (messages: ChatMessageType[]) => ({type: SET_MESSAGES, payload: {messages}} as const)
-export const setStatus = (status: 'pending' | 'ready') => ({type: SET_STATUS, payload: {status}} as const)
+export const setStatus = (status: StatusType) => ({type: SET_STATUS, payload: {status}} as const)
 
 
 // types for InitialState
@@ -23,7 +23,7 @@ export const setStatus = (status: 'pending' | 'ready') => ({type: SET_STATUS, pa
 //     messages: ChatMessageType[]
 // }
 
-export type StatusType = 'pending' | 'ready'
+export type StatusType = 'pending' | 'ready' | 'error'
 
 const initialState = {
     messages: [] as ChatMessageType[],
@@ -56,14 +56,25 @@ const newMessageHandlerCreator = (dispatch: Dispatch) => {
     }
   return _newMessageHandler
 }
+let _newStatusHandler: ((messages: StatusType) => void) | null = null
+const newStatusHandlerCreator = (dispatch: Dispatch) => {
+    if (_newStatusHandler === null) {
+        _newStatusHandler = (status) => {
+            dispatch(setStatus(status))
+        }
+    }
+    return _newStatusHandler
+}
 
 export const startMessagesListeningTC = () => async (dispatch: Dispatch) => {
     chatApi.start()
     chatApi.subscribe('messages-received', newMessageHandlerCreator(dispatch))
+    chatApi.subscribe('status-changed', newStatusHandlerCreator(dispatch))
 }
 
 export const stopMessagesListeningTC = () => async (dispatch: Dispatch) => {
     chatApi.unsubscribe('messages-received', newMessageHandlerCreator(dispatch))
+    chatApi.unsubscribe('status-changed', newStatusHandlerCreator(dispatch))
     chatApi.stop()
 }
 
