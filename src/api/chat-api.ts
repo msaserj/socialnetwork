@@ -1,6 +1,6 @@
 import {StatusType} from "../redux/chat-reducer";
 
-type MessagesReceivedSubscriberType = (messages: ChatMessageType[]) => void
+type MessagesReceivedSubscriberType = (messages: ChatMessageAPIType[]) => void
 type MessagesChangedSubscriberType = (status: StatusType) => void
 
 let subscribers = {
@@ -81,7 +81,7 @@ export const chatApi = {
     },
 }
 
-export type ChatMessageType = {
+export type ChatMessageAPIType = {
     message: string
     photo: string
     userId: number
