@@ -1,0 +1,28 @@
+.menu {
+    border: 1px solid red;
+    width: 100%;
+    /*grid-area: menu;*/
+    display: grid;
+    grid-auto-flow: column;
+    justify-items: start;
+    align-items: center;
+    grid-column: 3/4;
+}
+
+
+.nav {
+    border: 1px solid red;
+    background-color: #3d8832;
+    /*grid-area: n;*/
+    padding: 20px;
+}
+
+.inactiveLink{
+    color: white;
+    text-decoration: none;
+}
+
+.activeLink {
+    color: black;
+    text-decoration: none;
+}

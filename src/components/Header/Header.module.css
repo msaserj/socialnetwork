@@ -1,16 +1,26 @@
 .header {
-    background-color: #59db55;
-    grid-area: h;
+    display: grid;
+    height: 80px;
+    background-color: #363c42;
+    grid-area: head;
+    grid-template-columns: 1fr minmax(auto, 300px) minmax(auto, 800px) minmax(auto, 300px) 1fr;
+    /*grid-template-areas: "logo menu login";*/
+    grid-gap: 10px;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header img {
-    /*background-color: #428d26;*/
+    /*grid-area: logo;*/
+    grid-column: 2/3;
     width: 50px;
     padding: 5px 10px ;
 }
 
 .loginBlock {
-    float: right;
+    grid-column: 4/5;
+    padding: 5px;
+    justify-self: end;
 }
 .loginBlock a {
     color: white;

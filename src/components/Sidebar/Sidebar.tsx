@@ -1,13 +1,13 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import classes from './Navbar.module.css'
-import {Sidebar} from "./Sidebar/Sidebar";
+import css from './Sidebar.module.css'
 
 
-export const Navbar = () => {
-    const setActive = ({isActive}: {isActive: boolean}) => isActive ? classes.activeLink : classes.inactiveLink;
+
+export const Sidebar = () => {
+    const setActive = ({isActive}: {isActive: boolean}) => isActive ? css.activeLink : css.inactiveLink;
     return(
-        <nav className={classes.nav}>
+        <nav className={css.nav}>
             <div>
                 <div>
                     <NavLink to="/" className = {setActive}>Profile</NavLink>
@@ -29,7 +29,6 @@ export const Navbar = () => {
                 </div>
             </div>
             <div>
-                <Sidebar />
             </div>
         </nav>
     )

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import {Navbar} from "./components/Navbar/Navbar";
+import {Sidebar} from "./components/Sidebar/Sidebar";
 import {Route, Routes} from 'react-router-dom';
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
@@ -12,6 +12,7 @@ import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/common/preloader/Preloader";
 import {withSuspense} from "./hoc/withSuspense";
 import {ChatPage} from "./pages/chat/ChatPage";
+import {Footer} from "./components/Footer/Footer";
 
 
 const DialogsContainer = React.lazy(()=>
@@ -50,7 +51,7 @@ class App extends React.Component<AuthPropsType> {
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                <Navbar/>
+                <Sidebar/>
                 <div className='app-wrapper-content'>
                     <Routes>
                         <Route path="/dialogs/" element={<DialogsContain/>}/>
@@ -63,7 +64,9 @@ class App extends React.Component<AuthPropsType> {
                         <Route path="*" element={<div>404</div>}/>
                         {/*<Route path="/settings" element={<Settings />}/>*/}
                     </Routes>
+
                 </div>
+                <Footer/>
             </div>
         );
     }

@@ -1,7 +1,9 @@
 import React from "react";
-import classes from './Header.module.css'
+import css from './Header.module.css'
 import {NavLink} from "react-router-dom";
 import {AuthType} from "../../redux/auth-reducer";
+import logo from "../../assets/images/logo.png"
+import {Nav} from "./Nav/Nav";
 
 type HeaderType = {
     authHeader: AuthType
@@ -14,11 +16,10 @@ export const Header = (props: HeaderType) => {
       props.logoutTC()
     }
     return (
-        <header className={classes.header}>
-            <img
-                src="https://d1csarkz8obe9u.cloudfront.net/posterpreviews/business-logo-design-template-78655edda18bc1196ab28760f1535baa_screen.jpg"
-                alt="logo"/>
-            <div className={classes.loginBlock}>
+        <header className={css.header}>
+            <img src={logo} alt="logo"/>
+            <Nav />
+            <div className={css.loginBlock}>
                 {!props.authHeader.isAuth
                     ? <NavLink to={'/login'}>Login</NavLink>
                     : <div>
