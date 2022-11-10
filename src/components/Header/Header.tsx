@@ -15,10 +15,12 @@ export const Header = (props: HeaderType) => {
     const logoutHandler = () => {
       props.logoutTC()
     }
+
     return (
         <header className={css.header}>
             <img src={logo} alt="logo"/>
             <Nav />
+
             <div className={css.loginBlock}>
                 {!props.authHeader.isAuth
                     ? <NavLink to={'/login'}>Login</NavLink>

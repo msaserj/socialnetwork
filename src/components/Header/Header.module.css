@@ -4,8 +4,8 @@
     height: 80px;
     background-color: #363c42;
     width: 100%;
-    grid-template-columns: 1fr minmax(auto, 300px) minmax(auto, 800px) minmax(auto, 300px) 1fr;
-    grid-template-areas: "logo menu login";
+    grid-template-columns: 0fr minmax(auto, 300px) minmax(auto, 800px) minmax(auto, 300px) 0fr;
+    /*grid-template-areas: "logo menu login";*/
     grid-gap: 10px;
     justify-content: space-between;
     align-items: center;
