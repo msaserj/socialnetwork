@@ -1,13 +1,15 @@
 .nav {
+    grid-column: 4/5;
+    grid-row: 2/3;
     background-color: #fff;
     box-shadow: 0 0 21px rgb(54 60 66 / 7%);
     border-radius: 7px;
-    grid-area: side;
     padding: 20px;
+    height: 400px;
 }
 
 .inactiveLink{
-    color: white;
+    color: #565656;
     text-decoration: none;
 }
 

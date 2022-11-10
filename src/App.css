@@ -2,20 +2,8 @@
     display: grid;
     min-height: 100%;
     margin: 0 auto;
-    width: 1600px;
-    grid-template-areas:
-    "head head head"
-    "side content info"
-    "footer footer footer";
-    grid-template-rows: minmax(100px, auto) 1fr minmax(70px, auto);
-    grid-template-columns: 2.5fr 8fr 2.5fr;
-    grid-gap: 10px;
-}
-
-.app-wrapper-content {
-    background-color: #fff;
-    box-shadow: 0 0 21px rgb(54 60 66 / 7%);
-    border-radius: 7px;
-    grid-area: content;
-    padding: 10px;
+    width: 100%;
+    grid-template-rows: minmax(80px, auto) 1fr minmax(70px, auto);
+    grid-template-columns:1fr 2.5fr 8fr 2.5fr 1fr;
+    grid-gap: 20px;
 }

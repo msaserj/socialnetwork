@@ -1,13 +1,14 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import css from './Sidebar.module.css'
+import css from './HashBar.module.css'
 
 
 
-export const Sidebar = () => {
+export const HashBar = () => {
     const setActive = ({isActive}: {isActive: boolean}) => isActive ? css.activeLink : css.inactiveLink;
     return(
         <nav className={css.nav}>
+            <h3>Community Hashtags</h3>
             <div>
                 <div>
                     <NavLink to="/" className = {setActive}>Profile</NavLink>
