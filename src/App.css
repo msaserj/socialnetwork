@@ -8,12 +8,14 @@
     "side content info"
     "footer footer footer";
     grid-template-rows: minmax(100px, auto) 1fr minmax(70px, auto);
-    grid-template-columns: 2.5fr 10fr 2.5fr;
+    grid-template-columns: 2.5fr 8fr 2.5fr;
     grid-gap: 10px;
 }
 
 .app-wrapper-content {
-    background-color: #a9ff9c;
+    background-color: #fff;
+    box-shadow: 0 0 21px rgb(54 60 66 / 7%);
+    border-radius: 7px;
     grid-area: content;
     padding: 10px;
 }
