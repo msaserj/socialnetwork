@@ -4,6 +4,6 @@
     margin: 0 auto;
     width: 100%;
     grid-template-rows: minmax(80px, auto) 1fr minmax(70px, auto);
-    grid-template-columns:1fr 2.5fr 8fr 2.5fr 1fr;
+    grid-template-columns:0.8fr 3fr 6fr 3fr 0.8fr;
     grid-gap: 20px;
 }

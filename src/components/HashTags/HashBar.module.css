@@ -1,10 +1,10 @@
-.nav {
+.hash {
     grid-column: 4/5;
     grid-row: 2/3;
     background-color: #fff;
     box-shadow: 0 0 21px rgb(54 60 66 / 7%);
     border-radius: 7px;
-    padding: 20px;
+    padding: 10px;
     height: 400px;
 }
 
@@ -16,4 +16,21 @@
 .activeLink {
     color: black;
     text-decoration: none;
+}
+
+.tag {
+    display: inline-block;
+    margin: 5px;
+    padding: 7px 14px;
+    color: #2a2e33 !important;
+    line-height: 14px;
+    background-color: #e3e6e9;
+    border-radius: 14px;
+    font-size: 12px;
+    transition: all .3s ease;
+}
+.tag:hover {
+    color: #fff;
+    background-color: #2186c3;
+    transition: all .3s ease;
 }
