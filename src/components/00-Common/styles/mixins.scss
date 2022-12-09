@@ -1,0 +1,63 @@
+@import "./variables";
+@mixin text($fontSize, $lineHeight, $color) {
+  //font-family: $montserratFontFamily;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $color;
+}
+
+@mixin container() {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin flex($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+}
+
+@mixin neumorph() {
+  position: relative;
+  background: $linearGradient_1;
+  box-shadow: $boxShadow_1;
+  border-radius: 10px;
+  transition: 0.3s all ease-in-out;
+  z-index: 1;
+}
+@mixin beforeNeumorph() {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  top: 0;
+  left: 0;
+  background: $linearGradient_2;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  z-index: -1;
+}
+@mixin linkUnderline() {
+  position: relative;
+  text-decoration: none;
+  transition: 0.5s;
+  &::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: $fontRedColor;
+    transition: 0.5s;
+  }
+  &:hover {
+    color: $fontRedColor;
+    &::after {
+      width: 100%;
+    }
+  }
+}
