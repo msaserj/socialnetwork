@@ -1,0 +1,7 @@
+@import "variables";
+@mixin text($fontSize, $lineHeight, $color) {
+  //font-family: $montserratFontFamily;
+  font-size: $fontSize;
+  line-height: $lineHeight;
+  color: $color;
+}

@@ -1,7 +1,5 @@
-
-
 import React, {ButtonHTMLAttributes, DetailedHTMLProps, ReactNode} from 'react';
-import css from "./Button.module.scss";
+import css from "./Button.module.scss"
 
 
 // тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
