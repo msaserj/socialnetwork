@@ -66,7 +66,7 @@ type UserContactsProfileType = {
     github: string
     mainLink: string
 }
-type UserPhotosProfileType = {
+export type UserPhotosProfileType = {
     small: string
     large: string
 }

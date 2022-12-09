@@ -1,11 +1,11 @@
 import React, {useState} from "react";
 import classes from "./ProfileInfo.module.css"
 import {UserProfileType} from "../../../../redux/profile-reducer";
-import userPhoto from "../../../../assets/images/profileImage.png";
 import {Preloader} from "../../../00-Common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileDataForm} from "./ProfileData/ProfileDataForm";
 import {ProfileData} from "./ProfileData/ProfileData";
+import {ProfilePhoto} from "../../../00-Common/ProfilePhoto/ProfilePhoto";
 
 type ProfileType = {
     userProfile: UserProfileType | null
@@ -49,8 +49,7 @@ export const ProfileInfo = (props: ProfileType) => {
             <div className={classes.descriptionBlock}>
                 {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
 
-                <img className={classes.userPhoto} src={data.photos != null || undefined
-                    ? data.photos.small : userPhoto} alt=""/>
+                <ProfilePhoto photos={data.photos}/>
                 {props.isOwner && <input type={"file"} onChange={loadPhotoHandler}/>}
 
                 <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}
