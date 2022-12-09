@@ -3,6 +3,9 @@ import { NavLink } from "react-router-dom";
 import css from './SideBar.module.css'
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {Button} from "../00-Common/Button/Button";
+import {FiMenu} from "react-icons/fi";
+
 
 
 
@@ -11,6 +14,7 @@ export const SideBar = () => {
     return(
         <nav className={css.nav}>
             <h3>Side bar menu</h3>
+            <Button><FiMenu className={css.icon}/></Button>
             <div>
                 <div>
                     <FontAwesomeIcon icon={faHome} /><NavLink to="/" className = {setActive}>Profile</NavLink>

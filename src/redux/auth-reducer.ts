@@ -28,12 +28,11 @@ export type AuthType = {
     messages: string[]
     fieldsErrors?: []
     resultCode: number
-
     isAuth?: boolean
     captcha?: string | null
 }
 
-type DataType = {
+export type DataType = {
     id: number
     login: string
     email: string
