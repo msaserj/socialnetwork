@@ -1,15 +1,15 @@
 import React from 'react';
 import './App.css';
-import {SideBar} from "./components/Sidebar/SideBar";
-import HeaderContainer from "./components/Header/HeaderContainer";
+import {SideBar} from "./components/02-LeftBar/SideBar";
+import HeaderContainer from "./components/01-Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootState} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
-import {Preloader} from "./components/common/preloader/Preloader";
-import {Footer} from "./components/Footer/Footer";
-import {HashBar} from "./components/HashTags/HashBar";
-import Main from "./components/Main/Main";
+import {Preloader} from "./components/00-Common/Preloader/Preloader";
+import {Footer} from "./components/05-Footer/Footer";
+import {HashBar} from "./components/04-RightBar/HashTags/HashBar";
+import Main from "./components/03-Main/Main";
 
 //
 // const ChatPage = React.lazy(()=>
