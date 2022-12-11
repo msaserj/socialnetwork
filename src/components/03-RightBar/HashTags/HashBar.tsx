@@ -10,82 +10,82 @@ export const HashBar = () => {
             <h3>Community Hashtags</h3>
             <div >
                 <a data-debug="#60bin (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/60bin/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/60bin/">
                     #60bin </a>
                 <a data-debug="#60binn (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/60binn/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/60binn/">
                     #60binn </a>
                 <a data-debug="#africa (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/africa/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/africa/">
                     #africa </a>
                 <a data-debug="#anan (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/anan/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/anan/">
                     #anan </a>
                 <a data-debug="#atama (3 / 50%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/atama/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/atama/">
                     #atama </a>
                 <a data-debug="#awesome (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/awesome/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/awesome/">
                     #awesome </a>
                 <a data-debug="#beauty (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/beauty/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/beauty/">
                     #beauty </a>
                 <a data-debug="#cars (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/cars/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/cars/">
                     #cars </a>
                 <a data-debug="#cool (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/cool/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/cool/">
                     #cool </a>
                 <a data-debug="#geldik (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/geldik/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/geldik/">
                     #geldik </a>
                 <a data-debug="#hey (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/hey/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/hey/">
                     #hey </a>
                 <a data-debug="#hobby (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/hobby/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/hobby/">
                     #hobby </a>
                 <a data-debug="#honeymoon (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/honeymoon/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/honeymoon/">
                     #honeymoon </a>
                 <a data-debug="#markdown (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/markdown/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/markdown/">
                     #markdown </a>
                 <a data-debug="#matebook (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/matebook/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/matebook/">
                     #matebook </a>
                 <a data-debug="#mobile (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/mobile/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/mobile/">
                     #mobile </a>
                 <a data-debug="#peepso (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/peepso/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/peepso/">
                     #peepso </a>
                 <a data-debug="#prueba (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/prueba/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/prueba/">
                     #prueba </a>
                 <a data-debug="#test1 (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/test1/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/test1/">
                     #test1 </a>
                 <a data-debug="#tourism (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/tourism/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/tourism/">
                     #tourism </a>
                 <a data-debug="#tourist (3 / 50%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/tourist/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/tourist/">
                     #tourist </a>
                 <a data-debug="#travel (6 / 100%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/travel/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/travel/">
                     #travel </a>
                 <a data-debug="#vide (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/vide/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/vide/">
                     #vide </a>
                 <a data-debug="#video (1 / 20%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/video/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/video/">
                     #video </a>
                 <a data-debug="#videouploads (2 / 30%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/videouploads/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/videouploads/">
                     #videouploads </a>
                 <a data-debug="#wordpress (5 / 80%)" className={css.tag}
-                   href="src/components/04-RightBar/HashTags/HashBar?hashtag/wordpress/">
+                   href="src/components/03-RightBar/HashTags/HashBar?hashtag/wordpress/">
                     #wordpress </a>
             </div>
             <div>

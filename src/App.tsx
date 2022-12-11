@@ -8,8 +8,10 @@ import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/00-Common/Preloader/Preloader";
 import {Footer} from "./components/05-Footer/Footer";
-import {HashBar} from "./components/04-RightBar/HashTags/HashBar";
-import Main from "./components/03-Main/Main";
+import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
+import Main from "./components/04-Main/Main";
+import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
+
 
 //
 // const ChatPage = React.lazy(()=>
@@ -32,9 +34,14 @@ class App extends React.Component<AuthPropsType> {
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
-                <SideBar/>
-                <HashBar/>
-                <Main/>
+
+                <div className="main-section">
+                    <CoverPhoto/>
+                    <SideBar/>
+                    <Main/>
+                    <HashBar/>
+                </div>
+
                 <Footer/>
             </div>
         );
