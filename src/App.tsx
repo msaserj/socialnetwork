@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {SideBar} from "./components/02-LeftBar/SideBar";
 import HeaderContainer from "./components/01-Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootState} from "./redux/redux-store";
@@ -12,6 +11,7 @@ import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
 import Main from "./components/04-Main/Main";
 import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
+import LastMembers from "./components/LastMembers/LastMembers";
 // import Login from "./components/00-Common/Login/Login";
 
 const Login = React.lazy(()=> import("./components/00-Common/Login/Login"))
@@ -27,7 +27,7 @@ class App extends React.Component<AuthPropsType> {
 
 
     catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
-        alert(promiseRejectionEvent)
+        console.log(promiseRejectionEvent)
     }
     componentDidMount() {
         this.props.initializeApp()
@@ -43,7 +43,8 @@ class App extends React.Component<AuthPropsType> {
 
                 <div className="main-section">
                     <CoverPhoto />
-                    <LoginComponent/>
+                    {/*<LoginComponent/>*/}
+                    <LastMembers/>
                     {/*<SideBar/>*/}
                     <Main/>
                     <HashBar/>

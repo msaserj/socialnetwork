@@ -1,0 +1,25 @@
+
+.member {
+  position: relative;
+
+  .name {
+    padding: 3px 10px;
+    border-radius: 6px;
+    color: #fff;
+    opacity: 70%;
+    background-color: #2c3136;
+    position: absolute;
+    top: -30px;
+    //выровнять по середине
+    left: 50%;
+    transform: translate(-50%, 50%);
+
+    //&::after {
+    //
+    //}
+  }
+
+  .userPhoto {
+    width: 90px;
+  }
+}

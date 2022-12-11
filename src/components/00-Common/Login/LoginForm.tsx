@@ -2,7 +2,6 @@ import React from 'react';
 import {useFormik} from 'formik';
 import {CheckboxFormik, InputFormik} from "../InputFormik/InputFormik";
 import css from "./LoginForm.module.scss"
-import {Button} from "../Button/Button";
 import {AuthButton} from "../AuthButton/AuthButton";
 
 type FormikErrorType = {
@@ -49,8 +48,6 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
     return (
 
         <form className={css.loginForm} onSubmit={formik.handleSubmit}>
-            <h1 className={css.loginHeader}>Login</h1>
-
             <InputFormik placeholder={"email"} getFieldProps={formik.getFieldProps("email")}
                          errors={formik.errors.email} type={"text"}/>
             <InputFormik placeholder={"password"} getFieldProps={formik.getFieldProps("password")}
