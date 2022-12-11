@@ -42,10 +42,10 @@ export const ProfileInfo = (props: ProfileType) => {
     }
     return (
         <div>
-            <div>
-                <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"
-                     alt="la_batie"/>
-            </div>
+            {/*<div>*/}
+            {/*    <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"*/}
+            {/*         alt="la_batie"/>*/}
+            {/*</div>*/}
             <div className={classes.descriptionBlock}>
                 {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
 

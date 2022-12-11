@@ -1,0 +1,57 @@
+@import "../styles/sass/variables";
+
+.input {
+  margin: 5px 10px 5px 0;
+  background-color: $backgroundMain;
+  border: 2px solid $inputBorder;
+  box-shadow: none;
+  outline: none;
+  -webkit-appearance: none;
+  padding: 9px 21px;
+  height: auto;
+  width: 100%;
+  box-sizing: border-box;
+  color: $greyText2;
+  font-size: 14px;
+  line-height: 22px;
+  border-radius: 21px;
+  &:focus {
+    border: 2px solid $selectedText;
+  }
+}
+.errorField {
+  margin-left:  23px;
+  box-sizing: border-box;
+  height: 14px;
+  font-size: 14px;
+  color: #dc2e2e;
+}
+
+.checkboxBlock {
+  display: flex;
+  align-items: center;
+  .checkbox {
+    margin: 10px 10px 10px 0;
+    padding: 10px;
+    background-color: $backgroundMain;
+    border: 2px solid $inputBorder;
+    box-shadow: none;
+    outline: none;
+    -webkit-appearance: none;
+    color: $greyText2;
+    border-radius: 7px;
+    position: relative;
+    &:checked {
+      &::before {
+        content: "";
+        position: absolute;
+        width: 16px;
+        height: 16px;
+        top: 2px;
+        left: 2px;
+        background-color:  $selectedText;
+        border-radius: 5px;
+      }
+    }
+  }
+}

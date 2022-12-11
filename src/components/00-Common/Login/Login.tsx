@@ -6,14 +6,13 @@ import {Navigate} from "react-router-dom";
 import {RootState} from "../../../redux/redux-store";
 
 const Login: React.FC<ProfilePropsType> = ({isAuth, loginTC, captchaUrl}) => {
-    if(isAuth) {
-        return <Navigate to={"/profile"}/>
-    }
+    // if(isAuth) {
+    //     return <Navigate to={"/profile"}/>
+    // }
     return (
-        <div>
-           <h1>Login</h1>
+        <>
             <LoginForm loginTC={loginTC} captchaUrl={captchaUrl}/>
-        </div>
+        </>
     );
 };
 

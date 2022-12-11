@@ -1,7 +1,7 @@
 import React, {useEffect} from "react";
 import {UserProfileType} from "../../../../../redux/profile-reducer";
 import {useFormik} from "formik";
-import {InputFormik, TextAreaFormik} from "./InputFormik";
+import {InputFormik, TextAreaFormik} from "../../../../00-Common/InputFormik/InputFormik";
 
 
 type ProfileDataFormType = {

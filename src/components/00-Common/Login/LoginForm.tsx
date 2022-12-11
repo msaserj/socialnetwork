@@ -1,7 +1,9 @@
-
 import React from 'react';
-import { useFormik } from 'formik';
-import css from './LoginForm.module.css'
+import {useFormik} from 'formik';
+import {CheckboxFormik, InputFormik} from "../InputFormik/InputFormik";
+import css from "./LoginForm.module.scss"
+import {Button} from "../Button/Button";
+import {AuthButton} from "../AuthButton/AuthButton";
 
 type FormikErrorType = {
     email?: string
@@ -38,43 +40,42 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
             }
             return errors;
         },
-        onSubmit: (values,onSubmitProps) => {
+        onSubmit: (values, onSubmitProps) => {
             loginTC(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             onSubmitProps.setSubmitting(true);
             // alert(JSON.stringify(values));
         },
     });
     return (
-        <form onSubmit={formik.handleSubmit}>
-            <div className={css.fields}> <label htmlFor="email">Email</label>
-                <input id="email" type="email"
-                    {...formik.getFieldProps("email")}
-                />
-                {formik.errors.email ? <div>{formik.errors.email}</div> : null}</div>
-            <div  className={css.fields}> <label htmlFor="password">Password</label>
-                <input id="password" type="password"
-                    {...formik.getFieldProps("password")}
-                />
-                {formik.errors.password ? <div>{formik.errors.password}</div> : null}</div>
-            <div  className={css.fields}> <label htmlFor="RememberMe">Remember Me</label>
-                <input id="checkbox" type="checkbox"
-                    {...formik.getFieldProps("rememberMe")}
-                    checked={formik.values.rememberMe}
-                />
-                {formik.errors.rememberMe ? <div>{formik.errors.rememberMe}</div> : null}</div>
-            <div  className={css.fields}>
-                {formik.status}
 
+        <form className={css.loginForm} onSubmit={formik.handleSubmit}>
+            <h1 className={css.loginHeader}>Login</h1>
+
+            <InputFormik placeholder={"email"} getFieldProps={formik.getFieldProps("email")}
+                         errors={formik.errors.email} type={"text"}/>
+            <InputFormik placeholder={"password"} getFieldProps={formik.getFieldProps("password")}
+                         errors={formik.errors.password} type={"password"}/>
+
+            <CheckboxFormik label={"Remember Me"} getFieldProps={formik.getFieldProps("rememberMe")}/>
+
+            <div className={css.fields}>
+                {formik.status}
                 {captchaUrl &&
                     <div className={css.fields}>
-                    <img src={captchaUrl} alt="captchaUrl"/>
-                    <label htmlFor="captcha">Captcha</label>
-                    <input id="captcha" type="text"
-                {...formik.getFieldProps("captcha")}
-                    />
-                {formik.errors.captcha ? <div>{formik.errors.captcha}</div> : null}</div>
+                        <img src={captchaUrl} alt="captchaUrl"/>
+                        <label htmlFor="captcha">Captcha</label>
+                        <input id="captcha" type="text"
+                               {...formik.getFieldProps("captcha")}
+                        />
+                        {formik.errors.captcha ? <div>{formik.errors.captcha}</div> : null}</div>
                 }
-                <button type="submit">Submit</button>
+            </div>
+            <div className={css.buttonBlock}>
+                <AuthButton type="submit">Login</AuthButton>
+                <div className={css.forgot}>
+                    <div>Register</div>
+                    <div>Forgot Password</div>
+                </div>
             </div>
         </form>
     );

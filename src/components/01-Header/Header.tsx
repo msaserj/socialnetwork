@@ -1,7 +1,7 @@
 import React from "react";
 import css from './Header.module.css'
 import {NavLink} from "react-router-dom";
-import {AuthType, DataType} from "../../redux/auth-reducer";
+import {DataType} from "../../redux/auth-reducer";
 import logo from "../../assets/images/logo.png"
 import {Nav} from "./Nav/Nav";
 import {Button} from "../00-Common/Button/Button";

@@ -3,7 +3,6 @@
   grid-column: 1/6;
   grid-row: 1;
   z-index: -1;
-  //border: 5px solid #881313;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -11,18 +10,21 @@
   align-items: center;
 
   .photoBlock {
+    border: 5px solid #881313;
     height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+
     .photo {
       //position: fixed;
       overflow: hidden;
       display: flex;
       justify-content: center;
       align-items: center;
-      min-width: 100%;
-      min-height: 100%;
+      height: auto;
+      width: 100%;
       margin-top: -280px;
     }
   }

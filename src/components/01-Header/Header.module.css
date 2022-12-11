@@ -15,9 +15,8 @@
 
 .header img {
     /*grid-area: logo;*/
-    grid-column: 2/3;
-    width: 50px;
-    padding: 5px 10px ;
+    grid-column: 2;
+    width: 60px;
 }
 
 .loginBlock {

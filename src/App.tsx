@@ -11,6 +11,10 @@ import {Footer} from "./components/05-Footer/Footer";
 import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
 import Main from "./components/04-Main/Main";
 import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
+import {withSuspense} from "./hoc/withSuspense";
+// import Login from "./components/00-Common/Login/Login";
+
+const Login = React.lazy(()=> import("./components/00-Common/Login/Login"))
 
 
 //
@@ -18,8 +22,10 @@ import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
 //     import("./pages/chat/ChatPage")
 //         .then(({ChatPage}) => ({default: ChatPage}))
 // )
-
+const LoginComponent = withSuspense(Login)
 class App extends React.Component<AuthPropsType> {
+
+
     catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
         alert(promiseRejectionEvent)
     }
@@ -36,8 +42,9 @@ class App extends React.Component<AuthPropsType> {
                 <HeaderContainer/>
 
                 <div className="main-section">
-                    <CoverPhoto/>
-                    <SideBar/>
+                    <CoverPhoto />
+                    <LoginComponent/>
+                    {/*<SideBar/>*/}
                     <Main/>
                     <HashBar/>
                 </div>

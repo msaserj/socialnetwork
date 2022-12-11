@@ -10,11 +10,11 @@ const DialogsContainer = React.lazy(()=>
     import("./Dialogs/DialogsContainer")
         .then(({DialogsContainer}) => ({default: DialogsContainer}))
 )
-const Login = React.lazy(()=> import("../00-Common/Login/Login"))
+
 
 const Main = () => {
     const DialogsContain = withSuspense(DialogsContainer)
-    const LoginComponent = withSuspense(Login)
+
     return (
         <div className={css.main}>
             <Routes>
@@ -23,7 +23,7 @@ const Main = () => {
                     <Route path='/profile/:userId' element={<ProfileContainer/>}/>
                 </Route>
                 <Route path="/users" element={<UsersContainer/>}/>
-                <Route path="/login" element={<LoginComponent/>}/>
+                {/*<Route path="/login" element={<LoginComponent/>}/>*/}
                 <Route path="/chat" element={<ChatPage/>}/>
                 <Route path="*" element={<div>404</div>}/>
                 {/*<Route path="/settings" element={<Settings />}/>*/}
