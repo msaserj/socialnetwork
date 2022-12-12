@@ -16,6 +16,9 @@ export const usersAPI = {
     getUsers(currentPage: number, pageSize: number, term: string, friend: boolean | null) {
         return apiInstance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? `` : `&friend=${friend}`)).then(res => res.data)
     },
+    getMembers(currentPage: number, pageSize: number) {
+        return apiInstance.get(`users?page=${currentPage}&count=${pageSize}`).then(res => res.data)
+    },
     unFollow(usrId: number) {
         return apiInstance.delete(`follow/${usrId}`).then(res => res.data)
     },
@@ -24,6 +27,7 @@ export const usersAPI = {
     }
 
 }
+
 
 export type UserAPIResponseType = {
     resultCode: number

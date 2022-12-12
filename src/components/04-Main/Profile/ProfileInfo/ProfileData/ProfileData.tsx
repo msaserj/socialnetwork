@@ -1,4 +1,3 @@
-
 import React from "react";
 import {Preloader} from "../../../../00-Common/Preloader/Preloader";
 import {Contact} from "./ContactsData";
@@ -24,6 +23,7 @@ export const ProfileData: React.FC<ProfileDataType> = (
     }
     let contacts = userProfile.contacts
     let data = userProfile
+
     return(<div>
         {isOwner && <div><button onClick={goToEditMode}>Edit Profile</button></div>}
         <div><p><b>Full Name:</b> {data.fullName}</p></div>
@@ -34,9 +34,8 @@ export const ProfileData: React.FC<ProfileDataType> = (
         <p><b>Contacts:</b></p>
         <ul>
             {contacts && Object.keys(contacts).map(key => {
-
-                // @ts-ignore
-                return <Contact key={key} contactTitle={key} contactValue={contacts[key]}/>
+                    // @ts-ignore
+                    return <Contact key={key} contactTitle={key} contactValue={contacts[key]}/>
             })}
         </ul>
     </div>)

@@ -5,7 +5,10 @@ type ContactType = {
     contactValue: string
 }
 export const Contact: React.FC<ContactType> = ({contactTitle, contactValue}) => {
-    return <li>{contactTitle}: {contactValue? <a target="_blank" href={contactValue}>{contactTitle}</a> : null}</li>
+    if (!contactValue) {
+        return null
+    }
+    return <li>{contactTitle}:  <a target="_blank" href={contactValue}>{contactTitle}</a></li>
 }
 
 // <a target="_blank" href="https://it-incubator.ru/"><img className={css.logo} src={logo} alt="logo"/></a>
