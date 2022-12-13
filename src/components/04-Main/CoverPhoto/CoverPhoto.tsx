@@ -1,6 +1,6 @@
 import React from 'react';
 import css from "./CoverPhoto.module.scss"
-import cover from "../../../assets/images/_original.jpg"
+import cover from "../../../assets/images/originalCover.jpg"
 
 export const CoverPhoto = () => {
     return (
