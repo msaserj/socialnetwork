@@ -1,4 +1,5 @@
 .footer {
+    margin-top: 20px;
     border: 1px solid red;
     grid-column: 1/4;
     grid-row: 3;
