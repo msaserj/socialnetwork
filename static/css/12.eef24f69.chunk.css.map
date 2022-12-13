@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/12.eef24f69.chunk.css","mappings":"AAAA,yBACI,WAAY,CACZ,YACJ","sources":["components/Login/LoginForm.module.css"],"sourcesContent":[".fields {\n    margin: 10px;\n    padding: 10px;\n}"],"names":[],"sourceRoot":""}
