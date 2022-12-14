@@ -7,14 +7,13 @@ import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/00-Common/Preloader/Preloader";
 import {Footer} from "./components/05-Footer/Footer";
-import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
 import Main from "./components/04-Main/Main";
 import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
-import LastMembers from "./components/LastMembers/LastMembers";
-// import Login from "./components/00-Common/Login/Login";
+import {Widget} from "./components/04-Main/Widget/Widget";
 
-const Login = React.lazy(()=> import("./components/00-Common/Login/Login"))
+
+const Login = React.lazy(() => import("./components/00-Common/Login/Login"))
 
 
 //
@@ -23,31 +22,44 @@ const Login = React.lazy(()=> import("./components/00-Common/Login/Login"))
 //         .then(({ChatPage}) => ({default: ChatPage}))
 // )
 const LoginComponent = withSuspense(Login)
+
 class App extends React.Component<AuthPropsType> {
 
 
     catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
         console.log(promiseRejectionEvent)
     }
+
     componentDidMount() {
         this.props.initializeApp()
         window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
+
     render() {
-        if(!this.props.initialized) {
-            return <Preloader />
+        if (!this.props.initialized) {
+            return <Preloader/>
         }
         return (
             <div className='app-wrapper'>
                 <HeaderContainer/>
 
                 <div className="main-section">
-                    <CoverPhoto />
-                    {/*<LoginComponent/>*/}
-                    <LastMembers/>
-                    {/*<SideBar/>*/}
+                    <CoverPhoto/>
+
+                    <div className={"side-section left"}>
+                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+                    </div>
                     <Main/>
-                    <HashBar/>
+                    <div className={"side-section right"}>
+                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+                    </div>
+
+                    {/*<LoginComponent/>*/}
+                    {/*<LastMembers/>*/}
+                    {/*<SideBar/>*/}
+                    {/*<HashBar/>*/}
                 </div>
 
                 <Footer/>
