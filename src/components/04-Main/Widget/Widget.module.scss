@@ -5,7 +5,13 @@
   box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
   border-radius: 7px;
   padding: 30px;
-  //height: 400px;
-  //position: sticky;
-
+  box-sizing: border-box;
+  .titleBlock {
+    margin-bottom: 20px;
+    .title {
+      font-size: 32px;
+      font-weight: 800;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
 }

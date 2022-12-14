@@ -11,10 +11,10 @@ import Main from "./components/04-Main/Main";
 import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
 import {Widget} from "./components/04-Main/Widget/Widget";
-
+import LastMembers from "./components/LastMembers/LastMembers";
+import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
 
 const Login = React.lazy(() => import("./components/00-Common/Login/Login"))
-
 
 //
 // const ChatPage = React.lazy(()=>
@@ -45,23 +45,19 @@ class App extends React.Component<AuthPropsType> {
 
                 <div className="main-section">
                     <CoverPhoto/>
-
                     <div className={"side-section left"}>
-                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
-                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+
+                        <Widget title={"Login"}><LoginComponent/></Widget>
+                        <Widget title={"Last Members"}><LastMembers/></Widget>
+
                     </div>
                     <Main/>
                     <div className={"side-section right"}>
-                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
-                        <Widget rightSide={true} title={"Title"} secondBlock={false}>asasas</Widget>
+                        <Widget title={"Hash Tags"}><HashBar/></Widget>
+                        <Widget title={"Last Members"}>asasaasas</Widget>
                     </div>
 
-                    {/*<LoginComponent/>*/}
-                    {/*<LastMembers/>*/}
-                    {/*<SideBar/>*/}
-                    {/*<HashBar/>*/}
                 </div>
-
                 <Footer/>
             </div>
         );
