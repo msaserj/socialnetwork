@@ -1,0 +1,20 @@
+
+.widget {
+  min-height: 80px;
+  background-color: #fff;
+  box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
+  border-radius: 7px;
+  padding: 30px;
+  box-sizing: border-box;
+  .titleBlock {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #e0e2e5;
+    .title {
+      font-size: 24px;
+      color: #2a2e33;
+      font-weight: 800;
+      font-family: "Montserrat", sans-serif;
+    }
+  }
+}
