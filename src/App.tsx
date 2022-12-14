@@ -13,8 +13,9 @@ import {withSuspense} from "./hoc/withSuspense";
 import {Widget} from "./components/02-Main/SideWidgets/Widget/Widget";
 import LastMembers from "./components/02-Main/SideWidgets/LastMembers/LastMembers";
 import {HashBar} from "./components/02-Main/SideWidgets/HashTags/HashBar";
+import {SiteInfo} from "./components/02-Main/SideWidgets/SiteInfo/SiteInfo";
 
-const Login = React.lazy(() => import("./components/02-Main/Profile/Login/Login"))
+const Login = React.lazy(() => import("./components/02-Main/SideWidgets/Login/Login"))
 
 //
 // const ChatPage = React.lazy(()=>
@@ -53,8 +54,8 @@ class App extends React.Component<AuthPropsType> {
                     </div>
                     <Main/>
                     <div className={"side-section right"}>
+                        <Widget title={"Site Info"}><SiteInfo/></Widget>
                         <Widget title={"Hash Tags"}><HashBar/></Widget>
-                        <Widget title={"Last Members"}>asasaasas</Widget>
                     </div>
 
                 </div>
