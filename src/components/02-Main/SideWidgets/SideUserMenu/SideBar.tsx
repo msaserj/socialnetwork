@@ -3,7 +3,7 @@ import { NavLink } from "react-router-dom";
 import css from './SideBar.module.css'
 import {faHome} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {Button} from "../00-Common/Button/Button";
+import {Button} from "../../../00-Common/Button/Button";
 import {FiMenu} from "react-icons/fi";
 
 

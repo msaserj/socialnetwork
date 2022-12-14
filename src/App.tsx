@@ -6,15 +6,15 @@ import {RootState} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/00-Common/Preloader/Preloader";
-import {Footer} from "./components/05-Footer/Footer";
-import Main from "./components/04-Main/Main";
-import {CoverPhoto} from "./components/04-Main/CoverPhoto/CoverPhoto";
+import {Footer} from "./components/03-Footer/Footer";
+import Main from "./components/02-Main/Main";
+import {CoverPhoto} from "./components/02-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
-import {Widget} from "./components/04-Main/Widget/Widget";
-import LastMembers from "./components/LastMembers/LastMembers";
-import {HashBar} from "./components/03-RightBar/HashTags/HashBar";
+import {Widget} from "./components/02-Main/SideWidgets/Widget/Widget";
+import LastMembers from "./components/02-Main/SideWidgets/LastMembers/LastMembers";
+import {HashBar} from "./components/02-Main/SideWidgets/HashTags/HashBar";
 
-const Login = React.lazy(() => import("./components/00-Common/Login/Login"))
+const Login = React.lazy(() => import("./components/02-Main/Profile/Login/Login"))
 
 //
 // const ChatPage = React.lazy(()=>

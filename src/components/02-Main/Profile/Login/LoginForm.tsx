@@ -1,8 +1,8 @@
 import React from 'react';
 import {useFormik} from 'formik';
-import {CheckboxFormik, InputFormik} from "../InputFormik/InputFormik";
+import {CheckboxFormik, InputFormik} from "../../../00-Common/InputFormik/InputFormik";
 import css from "./LoginForm.module.scss"
-import {AuthButton} from "../AuthButton/AuthButton";
+import {AuthButton} from "../../../00-Common/AuthButton/AuthButton";
 
 type FormikErrorType = {
     email?: string
