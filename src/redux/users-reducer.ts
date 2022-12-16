@@ -137,7 +137,6 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             return state
     }
 }
-
 //thunks
 export const getUsersTC = (currentPage: number, pageSize: number, filter: FilterType): AppThunk => async (dispatch) => {
     dispatch(toggleIsFetchingAC(true));

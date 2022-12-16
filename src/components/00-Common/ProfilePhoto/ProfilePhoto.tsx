@@ -1,7 +1,7 @@
 import React from "react";
 import css from "./ProfilePhoto.module.scss"
 import {UserPhotosProfileType} from "../../../redux/profile-reducer";
-import userPhoto from "../../../assets/images/png-clipart-agent-smith-the-matrix-the-architect-computer-icons-secret-agent-face-people (копия).png";
+import userPhoto from "../../../assets/images/avaSmith.png";
 import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
 
 type ProfilePhotoType = {
