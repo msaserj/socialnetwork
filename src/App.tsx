@@ -14,6 +14,7 @@ import {Widget} from "./components/02-Main/SideWidgets/Widget/Widget";
 import LastMembers from "./components/02-Main/SideWidgets/LastMembers/LastMembers";
 import {HashBar} from "./components/02-Main/SideWidgets/HashTags/HashBar";
 import {SiteInfo} from "./components/02-Main/SideWidgets/SiteInfo/SiteInfo";
+import {ProfileWidget} from "./components/02-Main/SideWidgets/ProfileWidget/ProfileWidget";
 
 const Login = React.lazy(() => import("./components/02-Main/SideWidgets/Login/Login"))
 
@@ -50,6 +51,7 @@ class App extends React.Component<AuthPropsType> {
 
                         <Widget title={"Login"}><LoginComponent/></Widget>
                         <Widget title={"Last Members"}><LastMembers/></Widget>
+                        <ProfileWidget/>
 
                     </div>
                     <Main/>

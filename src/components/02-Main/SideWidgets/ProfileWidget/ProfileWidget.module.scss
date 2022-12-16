@@ -1,20 +1,58 @@
 
-.widget {
+.sideProfile {
   min-height: 80px;
   background-color: #fff;
   box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
   border-radius: 7px;
-  padding: 30px;
   box-sizing: border-box;
-  .titleBlock {
-    margin-bottom: 20px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e0e2e5;
-    .title {
-      font-size: 24px;
-      color: #2a2e33;
-      font-weight: 800;
-      font-family: "Montserrat", sans-serif;
+
+
+  .profileCover {
+    background-image: url("../../../../assets/images/originalCover.jpg");
+    border-radius: 7px 7px 0 0;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 120px;
+    .img {
+      width: 100%;
+
+    }
+
+
+  }
+  .profileContent {
+
+    .profileBlock {
+      display: flex;
+      flex-direction: row;
+      margin: -35px 28px 10px 28px;
+      align-items: flex-end;
+      .ava {
+        width: 70px;
+        border-radius: 50%;
+        border: 5px solid white;
+      }
+      .name {
+        margin: 10px;
+        font-size: 22px;
+      }
+
+    }
+    .profileMenu {
+      padding:  0 30px;
+      border: 1px solid red;
+      h3 {
+        margin: 20px 10px;
+        font-size: 18px;
+        text-transform: uppercase;
+      }
+      li {
+        margin: 20px 20px;
+        font-size: 16px;
+
+      }
     }
   }
+
 }
