@@ -1,21 +1,26 @@
-import React from "react";
+import React, {DetailedHTMLProps, InputHTMLAttributes} from "react";
 import css from "./InputFormik.module.scss"
 
-type InputFormikType = {
+
+// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
+type InputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
+
+type InputFormikType = InputPropsType & {
     type?: string
     htmlFor?: string
     label?: string
-    getFieldProps: any
+    getFieldProps?: any
     errors?: any
     placeholder?: string
 }
 
-export const InputFormik = (props: InputFormikType) => {
+export const InputFormik: React.FC<InputFormikType> = (
+    {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
   return(
       <div>
           {/*<div><label htmlFor={props.htmlFor}>{props.label}</label></div>*/}
-          <input className={css.input} placeholder={props.placeholder} id={props.htmlFor} type={props.type} {...props.getFieldProps}/>
-          <div className={css.errorField}><span>{props.errors ? props.errors : null}</span></div>
+          <input className={css.input} placeholder={placeholder} id={htmlFor} type={type} {...getFieldProps} {...restProps}/>
+          <div className={css.errorField}><span>{errors ? errors : null}</span></div>
       </div>
   )
 }

@@ -2,6 +2,7 @@ import React from "react";
 import {Preloader} from "../../../../00-Common/Preloader/Preloader";
 import {Contact} from "./ContactsData";
 import {UserProfileType} from "../../../../../redux/profile-reducer";
+import {Button} from "../../../../00-Common/Button/Button";
 
 
 type ProfileDataType = {
@@ -23,9 +24,11 @@ export const ProfileData: React.FC<ProfileDataType> = (
     }
     let contacts = userProfile.contacts
     let data = userProfile
+    console.log("owner", isOwner)
 
     return(<div>
-        {isOwner && <div><button onClick={goToEditMode}>Edit Profile</button></div>}
+        {isOwner && <div><Button onClick={goToEditMode}>Edit Profile</Button></div>}
+
         <div><p><b>Full Name:</b> {data.fullName}</p></div>
         <div><p><b>About me:</b> {data.aboutMe}</p></div>
 

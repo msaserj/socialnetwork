@@ -1,8 +1,7 @@
 import React, {useState} from "react";
-import classes from "./ProfileInfo.module.css"
+import css from "./ProfileInfo.module.scss"
 import {UserProfileType} from "../../../../redux/profile-reducer";
 import {Preloader} from "../../../00-Common/Preloader/Preloader";
-import {ProfileStatusWithHooks} from "./ProfileStatusWithHooks";
 import {ProfileDataForm} from "./ProfileData/ProfileDataForm";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfilePhoto} from "../../../00-Common/ProfilePhoto/ProfilePhoto";
@@ -34,26 +33,23 @@ export const ProfileInfo = (props: ProfileType) => {
         setEditMode(false)
     }
 
-    const loadPhotoHandler = (e: any) => {
-        if (e.target.files.length) {
-            let file = e.target.files[0]
-            props.savePhoto(file)
-        }
-    }
+
+
     return (
         <div>
-            {/*<div>*/}
-            {/*    <img className={classes.bgc} src="http://location-la-batie-montsaleon.fr/layout/img/entete.jpg"*/}
-            {/*         alt="la_batie"/>*/}
-            {/*</div>*/}
-            <div className={classes.descriptionBlock}>
+            
+
+            <div className={css.descriptionBlock}>
                 {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
-
-                <ProfilePhoto photos={data.photos}/>
-                {props.isOwner && <input type={"file"} onChange={loadPhotoHandler}/>}
-
-                <ProfileStatusWithHooks status={props.status} updateStatus={props.updateStatus}
-                                        getStatus={props.getStatus}/>
+                <div className={css.photo}>
+                    <ProfilePhoto
+                        photos={data.photos}
+                        isOwner={props.isOwner}
+                        savePhoto={props.savePhoto}
+                        getStatus={props.getStatus}
+                        status={props.status}
+                        updateStatus={props.updateStatus} name={props.userProfile?.fullName}/>
+                </div>
 
                 {editMode
                     ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}

@@ -13,15 +13,15 @@ export type ProfileType = {
     getStatus: (profileId: string) => void
     isOwner: boolean
     savePhoto: (file: any) => void
-    saveProfile: (profile: any,  setStatus: any, setSubmitting: any) => void
+    saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     resultCode: number
 }
 
 export const Profile = (props: ProfileType) => {
-    if (!props.isAuth) return <Navigate to="/login" />
+    if (!props.isAuth) return <Navigate to="/login"/>
+
     return (
-        <div>
-            <h2>Main content</h2>
+        <>
             <ProfileInfo
                 status={props.status}
                 updateStatus={props.updateStatus}
@@ -29,8 +29,10 @@ export const Profile = (props: ProfileType) => {
                 userProfile={props.userProfile}
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
-             saveProfile={props.saveProfile} resultCode={props.resultCode}/>
-            <MyPostsContainer  />
-        </div>
+                saveProfile={props.saveProfile} resultCode={props.resultCode}/>
+
+            {/*posts*/}
+            <MyPostsContainer/>
+        </>
     )
 }

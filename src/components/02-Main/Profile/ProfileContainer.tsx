@@ -38,16 +38,10 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 
     componentDidUpdate(prevProps: Readonly<ProfilePropsType>, prevState: Readonly<{}>, snapshot?: any) {
-        if (this.props.userId !== prevProps.userId) {
+        if ((this.props.userId) !== prevProps.userId) {
             this.refreshProfile()
         }
-        // if (this.props.profile !== prevProps.profile) {
-        //     this.refreshProfile()
-        // }
-
     }
-
-
     render() {
 
         return (

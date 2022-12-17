@@ -1,4 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
+import css from "./ProfileStatusWithHooks.module.scss"
+import {InputFormik} from "../../../00-Common/InputFormik/InputFormik";
 
 
 type ProfileStatusType = {
@@ -11,6 +13,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
 
     const [editMode, setEditMode] = useState<boolean>(false)
     const [status, setStatus] = useState<string>(props.status)
+    const [showTitle, setShowTitle] = useState(false)
 
     const activateEditMode = () => {
         setEditMode(true)
@@ -30,14 +33,15 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     return (
         <div>
             {!editMode &&
-                <div>
-                    <span onDoubleClick={activateEditMode}>STATUS: {status}</span>
+                <div onMouseEnter={()=>setShowTitle(true)} onMouseLeave={()=>setShowTitle(false)} className={css.statusBlock}>
+                    {showTitle && <span onMouseLeave={()=>{setShowTitle(false)}} className={css.title}>Double Click to change</span>}
+                    <span  className={css.status} onDoubleClick={activateEditMode}>{status}</span>
                 </div>
             }
             {editMode &&
                 <div>
-                    <input onChange={onStatusChange} autoFocus onBlur={deactivateEditMode}
-                           value={status} type="text"/>
+                    <InputFormik onChange={onStatusChange} autoFocus onBlur={deactivateEditMode}
+                           value={status} type="text" />
                 </div>
             }
         </div>
