@@ -8,16 +8,18 @@ import thunkMiddleware, {ThunkAction, ThunkDispatch} from "redux-thunk"
 import {AppActionsType, appReducer} from "./app-reducer";
 import {ChatActionsType, chatReducer} from "./chat-reducer";
 import {MembersActionsType, membersReducer} from "./members-reducer";
+import {myProfileActionsType, myProfileReducer} from "./myProfile-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
-    sidebar: sidebarReducer ,
+    sidebar: sidebarReducer,
     usersPage: usersReducer,
     dialogsPage: dialogsReducer,
     auth: authReducer,
     app: appReducer,
     chat: chatReducer,
-    members: membersReducer
+    members: membersReducer,
+    myProfile: myProfileReducer
 })
 
 // для работы с REDUX_DEVTOOLS: Window c Большой Буквы Window
@@ -48,5 +50,6 @@ export type ActionsType =
     | AppActionsType
     | ChatActionsType
     | MembersActionsType
+    | myProfileActionsType
 
 

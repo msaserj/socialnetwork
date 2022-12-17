@@ -1,14 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import css from "./ProfileWidget.module.scss"
-import {useAppSelector} from "../../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
+import {getMyProfileTC} from "../../../../redux/myProfile-reducer";
 
 type ProfileWidgetType = {}
 
 
 export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
-    const avatar = useAppSelector(state => state.profilePage.userProfile.photos)
-    const name = useAppSelector(state => state.profilePage.userProfile.fullName)
+    const dispatch = useAppDispatch()
+    const name = useAppSelector(state => state.myProfile.myProfile.fullName)
+    const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
+    console.log(name)
 
+    useEffect(()=>{
+        dispatch(getMyProfileTC())
+    },[])
     return (
         <div className={css.sideProfile}>
             <div className={css.profileCover}>
@@ -26,9 +32,9 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <li>Preferences</li>
                 </ul>
                 <ul className={css.profileMenu}>
-                    <h3>My Profile</h3>
+                    <h3>My Community</h3>
                     <li>Activity</li>
-                    <li>Subscribers</li>
+                    <li>Users</li>
                     <li>Log Out</li>
                 </ul>
             </div>
