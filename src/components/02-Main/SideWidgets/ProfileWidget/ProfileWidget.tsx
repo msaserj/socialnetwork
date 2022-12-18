@@ -4,6 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
 import {getMyProfileTC} from "../../../../redux/myProfile-reducer";
 import {NavLink} from "react-router-dom";
 import {editProfileAC} from "../../../../redux/profile-reducer";
+import {logoutTC} from "../../../../redux/auth-reducer";
 
 type ProfileWidgetType = {}
 
@@ -16,9 +17,13 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const edit = useAppSelector(state => state.profilePage.edit)
     const userid = useAppSelector(state => state.profilePage.userProfile.userId)
 
+    const setActive = ({isActive}: { isActive: boolean }) => isActive ? css.activeLink : css.inactiveLink;
 
     const editHandler = () => {
         dispatch(editProfileAC(!edit))
+    }
+    const logoutHandler = () => {
+        dispatch(logoutTC())
     }
 
     useEffect(()=>{
@@ -40,14 +45,15 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
                     <li>Stream</li>
-                    <li>About</li>
+                    <li><NavLink to={"/profile/" + id}>About</NavLink></li>
                     { id === userid && <li style={{cursor: "pointer"}} onClick={editHandler}>Edit Profile</li>}
                 </ul>
                 <ul className={css.profileMenu}>
-                    <h3>My Community</h3>
-                    <li>Activity</li>
-                    <li>Users</li>
-                    <li>Log Out</li>
+                    <h3>Community</h3>
+                    <li><NavLink to="/dialogs" className={setActive}>Messages</NavLink></li>
+                    <li><NavLink to="/users" className={setActive}>Users</NavLink></li>
+                    <li><NavLink to="/chat" className={setActive}>Common Chat</NavLink></li>
+                    <li style={{cursor: "pointer"}} onClick={logoutHandler}>Log Out</li>
                 </ul>
             </div>
         </div>

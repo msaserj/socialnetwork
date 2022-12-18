@@ -149,17 +149,16 @@ export const savePhotoTC = (photoFile: any): AppThunk => async (dispatch) => {
 export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmitting: any): AppThunk =>
     async (dispatch, getState: () => RootState) => {
     const myId = getState().auth.data.id
-    console.log("myid", myId)
-    console.log("profile", profile)
     let res = await profileAPI.saveProfile(profile)
     if (res.data.resultCode === 0) {
         dispatch(getUserProfileTC(myId))
         dispatch(setResultCodeAC(0))
-        dispatch(editProfileAC(false))
+
     } else {
         dispatch(setResultCodeAC(1))
         setStatus(res.messages)
         return await Promise.reject(res.data.message[0])
+
     }
     setSubmitting(false);
 }

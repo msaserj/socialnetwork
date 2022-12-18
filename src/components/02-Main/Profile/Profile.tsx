@@ -18,10 +18,13 @@ export type ProfileType = {
 }
 
 export const Profile = (props: ProfileType) => {
+
     if (!props.isAuth) return <Navigate to="/login"/>
 
+
+
     return (
-        <>
+        <div>
             <ProfileInfo
                 status={props.status}
                 updateStatus={props.updateStatus}
@@ -30,9 +33,8 @@ export const Profile = (props: ProfileType) => {
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
                 saveProfile={props.saveProfile} resultCode={props.resultCode}/>
-
             {/*posts*/}
             <MyPostsContainer/>
-        </>
+        </div>
     )
 }

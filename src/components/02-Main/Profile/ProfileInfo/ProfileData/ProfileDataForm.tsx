@@ -48,21 +48,6 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
                 mainLink: ''
             }
         },
-        // validate: (values) => {
-        //     const errors: FormikErrorType = {contacts:{}};
-        //     // if (!values.contacts.facebook) {
-        //     //     // @ts-ignore
-        //     //     errors.contacts = 'required'
-        //     // }
-        //     // if (!values.contacts.vk) {
-        //     //     // @ts-ignore
-        //     //     errors.contacts = 'required'
-        //     // }
-        //     // if (!values.contacts.github) {
-        //     //     // @ts-ignore
-        //     //     errors.contacts = 'required'
-        //     // }
-        //     return errors;
 
         onSubmit: async (values, onSubmitProps) => {
 
@@ -72,10 +57,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
             console.log(resultCode)
             if (!formik.status) {
                 formik.resetForm()
-                deactivateEditMode()
             }
-            // formik.resetForm();
-            // formik.setTouched({});
         },
     });
     useEffect(() => {

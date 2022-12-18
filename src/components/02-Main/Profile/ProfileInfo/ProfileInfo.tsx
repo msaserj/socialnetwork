@@ -42,11 +42,12 @@ export const ProfileInfo = (props: ProfileType) => {
 
 
 
+
     return (
         <div>
             
 
-            <div className={css.descriptionBlock}>
+            <div  className={css.descriptionBlock}>
                 {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
                 <div className={css.photo}>
                     <ProfilePhoto

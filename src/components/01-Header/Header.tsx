@@ -16,7 +16,6 @@ export const Header = (props: HeaderType) => {
     const logoutHandler = () => {
       props.logoutTC()
     }
-    console.log(!props.authHeader.id)
     return (
         <header className={css.header}>
             <img src={logo} alt="logo"/>
