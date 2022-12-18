@@ -18,8 +18,11 @@ export const InputFormik: React.FC<InputFormikType> = (
     {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
   return(
       <div>
-          {/*<div><label htmlFor={props.htmlFor}>{props.label}</label></div>*/}
-          <input className={css.input} placeholder={placeholder} id={htmlFor} type={type} {...getFieldProps} {...restProps}/>
+          <div className={css.form}>
+              {label && <label className={css.label} htmlFor={htmlFor}>{label}</label>}
+              <input className={css.input} placeholder={placeholder} id={htmlFor} type={type} {...getFieldProps} {...restProps}/>
+          </div>
+
           <div className={css.errorField}><span>{errors ? errors : null}</span></div>
       </div>
   )
@@ -30,9 +33,9 @@ export const CheckboxFormik = (props: InputFormikType) => {
         <div>
             <div className={css.checkboxBlock}>
                 <input className={css.checkbox} placeholder={props.placeholder} type={"checkbox"} {...props.getFieldProps}/>
-                <label htmlFor={props.htmlFor}>{props.label}</label>
+                <label className={css.labelCheckbox} htmlFor={props.htmlFor}>{props.label}</label>
             </div>
-            <div><span>{props.errors ? props.errors : null}</span></div>
+            <div className={css.errorField}><span>{props.errors ? props.errors : null}</span></div>
         </div>
 
     )

@@ -1,7 +1,10 @@
 import React, {useEffect} from "react";
 import {UserProfileType} from "../../../../../redux/profile-reducer";
 import {useFormik} from "formik";
-import {InputFormik, TextAreaFormik} from "../../../../00-Common/InputFormik/InputFormik";
+import {CheckboxFormik, InputFormik} from "../../../../00-Common/InputFormik/InputFormik";
+import {AuthButton} from "../../../../00-Common/AuthButton/AuthButton";
+
+import css from "./ProfileDataForm.module.scss"
 
 
 type ProfileDataFormType = {
@@ -81,7 +84,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
             formik.setFieldValue("aboutMe", userProfile.aboutMe)
             formik.setFieldValue("lookingForAJob", userProfile.lookingForAJob)
             formik.setFieldValue("lookingForAJobDescription", userProfile.lookingForAJobDescription)
-            formik.setFieldValue("facebook", userProfile.contacts.facebook)
+            // formik.setFieldValue("facebook", userProfile.contacts.facebook)
 
             userProfile && Object.keys(userProfile.contacts).map(key => {
                 // @ts-ignore
@@ -89,17 +92,19 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
             })
         }
     }, [userProfile])
-    return (<div>
-        form
-        <form onSubmit={formik.handleSubmit}>
+    return (
+        <form className={css.formBlock} onSubmit={formik.handleSubmit}>
             <InputFormik htmlFor={"fullName"} label={"Full Name"} getFieldProps={formik.getFieldProps("fullName")}
                          errors={formik.errors.fullName} type={"text"}/>
-            <TextAreaFormik htmlFor={"aboutMe"} label={"About Me"} getFieldProps={formik.getFieldProps("aboutMe")}
+
+            <InputFormik htmlFor={"aboutMe"} label={"About Me"} getFieldProps={formik.getFieldProps("aboutMe")}
                             errors={formik.errors.aboutMe} type={"textarea"}/>
-            <InputFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"}
+
+            <CheckboxFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"}
                          getFieldProps={formik.getFieldProps("lookingForAJob")}
-                         errors={formik.errors.lookingForAJob} type={"checkbox"}/>
-            <TextAreaFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
+                         errors={formik.errors.lookingForAJob} />
+
+            <InputFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
                             getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
                             errors={formik.errors.lookingForAJobDescription}/>
 
@@ -112,8 +117,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
             </ul>
             <div>
                 {formik.status}
-                <button type="submit">Submit</button>
+                <AuthButton type="submit">Save Changes</AuthButton>
             </div>
-        </form>
-    </div>)
+        </form>)
 }
