@@ -11,6 +11,7 @@ export type ProfileActionsType =
     | ReturnType<typeof deletePostAC>
     | ReturnType<typeof savePhotoAC>
     | ReturnType<typeof setResultCodeAC>
+    | ReturnType<typeof editProfileAC>
 
 // Actions
 
@@ -22,6 +23,7 @@ const SET_STATUS = 'sn/profile/SET-STATUS'
 const SET_PHOTO = 'sn/profile/SET-PHOTO'
 const SET_RESULT_CODE = 'sn/profile/SET-RESULT-CODE'
 const DELETE_POST = 'sn/profile/DELETE-POST'
+const EDIT_PROFILE = 'sn/profile/EDIT-PROFILE'
 
 // ActionCreators
 export const addPostOnClickAC = () => ({type: ADD_POST} as const)
@@ -31,6 +33,7 @@ export const setStatusAC = (status: string) => ({type: SET_STATUS, status} as co
 export const savePhotoAC = (photoFile: any) => ({type: SET_PHOTO, photoFile} as const)
 export const setResultCodeAC = (code: number) => ({type: SET_RESULT_CODE, code} as const)
 export const deletePostAC = (postId: string) => ({type: DELETE_POST, postId} as const)
+export const editProfileAC = (edit: boolean) => ({type: EDIT_PROFILE, edit} as const)
 
 // types for InitialState
 export type ProfilePageType = {
@@ -39,6 +42,7 @@ export type ProfilePageType = {
     userProfile: UserProfileType
     status: string
     resultCode: number
+    edit: boolean
 }
 export type PostType = {
     id: string
@@ -80,7 +84,8 @@ const initialState: ProfilePageType = {
     newTextState: "",
     userProfile: {} as UserProfileType,
     status: "",
-    resultCode: 1
+    resultCode: 1,
+    edit: false
 }
 
 // reducer
@@ -106,6 +111,8 @@ export const profileReducer = (state: ProfilePageType = initialState, action: Ac
             return {...state, resultCode: action.code}
         case DELETE_POST:
             return {...state, posts: state.posts.filter(p => p.id !== action.postId)}
+        case EDIT_PROFILE:
+            return {...state, edit: action.edit}
         default:
             return state
     }
@@ -148,6 +155,7 @@ export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmi
     if (res.data.resultCode === 0) {
         dispatch(getUserProfileTC(myId))
         dispatch(setResultCodeAC(0))
+        dispatch(editProfileAC(false))
     } else {
         dispatch(setResultCodeAC(1))
         setStatus(res.messages)

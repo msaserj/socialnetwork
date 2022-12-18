@@ -1,10 +1,11 @@
-import React, {useState} from "react";
+import React from "react";
 import css from "./ProfileInfo.module.scss"
-import {UserProfileType} from "../../../../redux/profile-reducer";
+import {editProfileAC, UserProfileType} from "../../../../redux/profile-reducer";
 import {Preloader} from "../../../00-Common/Preloader/Preloader";
 import {ProfileDataForm} from "./ProfileData/ProfileDataForm";
 import {ProfileData} from "./ProfileData/ProfileData";
 import {ProfilePhoto} from "../../../00-Common/ProfilePhoto/ProfilePhoto";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
 
 type ProfileType = {
     userProfile: UserProfileType | null
@@ -18,7 +19,12 @@ type ProfileType = {
 }
 
 export const ProfileInfo = (props: ProfileType) => {
-    const [editMode, setEditMode] = useState<boolean>(false)
+    const dispatch = useAppDispatch()
+    const edit = useAppSelector(state => state.profilePage.edit)
+
+    console.log(edit)
+
+    // const [editMode, setEditMode] = useState<boolean>(false)
 
 
     if (!props.userProfile) {
@@ -26,11 +32,12 @@ export const ProfileInfo = (props: ProfileType) => {
     }
     let data = props.userProfile
     // console.log(props.isOwner)
-    const activateEditMode = () => {
-        setEditMode(true)
-    }
+    // const activateEditMode = () => {
+    //     setEditMode(true)
+    // }
     const deactivateEditMode = () => {
-        setEditMode(false)
+        dispatch(editProfileAC(true))
+        // setEditMode(false)
     }
 
 
@@ -51,11 +58,12 @@ export const ProfileInfo = (props: ProfileType) => {
                         updateStatus={props.updateStatus} name={props.userProfile?.fullName}/>
                 </div>
 
-                {editMode
+                {edit
                     ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}
                                        deactivateEditMode={deactivateEditMode} resultCode={props.resultCode}/>
                     : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner}
-                                   goToEditMode={activateEditMode}/>}
+                                   // goToEditMode={activateEditMode}
+                    />}
             </div>
         </div>)
 }

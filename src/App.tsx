@@ -48,10 +48,11 @@ class App extends React.Component<AuthPropsType> {
                 <div className="main-section">
                     <CoverPhoto/>
                     <div className={"side-section left"}>
-
-                        <Widget title={"Login"}><LoginComponent/></Widget>
-                        <Widget title={"Last Members"}><LastMembers/></Widget>
                         <ProfileWidget/>
+                        <Widget title={"Last Members"}><LastMembers/></Widget>
+                        <Widget title={"Login"}><LoginComponent/></Widget>
+
+
 
                     </div>
                     <Main/>

@@ -3,6 +3,7 @@ import css from "./ProfileWidget.module.scss"
 import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
 import {getMyProfileTC} from "../../../../redux/myProfile-reducer";
 import {NavLink} from "react-router-dom";
+import {editProfileAC} from "../../../../redux/profile-reducer";
 
 type ProfileWidgetType = {}
 
@@ -12,10 +13,16 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const name = useAppSelector(state => state.myProfile.myProfile.fullName)
     const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
     const id = useAppSelector(state => state.myProfile.myProfile.userId)
-    console.log(name)
+    const edit = useAppSelector(state => state.profilePage.edit)
+    const userid = useAppSelector(state => state.profilePage.userProfile.userId)
+
+
+    const editHandler = () => {
+        dispatch(editProfileAC(!edit))
+    }
 
     useEffect(()=>{
-        dispatch(getMyProfileTC())
+         dispatch(getMyProfileTC())
     },[dispatch])
     return (
         <div className={css.sideProfile}>
@@ -34,7 +41,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <h3>My Profile</h3>
                     <li>Stream</li>
                     <li>About</li>
-                    <li>Preferences</li>
+                    { id === userid && <li style={{cursor: "pointer"}} onClick={editHandler}>Edit Profile</li>}
                 </ul>
                 <ul className={css.profileMenu}>
                     <h3>My Community</h3>

@@ -8,7 +8,7 @@ import {Button} from "../../../../00-Common/Button/Button";
 type ProfileDataType = {
     userProfile: UserProfileType | null
     isOwner: boolean
-    goToEditMode: () => void
+    // goToEditMode: () => void
 }
 
 
@@ -16,7 +16,7 @@ export const ProfileData: React.FC<ProfileDataType> = (
     {
         userProfile,
         isOwner,
-        goToEditMode
+        // goToEditMode
 
     }) => {
     if (!userProfile) {
@@ -27,7 +27,7 @@ export const ProfileData: React.FC<ProfileDataType> = (
     console.log("owner", isOwner)
 
     return(<div>
-        {isOwner && <div><Button onClick={goToEditMode}>Edit Profile</Button></div>}
+        {isOwner && <div><Button >Edit Profile</Button></div>}
 
         <div><p><b>Full Name:</b> {data.fullName}</p></div>
         <div><p><b>About me:</b> {data.aboutMe}</p></div>
