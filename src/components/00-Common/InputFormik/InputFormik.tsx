@@ -42,11 +42,12 @@ export const CheckboxFormik = (props: InputFormikType) => {
 }
 
 
-export const TextAreaFormik = (props: InputFormikType) => {
+export const TextAreaFormik: React.FC<InputFormikType> = (
+    {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
     return(
-        <div>
-            <div><label htmlFor={props.htmlFor}>{props.label}</label></div>
-            <textarea id={props.htmlFor} {...props.getFieldProps}/>{props.errors ? props.errors : null}
+        <div className={css.form}>
+            {/*<div><label htmlFor={props.htmlFor}>{props.label}</label></div>*/}
+            <textarea className={`${css.input} ${css.textarea}`} id={htmlFor} {...getFieldProps} {...restProps}/>{errors ? errors : null}
         </div>
     )
 }

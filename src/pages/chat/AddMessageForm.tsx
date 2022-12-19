@@ -1,11 +1,13 @@
 import React, {useState} from 'react';
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {sendMessageTC} from "../../redux/chat-reducer";
+import {TextAreaFormik} from "../../components/00-Common/InputFormik/InputFormik";
+import {Button} from "../../components/00-Common/Button/Button";
 
 
 const AddMessageForm: React.FC = () => {
     const[message, setMessage] = useState('')
-
+    console.log(message)
     const status = useAppSelector(state => state.chat.status)
 
     const dispatch = useAppDispatch()
@@ -22,10 +24,11 @@ const AddMessageForm: React.FC = () => {
     return (
         <div>
             <div>
-                <textarea onChange={(e)=>setMessage(e.currentTarget.value)} value={message}></textarea>
+                <TextAreaFormik  onChange={(e)=>setMessage(e.currentTarget.value)} value={message} />
+                {/*<textarea onChange={(e)=>setMessage(e.currentTarget.value)} value={message}></textarea>*/}
             </div>
             <div>
-                <button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</button>
+                <Button disabled={status !== 'ready'} onClick={sendMessageHandler}>Send</Button>
             </div>
         </div>
     );
