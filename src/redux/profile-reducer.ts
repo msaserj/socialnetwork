@@ -150,15 +150,15 @@ export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmi
     async (dispatch, getState: () => RootState) => {
     const myId = getState().auth.data.id
     let res = await profileAPI.saveProfile(profile)
-    if (res.data.resultCode === 0) {
+        dispatch(editProfileAC(false))
+    if (res.resultCode === 0) {
         dispatch(getUserProfileTC(myId))
         dispatch(setResultCodeAC(0))
-
-    } else {
+    }
+    else {
         dispatch(setResultCodeAC(1))
         setStatus(res.messages)
-        return await Promise.reject(res.data.message[0])
-
+        return await Promise.reject(res.message[0])
     }
     setSubmitting(false);
 }

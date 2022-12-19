@@ -22,10 +22,7 @@ export const ProfileInfo = (props: ProfileType) => {
     const dispatch = useAppDispatch()
     const edit = useAppSelector(state => state.profilePage.edit)
 
-    console.log(edit)
-
     // const [editMode, setEditMode] = useState<boolean>(false)
-
 
     if (!props.userProfile) {
         return <Preloader/>  //если нет профайла то крутилка

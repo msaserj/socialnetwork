@@ -24,7 +24,6 @@ export const ProfileData: React.FC<ProfileDataType> = (
     }
     let contacts = userProfile.contacts
     let data = userProfile
-    console.log("owner", isOwner)
 
     return(<div>
         {isOwner && <div><Button >Edit Profile</Button></div>}

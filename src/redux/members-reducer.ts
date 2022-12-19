@@ -57,7 +57,6 @@ export const membersReducer = (state: UsersPageType = initialState, action: Acti
 export const getMembersTC = (): AppThunk => async (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
     let data = await usersAPI.getMembers(1,8)
-    console.log(data)
     dispatch(setUsersAC(data.items))
     dispatch(toggleIsFetchingAC(false))
 }

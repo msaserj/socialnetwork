@@ -70,7 +70,6 @@ export const getMyProfileTC = (): AppThunk => async (dispatch, getState) => {
     const id = getState().auth.data.id;
     dispatch(toggleIsFetchingAC(true));
     let data = await profileAPI.getProfile(id)
-    console.log(data)
     dispatch(setMyProfileAC(data.data))
     dispatch(toggleIsFetchingAC(false))
 }
