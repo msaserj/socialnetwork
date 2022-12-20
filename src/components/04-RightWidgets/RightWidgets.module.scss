@@ -1,0 +1,11 @@
+
+.sideSection {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  justify-content: start;
+  top: 110px;
+  position: sticky;
+  align-self: start;
+  grid-column: 4/5;
+}
