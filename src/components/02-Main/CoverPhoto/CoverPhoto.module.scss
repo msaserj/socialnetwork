@@ -1,5 +1,5 @@
 .coverPhoto {
-  height: 510px;
+  height: 480px;
   grid-column: 1/6;
   grid-row: 1;
   z-index: -1;
@@ -11,7 +11,7 @@
 
   .photoBlock {
     //border: 5px solid #881313;
-    height: 450px;
+    height: 420px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -25,7 +25,7 @@
       align-items: center;
       height: auto;
       width: 100%;
-      margin-top: -320px;
+      margin-top: -370px;
     }
   }
 
