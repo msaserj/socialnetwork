@@ -10,7 +10,7 @@
   }
   .input {
     white-space: nowrap;
-    margin: 5px 10px 5px 0;
+    margin:  10px  0;
     background-color: $backgroundMain;
     border: 2px solid $inputBorder;
     box-shadow: none;
@@ -29,8 +29,9 @@
     }
   }
   .textarea {
-    width: 90%;
-    height: 200px;
+    border-radius: 7px;
+    width: 100%;
+    height: 150px;
     resize: none;
   }
 }

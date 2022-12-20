@@ -1,6 +1,7 @@
 import React, {useEffect, useRef, useState} from 'react';
 import ChatMessage from "./ChatMessage";
 import {useAppSelector} from "../../hooks/hooks";
+import css from "./Messages.module.scss"
 
 
 export type ChatMessageType = {
@@ -27,13 +28,12 @@ const Messages: React.FC = () => {
     }
     useEffect(()=> {
         autoScroll && messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
-    },[messages])
+    },[messages, autoScroll])
 
 
     console.log(messages)
     return (
-        <div style={{height: '400px', overflowY: 'auto'}} onScroll={scrollHandler}>
-            Messages
+        <div className={css.messagesBlock} style={{height: '400px', overflowY: 'auto'}} onScroll={scrollHandler}>
             {messages.map((m) => <ChatMessage key={m.id} message={m}/>)}
             <div ref={messagesAnchorRef}></div>
         </div>

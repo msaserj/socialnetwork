@@ -1,5 +1,5 @@
 import React, {ReactNode} from 'react';
-import css from "./Widget.module.scss"
+import css from "./MainWidget.module.scss"
 
 type WidgetType = {
     children: ReactNode
@@ -7,7 +7,7 @@ type WidgetType = {
 }
 
 
-export const Widget: React.FC<WidgetType> = ({children, title}) => {
+export const MainWidget: React.FC<WidgetType> = ({children, title}) => {
 
     return (
         <div className={css.widget}>

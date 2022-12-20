@@ -1,0 +1,21 @@
+@import "./src/components/00-Common/styles/sass/variables";
+@import "./src/components/00-Common/styles/sass/mixins";
+
+.messagesBlock {
+  background-color: $backgroundMain;
+  border-radius: 7px;
+  margin-bottom: 40px;
+  border: 1px solid #e3e3e3;
+  &::-webkit-scrollbar {
+    width: 14px;
+    background-color: #e0e0e0;
+    color: #0b6c00;
+    border-radius: 8em;
+  }
+  &::-webkit-scrollbar-thumb {
+    height: 30px;
+    border: 2px solid #858585;
+    background-color: #afafaf;
+    border-radius: 8em;
+  }
+}

@@ -10,7 +10,7 @@ import {Footer} from "./components/03-Footer/Footer";
 import Main from "./components/02-Main/Main";
 import {CoverPhoto} from "./components/02-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
-import {Widget} from "./components/02-Main/SideWidgets/Widget/Widget";
+import {MainWidget} from "./components/02-Main/MainWidget/MainWidget";
 import LastMembers from "./components/02-Main/SideWidgets/LastMembers/LastMembers";
 import {HashBar} from "./components/02-Main/SideWidgets/HashTags/HashBar";
 import {SiteInfo} from "./components/02-Main/SideWidgets/SiteInfo/SiteInfo";
@@ -49,16 +49,14 @@ class App extends React.Component<AuthPropsType> {
                     <CoverPhoto/>
                     <div className={"side-section left"}>
                         <ProfileWidget/>
-                        <Widget title={"Last Members"}><LastMembers/></Widget>
-                        <Widget title={"Login"}><LoginComponent/></Widget>
-
-
+                        <MainWidget title={"Last Members"}><LastMembers/></MainWidget>
+                        <MainWidget title={"Login"}><LoginComponent/></MainWidget>
 
                     </div>
                     <Main/>
                     <div className={"side-section right"}>
-                        <Widget title={"Site Info"}><SiteInfo/></Widget>
-                        <Widget title={"Hash Tags"}><HashBar/></Widget>
+                        <MainWidget title={"Site Info"}><SiteInfo/></MainWidget>
+                        <MainWidget title={"Hash Tags"}><HashBar/></MainWidget>
                     </div>
 
                 </div>

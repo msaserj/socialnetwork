@@ -3,6 +3,7 @@ import AddMessageForm from "./AddMessageForm";
 import Messages from "./Messages";
 import {useAppDispatch, useAppSelector} from "../../hooks/hooks";
 import {startMessagesListeningTC, stopMessagesListeningTC} from "../../redux/chat-reducer";
+import css from "./Chat.module.scss";
 
 
 const Chat: React.FC = () => {
@@ -10,23 +11,20 @@ const Chat: React.FC = () => {
     const dispatch = useAppDispatch()
     const status = useAppSelector(state => state.chat.status)
 
-    useEffect(()=> {
+    useEffect(() => {
         dispatch(startMessagesListeningTC())
         return () => {
             dispatch(stopMessagesListeningTC())
         }
-    },[])
-
+    }, [dispatch])
 
 
     return (
         <div>
-            Chat
             {status === 'error' ? <div>Some error</div> : <div>
-                <Messages />
-                <AddMessageForm />
+                <Messages/>
+                <AddMessageForm/>
             </div>}
-
         </div>
     );
 };
