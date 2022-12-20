@@ -38,13 +38,15 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
     return (
         <div className={css.profilePhoto}>
             <div className={css.photoBlock}>
+
                 <img className={css.userPhoto} src={photos.large != null || undefined ? photos.large : avatar} {...restProps} alt="avatar"/>
+
                 {isOwner && <label className={css.divinput}>
                     <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
             </div>
             <div className={css.nameStatus}>
                 <h3 className={css.profileHeader}>{name}</h3>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} getStatus={getStatus}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} getStatus={getStatus} isOwner={isOwner}/>
             </div>
 
         </div>

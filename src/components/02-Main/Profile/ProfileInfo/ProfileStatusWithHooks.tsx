@@ -7,6 +7,7 @@ type ProfileStatusType = {
     status: string
     updateStatus: (status: string) => void
     getStatus: (status: string) => void
+    isOwner: boolean
 }
 
 export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
@@ -16,7 +17,7 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     const [showTitle, setShowTitle] = useState(false)
 
     const activateEditMode = () => {
-        setEditMode(true)
+        props.isOwner && setEditMode(true)
     }
     const deactivateEditMode = () => {
         props.updateStatus(status)
@@ -33,12 +34,12 @@ export const ProfileStatusWithHooks = (props: ProfileStatusType) => {
     return (
         <div>
             {!editMode &&
-                <div onMouseEnter={()=>setShowTitle(true)} onMouseLeave={()=>setShowTitle(false)} className={css.statusBlock}>
+                <div onMouseEnter={()=>props.isOwner && setShowTitle(true)} onMouseLeave={()=>setShowTitle(false)} className={css.statusBlock}>
                     {showTitle && <span onMouseLeave={()=>{setShowTitle(false)}} className={css.title}>Double Click to change</span>}
                     <span  className={css.status} onDoubleClick={activateEditMode}>{status}</span>
                 </div>
             }
-            {editMode &&
+            {editMode && props.isOwner &&
                 <div>
                     <InputFormik onChange={onStatusChange} autoFocus onBlur={deactivateEditMode}
                            value={status} type="text" />
