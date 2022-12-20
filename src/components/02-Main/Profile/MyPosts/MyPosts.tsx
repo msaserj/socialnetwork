@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
 import {ProfilePageType} from "../../../../redux/profile-reducer";
+import {TextAreaFormik} from "../../../00-Common/InputFormik/InputFormik";
+import {Button} from "../../../00-Common/Button/Button";
 
 
 type MyPostType = {
@@ -25,7 +27,7 @@ export class MyPosts extends React.PureComponent<MyPostType> {
         const postOnClickHandler = () => {
             this.props.addPostOnClick()
         }
-        const postOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        const postOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
             // props.dispatch(updateNewPostAC(e.currentTarget.value))
             this.props.newPostTextOnChange(e.currentTarget.value)
         }
@@ -35,12 +37,13 @@ export class MyPosts extends React.PureComponent<MyPostType> {
                 <h3>My posts</h3>
                 <div>
                     <div>
-                        <textarea onChange={postOnChangeHandler}
-                                  value={this.props.profilePage.newTextState}>Add post</textarea>
+                        <TextAreaFormik onChange={postOnChangeHandler}
+                                  value={this.props.profilePage.newTextState}>Add post</TextAreaFormik>
                     </div>
                     <div>
-                        <button onClick={postOnClickHandler}>Add post</button>
+                        <Button onClick={postOnClickHandler}>Add post</Button>
                     </div>
+
                     <div className={classes.item}>
                         <h3>New Post</h3>
                     </div>

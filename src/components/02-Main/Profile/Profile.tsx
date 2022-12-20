@@ -1,6 +1,5 @@
 import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import {Navigate} from "react-router-dom";
 
@@ -24,7 +23,7 @@ export const Profile = (props: ProfileType) => {
 
 
     return (
-        <div>
+        <>
             <ProfileInfo
                 status={props.status}
                 updateStatus={props.updateStatus}
@@ -34,7 +33,7 @@ export const Profile = (props: ProfileType) => {
                 savePhoto={props.savePhoto}
                 saveProfile={props.saveProfile} resultCode={props.resultCode}/>
             {/*posts*/}
-            <MyPostsContainer/>
-        </div>
+            {/*<MyPostsContainer/>*/}
+        </>
     )
 }

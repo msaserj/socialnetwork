@@ -2,7 +2,7 @@ import React from "react";
 import {Preloader} from "../../../../00-Common/Preloader/Preloader";
 import {Contact} from "./ContactsData";
 import {UserProfileType} from "../../../../../redux/profile-reducer";
-import {Button} from "../../../../00-Common/Button/Button";
+import css from "./ProfileData.module.scss"
 
 
 type ProfileDataType = {
@@ -12,33 +12,35 @@ type ProfileDataType = {
 }
 
 
-export const ProfileData: React.FC<ProfileDataType> = (
-    {
-        userProfile,
-        isOwner,
-        // goToEditMode
-
-    }) => {
+export const ProfileData: React.FC<ProfileDataType> = ({userProfile,}) => {
     if (!userProfile) {
         return <Preloader/>  //если нет профайла то крутилка
     }
     let contacts = userProfile.contacts
     let data = userProfile
 
-    return(<div>
-        {isOwner && <div><Button >Edit Profile</Button></div>}
+    return (
+        <div>
+            <div className={css.aboutItem}>
+                <p><b>Full Name:</b> {data.fullName}</p>
+            </div>
+            <div className={css.aboutItem}>
+                <p><b>About Me:</b> {data.aboutMe}</p>
+            </div>
+            <div className={css.aboutItem}>
+                {data.lookingForAJob && <div>Ищу работу! {data.lookingForAJobDescription}</div>}
+            </div>
 
-        <div><p><b>Full Name:</b> {data.fullName}</p></div>
-        <div><p><b>About me:</b> {data.aboutMe}</p></div>
+            <div className={css.aboutItem}>
+                <p><b>Contacts:</b></p>
+            </div>
 
-        Looking for a job: {data.lookingForAJob && <div>Ищу работу! <br/> {data.lookingForAJobDescription}</div>}
 
-        <p><b>Contacts:</b></p>
-        <ul>
-            {contacts && Object.keys(contacts).map(key => {
+            <ul className={css.contacts}>
+                {contacts && Object.keys(contacts).map(key => {
                     // @ts-ignore
                     return <Contact key={key} contactTitle={key} contactValue={contacts[key]}/>
-            })}
-        </ul>
-    </div>)
+                })}
+            </ul>
+        </div>)
 }

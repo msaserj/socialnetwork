@@ -25,10 +25,9 @@ const Main = () => {
                     <Route path='/profile/:userId' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}/>
                 </Route>
                 <Route path="/users" element={<MainWidget title={"Users"}><UsersContainer/></MainWidget>}/>
-                {/*<Route path="/login" element={<LoginComponent/>}/>*/}
                 <Route path="/chat" element={ <MainWidget title={"CommonChat"}><Chat/></MainWidget> }/>
                 <Route path="*" element={<div>404</div>}/>
-                {/*<Route path="/settings" element={<Settings />}/>*/}
+
             </Routes>
 
         </div>

@@ -42,11 +42,7 @@ export const ProfileInfo = (props: ProfileType) => {
 
     return (
         <div>
-            
-
             <div  className={css.descriptionBlock}>
-                {/*<img className={classes.userPhoto} src={data.photos ? data.photos.large : userPhoto} alt=""/>*/}
-                <div className={css.photo}>
                     <ProfilePhoto
                         photos={data.photos}
                         isOwner={props.isOwner}
@@ -54,7 +50,6 @@ export const ProfileInfo = (props: ProfileType) => {
                         getStatus={props.getStatus}
                         status={props.status}
                         updateStatus={props.updateStatus} name={props.userProfile?.fullName}/>
-                </div>
 
                 {edit
                     ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}
