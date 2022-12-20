@@ -6,7 +6,7 @@ import avaNeo from "../../../assets/images/avaNeo.png";
 import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
 
 import {MdOutlinePhotoCamera} from "react-icons/md";
-import {ProfileStatusWithHooks} from "../../02-Main/Profile/ProfileInfo/ProfileStatusWithHooks";
+import {ProfileStatusWithHooks} from "../../03-Main/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type ProfilePhotoType = {
     photos: UserPhotosProfileType | null

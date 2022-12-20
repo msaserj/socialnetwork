@@ -44,8 +44,8 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
 
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
-                    <li>Stream</li>
                     <li><NavLink to={"/profile/" + id}>About</NavLink></li>
+                    <li>Stream</li>
                     { id === userid && <li style={{cursor: "pointer"}} onClick={editHandler}>Edit Profile</li>}
                 </ul>
                 <ul className={css.profileMenu}>

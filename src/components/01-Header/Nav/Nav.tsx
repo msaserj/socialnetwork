@@ -1,34 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
-import css from './Nav.module.css'
+import css from './Nav.module.scss'
 
-export const Nav = () => {
+
+
+type NavType = {
+    logoutTC: () => void
+    id: number
+}
+
+export const Nav = (props: NavType) => {
+
+    const [showMenu, setShowMenu] = useState(false)
     const setActive = ({isActive}: { isActive: boolean }) => isActive ? css.activeLink : css.inactiveLink;
 
+    const cssMenu = showMenu ? css.showMenu : ""
+    const activeMenu = showMenu ? css.activeMenu : ""
+
+    const showMenuHandler = () => {
+        setShowMenu(!showMenu)
+    }
+
+    const logoutHandler = () => {
+        props.logoutTC()
+    }
     return (
-        <div className={css.menu}>
-            <ul className="sub-menu">
-                <li id="menu-item-35" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-35">
-                    <a href="https://velikorodnov.com/dev/devmatebook/profile/">Profile</a></li>
-                <li id="menu-item-34" className="menu-item menu-item-type-post_type menu-item-object-page menu-item-34">
-                    <a href="https://velikorodnov.com/dev/devmatebook/members/">Members</a></li>
+        <div onBlur={() => setShowMenu(false)} onClick={showMenuHandler} className={`${css.menuButton} ${activeMenu}`}>
+            <div className={css.menuIcon}></div>
+            <ul className={`${css.menu} ${cssMenu}`}>
+                <NavLink to={"/profile/" + props.id} className={setActive}>
+                    <li className={css.menuItem}>About</li>
+                </NavLink>
+                <NavLink to={"/stream/" + props.id} className={setActive}>
+                    <li className={css.menuItem}>Stream</li>
+                </NavLink>
+
+                <NavLink  className={setActive} to={""}>
+                    <li className={css.menuItem} onClick={logoutHandler}>Log Out</li>
+                </NavLink>
             </ul>
-<ul>
-    <li>
-        <NavLink to="/" className={setActive}>Profile</NavLink>
-    </li>
-</ul>
-
-
-                <NavLink to="/dialogs" className={setActive}>Messages</NavLink>
-
-                <NavLink to="/users" className={setActive}>Users</NavLink>
-
-                <NavLink to="/chat" className={setActive}>Chat</NavLink>
-
-            {/*<NavLink to="/music" className = {setActive}>Music</NavLink>*/}
-
-            {/*<NavLink to="/setting" className = {setActive}>Settings</NavLink>*/}
         </div>
+
     );
 };

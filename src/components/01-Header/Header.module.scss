@@ -1,0 +1,49 @@
+
+.header {
+  display: flex;
+  height: 80px;
+  width: 100%;
+  align-items: center;
+  position: fixed;
+  background-color: #363c42;
+  z-index: 5;
+  .flexContainer {
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 85%;
+    .header img {
+      width: 60px;
+    }
+
+    .profileBlock {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      .profile {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+
+        .ava {
+          width: 60px;
+          border-radius: 50%;
+          border: 5px solid white;
+        }
+
+        .name {
+          margin:  0 10px;
+          font-size: 16px;
+          text-decoration: none;
+          color: #dadada;
+        }
+
+      }
+    }
+  }
+
+}
+
+

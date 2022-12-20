@@ -6,23 +6,18 @@ import {RootState} from "./redux/redux-store";
 import {compose} from "redux";
 import {initializeTC} from "./redux/app-reducer";
 import {Preloader} from "./components/00-Common/Preloader/Preloader";
-import {Footer} from "./components/03-Footer/Footer";
-import Main from "./components/02-Main/Main";
-import {CoverPhoto} from "./components/02-Main/CoverPhoto/CoverPhoto";
+import {Footer} from "./components/05-Footer/Footer";
+import Main from "./components/03-Main/Main";
+import {CoverPhoto} from "./components/03-Main/CoverPhoto/CoverPhoto";
 import {withSuspense} from "./hoc/withSuspense";
-import {MainWidget} from "./components/02-Main/MainWidget/MainWidget";
-import LastMembers from "./components/02-Main/SideWidgets/LastMembers/LastMembers";
-import {HashBar} from "./components/02-Main/SideWidgets/HashTags/HashBar";
-import {SiteInfo} from "./components/02-Main/SideWidgets/SiteInfo/SiteInfo";
-import {ProfileWidget} from "./components/02-Main/SideWidgets/ProfileWidget/ProfileWidget";
+import {MainWidget} from "./components/03-Main/MainWidget/MainWidget";
+import LastMembers from "./components/03-Main/SideWidgets/LastMembers/LastMembers";
+import {HashBar} from "./components/03-Main/SideWidgets/HashTags/HashBar";
+import {SiteInfo} from "./components/03-Main/SideWidgets/SiteInfo/SiteInfo";
+import {ProfileWidget} from "./components/03-Main/SideWidgets/ProfileWidget/ProfileWidget";
 
-const Login = React.lazy(() => import("./components/02-Main/SideWidgets/Login/Login"))
+const Login = React.lazy(() => import("./components/03-Main/SideWidgets/Login/Login"))
 
-//
-// const ChatPage = React.lazy(()=>
-//     import("./pages/chat/ChatPage")
-//         .then(({ChatPage}) => ({default: ChatPage}))
-// )
 const LoginComponent = withSuspense(Login)
 
 class App extends React.Component<AuthPropsType> {
@@ -58,7 +53,6 @@ class App extends React.Component<AuthPropsType> {
                         <MainWidget title={"Site Info"}><SiteInfo/></MainWidget>
                         <MainWidget title={"Hash Tags"}><HashBar/></MainWidget>
                     </div>
-
                 </div>
                 <Footer/>
             </div>
