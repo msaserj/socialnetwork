@@ -25,6 +25,9 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const logoutHandler = () => {
         dispatch(logoutTC())
     }
+    const editFalseHandler = () => {
+        dispatch(editProfileAC(false))
+    }
 
     useEffect(()=>{
          dispatch(getMyProfileTC())
@@ -44,12 +47,12 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
 
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
-                    <li><NavLink to={"/profile/" + id}>About</NavLink></li>
+                    <li onClick={editFalseHandler}><NavLink to={"/profile/" + id}>About</NavLink></li>
                     <li>Stream</li>
                     { id === userid && <li style={{cursor: "pointer"}} onClick={editHandler}>Edit Profile</li>}
                 </ul>
                 <ul className={css.profileMenu}>
-                    <h3>Community</h3>
+                    <h3 >Community</h3>
                     <li><NavLink to="/dialogs" className={setActive}>Messages</NavLink></li>
                     <li><NavLink to="/users" className={setActive}>Users</NavLink></li>
                     <li><NavLink to="/chat" className={setActive}>Common Chat</NavLink></li>

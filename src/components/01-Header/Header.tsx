@@ -15,20 +15,15 @@ type HeaderType = {
 
 export const Header = (props: HeaderType) => {
 
-    // const id = useAppSelector(state => state.myProfile.myProfile.userId)
-    // const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
-    // const name = useAppSelector(state => state.myProfile.myProfile.fullName)
     //let data = props.authHeader.data
-    const logoutHandler = () => {
-        props.logoutTC()
-    }
+    console.log("header", props.authHeader.id)
     return (
         <header className={css.header}>
 
             <div className={css.flexContainer}>
                 <img src={logo} alt="logo"/>
                 {!props.authHeader.id
-                    ? <NavLink to={'/login'}>Login</NavLink>
+                    ? <NavLink to={'/registr'}>Registration</NavLink>
                     : <div className={css.profileBlock}>
                         <NavLink className={css.profile} to={"/profile/" + props.id}>
                             <img className={css.ava} src={props.avatar ? props.avatar.small : ""} alt=""/>

@@ -35,7 +35,7 @@ export const Nav = (props: NavType) => {
                     <li className={css.menuItem}>Stream</li>
                 </NavLink>
 
-                <NavLink  className={setActive} to={""}>
+                <NavLink  className={setActive} to={"/users"}>
                     <li className={css.menuItem} onClick={logoutHandler}>Log Out</li>
                 </NavLink>
             </ul>

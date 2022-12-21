@@ -35,7 +35,6 @@ class App extends React.Component<AuthPropsType> {
                 <div className="main-section">
                     <CoverPhoto/>
                     <LeftWidgets/>
-
                     <Main/>
                     <RightWidgets/>
 

@@ -21,37 +21,31 @@ type ProfileType = {
 export const ProfileInfo = (props: ProfileType) => {
     const dispatch = useAppDispatch()
     const edit = useAppSelector(state => state.profilePage.edit)
+    const userId = useAppSelector(state => state.profilePage.userProfile.userId)
+    const myId = useAppSelector(state => state.myProfile.myProfile.userId)
 
-    // const [editMode, setEditMode] = useState<boolean>(false)
 
     if (!props.userProfile) {
         return <Preloader/>  //если нет профайла то крутилка
     }
-    let data = props.userProfile
-    // console.log(props.isOwner)
-    // const activateEditMode = () => {
-    //     setEditMode(true)
-    // }
     const deactivateEditMode = () => {
-        dispatch(editProfileAC(true))
-        // setEditMode(false)
+        dispatch(editProfileAC(false))
     }
-
-
-
-
+    const editable = edit && userId === myId
+    console.log("myId", myId)
+    console.log("userId", userId)
     return (
         <div>
             <div  className={css.descriptionBlock}>
                     <ProfilePhoto
-                        photos={data.photos}
+                        photos={props.userProfile.photos}
                         isOwner={props.isOwner}
                         savePhoto={props.savePhoto}
                         getStatus={props.getStatus}
                         status={props.status}
                         updateStatus={props.updateStatus} name={props.userProfile?.fullName}/>
 
-                {edit
+                {editable
                     ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}
                                        deactivateEditMode={deactivateEditMode} resultCode={props.resultCode}/>
                     : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner}

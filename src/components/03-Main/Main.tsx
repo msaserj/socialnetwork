@@ -1,5 +1,5 @@
 import React from 'react';
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import ProfileContainer from "./Profile/ProfileContainer";
 import UsersContainer from "./Users/UsersContainer";
 import {withSuspense} from "../../hoc/withSuspense";
@@ -21,13 +21,13 @@ const Main = () => {
 
             <Routes>
                 <Route path="/dialogs/" element={<MainWidget title={"Dialogs"}><DialogsContain/></MainWidget>}/>
-                <Route path='/' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}>
+                <Route path='/profile' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}>
                     <Route path='/profile/:userId' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}/>
                 </Route>
                 <Route path="/users" element={<MainWidget title={"Users"}><UsersContainer/></MainWidget>}/>
                 <Route path="/chat" element={ <MainWidget title={"CommonChat"}><Chat/></MainWidget> }/>
                 <Route path="*" element={<div>404</div>}/>
-
+                <Route path="/" element={<Navigate to={"/profile"}/>}/>
             </Routes>
 
         </div>

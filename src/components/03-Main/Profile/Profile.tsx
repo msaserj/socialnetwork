@@ -2,6 +2,7 @@ import React from "react";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import {Navigate} from "react-router-dom";
+import {useAppSelector} from "../../../hooks/hooks";
 
 
 export type ProfileType = {
@@ -18,9 +19,13 @@ export type ProfileType = {
 
 export const Profile = (props: ProfileType) => {
 
-    if (!props.isAuth) return <Navigate to="/login"/>
 
 
+
+    const isAuth = useAppSelector(state => state.auth.data.id)
+    if (!isAuth) {
+        return <Navigate to={"/users"}/>
+    }
 
     return (
         <>

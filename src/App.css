@@ -27,21 +27,3 @@
     align-content: start;
 
 }
-
-.side-section {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    justify-content: start;
-    top: 110px;
-    position: sticky;
-    align-self: start;
-}
-
-.left {
-    grid-column: 2/3;
-}
-.right {
-    grid-column: 4/5;
-}
-

@@ -3,6 +3,9 @@ import {useFormik} from 'formik';
 import {CheckboxFormik, InputFormik} from "../../../00-Common/InputFormik/InputFormik";
 import css from "./LoginForm.module.scss"
 import {AuthButton} from "../../../00-Common/AuthButton/AuthButton";
+import {Navigate} from "react-router-dom";
+import {useAppSelector} from "../../../../hooks/hooks";
+import {PreloaderSmall} from "../../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type FormikErrorType = {
     email?: string
@@ -17,6 +20,7 @@ type LoginFormType = {
 }
 
 export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
+    const isFetching = useAppSelector(state => state.app.fetching)
     console.log("RERENDER")
     const formik = useFormik({
         initialValues: {
@@ -42,9 +46,13 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
         onSubmit: (values, onSubmitProps) => {
             loginTC(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             onSubmitProps.setSubmitting(true);
-            // alert(JSON.stringify(values));
         },
     });
+    const isAuth = useAppSelector(state => state.auth.data.id)
+    if (isAuth) {
+        return <Navigate to={"/profile/" + isAuth}/>
+    }
+    console.log(isFetching)
     return (
 
         <form className={css.loginForm} onSubmit={formik.handleSubmit}>
@@ -68,7 +76,13 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
                 }
             </div>
             <div className={css.buttonBlock}>
-                <AuthButton type="submit">Login</AuthButton>
+
+                <AuthButton type="submit">
+                    Login
+
+                </AuthButton>
+                {isFetching && <PreloaderSmall/>}
+                <PreloaderSmall/>
                 <div className={css.forgot}>
                     <div>Register</div>
                     <div>Forgot Password</div>

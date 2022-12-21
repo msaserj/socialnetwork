@@ -82,6 +82,7 @@ type MeResType = {
     }
     resultCode: number
     messages: string[]
+    isFetching: boolean
 }
 
 type LoginResType = {
