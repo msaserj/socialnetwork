@@ -15,9 +15,8 @@ import {RightWidgets} from "./components/04-RightWidgets/RightWidgets";
 
 class App extends React.Component<AuthPropsType> {
 
-
     catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {
-        console.log(promiseRejectionEvent)
+        console.log("Catched unhandled error: ", promiseRejectionEvent)
     }
 
     componentDidMount() {
