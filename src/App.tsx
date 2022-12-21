@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 import HeaderContainer from "./components/01-Header/HeaderContainer";
 import {connect} from "react-redux";
 import {RootState} from "./redux/redux-store";
@@ -34,6 +34,7 @@ class App extends React.Component<AuthPropsType> {
                 <HeaderContainer/>
                 <div className="main-section">
                     <CoverPhoto/>
+
                     <LeftWidgets/>
                     <Main/>
                     <RightWidgets/>

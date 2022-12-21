@@ -3,7 +3,7 @@ import {Navigate, Route, Routes} from "react-router-dom";
 import ProfileContainer from "./Profile/ProfileContainer";
 import UsersContainer from "./Users/UsersContainer";
 import {withSuspense} from "../../hoc/withSuspense";
-import css from "./Main.module.css"
+import css from "./Main.module.scss"
 import Chat from "../../pages/chat/Chat";
 import {MainWidget} from "./MainWidget/MainWidget";
 

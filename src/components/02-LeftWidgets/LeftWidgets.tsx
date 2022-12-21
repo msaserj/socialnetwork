@@ -17,6 +17,7 @@ export const LeftWidgets = () => {
 
     return (
         <div className={css.sideSection}>
+
             {!isAuth?
                 <MainWidget title={"Login"}><LoginComponent/></MainWidget> :
                 <ProfileWidget/>

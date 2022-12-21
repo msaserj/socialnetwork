@@ -8,4 +8,8 @@
   position: sticky;
   align-self: start;
   grid-column: 2/3;
+  @media screen and (max-width: 1050px){
+    grid-column: 2/5;
+    position: inherit;
+  }
 }
