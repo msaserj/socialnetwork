@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {NavLink} from "react-router-dom";
 import css from './Nav.module.scss'
-
+import {FaHome, FaRegArrowAltCircleLeft, FaRegUserCircle} from "react-icons/fa";
 
 
 type NavType = {
@@ -12,7 +12,6 @@ type NavType = {
 export const Nav = (props: NavType) => {
 
     const [showMenu, setShowMenu] = useState(false)
-    const setActive = ({isActive}: { isActive: boolean }) => isActive ? css.activeLink : css.inactiveLink;
 
     const cssMenu = showMenu ? css.showMenu : ""
     const activeMenu = showMenu ? css.activeMenu : ""
@@ -28,16 +27,20 @@ export const Nav = (props: NavType) => {
         <div onBlur={() => setShowMenu(false)} onClick={showMenuHandler} className={`${css.menuButton} ${activeMenu}`}>
             <div className={css.menuIcon}></div>
             <ul className={`${css.menu} ${cssMenu}`}>
-                <NavLink to={"/profile/" + props.id} className={setActive}>
-                    <li className={css.menuItem}>About</li>
+
+                <NavLink to={"/profile/" + props.id}>
+                    <li className={css.menuItem}><span><FaRegUserCircle/></span>About</li>
                 </NavLink>
-                <NavLink to={"/stream/" + props.id} className={setActive}>
-                    <li className={css.menuItem}>Stream</li>
+                <NavLink to={"/stream/" + props.id}>
+                    <li className={css.menuItem}><span><FaHome/></span>Stream</li>
                 </NavLink>
 
-                <NavLink  className={setActive} to={"/users"}>
-                    <li className={css.menuItem} onClick={logoutHandler}>Log Out</li>
+                <NavLink to={"/users"}>
+                    <li className={css.menuItem} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log
+                        Out
+                    </li>
                 </NavLink>
+
             </ul>
         </div>
 

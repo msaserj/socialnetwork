@@ -5,6 +5,15 @@ import {getMyProfileTC} from "../../../../redux/myProfile-reducer";
 import {NavLink} from "react-router-dom";
 import {editProfileAC} from "../../../../redux/profile-reducer";
 import {logoutTC} from "../../../../redux/auth-reducer";
+import {
+    FaHome,
+    FaRegArrowAltCircleLeft,
+    FaRegComment,
+    FaRegComments,
+    FaRegSun,
+    FaRegUserCircle,
+    FaUsers
+} from "react-icons/fa";
 
 type ProfileWidgetType = {}
 
@@ -17,8 +26,6 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const edit = useAppSelector(state => state.profilePage.edit)
     const userid = useAppSelector(state => state.profilePage.userProfile.userId)
 
-    const setActive = ({isActive}: { isActive: boolean }) => isActive ? css.activeLink : css.inactiveLink;
-
     const editHandler = () => {
         dispatch(editProfileAC(!edit))
     }
@@ -29,9 +36,10 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
         dispatch(editProfileAC(false))
     }
 
-    useEffect(()=>{
-         dispatch(getMyProfileTC())
-    },[dispatch])
+    useEffect(() => {
+        dispatch(getMyProfileTC())
+    }, [dispatch])
+    // @ts-ignore
     return (
         <div className={css.sideProfile}>
             <div className={css.profileCover}>
@@ -39,7 +47,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             <div className={css.profileContent}>
                 <NavLink to={"/profile/" + id}>
                     <div className={css.profileBlock}>
-                        <img className={css.ava} src={avatar? avatar.small : ""} alt=""/>
+                        <img className={css.ava} src={avatar ? avatar.small : ""} alt=""/>
                         <h3 className={css.name}>{name}</h3>
                     </div>
                 </NavLink>
@@ -47,16 +55,29 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
 
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
-                    <li onClick={editFalseHandler}><NavLink to={"/profile/" + id}>About</NavLink></li>
-                    <li>Stream</li>
-                    { id === userid && <li style={{cursor: "pointer"}} onClick={editHandler}>Edit Profile</li>}
+                    <NavLink to={"/profile/" + id}>
+                        <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> About</li>
+                    </NavLink>
+                    <li><span><FaHome/> </span> Stream</li>
+                    {id === userid &&
+                        <li style={{cursor: "pointer"}} onClick={editHandler}><span><FaRegSun/> </span> Edit Profile
+                        </li>}
                 </ul>
+
                 <ul className={css.profileMenu}>
-                    <h3 >Community</h3>
-                    <li><NavLink to="/dialogs" className={setActive}>Messages</NavLink></li>
-                    <li><NavLink to="/users" className={setActive}>Users</NavLink></li>
-                    <li><NavLink to="/chat" className={setActive}>Common Chat</NavLink></li>
-                    <li style={{cursor: "pointer"}} onClick={logoutHandler}>Log Out</li>
+                    <h3>Community</h3>
+                    <NavLink to="/dialogs" >
+                        <li><span><FaRegComment/></span>Messages</li>
+                    </NavLink>
+                    <NavLink to="/users" >
+                        <li><span><FaUsers/></span>Users</li>
+                    </NavLink>
+                    <NavLink to="/chat" >
+                        <li ><span><FaRegComments/></span>Common Chat</li>
+                    </NavLink>
+                    <li style={{cursor: "pointer"}} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log
+                        Out
+                    </li>
                 </ul>
             </div>
         </div>
