@@ -32,8 +32,7 @@
 
 **This is a tutorial project on creating a social network interface. The interaction takes place with a real backend.**
 
-<p align="center">
-<img src="https://msaserj.ru/static/media/social-network.d0686789a2ff9af2fa22.png" width="80%"></p>
+<p align="center"><img src="https://msaserj.ru/static/media/social-network.d0686789a2ff9af2fa22.png" width="80%"></p>
 
 ## About the project.
 
