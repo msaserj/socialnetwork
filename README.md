@@ -11,7 +11,7 @@
 
 <img src="https://img.shields.io/badge/made%20by-msaserj-blue.svg" >
 
-<img src="https://img.shields.io/github/stars/msaserj/VueSolitaire.svg?style=flat">
+<img src="https://img.shields.io/github/stars/msaserj/inc-socialnetwork.svg?style=flat">
 
 <img src="https://img.shields.io/badge/React-17.0.2-green.svg">
 
