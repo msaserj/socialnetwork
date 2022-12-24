@@ -5,12 +5,13 @@ import {UserProfileType} from "../redux/profile-reducer";
 
 const apiInstance = axios.create({
     withCredentials: true,
-
     baseURL: "https://social-network.samuraijs.com/api/1.0/",
     headers: {
         "API-KEY": "43312b93-73fd-4342-90f4-f7fe2aad1adb"
     }
 })
+
+
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number, term: string, friend: boolean | null) {
@@ -68,6 +69,9 @@ export const authAPI = {
     },
     login(email: string, password: string, rememberMe?: boolean, captcha?: string | null) {
         return apiInstance.post<LoginResType>(`auth/login`, {email, password, rememberMe, captcha}).then(res => res.data)
+    },
+    registr(login: string, email: string, password: string, acceptTerms: boolean) {
+        return apiInstance.post<LoginResType>(`auth/login`, {login, email, password, acceptTerms}).then(res => res.data)
     },
     logout() {
         return apiInstance.delete(`auth/login`).then(res => res.data)

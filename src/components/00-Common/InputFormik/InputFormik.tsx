@@ -1,4 +1,4 @@
-import React, {DetailedHTMLProps, InputHTMLAttributes} from "react";
+import React, {DetailedHTMLProps, InputHTMLAttributes, ReactNode} from "react";
 import css from "./InputFormik.module.scss"
 
 
@@ -12,19 +12,26 @@ type InputFormikType = InputPropsType & {
     getFieldProps?: any
     errors?: any
     placeholder?: string
+    children?: ReactNode
+    mustFilled?: boolean
 }
 
 export const InputFormik: React.FC<InputFormikType> = (
-    {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
+    {type, htmlFor, label, getFieldProps, errors, placeholder, mustFilled, ...restProps}) => {
   return(
-      <div>
+      <>
           <div className={css.form}>
-              {label && <label className={css.label} htmlFor={htmlFor}>{label}</label>}
-              <input className={css.input} placeholder={placeholder} id={htmlFor} type={type} {...getFieldProps} {...restProps}/>
+              {label && <label className={css.label} htmlFor={htmlFor}>{label} {mustFilled && <span> *</span>}</label>}
+              <div className={css.inputBlock}>
+                  <input className={css.input} placeholder={placeholder} id={htmlFor} type={type} {...getFieldProps} {...restProps}/>
+                  <div className={css.errorField}><span>{errors ? errors : null}</span></div>
+              </div>
+
+
           </div>
 
-          <div className={css.errorField}><span>{errors ? errors : null}</span></div>
-      </div>
+
+      </>
   )
 }
 
@@ -33,7 +40,7 @@ export const CheckboxFormik = (props: InputFormikType) => {
         <div>
             <div className={css.checkboxBlock}>
                 <input className={css.checkbox} placeholder={props.placeholder} type={"checkbox"} {...props.getFieldProps}/>
-                <label className={css.labelCheckbox} htmlFor={props.htmlFor}>{props.label}</label>
+                <label className={css.labelCheckbox} htmlFor={props.htmlFor}>{props.label} {props.children}</label>
             </div>
             <div className={css.errorField}><span>{props.errors ? props.errors : null}</span></div>
         </div>

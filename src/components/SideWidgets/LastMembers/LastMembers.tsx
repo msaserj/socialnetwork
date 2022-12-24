@@ -10,7 +10,7 @@ const LastMembers = () => {
 
     useEffect(()=>{
         dispatch(getMembersTC())
-    },[])
+    },[dispatch])
 
     return (
         <div className={css.LastMembers}>

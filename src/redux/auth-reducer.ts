@@ -75,6 +75,18 @@ export const getAuthUserDataTC = () => async (dispatch: Dispatch) => {
     }
 }
 
+export const registrTC = (login: string, email: string, password: string, acceptTerms: boolean, setStatus: any, setSubmitting: any):
+    AppThunk => async (dispatch) => {
+    let data = await authAPI.registr(login, email, password, acceptTerms)
+    if (data.resultCode === 0) {
+        await dispatch(getAuthUserDataTC())
+    } else {
+        setStatus(data.messages)
+    }
+    setSubmitting(false);
+}
+
+
 
 export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null, setStatus: any, setSubmitting: any):
     AppThunk => async (dispatch) => {

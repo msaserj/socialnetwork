@@ -6,6 +6,7 @@ import {withSuspense} from "../../hoc/withSuspense";
 import css from "./Main.module.scss"
 import Chat from "../../pages/chat/Chat";
 import {MainWidget} from "./MainWidget/MainWidget";
+import Registration from "../SideWidgets/Registration/Registration";
 
 const DialogsContainer = React.lazy(()=>
     import("./Dialogs/DialogsContainer")
@@ -28,6 +29,7 @@ const Main = () => {
                 <Route path="/chat" element={ <MainWidget title={"CommonChat"}><Chat/></MainWidget> }/>
                 <Route path="*" element={<div>404</div>}/>
                 <Route path="/" element={<Navigate to={"/profile"}/>}/>
+                <Route path="/registr" element={<MainWidget title={"Registration"}><Registration/></MainWidget> }/>
             </Routes>
 
         </div>

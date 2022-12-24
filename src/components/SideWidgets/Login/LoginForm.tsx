@@ -3,7 +3,7 @@ import {useFormik} from 'formik';
 import {CheckboxFormik, InputFormik} from "../../00-Common/InputFormik/InputFormik";
 import css from "./LoginForm.module.scss"
 import {AuthButton} from "../../00-Common/AuthButton/AuthButton";
-import {Navigate} from "react-router-dom";
+import {Navigate, NavLink} from "react-router-dom";
 import {useAppSelector} from "../../../hooks/hooks";
 import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
@@ -38,10 +38,10 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
             }
             if (!values.password) {
                 errors.password = 'required'
-            } else if (values.password.trim().length < 5) {
-                errors.password = "min 5 symbols"
+            } else if (values.password.trim().length < 4) {
+                errors.password = "min 4 symbols"
             }
-            return errors;
+            return errors
         },
         onSubmit: (values, onSubmitProps) => {
             loginTC(values.email, values.password, values.rememberMe, values.captcha, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
@@ -53,6 +53,11 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
         return <Navigate to={"/profile/" + isAuth}/>
     }
     console.log(isFetching)
+    const onCancelClick = () => {
+        formik.resetForm();
+        formik.setTouched({});
+        // formik.setErrors({email: undefined, password: undefined});
+    };
     return (
 
         <form className={css.loginForm} onSubmit={formik.handleSubmit}>
@@ -63,18 +68,16 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
 
             <CheckboxFormik label={"Remember Me"} getFieldProps={formik.getFieldProps("rememberMe")}/>
 
-            <div className={css.fields}>
-                {formik.status}
-                {captchaUrl &&
-                    <div className={css.fields}>
-                        <img src={captchaUrl} alt="captchaUrl"/>
-                        <label htmlFor="captcha">Captcha</label>
-                        <input id="captcha" type="text"
-                               {...formik.getFieldProps("captcha")}
-                        />
-                        {formik.errors.captcha ? <div>{formik.errors.captcha}</div> : null}</div>
-                }
-            </div>
+
+            {formik.status}
+            {captchaUrl &&
+                <div className={css.fields}>
+                    <img src={captchaUrl} alt="captchaUrl"/>
+                    <InputFormik  placeholder={"captcha"} getFieldProps={formik.getFieldProps("captcha")}
+                                 errors={formik.errors.email} type={"text"}/>
+                    {formik.errors.captcha ? <div>{formik.errors.captcha}</div> : null}</div>
+            }
+
             <div className={css.buttonBlock}>
 
                 <AuthButton type="submit">
@@ -82,9 +85,9 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
 
                 </AuthButton>
                 {isFetching && <PreloaderSmall/>}
-                <PreloaderSmall/>
                 <div className={css.forgot}>
-                    <div>Register</div>
+                    <NavLink onClick={onCancelClick} to={"/registr"}> Register</NavLink>
+
                     <div>Forgot Password</div>
                 </div>
             </div>

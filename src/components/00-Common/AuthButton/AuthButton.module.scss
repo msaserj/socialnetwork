@@ -29,9 +29,11 @@
     color: $buttonNormal;
   }
   &:disabled {
+    background-color: $buttonNormal;
+    color: $buttonHover;
     &:hover {
       background-color: $buttonNormal;
-      color: $buttonHover;
+
       cursor: default;
     }
   }
