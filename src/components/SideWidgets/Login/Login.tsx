@@ -1,8 +1,8 @@
 import React from 'react';
 import {LoginForm} from "./LoginForm";
 import {connect} from "react-redux";
-import {loginTC} from "../../../../redux/auth-reducer";
-import {RootState} from "../../../../redux/redux-store";
+import {loginTC} from "../../../redux/auth-reducer";
+import {RootState} from "../../../redux/redux-store";
 
 
 const Login: React.FC<ProfilePropsType> = ({loginTC, captchaUrl}) => {

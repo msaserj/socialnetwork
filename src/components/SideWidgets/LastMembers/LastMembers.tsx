@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
 import css from "./LastMembers.module.scss"
 import {Member} from "./Member/Member";
-import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
-import {getMembersTC} from "../../../../redux/members-reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import {getMembersTC} from "../../../redux/members-reducer";
 
 const LastMembers = () => {
     const members = useAppSelector(state => state.members.users)

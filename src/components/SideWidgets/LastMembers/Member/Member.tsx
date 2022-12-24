@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import css from "./Member.module.scss"
 import {NavLink} from "react-router-dom";
-import userPhoto from "../../../../../assets/images/avaSmith.png";
-import {PreloaderSmall} from "../../../../00-Common/PreloaderSmall/PreloaderSmall";
+import userPhoto from "../../../../assets/images/avaSmith.png";
+import {PreloaderSmall} from "../../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type UsersComponentPropsType = {
     name: string

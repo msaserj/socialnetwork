@@ -1,11 +1,11 @@
 import React from 'react';
 import {useFormik} from 'formik';
-import {CheckboxFormik, InputFormik} from "../../../00-Common/InputFormik/InputFormik";
+import {CheckboxFormik, InputFormik} from "../../00-Common/InputFormik/InputFormik";
 import css from "./LoginForm.module.scss"
-import {AuthButton} from "../../../00-Common/AuthButton/AuthButton";
+import {AuthButton} from "../../00-Common/AuthButton/AuthButton";
 import {Navigate} from "react-router-dom";
-import {useAppSelector} from "../../../../hooks/hooks";
-import {PreloaderSmall} from "../../../00-Common/PreloaderSmall/PreloaderSmall";
+import {useAppSelector} from "../../../hooks/hooks";
+import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type FormikErrorType = {
     email?: string

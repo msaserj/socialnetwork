@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import css from "./ProfileWidget.module.scss"
-import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
-import {getMyProfileTC} from "../../../../redux/myProfile-reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import {getMyProfileTC} from "../../../redux/myProfile-reducer";
 import {NavLink} from "react-router-dom";
-import {editProfileAC} from "../../../../redux/profile-reducer";
-import {logoutTC} from "../../../../redux/auth-reducer";
+import {editProfileAC} from "../../../redux/profile-reducer";
+import {logoutTC} from "../../../redux/auth-reducer";
 import {
     FaHome,
     FaRegArrowAltCircleLeft,
