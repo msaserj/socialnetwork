@@ -21,7 +21,7 @@ type RecoveryFormType = {
 }
 
 
-export const RecoveryPassForm:React.FC<RecoveryFormType> = ({recoveryTC}) => {
+export const RecoveryPassForm: React.FC<RecoveryFormType> = ({recoveryTC}) => {
     const isFetching = useAppSelector(state => state.app.fetching)
     const formik = useFormik({
         initialValues: {
@@ -49,8 +49,10 @@ export const RecoveryPassForm:React.FC<RecoveryFormType> = ({recoveryTC}) => {
     return (
 
         <form className={css.loginForm} onSubmit={formik.handleSubmit}>
-            <p><b>Attention!</b> It's just a recovery form. Unfortunately, the API of this social network does not provide recovery endpoints.</p>
-            <p>If you want to see a regular user account, please login with: <b>Login:</b> free@samuraijs.com <b>Password:</b> free</p>
+            <p><b>Attention!</b> It's just a recovery form. Unfortunately, the API of this social network does not
+                provide recovery endpoints.</p>
+            <p>If you want to see a regular user account, please login
+                with: <b>Login:</b> free@samuraijs.com <b>Password:</b> free</p>
             <InputFormik mustFilled label={"email"} placeholder={"email"} getFieldProps={formik.getFieldProps("email")}
                          errors={formik.errors.email} type={"text"}/>
 

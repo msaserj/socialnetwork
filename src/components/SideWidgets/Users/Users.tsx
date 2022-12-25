@@ -6,6 +6,7 @@ import {SearchForm} from "./SearchForm";
 import {FilterType, getUsersTC} from "../../../redux/users-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {useSearchParams} from 'react-router-dom'
+import css from "./Users.module.css"
 
 
 type UsersComponentPropsType = {
@@ -19,6 +20,7 @@ type UsersComponentPropsType = {
 
 export const Users: React.FC<UsersComponentPropsType> = React.memo((
     {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged}) => {
+
     let userData = usersComponent
     const filter = useAppSelector(state => state.usersPage.filter)
     const currentPage = useAppSelector(state => state.usersPage.currentPage)
@@ -86,15 +88,18 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
                        onPageChanged={onPageChanged}
                        pageSize={userData.pageSize}
                        totalItemsCount={userData.totalUsersCount}/>
-            {
-                userData.users.map((usr, index) => <User
-                    isAuth={isAuth}
-                    key={index}
-                    usersComponent={usr}
-                    followTC={followTC}
-                    followingInProgress={followingInProgress}
-                    unFollowTC={unFollowTC}/>)
-            }
+            <div className={css.usersBlock}>
+                {
+                    userData.users.map((usr, index) => <User
+                        isAuth={isAuth}
+                        key={index}
+                        usersComponent={usr}
+                        followTC={followTC}
+                        followingInProgress={followingInProgress}
+                        unFollowTC={unFollowTC}/>)
+                }
+            </div>
+
         </div>
     )
 })

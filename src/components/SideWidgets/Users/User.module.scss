@@ -1,0 +1,27 @@
+
+
+.userBlock {
+  padding: 10px;
+  display: flex;
+  background-color: #f1f1f1;
+  width: 45%;
+  box-sizing: border-box;
+  .userPhoto {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+
+  }
+  .buttons {
+    margin: 10px 0 0 0;
+  }
+
+  .aboutBlock {
+    //margin-left: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+}
