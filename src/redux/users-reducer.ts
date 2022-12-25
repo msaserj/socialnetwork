@@ -43,8 +43,8 @@ export type UserLocationType = {
     country: string
 }
 export type PhotosType = {
-    small: string
-    large: string
+    small: string | null
+    large: string | null
 }
 export type UserType = {
     id: number

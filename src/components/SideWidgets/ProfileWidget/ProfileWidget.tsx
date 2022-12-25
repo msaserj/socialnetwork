@@ -15,6 +15,8 @@ import {
     FaUsers
 } from "react-icons/fa";
 import avaNeo from "../../../assets/images/avaNeo.png"
+import {Preloader} from "../../00-Common/Preloader/Preloader";
+import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type ProfileWidgetType = {}
 
@@ -40,6 +42,9 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     useEffect(() => {
         dispatch(getMyProfileTC())
     }, [dispatch])
+    if (!avatar) {
+        return <PreloaderSmall/>  //если нет профайла то крутилка
+    }
 
     return (
         <div className={css.sideProfile}>
@@ -48,7 +53,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             <div className={css.profileContent}>
                 <NavLink to={"/profile/" + id}>
                     <div className={css.profileBlock}>
-                        <img className={css.ava} src={avatar? avatar.small : avatar} alt="ava"/>
+                        <img className={css.ava} src={avatar.small != null ? avatar.small : avaNeo} alt="ava"/>
                         <h3 className={css.name}>{name}</h3>
                     </div>
                 </NavLink>

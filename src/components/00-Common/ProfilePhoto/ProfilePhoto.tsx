@@ -10,7 +10,7 @@ import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/Prof
 import userPhoto from "../../../assets/images/avaSmith.png";
 
 type ProfilePhotoType = {
-    photos: UserPhotosProfileType | undefined
+    photos: UserPhotosProfileType
     isOwner: boolean
     savePhoto: (file: any) => void
     status: string
@@ -40,7 +40,7 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
         <div className={css.profilePhoto}>
             <div className={css.photoBlock}>
 
-                <img className={css.userPhoto} src={photos.small ? photos.small : avatar} {...restProps} alt="avatar"/>
+                <img className={css.userPhoto} src={photos.large != null ? photos.large : avatar} {...restProps} alt="avatar"/>
 
                 {isOwner && <label className={css.divinput}>
                     <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
