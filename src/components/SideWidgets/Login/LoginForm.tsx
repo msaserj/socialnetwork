@@ -56,7 +56,6 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
     const onCancelClick = () => {
         formik.resetForm();
         formik.setTouched({});
-        // formik.setErrors({email: undefined, password: undefined});
     };
     return (
 
@@ -69,7 +68,7 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
             <CheckboxFormik label={"Remember Me"} getFieldProps={formik.getFieldProps("rememberMe")}/>
 
 
-            {formik.status}
+            {formik.status && <span style={{color: "red"}}>{formik.status}</span>}
             {captchaUrl &&
                 <div className={css.fields}>
                     <img src={captchaUrl} alt="captchaUrl"/>
@@ -80,15 +79,11 @@ export const LoginForm: React.FC<LoginFormType> = ({loginTC, captchaUrl}) => {
 
             <div className={css.buttonBlock}>
 
-                <AuthButton type="submit">
-                    Login
-
-                </AuthButton>
+                <AuthButton type="submit">Login</AuthButton>
                 {isFetching && <PreloaderSmall/>}
                 <div className={css.forgot}>
-                    <NavLink onClick={onCancelClick} to={"/registr"}> Register</NavLink>
-
-                    <div>Forgot Password</div>
+                    <NavLink className={css.navlink} onClick={onCancelClick} to={"/registr"}>Register account</NavLink>
+                    <NavLink className={css.navlink} onClick={onCancelClick} to={"/recovery"}>Forget password</NavLink>
                 </div>
             </div>
         </form>

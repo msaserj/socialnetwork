@@ -8,7 +8,7 @@ export const RightWidgets = () => {
     return (
         <div className={css.sideSection}>
             <MainWidget title={"Site Info"}><SiteInfo/></MainWidget>
-            <MainWidget title={"Hash Tags"}><HashBar/></MainWidget>
+            <MainWidget title={"Hash Tag Generator"}><HashBar/></MainWidget>
         </div>
     );
 };

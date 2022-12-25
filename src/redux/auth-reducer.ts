@@ -76,17 +76,21 @@ export const getAuthUserDataTC = () => async (dispatch: Dispatch) => {
 }
 
 export const registrTC = (login: string, email: string, password: string, acceptTerms: boolean, setStatus: any, setSubmitting: any):
-    AppThunk => async (dispatch) => {
+    AppThunk => async () => {
     let data = await authAPI.registr(login, email, password, acceptTerms)
-    if (data.resultCode === 0) {
-        await dispatch(getAuthUserDataTC())
-    } else {
+    if (data.resultCode !== 0) {
         setStatus(data.messages)
     }
     setSubmitting(false);
 }
-
-
+export const recoveryTC = (email: string, setStatus: any, setSubmitting: any):
+    AppThunk => async () => {
+    let data = await authAPI.recovery(email)
+    if (data.resultCode !== 0) {
+        setStatus(data.messages)
+    }
+    setSubmitting(false);
+}
 
 export const loginTC = (email: string, password: string, rememberMe: boolean, captcha: string | null, setStatus: any, setSubmitting: any):
     AppThunk => async (dispatch) => {

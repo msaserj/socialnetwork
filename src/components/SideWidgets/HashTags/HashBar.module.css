@@ -1,6 +1,10 @@
 .hash {
 
 }
+.form {
+    display: flex;
+    flex-direction: row;
+}
 
 .inactiveLink{
     color: #565656;

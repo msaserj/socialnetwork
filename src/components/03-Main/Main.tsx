@@ -7,6 +7,7 @@ import css from "./Main.module.scss"
 import Chat from "../../pages/chat/Chat";
 import {MainWidget} from "./MainWidget/MainWidget";
 import Registration from "../SideWidgets/Registration/Registration";
+import RecoveryPass from "../SideWidgets/RecoveryPass/RecoveryPass";
 
 const DialogsContainer = React.lazy(()=>
     import("./Dialogs/DialogsContainer")
@@ -30,6 +31,7 @@ const Main = () => {
                 <Route path="*" element={<div>404</div>}/>
                 <Route path="/" element={<Navigate to={"/profile"}/>}/>
                 <Route path="/registr" element={<MainWidget title={"Registration"}><Registration/></MainWidget> }/>
+                <Route path="/recovery" element={<MainWidget title={"Registration"}><RecoveryPass/></MainWidget> }/>
             </Routes>
 
         </div>

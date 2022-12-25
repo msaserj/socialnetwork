@@ -73,6 +73,9 @@ export const authAPI = {
     registr(login: string, email: string, password: string, acceptTerms: boolean) {
         return apiInstance.post<LoginResType>(`auth/login`, {login, email, password, acceptTerms}).then(res => res.data)
     },
+    recovery(email: string) {
+        return apiInstance.post<LoginResType>(`auth/login`, {email}).then(res => res.data)
+    },
     logout() {
         return apiInstance.delete(`auth/login`).then(res => res.data)
     },
