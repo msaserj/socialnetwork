@@ -1,11 +1,11 @@
 {
   "files": {
-    "main.css": "/inc-socialnetwork/static/css/main.4bfe79eb.css",
-    "main.js": "/inc-socialnetwork/static/js/main.f8445034.js",
+    "main.css": "/inc-socialnetwork/static/css/main.1d449677.css",
+    "main.js": "/inc-socialnetwork/static/js/main.51563c5e.js",
     "static/css/975.8efb25ef.chunk.css": "/inc-socialnetwork/static/css/975.8efb25ef.chunk.css",
     "static/js/975.447e3400.chunk.js": "/inc-socialnetwork/static/js/975.447e3400.chunk.js",
-    "static/css/709.0c54983f.chunk.css": "/inc-socialnetwork/static/css/709.0c54983f.chunk.css",
-    "static/js/709.95b89f2a.chunk.js": "/inc-socialnetwork/static/js/709.95b89f2a.chunk.js",
+    "static/css/709.3a1d6162.chunk.css": "/inc-socialnetwork/static/css/709.3a1d6162.chunk.css",
+    "static/js/709.667e6c04.chunk.js": "/inc-socialnetwork/static/js/709.667e6c04.chunk.js",
     "static/media/originalCover.jpg": "/inc-socialnetwork/static/media/originalCover.1d0cccac14a03d082a2c.jpg",
     "static/media/avaNeo.png": "/inc-socialnetwork/static/media/avaNeo.2383a50433a5f4d3358a.png",
     "static/media/instagram.svg": "/inc-socialnetwork/static/media/instagram.c83e628eea4e83e0d2b6c8e54910510c.svg",
@@ -18,15 +18,15 @@
     "static/media/youtube.svg": "/inc-socialnetwork/static/media/youtube.6806408aa1bf55b7f1aaba51978e649e.svg",
     "static/media/facebook.svg": "/inc-socialnetwork/static/media/facebook.5e1cb4b86ac3f872dadcbde3ed31cd4b.svg",
     "static/media/website.svg": "/inc-socialnetwork/static/media/website.c2f6e786379758bb45ab06f34808d6eb.svg",
-    "main.4bfe79eb.css.map": "/inc-socialnetwork/static/css/main.4bfe79eb.css.map",
-    "main.f8445034.js.map": "/inc-socialnetwork/static/js/main.f8445034.js.map",
+    "main.1d449677.css.map": "/inc-socialnetwork/static/css/main.1d449677.css.map",
+    "main.51563c5e.js.map": "/inc-socialnetwork/static/js/main.51563c5e.js.map",
     "975.8efb25ef.chunk.css.map": "/inc-socialnetwork/static/css/975.8efb25ef.chunk.css.map",
     "975.447e3400.chunk.js.map": "/inc-socialnetwork/static/js/975.447e3400.chunk.js.map",
-    "709.0c54983f.chunk.css.map": "/inc-socialnetwork/static/css/709.0c54983f.chunk.css.map",
-    "709.95b89f2a.chunk.js.map": "/inc-socialnetwork/static/js/709.95b89f2a.chunk.js.map"
+    "709.3a1d6162.chunk.css.map": "/inc-socialnetwork/static/css/709.3a1d6162.chunk.css.map",
+    "709.667e6c04.chunk.js.map": "/inc-socialnetwork/static/js/709.667e6c04.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.4bfe79eb.css",
-    "static/js/main.f8445034.js"
+    "static/css/main.1d449677.css",
+    "static/js/main.51563c5e.js"
   ]
 }
