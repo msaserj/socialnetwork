@@ -48,7 +48,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             <div className={css.profileContent}>
                 <NavLink to={"/profile/" + id}>
                     <div className={css.profileBlock}>
-                        <img className={css.ava} src={avatar ? avatar.small : avaNeo} alt="ava"/>
+                        <img className={css.ava} src={avatar.small != null || undefined ? avatar.small : avaNeo} alt="ava"/>
                         <h3 className={css.name}>{name}</h3>
                     </div>
                 </NavLink>
