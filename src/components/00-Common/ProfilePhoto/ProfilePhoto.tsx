@@ -9,7 +9,7 @@ import {MdOutlinePhotoCamera} from "react-icons/md";
 import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/ProfileStatusWithHooks";
 
 type ProfilePhotoType = {
-    photos: UserPhotosProfileType | null
+    photos: UserPhotosProfileType | undefined
     isOwner: boolean
     savePhoto: (file: any) => void
     status: string
@@ -39,7 +39,7 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
         <div className={css.profilePhoto}>
             <div className={css.photoBlock}>
 
-                <img className={css.userPhoto} src={photos.large != null || undefined ? photos.large : avatar} {...restProps} alt="avatar"/>
+                <img className={css.userPhoto} src={photos? photos.large : avatar} {...restProps} alt="avatar"/>
 
                 {isOwner && <label className={css.divinput}>
                     <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
