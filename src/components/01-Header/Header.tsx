@@ -4,12 +4,13 @@ import {NavLink} from "react-router-dom";
 import {DataType} from "../../redux/auth-reducer";
 import logo from "../../assets/images/logo.png"
 import {Nav} from "./Nav/Nav";
+import {UserPhotosProfileType} from "../../redux/profile-reducer";
 
 type HeaderType = {
     authHeader: DataType
     logoutTC: () => void
     id: number
-    avatar: { small: string, large: string }
+    avatar: UserPhotosProfileType
     name: string
 }
 
@@ -26,7 +27,7 @@ export const Header = (props: HeaderType) => {
                     ? <NavLink to={'/registr'}>Registration</NavLink>
                     : <div className={css.profileBlock}>
                         <NavLink className={css.profile} to={"/profile/" + props.id}>
-                            <img className={css.ava} src={props.avatar ? props.avatar.small : ""} alt=""/>
+                            <img className={css.ava} src={props.avatar? props.avatar.small : ""} alt=""/>
                             <h3 className={css.name}>{props.name}</h3>
                         </NavLink>
                         <Nav logoutTC={props.logoutTC} id={props.id}/>

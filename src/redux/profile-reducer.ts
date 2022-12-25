@@ -71,8 +71,8 @@ type UserContactsProfileType = {
     mainLink: string
 }
 export type UserPhotosProfileType = {
-    small: string
-    large: string
+    small: string | undefined
+    large: string | undefined
 }
 
 const initialState: ProfilePageType = {

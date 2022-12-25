@@ -32,8 +32,6 @@ export const ProfileInfo = (props: ProfileType) => {
         dispatch(editProfileAC(false))
     }
     const editable = edit && userId === myId
-    console.log("myId", myId)
-    console.log("userId", userId)
     return (
         <div>
             <div  className={css.descriptionBlock}>
