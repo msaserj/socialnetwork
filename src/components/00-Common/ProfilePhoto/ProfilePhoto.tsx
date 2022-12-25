@@ -38,7 +38,7 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
     return (
         <div className={css.profilePhoto}>
             <div className={css.photoBlock}>
-
+0123
                 <img className={css.userPhoto} src={photos? photos.large : avatar} {...restProps} alt="avatar"/>
 
                 {isOwner && <label className={css.divinput}>
