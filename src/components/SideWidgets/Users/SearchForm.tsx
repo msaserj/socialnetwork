@@ -2,7 +2,7 @@ import {useFormik} from "formik";
 import {FilterType} from "../../../redux/users-reducer";
 import React from "react";
 import {useAppSelector} from "../../../hooks/hooks";
-import {InputFormik} from "../../00-Common/InputFormik/InputFormik";
+import {InputFormik, SelectFormik} from "../../00-Common/InputFormik/InputFormik";
 import css from "./SearchForm.module.scss"
 import {AuthButton} from "../../00-Common/AuthButton/AuthButton";
 
@@ -47,8 +47,9 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
             <form className={css.loginForm} onSubmit={formik.handleSubmit}>
                 <InputFormik mustFilled label={""} placeholder={"search"} getFieldProps={formik.getFieldProps("term")}
                              errors={formik.errors.term} type={"text"}/>
+                <SelectFormik/>
 
-                <select {...formik.getFieldProps("friend")} name="friend">
+                <select {...formik.getFieldProps("friend")}>
                     <option value="null">All Users</option>
                     <option value="true">Followed</option>
                     <option value="false">No Followed</option>
