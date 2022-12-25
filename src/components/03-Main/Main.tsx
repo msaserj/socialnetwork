@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
-import ProfileContainer from "./Profile/ProfileContainer";
-import UsersContainer from "./Users/UsersContainer";
+import ProfileContainer from "../SideWidgets/Profile/ProfileContainer";
+import UsersContainer from "../SideWidgets/Users/UsersContainer";
 import {withSuspense} from "../../hoc/withSuspense";
 import css from "./Main.module.scss"
 import Chat from "../../pages/chat/Chat";
@@ -10,7 +10,7 @@ import Registration from "../SideWidgets/Registration/Registration";
 import RecoveryPass from "../SideWidgets/RecoveryPass/RecoveryPass";
 
 const DialogsContainer = React.lazy(()=>
-    import("./Dialogs/DialogsContainer")
+    import("../SideWidgets/Dialogs/DialogsContainer")
         .then(({DialogsContainer}) => ({default: DialogsContainer}))
 )
 

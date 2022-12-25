@@ -14,6 +14,7 @@ import {
     FaRegUserCircle,
     FaUsers
 } from "react-icons/fa";
+import avaNeo from "../../../assets/images/avaNeo.png"
 
 type ProfileWidgetType = {}
 
@@ -47,11 +48,10 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
             <div className={css.profileContent}>
                 <NavLink to={"/profile/" + id}>
                     <div className={css.profileBlock}>
-                        <img className={css.ava} src={avatar ? avatar.small : ""} alt=""/>
+                        <img className={css.ava} src={avatar ? avatar.small : avaNeo} alt="ava"/>
                         <h3 className={css.name}>{name}</h3>
                     </div>
                 </NavLink>
-
 
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
