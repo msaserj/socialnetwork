@@ -7,6 +7,7 @@ import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
 
 import {MdOutlinePhotoCamera} from "react-icons/md";
 import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/ProfileStatusWithHooks";
+import userPhoto from "../../../assets/images/avaSmith.png";
 
 type ProfilePhotoType = {
     photos: UserPhotosProfileType | undefined
@@ -38,8 +39,8 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
     return (
         <div className={css.profilePhoto}>
             <div className={css.photoBlock}>
-0123
-                <img className={css.userPhoto} src={photos? photos.large : avatar} {...restProps} alt="avatar"/>
+
+                <img className={css.userPhoto} src={photos.small ? photos.small : avatar} {...restProps} alt="avatar"/>
 
                 {isOwner && <label className={css.divinput}>
                     <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
