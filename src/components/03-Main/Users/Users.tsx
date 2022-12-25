@@ -23,6 +23,8 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
     const filter = useAppSelector(state => state.usersPage.filter)
     const currentPage = useAppSelector(state => state.usersPage.currentPage)
     const pageSize = useAppSelector(state => state.usersPage.pageSize)
+    const isAuth = useAppSelector(state => state.auth.data.id)
+    console.log("AAAAA", isAuth)
 
     const dispatch = useAppDispatch()
 
@@ -86,6 +88,7 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
                        totalItemsCount={userData.totalUsersCount}/>
             {
                 userData.users.map((usr, index) => <User
+                    isAuth={isAuth}
                     key={index}
                     usersComponent={usr}
                     followTC={followTC}

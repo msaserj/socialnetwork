@@ -2,6 +2,9 @@ import {Field, Form, Formik} from "formik";
 import {FilterType} from "../../../redux/users-reducer";
 import React from "react";
 import {useAppSelector} from "../../../hooks/hooks";
+import {InputFormik} from "../../00-Common/InputFormik/InputFormik";
+import {Button} from "../../00-Common/Button/Button";
+import css from "./Users.module.css"
 
 
 const UsersSearchValidate = () => {
@@ -31,8 +34,10 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
               onSubmit={submit}
           >
               {({ isSubmitting }) => (
-                  <Form>
+                  <Form className={css.form}>
                       <Field type="text" name="term" />
+                      <InputFormik  placeholder={"enter name"} getFieldProps={"term"}
+                                   type={"text"}/>
                       <Field
                           component="select"
                           id="location"
@@ -41,9 +46,9 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
                           <option value="true">Followed</option>
                           <option value="false">No Followed</option>
                       </Field>
-                      <button type="submit" disabled={isSubmitting}>
+                      <Button type="submit" disabled={isSubmitting}>
                           Find
-                      </button>
+                      </Button>
                   </Form>
               )}
           </Formik>
