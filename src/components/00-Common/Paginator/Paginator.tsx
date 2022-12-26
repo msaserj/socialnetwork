@@ -4,10 +4,11 @@ import {Button} from "../Button/Button";
 import {SelectFormik} from "../InputFormik/InputFormik";
 
 type UsersComponentPropsType = {
-    onPageChanged: (pgs: number) => void
+    onPageChanged: (pgs: number, pageSize: number) => void
     totalItemsCount: number
     pageSize: number
     currentPage: number
+    isFetching: boolean
 }
 
 export const Paginator: React.FC<UsersComponentPropsType> = (
@@ -16,6 +17,7 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
         totalItemsCount,
         pageSize,
         currentPage,
+        isFetching
     }) => {
     const portionSize = 6
     let pagesCount = Math.ceil(totalItemsCount / pageSize)
@@ -25,21 +27,22 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
     }
     let portionCount = Math.ceil(pagesCount / portionSize);
     let [portionNumber, setPortionNumber] = useState<number>(1);
+    let [size, setSize] = useState<number>(pageSize);
+
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
     const onChangeCallback = (e: ChangeEvent<HTMLInputElement>) => {
-
-        console.log(e.currentTarget.value)
+        setSize(+e.currentTarget.value)
+        onPageChanged(currentPage, +e.currentTarget.value)
     }
 
     return (
         <div className={css.paginator}>
             <div className={css.buttonBlock}>
 
-                    <Button disabled={portionNumber < 2} onClick={() => {
-                        setPortionNumber(portionNumber - 1)
-                    }}>PREV</Button>
+                    <Button disabled={portionNumber < 2 || isFetching} onClick={() => {
+                        setPortionNumber(portionNumber - 1); onPageChanged(leftPortionPageNumber-1, size)}}>PREV</Button>
 
             </div>
 
@@ -47,20 +50,19 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
                 {pages
                     .filter(p => p >= leftPortionPageNumber && p <= rightPortionPageNumber)
                     .map((pgs, index) => {
-                        return <span key={index} className={currentPage === pgs ? css.selectedPage : css.page}
-                                     onClick={() => onPageChanged(pgs)}
-                        > {pgs} </span>
+                        return <button disabled={isFetching} key={index} className={currentPage === pgs ? css.selectedPage : css.page}
+                                     onClick={() => onPageChanged(pgs, size)}
+                        > {pgs} </button>
                     })}
             </div>
             <div className={css.buttonBlock}>
 
-                    <Button disabled={portionCount < portionNumber - 1} onClick={() => {
-                        setPortionNumber(portionNumber + 1)
-                    }}>NEXT</Button>
+                    <Button disabled={portionCount < portionNumber - 1 || isFetching} onClick={() => {
+                        setPortionNumber(portionNumber + 1); onPageChanged(rightPortionPageNumber+1, size)}}>NEXT</Button>
 
             </div>
             <div>
-                <SelectFormik value={100} selectOptions={[{value: 20, title: 20}, {value: 40, title: 40}, {value: 70, title: 70}, {value: 100, title: 100}]} onChange={onChangeCallback}/>
+                <SelectFormik value={size} selectOptions={[{value: 20, title: 20}, {value: 40, title: 40}, {value: 70, title: 70}, {value: 100, title: 100}]} onChange={onChangeCallback}/>
             </div>
         </div>
 

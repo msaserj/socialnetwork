@@ -11,12 +11,12 @@ import {
     UserType
 } from "../../../redux/users-reducer";
 import {Users} from "./Users";
-import {Preloader} from "../../00-Common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {
     gePageSize,
-    getCurrentPage, getFilter,
+    getCurrentPage,
+    getFilter,
     getFollowingInProgress,
     getIsFetching,
     getTotalUsersCount,
@@ -30,8 +30,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
         this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.filter);
     }
 
-    onPageChanged = (pageNumber: number) => {
-        const {pageSize, filter} = this.props
+    onPageChanged = (pageNumber: number, pageSize: number) => {
+        const {filter} = this.props
         this.props.getUsers(pageNumber, pageSize, filter);
     }
 
@@ -42,14 +42,14 @@ class UsersContainer extends React.Component<UsersPropsType> {
 
     render() {
         return <>
-            {this.props.isFetching ? <Preloader/> : null}
             <Users
                 onPageChanged={this.onPageChanged.bind(this)}
                 onFilterChanged={this.onFilterChanged.bind(this)}
                 usersComponent={this.props}
                 followTC={this.props.followTC}
                 followingInProgress={this.props.followingInProgress}
-                unFollowTC={this.props.unFollowTC}/>
+                unFollowTC={this.props.unFollowTC} isFetching={this.props.isFetching}/>
+
         </>;
     }
 }

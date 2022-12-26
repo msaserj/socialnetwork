@@ -15,7 +15,6 @@ import {
     FaUsers
 } from "react-icons/fa";
 import avaNeo from "../../../assets/images/avaNeo.png"
-import {Preloader} from "../../00-Common/Preloader/Preloader";
 import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type ProfileWidgetType = {}
@@ -26,12 +25,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const name = useAppSelector(state => state.myProfile.myProfile.fullName)
     const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
     const id = useAppSelector(state => state.myProfile.myProfile.userId)
-    const edit = useAppSelector(state => state.profilePage.edit)
-    const userid = useAppSelector(state => state.profilePage.userProfile.userId)
 
-    const editHandler = () => {
-        dispatch(editProfileAC(!edit))
-    }
     const logoutHandler = () => {
         dispatch(logoutTC())
     }
@@ -63,17 +57,20 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <NavLink to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> About</li>
                     </NavLink>
-                    <li><span><FaHome/> </span> Stream</li>
-                    {id === userid &&
-                        <li style={{cursor: "pointer"}} onClick={editHandler}><span><FaRegSun/> </span> Edit Profile
-                        </li>}
+                    <NavLink to={"/posts"}>
+                        <li onClick={editFalseHandler}><span><FaHome/> </span> Stream</li>
+                    </NavLink>
+                    <NavLink to="/dialogs" >
+                        <li><span><FaRegComment/></span>Messages</li>
+                    </NavLink>
+                    <NavLink onClick={()=>dispatch(editProfileAC(true))} to={"/profile/" + id}>
+                        <li onClick={editFalseHandler}><span><FaRegSun/> </span> Edit Profile</li>
+                    </NavLink>
                 </ul>
 
                 <ul className={css.profileMenu}>
                     <h3>Community</h3>
-                    <NavLink to="/dialogs" >
-                        <li><span><FaRegComment/></span>Messages</li>
-                    </NavLink>
+
                     <NavLink to="/users" >
                         <li><span><FaUsers/></span>Users</li>
                     </NavLink>

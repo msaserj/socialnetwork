@@ -13,16 +13,22 @@ const DialogsContainer = React.lazy(()=>
     import("../SideWidgets/Dialogs/DialogsContainer")
         .then(({DialogsContainer}) => ({default: DialogsContainer}))
 )
+const MyPostsContainer = React.lazy(()=>
+    import("../SideWidgets/Profile/MyPosts/MyPostsContainer")
+        .then(({MyPostsContainer}) => ({default: MyPostsContainer}))
+)
 
 
 const Main = () => {
     const DialogsContain = withSuspense(DialogsContainer)
+    const MyPostsContain = withSuspense(MyPostsContainer)
 
     return (
         <div className={css.main}>
 
             <Routes>
                 <Route path="/dialogs/" element={<MainWidget title={"Dialogs"}><DialogsContain/></MainWidget>}/>
+                <Route path="/posts/" element={<MainWidget title={"My Posts"}><MyPostsContain/></MainWidget>}/>
                 <Route path='/profile' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}>
                     <Route path='/profile/:userId' element={<MainWidget title={"Profile"}><ProfileContainer/></MainWidget>}/>
                 </Route>

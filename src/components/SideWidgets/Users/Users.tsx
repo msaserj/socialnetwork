@@ -7,25 +7,27 @@ import {FilterType, getUsersTC} from "../../../redux/users-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {useSearchParams} from 'react-router-dom'
 import css from "./Users.module.css"
+import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type UsersComponentPropsType = {
-    onPageChanged: (pgs: number) => void
+    onPageChanged: (pgs: number, pageSize: number) => void
     onFilterChanged: (filter: FilterType) => void
     usersComponent: UsersPropsType
     followingInProgress: string[]
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
+    isFetching: boolean
 }
 
 export const Users: React.FC<UsersComponentPropsType> = React.memo((
-    {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged}) => {
+    {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged, isFetching}) => {
 
     let userData = usersComponent
     const filter = useAppSelector(state => state.usersPage.filter)
     const currentPage = useAppSelector(state => state.usersPage.currentPage)
     const pageSize = useAppSelector(state => state.usersPage.pageSize)
     const isAuth = useAppSelector(state => state.auth.data.id)
-    console.log("AAAAA", isAuth)
+
 
     const dispatch = useAppDispatch()
 
@@ -63,6 +65,18 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
         // eslint-disable-next-line
     }, [])
 
+    const sortedUsers = userData.users.sort(function (a, b){
+
+            if (!a.photos.small > !b.photos.small ) {
+                return 1;
+            } else {
+                return -1;
+            }
+            // a должно быть равным b
+
+
+    })
+
     useEffect(() => {
 
         const term = filter.term
@@ -81,12 +95,13 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
         <div className={css.users}>
             <div>
                 <SearchForm onFilterChanged={onFilterChanged}/>
-            </div>
+                <div style={{height: "10px"}}>{isFetching? <PreloaderSmall/>: null}
+                </div></div>
 
 
             <div className={css.usersBlock}>
                 {
-                    userData.users.map((usr, index) => <User
+                    sortedUsers.map((usr, index) => <User
                         isAuth={isAuth}
                         key={index}
                         usersComponent={usr}
@@ -97,6 +112,7 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
             </div>
             <div className={css.paginator}>
                 <Paginator
+                    isFetching={isFetching}
                     currentPage={userData.currentPage}
                     onPageChanged={onPageChanged}
                     pageSize={userData.pageSize}

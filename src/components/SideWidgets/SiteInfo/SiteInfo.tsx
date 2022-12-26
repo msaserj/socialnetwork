@@ -10,8 +10,8 @@ export const SiteInfo = () => {
             <div className={css.text}>
                 <p>If you want to see a regular user account, please login with:</p>
                 <div className={css.login}>
-                    <p>Login: <strong>login</strong></p>
-                    <p>Password: <strong>pass</strong></p>
+                    <p>Login: <strong> free@samuraijs.com</strong></p>
+                    <p>Password: <strong>free</strong></p>
                 </div>
 
             </div>

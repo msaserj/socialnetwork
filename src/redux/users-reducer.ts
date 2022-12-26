@@ -12,25 +12,31 @@ export type UsersActionsType =
     | ReturnType<typeof toggleIsFetchingAC>
     | ReturnType<typeof toggleIsFollowingAC>
     | ReturnType<typeof setFilterAC>
+    | ReturnType<typeof setPageSizeAC>
+    | ReturnType<typeof sortAC>
 
 export type FilterType = typeof initialState.filter
 
 // Actions
 const FOLLOW = 'sn/users/FOLLOW'
+const SORT_USERS = 'sn/users/SORT_USERS'
 const UNFOLLOW = 'sn/users/UNFOLLOW'
 const SET_USERS = 'sn/users/SET-USERS'
 const SET_FILTER = 'sn/users/SET-FILTER'
 const SET_CURRENT_PAGE = 'sn/users/SET-CURRENT-PAGE'
+const SET_PAGE_SIZE = 'sn/users/SET-PAGE-SIZE'
 const SET_TOTAL_USERS_COUNT = 'sn/users/SET-TOTAL-USERS-COUNT'
 const TOGGLE_IS_FETCHING = 'sn/users/TOGGLE-IS-FETCHING'
 const TOGGLE_IS_FOLLOWING = 'sn/users/TOGGLE-IS-FOLLOWING'
 
 // ActionCreators
 export const followAC = (userId: number) => ({type: FOLLOW, userId} as const)
+export const sortAC = (photo: undefined) => ({type: SORT_USERS, photo} as const)
 export const unFollowAC = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersAC = (users: Array<UserType>) => ({type: SET_USERS, users} as const)
 export const setFilterAC = (filter: FilterType) => ({type: SET_FILTER, filter} as const)
 export const setCurrentPageAC = (currentPage: number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
+export const setPageSizeAC = (pageSize: number) => ({type: SET_PAGE_SIZE, pageSize} as const)
 export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
 export const toggleIsFetchingAC = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 export const toggleIsFollowingAC = (isFetching: boolean, userId: number) => (
@@ -121,12 +127,20 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
             return {...state, users: action.users}
         case SET_FILTER:
             return {...state, filter: action.filter}
+        case SORT_USERS:
+            return {...state,
+                users: state.users.filter(e=> e.photos.small === null)
+
+            }
         case SET_CURRENT_PAGE:
             return {...state, currentPage: action.currentPage}
+        case SET_PAGE_SIZE:
+            return {...state, pageSize: action.pageSize}
         case SET_TOTAL_USERS_COUNT:
             return {...state, totalUsersCount: action.totalCount}
         case TOGGLE_IS_FETCHING:
             return {...state, isFetching: action.isFetching}
+
         case TOGGLE_IS_FOLLOWING:
             return {
                 ...state, followingInProgress: action.isFetching
@@ -141,6 +155,7 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
 export const getUsersTC = (currentPage: number, pageSize: number, filter: FilterType): AppThunk => async (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
     dispatch(setCurrentPageAC(currentPage));
+    dispatch(setPageSizeAC(pageSize));
     dispatch(setFilterAC(filter));
     let data = await usersAPI.getUsers(currentPage, pageSize, filter.term, filter.friend)
     dispatch(setUsersAC(data.items))

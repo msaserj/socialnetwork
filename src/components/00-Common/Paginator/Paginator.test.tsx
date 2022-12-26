@@ -12,7 +12,7 @@ describe('Paginator component', () => {
                 currentPage={1}
                 onPageChanged={x => x}
                 pageSize={1}
-                totalItemsCount={11}/>
+                totalItemsCount={11} isFetching/>
         </Provider>)
         const root = component.root
         const spans = root.findAllByType("span")
@@ -25,7 +25,7 @@ describe('Paginator component', () => {
                 currentPage={1}
                 onPageChanged={x => x}
                 pageSize={1}
-                totalItemsCount={11}/>
+                totalItemsCount={11} isFetching/>
         </Provider>)
         const root = component.root
         const button = root.findAllByType("span")

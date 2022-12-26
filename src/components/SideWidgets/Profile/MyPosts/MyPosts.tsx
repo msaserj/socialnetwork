@@ -34,7 +34,7 @@ export class MyPosts extends React.PureComponent<MyPostType> {
 
         return (
             <div className={classes.postsBlock}>
-                <h3>My posts</h3>
+                <h3>It`s demo component only!</h3>
                 <div>
                     <div>
                         <TextAreaFormik onChange={postOnChangeHandler}

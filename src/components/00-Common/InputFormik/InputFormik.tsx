@@ -34,7 +34,19 @@ export const InputFormik: React.FC<InputFormikType> = (
 
     )
 }
-
+export const TextAreaFormik: React.FC<InputFormikType> = (
+    {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
+    return (
+        <div className={css.form}>
+            {/*<div><label htmlFor={props.htmlFor}>{props.label}</label></div>*/}
+            <div className={css.inputBlock}>
+            <textarea className={`${css.input} ${css.textarea}`}
+                      id={htmlFor} {...getFieldProps} {...restProps}/>
+                <div className={css.errorField}><span>{errors ? errors : null}</span></div>
+            </div>
+        </div>
+    )
+}
 export const CheckboxFormik = (props: InputFormikType) => {
     return (
         <div>
@@ -49,16 +61,7 @@ export const CheckboxFormik = (props: InputFormikType) => {
 }
 
 
-export const TextAreaFormik: React.FC<InputFormikType> = (
-    {type, htmlFor, label, getFieldProps, errors, placeholder, ...restProps}) => {
-    return (
-        <div className={css.form}>
-            {/*<div><label htmlFor={props.htmlFor}>{props.label}</label></div>*/}
-            <textarea className={`${css.input} ${css.textarea}`}
-                      id={htmlFor} {...getFieldProps} {...restProps}/>{errors ? errors : null}
-        </div>
-    )
-}
+
 
 export const SelectFormik: React.FC<InputFormikType> = (
     {htmlFor, label, getFieldProps, errors, selectOptions, ...restProps}

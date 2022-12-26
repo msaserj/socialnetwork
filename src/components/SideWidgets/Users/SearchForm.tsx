@@ -1,6 +1,6 @@
 import {useFormik} from "formik";
 import {FilterType} from "../../../redux/users-reducer";
-import React from "react";
+import React, {useEffect} from "react";
 import {useAppSelector} from "../../../hooks/hooks";
 import {InputFormik, SelectFormik} from "../../00-Common/InputFormik/InputFormik";
 import css from "./SearchForm.module.scss"
@@ -20,6 +20,13 @@ type SearchFormType = {
 export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
 
     const filter = useAppSelector(state => state.usersPage.filter)
+
+
+    const selectOptions = [
+        {value: "null", title: "All Users"},
+        {value: "true", title: "Friends"}, {
+        value: "false", title: "Not Friends"}]
+
     const formik = useFormik({
         initialValues: {
             term: '',
@@ -36,11 +43,12 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
             onFilterChanged(values)
             onSubmitProps.setSubmitting(true);
         },
+
     });
-    // const submit = (values: FilterType, { setSubmitting}:{ setSubmitting: (isSubmitting: boolean) => void }) => {
-    //     onFilterChanged(values)
-    //     setSubmitting(false)
-    // }
+    useEffect(()=>{
+        formik.setFieldValue("term", filter.term)
+        formik.setFieldValue("friend", filter.friend)
+    },[filter.friend])
 
     return (
         <div>
@@ -49,16 +57,17 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
                     <InputFormik placeholder={"search"} getFieldProps={formik.getFieldProps("term")}
                                  type={"text"}/>
                 </div>
-                <div >
-                    <SelectFormik selectOptions={[{value: "null", title: "All Users"}, {value: "true", title: "Friends"}, {value: "false", title: "Not Friends"}]} {...formik.getFieldProps("friend")}/>
+                <div>
+                    <SelectFormik selectOptions={selectOptions} {...formik.getFieldProps("friend")}/>
                 </div>
-                     <div>
-                <AuthButton  type="submit">Search</AuthButton>
-            {/*{isFetching && <PreloaderSmall/>}*/}
-                    </div>
-        </form>
-</div>
+                <div>
+                    <AuthButton type="submit">Search</AuthButton>
+                    {/*{isFetching && <PreloaderSmall/>}*/}
+                </div>
+
+            </form>
+        </div>
 
 
-)
+    )
 }
