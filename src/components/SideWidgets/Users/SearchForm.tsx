@@ -27,9 +27,9 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
         },
         validate: (values) => {
             const errors: FormikErrorType = {}
-            if (!values.term) {
-                errors.term = 'Required';
-            }
+            // if (!values.term) {
+            //     errors.term = 'Required';
+            // }
             return errors
         },
         onSubmit: (values, onSubmitProps) => {
@@ -44,19 +44,16 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
 
     return (
         <div>
-            <form className={css.loginForm} onSubmit={formik.handleSubmit}>
-                <InputFormik mustFilled label={""} placeholder={"search"} getFieldProps={formik.getFieldProps("term")}
-                             errors={formik.errors.term} type={"text"}/>
-                <SelectFormik/>
-
-                <select {...formik.getFieldProps("friend")}>
-                    <option value="null">All Users</option>
-                    <option value="true">Followed</option>
-                    <option value="false">No Followed</option>
-                </select>
-
-                    <div className={css.buttonBlock}>
-                <AuthButton disabled={!!formik.errors.term} type="submit">Search</AuthButton>
+            <form className={css.searchBlock} onSubmit={formik.handleSubmit}>
+                <div className={css.element}>
+                    <InputFormik placeholder={"search"} getFieldProps={formik.getFieldProps("term")}
+                                 type={"text"}/>
+                </div>
+                <div >
+                    <SelectFormik selectOptions={[{value: "null", title: "All Users"}, {value: "true", title: "Friends"}, {value: "false", title: "Not Friends"}]} {...formik.getFieldProps("friend")}/>
+                </div>
+                     <div>
+                <AuthButton  type="submit">Search</AuthButton>
             {/*{isFetching && <PreloaderSmall/>}*/}
                     </div>
         </form>

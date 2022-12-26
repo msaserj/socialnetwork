@@ -8,7 +8,6 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {useSearchParams} from 'react-router-dom'
 import css from "./Users.module.css"
 
-
 type UsersComponentPropsType = {
     onPageChanged: (pgs: number) => void
     onFilterChanged: (filter: FilterType) => void
@@ -79,15 +78,12 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
         // eslint-disable-next-line
     }, [filter, currentPage])
     return (
-        <div>
+        <div className={css.users}>
             <div>
                 <SearchForm onFilterChanged={onFilterChanged}/>
             </div>
-            <Paginator
-                currentPage={userData.currentPage}
-                       onPageChanged={onPageChanged}
-                       pageSize={userData.pageSize}
-                       totalItemsCount={userData.totalUsersCount}/>
+
+
             <div className={css.usersBlock}>
                 {
                     userData.users.map((usr, index) => <User
@@ -99,7 +95,14 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
                         unFollowTC={unFollowTC}/>)
                 }
             </div>
+            <div className={css.paginator}>
+                <Paginator
+                    currentPage={userData.currentPage}
+                    onPageChanged={onPageChanged}
+                    pageSize={userData.pageSize}
+                    totalItemsCount={userData.totalUsersCount}/>
 
+            </div>
         </div>
     )
 })

@@ -1,0 +1,12 @@
+
+.searchBlock {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  .element {
+    //border: 1px solid red;
+    flex-basis: 60%;
+  }
+
+}

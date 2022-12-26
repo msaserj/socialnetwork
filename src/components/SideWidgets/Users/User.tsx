@@ -14,13 +14,8 @@ type UsersComponentPropsType = {
     isAuth: number
 }
 
-export const User: React.FC<UsersComponentPropsType> = ({
-                                                            usersComponent,
-                                                            followTC,
-                                                            unFollowTC,
-                                                            followingInProgress,
-                                                            isAuth
-                                                        }) => {
+export const User: React.FC<UsersComponentPropsType> = (
+    {usersComponent, followTC, unFollowTC, followingInProgress, isAuth}) => {
     let usr = usersComponent
 
     return (
@@ -43,16 +38,12 @@ export const User: React.FC<UsersComponentPropsType> = ({
                 </div>
             </div>
             <div className={css.aboutBlock}>
-                <div>
-                    <h5>{usr.name}</h5>
-                    <p>STATUS: {usr.status}</p>
-                </div>
 
-
+                <p>Name: <span>{usr.name}</span></p>
+                <p>Status:</p>
+                <span>{usr.status}</span>
 
             </div>
-
-
         </div>
     )
 }

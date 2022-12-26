@@ -19,7 +19,7 @@ describe('Paginator component', () => {
         expect(spans.length).toBe(10)
     })
 
-    test('pages count is 11, but should be showed 10', async () => {
+    test('pages count is 1, but should be showed 10', async () => {
         const component = create(<Provider store={store}>
             <Paginator
                 currentPage={1}
@@ -28,7 +28,7 @@ describe('Paginator component', () => {
                 totalItemsCount={11}/>
         </Provider>)
         const root = component.root
-        const button = root.findAllByType("button")
+        const button = root.findAllByType("span")
         expect(button.length).toBe(1)
     })
 
