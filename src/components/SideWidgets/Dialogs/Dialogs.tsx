@@ -17,7 +17,7 @@ type DialogsPageType = {
     getDialogs: () => void
 }
 
-export const Dialogs = (props: DialogsPageType) => {
+export const Dialogs = React.memo((props: DialogsPageType) => {
 
     const dispatch = useAppDispatch()
     const dialogss = useAppSelector(state => state.dialogsPage.dialogs)
@@ -28,8 +28,8 @@ export const Dialogs = (props: DialogsPageType) => {
 
     useEffect(() => {
         dispatch(getDialogsTC())
-    }, [dispatch])
-    console.log("dialogs", props.dialogs)
+    }, [dispatch, userId])
+    console.log("dialogs rendered")
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogItems}>
@@ -41,4 +41,4 @@ export const Dialogs = (props: DialogsPageType) => {
             </div>
         </div>
     )
-}
+})

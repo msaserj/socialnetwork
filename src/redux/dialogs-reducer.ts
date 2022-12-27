@@ -121,15 +121,14 @@ export const getDialogsTC = (): AppThunk => async (dispatch) => {
 export const putDialogTC = (userId: number): AppThunk => async (dispatch) => {
     // dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.putDialog(userId)
-    // dispatch(putDialogAC(data.data))
+    dispatch(getMessagesListTC(userId))
     // dispatch(toggleIsFetchingAC(false))
 }
 
 export const sendMessageTC = (userId: number, messageBody: string): AppThunk => async (dispatch) => {
     // dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.sendMessage(userId, messageBody)
-    dispatch(sendMessageAC(data.data))
-    console.log("sendMessage", data)
+    dispatch(getMessagesListTC(userId))
     // dispatch(toggleIsFetchingAC(false))
 }
 export const getMessagesListTC = (userId: number): AppThunk => async (dispatch) => {
@@ -137,38 +136,6 @@ export const getMessagesListTC = (userId: number): AppThunk => async (dispatch) 
     let data = await dialogAPI.getMessagesList(userId)
     dispatch(setMessagesListAC(data.data.items))
     dispatch(putDialogAC(userId))
-    console.log("getListMessages", data.data.items)
     // dispatch(toggleIsFetchingAC(false))
 }
 
-
-
-
-// const initialState: DialogPageType = {
-//     dialogs: [
-//         {id: v1(), name: "Serj"},
-//         {id: v1(), name: "Alex"},
-//         {id: v1(), name: "Petr"},
-//         {id: v1(), name: "Valera"},
-//         {id: v1(), name: "Viktor"},
-//         {id: v1(), name: "Valera"}
-//     ],
-//     messages: [
-//         {id: v1(), message: "Hi"},
-//         {id: v1(), message: "How is your it-kamasutra"},
-//         {id: v1(), message: "Yo1"},
-//         {id: v1(), message: "Yo2"},
-//         {id: v1(), message: "Yo3"},
-//     ],
-//     newMessageState: ""
-// }
-
-// type DialogType = {
-//     id: string
-//     name: string
-// }
-
-// type MessageType = {
-//     id: string
-//     message: string
-// }

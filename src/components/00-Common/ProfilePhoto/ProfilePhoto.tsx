@@ -10,6 +10,7 @@ import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/Prof
 import {Button} from "../Button/Button";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {putDialogTC} from "../../../redux/dialogs-reducer";
+import {NavLink} from "react-router-dom";
 
 type ProfilePhotoType = {
     photos: UserPhotosProfileType
@@ -21,12 +22,12 @@ type ProfilePhotoType = {
     name: string
 }
 
-export const ProfilePhoto:React.FC<ProfilePhotoType> = (
+export const ProfilePhoto: React.FC<ProfilePhotoType> = (
     {
         photos, isOwner, savePhoto, status, updateStatus, getStatus, name, ...restProps
     }
 ) => {
-    const avatar = isOwner? avaNeo : avaSmith
+    const avatar = isOwner ? avaNeo : avaSmith
     const dispatch = useAppDispatch()
     const id = useAppSelector(state => state.profilePage.userProfile.userId)
 
@@ -37,7 +38,8 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
         }
     }
     const putHandler = () => {
-      dispatch(putDialogTC(id))
+        dispatch(putDialogTC(id))
+
     }
 
     if (!photos) {
@@ -45,16 +47,20 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
     }
     return (
         <div className={css.profilePhoto}>
+
             <div className={css.photoBlock}>
 
-                <img className={css.userPhoto} src={photos.large != null ? photos.large : avatar} {...restProps} alt="avatar"/>
-                {!isOwner && <Button onClick={putHandler}>Put to Message List</Button>}
+                <img className={css.userPhoto} src={photos.large != null ? photos.large : avatar} {...restProps}
+                     alt="avatar"/>
+                {!isOwner && <NavLink to={"/dialogs"}><Button onClick={putHandler}>Put to Message List</Button></NavLink>}
                 {isOwner && <label className={css.divinput}>
-                    <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
+                    <input about={"rerer"} className={css.photoInput} type={"file"}
+                           onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
             </div>
             <div className={css.nameStatus}>
                 <h3 className={css.profileHeader}>{name}</h3>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} getStatus={getStatus} isOwner={isOwner}/>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} getStatus={getStatus}
+                                        isOwner={isOwner}/>
             </div>
 
         </div>

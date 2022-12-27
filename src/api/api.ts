@@ -73,8 +73,8 @@ export const dialogAPI = {
         return apiInstance.get(`dialogs/${userid}/messages`)
     },
 
-    sendMessage(userid: number | undefined, messageBody: string) {
-        return apiInstance.post(`dialogs/${userid}/messages`, {messageBody}).then(response => response.data)
+    sendMessage(userId: number | undefined, body: string) {
+        return apiInstance.post(`dialogs/${userId}/messages`, {body}).then(response => response.data)
     },
     getViewedMessages(messageId: number) {
         return apiInstance.get(`dialogs/messages/${messageId}/viewed`).then(response => response.data)

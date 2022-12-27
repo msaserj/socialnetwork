@@ -1,7 +1,7 @@
 import React from "react";
 import css from '../Dialogs.module.css'
 import {NavLink} from "react-router-dom";
-import {DialogsType, getMessagesListTC} from "../../../../redux/dialogs-reducer";
+import {DialogsType, putDialogTC} from "../../../../redux/dialogs-reducer";
 import {Button} from "../../../00-Common/Button/Button";
 import {useAppDispatch} from "../../../../hooks/hooks";
 import avaNeo from "../../../../assets/images/avaNeo.png";
@@ -10,14 +10,14 @@ type DialogsItemType = {
     dialogItem: DialogsType
 }
 
-export const DialogItem: React.FC<DialogsItemType> = (
+export const DialogItem: React.FC<DialogsItemType> = React.memo((
     {dialogItem}
 ) => {
     const {id, userName, photos,hasNewMessages, newMessagesCount, lastUserActivityDate, lastDialogActivityDate} = dialogItem
     const dispatch = useAppDispatch()
-    let path = "/dialogs/" + id;
+    let path = "/profile/" + id;
     const startChat = () => {
-        dispatch(getMessagesListTC(id))
+        dispatch(putDialogTC(id))
     }
 
     return <div className={css.activeLink}>
@@ -35,4 +35,4 @@ export const DialogItem: React.FC<DialogsItemType> = (
         <div>Dialog {  new Date(lastDialogActivityDate).toLocaleString() }</div>
     </div>
 
-}
+})
