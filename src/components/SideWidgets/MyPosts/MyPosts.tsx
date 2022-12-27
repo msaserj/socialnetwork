@@ -1,9 +1,9 @@
 import React, {ChangeEvent} from "react";
 import classes from './MyPosts.module.css'
 import {Post} from "./Post/Post";
-import {ProfilePageType} from "../../../../redux/profile-reducer";
-import {TextAreaFormik} from "../../../00-Common/InputFormik/InputFormik";
-import {Button} from "../../../00-Common/Button/Button";
+import {ProfilePageType} from "../../../redux/profile-reducer";
+import {TextAreaFormik} from "../../00-Common/InputFormik/InputFormik";
+import {Button} from "../../00-Common/Button/Button";
 
 
 type MyPostType = {

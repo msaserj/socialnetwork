@@ -39,9 +39,9 @@ export const User: React.FC<UsersComponentPropsType> = (
             </div>
             <div className={css.aboutBlock}>
 
-                <p>Name: <span>{usr.name}</span></p>
-                <p>Status:</p>
-                <span>{usr.status}</span>
+                <span className={css.name}>{usr.name}</span>
+
+                <span className={css.status}>{usr.status}</span>
 
             </div>
         </div>

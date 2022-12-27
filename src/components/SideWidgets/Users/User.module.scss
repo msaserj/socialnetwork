@@ -6,42 +6,59 @@
   width: 45%;
   min-width: 200px;
   box-sizing: border-box;
+
   .photoBlock {
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 0 15px 0 0;
     border-right: 1px solid #c9c9c9;
+
     .userPhoto {
       width: 100px;
       height: 100px;
       border-radius: 50%;
 
     }
+
     .buttons {
       margin: 10px 0 0 0;
     }
   }
 
 
-
-
   .aboutBlock {
     width: 100%;
     padding: 10px;
 
-    p {
-      font-size: 16px;
-      padding: 5px;
-      span {
-        color: #484848;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-inline-flex;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
-      }
+    .name {
 
+      display: inline-block;
+      width: 100%;
+      margin-bottom: 5px;
+      font-size: 18px;
+      padding: 5px;
+      color: #424242;
+      word-break: break-word;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      line-height: 1.3em;
+      max-height: 3.1em;
+      border-bottom: 1px solid #d3d3d3;
+    }
+
+    .status {
+      word-break: break-word;
+      color: #565656;
+      padding: 5px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      line-height: 1.2em;
+      max-height: 5.2em;
     }
   }
 

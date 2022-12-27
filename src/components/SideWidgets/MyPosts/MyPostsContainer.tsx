@@ -1,6 +1,6 @@
 import React from "react";
-import {addPostOnClickAC, newPostTextOnChangeAC, ProfilePageType} from "../../../../redux/profile-reducer";
-import {RootState} from "../../../../redux/redux-store";
+import {addPostOnClickAC, newPostTextOnChangeAC, ProfilePageType} from "../../../redux/profile-reducer";
+import {RootState} from "../../../redux/redux-store";
 import {MyPosts} from "./MyPosts";
 import {Dispatch} from "redux";
 import {connect} from "react-redux";

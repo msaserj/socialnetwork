@@ -14,7 +14,7 @@ const DialogsContainer = React.lazy(()=>
         .then(({DialogsContainer}) => ({default: DialogsContainer}))
 )
 const MyPostsContainer = React.lazy(()=>
-    import("../SideWidgets/Profile/MyPosts/MyPostsContainer")
+    import("../SideWidgets/MyPosts/MyPostsContainer")
         .then(({MyPostsContainer}) => ({default: MyPostsContainer}))
 )
 
