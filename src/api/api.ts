@@ -62,30 +62,34 @@ export const profileAPI = {
 }
 
 export const dialogAPI = {
+
+    putDialog(userid: number) {
+        return apiInstance.put(`dialogs/${userid}`).then(response => response.data)
+    },
     getDialogs() {
         return apiInstance.get(`dialogs/`)
     },
-    getDialogsList(userid: number) {
+    getMessagesList(userid: number) {
         return apiInstance.get(`dialogs/${userid}/messages`)
     },
-    startDialog(userid: number) {
-        return apiInstance.put(`dialogs/${userid}`).then(response => response.data)
-    },
-    sendMessage(userid: number, messageBody: string) {
+
+    sendMessage(userid: number | undefined, messageBody: string) {
         return apiInstance.post(`dialogs/${userid}/messages`, {messageBody}).then(response => response.data)
     },
     getViewedMessages(messageId: number) {
         return apiInstance.get(`dialogs/messages/${messageId}/viewed`).then(response => response.data)
     },
-    postSpamMessage(messageId: number) {
-        return apiInstance.post(`dialogs/messages/${messageId}/spam`).then(response => response.data)
-    },
+
     deleteMessage(messageId: number) {
         return apiInstance.delete(`dialogs/messages/${messageId}`).then(response => response.data)
     },
     restoreMessage(messageId: number) {
         return apiInstance.put(`dialogs/messages/${messageId}/restore`).then(response => response.data)
     },
+    postSpamMessage(messageId: number) {
+        return apiInstance.post(`dialogs/messages/${messageId}/spam`).then(response => response.data)
+    },
+
     newestMessages(date: string, userId: string) {
         return apiInstance.get(`dialogs/${userId}/messages/new?newerThen=${date}`).then(response => response.data)
     },

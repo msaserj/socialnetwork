@@ -16,6 +16,8 @@ type UsersComponentPropsType = {
 
 export const User: React.FC<UsersComponentPropsType> = (
     {usersComponent, followTC, unFollowTC, followingInProgress, isAuth}) => {
+
+
     let usr = usersComponent
 
     return (

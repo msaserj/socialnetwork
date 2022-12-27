@@ -7,7 +7,9 @@ import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
 
 import {MdOutlinePhotoCamera} from "react-icons/md";
 import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/ProfileStatusWithHooks";
-import userPhoto from "../../../assets/images/avaSmith.png";
+import {Button} from "../Button/Button";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+import {putDialogTC} from "../../../redux/dialogs-reducer";
 
 type ProfilePhotoType = {
     photos: UserPhotosProfileType
@@ -25,12 +27,17 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
     }
 ) => {
     const avatar = isOwner? avaNeo : avaSmith
+    const dispatch = useAppDispatch()
+    const id = useAppSelector(state => state.profilePage.userProfile.userId)
 
     const loadPhotoHandler = (e: any) => {
         if (e.target.files.length) {
             let file = e.target.files[0]
             savePhoto(file)
         }
+    }
+    const putHandler = () => {
+      dispatch(putDialogTC(id))
     }
 
     if (!photos) {
@@ -41,7 +48,7 @@ export const ProfilePhoto:React.FC<ProfilePhotoType> = (
             <div className={css.photoBlock}>
 
                 <img className={css.userPhoto} src={photos.large != null ? photos.large : avatar} {...restProps} alt="avatar"/>
-
+                {!isOwner && <Button onClick={putHandler}>Put to Message List</Button>}
                 {isOwner && <label className={css.divinput}>
                     <input  about={"rerer"} className={css.photoInput} type={"file"} onChange={loadPhotoHandler}/><MdOutlinePhotoCamera/></label>}
             </div>

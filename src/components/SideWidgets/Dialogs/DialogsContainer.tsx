@@ -1,5 +1,9 @@
 import React from "react";
-import {DialogPageType, addMessageOnClick, newTextMessageOnChange} from "../../../redux/dialogs-reducer";
+import {
+    newTextMessageOnChange,
+    DialogsType,
+    getDialogsTC, sendMessageTC
+} from "../../../redux/dialogs-reducer";
 import {RootState} from "../../../redux/redux-store";
 import {Dialogs} from "./Dialogs";
 import {connect} from "react-redux";
@@ -7,17 +11,18 @@ import {WithAuthRedirect} from "../../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 type MapStateToPropsType = {
-    dialogsPage: DialogPageType
+    dialogsPage: Array<DialogsType>
     isAuth: boolean
 }
 type MapDispatchToPropsType = {
     newTextMessageOnChange: (text: string) => void
-    addMessageOnClick: () => void
+    sendMessageTC: (userId: number, messageBody: string) => void
+    getDialogsTC: () => void
 }
 
 const mapStateToProps = (state: RootState): MapStateToPropsType => {
     return {
-        dialogsPage: state.dialogsPage,
+        dialogsPage: state.dialogsPage.dialogs,
         isAuth: state.auth.isAuth
     } as MapStateToPropsType
 }
@@ -26,7 +31,5 @@ const mapStateToProps = (state: RootState): MapStateToPropsType => {
 
 export const DialogsContainer = compose(
     connect<MapStateToPropsType, MapDispatchToPropsType, {}, RootState>
-    (mapStateToProps, {newTextMessageOnChange, addMessageOnClick}),
-    WithAuthRedirect
-)(Dialogs)
+    (mapStateToProps, {newTextMessageOnChange, sendMessageTC, getDialogsTC}), WithAuthRedirect)(Dialogs)
 

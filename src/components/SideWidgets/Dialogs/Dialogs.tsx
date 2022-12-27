@@ -1,46 +1,43 @@
-import React, {ChangeEvent} from "react";
+import React, {useEffect} from "react";
 import classes from './Dialogs.module.css'
 import {DialogItem} from "./Dialogitem/Dialogsitem";
-import {Message} from "./Message/Message";
-import {DialogPageType} from "../../../redux/dialogs-reducer";
+import {Messages} from "./Message/Messages";
+import {DialogsType, getDialogsTC, MessageItemType} from "../../../redux/dialogs-reducer";
+import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
+
+import SendMessageForm from "./Message/SendMessageForm";
 
 
 type DialogsPageType = {
-    newTextMessageOnChange: (newMessageText: string)=> void
+    newTextMessageOnChange: (newMessageText: string) => void
     addMessageOnClick: () => void
     isAuth: boolean
-    dialogsPage: DialogPageType
- }
+    dialogs: Array<DialogsType>
+    messages: Array<MessageItemType>
+    getDialogs: () => void
+}
 
 export const Dialogs = (props: DialogsPageType) => {
 
-    let dialogsElement = props.dialogsPage.dialogs.map(el=> <DialogItem key={el.id} name={el.name} id={el.id}/>);
-    let messagesElement = props.dialogsPage.messages.map(el=> <Message key={el.id} message={el.message} />);
-    let newMessageState = props.dialogsPage.newMessageState
+    const dispatch = useAppDispatch()
+    const dialogss = useAppSelector(state => state.dialogsPage.dialogs)
+    const messagess = useAppSelector(state => state.dialogsPage.messages)
+    const userId = useAppSelector(state => state.dialogsPage.userId)
 
-    const messageOnClickHandler = () => {
-        props.addMessageOnClick()
-    }
-    const messageOnChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        props.newTextMessageOnChange(e.currentTarget.value)
-    }
 
+
+    useEffect(() => {
+        dispatch(getDialogsTC())
+    }, [dispatch])
+    console.log("dialogs", props.dialogs)
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogItems}>
-                {dialogsElement}
+                {dialogss && dialogss.map(el => <DialogItem key={el.id} dialogItem={el}/>)}
             </div>
-
             <div className={classes.messages}>
-                <div>{messagesElement}</div>
-                <div>
-                    <div>
-                        <textarea value={newMessageState} onChange={messageOnChangeHandler} placeholder="Enter your message"/>
-                    </div>
-                    <div>
-                        <button onClick={messageOnClickHandler}>Send</button>
-                    </div>
-                </div>
+                <Messages messagess={messagess}/>
+                <SendMessageForm userId={userId}/>
             </div>
         </div>
     )
