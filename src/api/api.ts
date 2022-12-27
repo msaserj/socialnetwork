@@ -12,7 +12,6 @@ const apiInstance = axios.create({
 })
 
 
-
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number, term: string, friend: boolean | null) {
         return apiInstance.get(`users?page=${currentPage}&count=${pageSize}&term=${term}` + (friend === null ? `` : `&friend=${friend}`)).then(res => res.data)
@@ -35,7 +34,6 @@ export type UserAPIResponseType = {
     messages: string[]
     data: {}
 }
-
 
 
 export const profileAPI = {
@@ -63,12 +61,51 @@ export const profileAPI = {
 
 }
 
+export const dialogAPI = {
+    getDialogs() {
+        return apiInstance.get(`dialogs/`)
+    },
+    getDialogsList(userid: number) {
+        return apiInstance.get(`dialogs/${userid}/messages`)
+    },
+    startDialog(userid: number) {
+        return apiInstance.put(`dialogs/${userid}`).then(response => response.data)
+    },
+    sendMessage(userid: number, messageBody: string) {
+        return apiInstance.post(`dialogs/${userid}/messages`, {messageBody}).then(response => response.data)
+    },
+    getViewedMessages(messageId: number) {
+        return apiInstance.get(`dialogs/messages/${messageId}/viewed`).then(response => response.data)
+    },
+    postSpamMessage(messageId: number) {
+        return apiInstance.post(`dialogs/messages/${messageId}/spam`).then(response => response.data)
+    },
+    deleteMessage(messageId: number) {
+        return apiInstance.delete(`dialogs/messages/${messageId}`).then(response => response.data)
+    },
+    restoreMessage(messageId: number) {
+        return apiInstance.put(`dialogs/messages/${messageId}/restore`).then(response => response.data)
+    },
+    newestMessages(date: string, userId: string) {
+        return apiInstance.get(`dialogs/${userId}/messages/new?newerThen=${date}`).then(response => response.data)
+    },
+    newMessagesList() {
+        return apiInstance.get(`dialogs/messages/new/count`).then(response => response.data)
+    }
+
+}
+
 export const authAPI = {
     me() {
         return apiInstance.get<MeResType>(`auth/me`).then(res => res.data)
     },
     login(email: string, password: string, rememberMe?: boolean, captcha?: string | null) {
-        return apiInstance.post<LoginResType>(`auth/login`, {email, password, rememberMe, captcha}).then(res => res.data)
+        return apiInstance.post<LoginResType>(`auth/login`, {
+            email,
+            password,
+            rememberMe,
+            captcha
+        }).then(res => res.data)
     },
     registr(login: string, email: string, password: string, acceptTerms: boolean) {
         return apiInstance.post<LoginResType>(`auth/login`, {login, email, password, acceptTerms}).then(res => res.data)
