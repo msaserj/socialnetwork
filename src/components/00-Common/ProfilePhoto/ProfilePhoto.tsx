@@ -6,7 +6,7 @@ import avaNeo from "../../../assets/images/avaNeo.png";
 import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
 
 import {MdOutlinePhotoCamera} from "react-icons/md";
-import {ProfileStatusWithHooks} from "../../SideWidgets/Profile/ProfileInfo/ProfileStatusWithHooks";
+import {ProfileStatusWithHooks} from "../../SideWidgets/ProfileMain/ProfileInfo/ProfileStatusWithHooks";
 import {Button} from "../Button/Button";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {putDialogTC} from "../../../redux/dialogs-reducer";

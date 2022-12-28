@@ -1,6 +1,6 @@
 import React from 'react';
 import {Navigate, Route, Routes} from "react-router-dom";
-import ProfileContainer from "../SideWidgets/Profile/ProfileContainer";
+import ProfileContainer from "../SideWidgets/ProfileMain/ProfileContainer";
 import UsersContainer from "../SideWidgets/Users/UsersContainer";
 import {withSuspense} from "../../hoc/withSuspense";
 import css from "./Main.module.scss"

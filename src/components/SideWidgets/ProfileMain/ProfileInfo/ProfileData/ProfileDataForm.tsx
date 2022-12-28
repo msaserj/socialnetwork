@@ -30,7 +30,12 @@ type FormikErrorType = {
     }
 }
 
-export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, saveProfile, deactivateEditMode, resultCode}) => {
+export const ProfileDataForm: React.FC<ProfileDataFormType> = ({
+                                                                   userProfile,
+                                                                   saveProfile,
+                                                                   deactivateEditMode,
+                                                                   resultCode
+                                                               }) => {
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -50,16 +55,19 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
         },
 
         onSubmit: async (values, onSubmitProps) => {
-
-            saveProfile(values, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
-            //
-            await  onSubmitProps.setSubmitting(true);
-            console.log(resultCode)
+            const values2 = {...values, contacts: {...values.contacts}}
+            for (let key in values2.contacts) {
+                // @ts-ignore
+                values2.contacts[key] = values2.contacts[key].length? `https://` + values2.contacts[key]: ""
+            }
+            saveProfile(values2, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
+            await onSubmitProps.setSubmitting(true);
             if (!formik.status) {
                 formik.resetForm()
             }
         },
     });
+
     useEffect(() => {
         if (userProfile) {
             formik.setFieldValue("fullName", userProfile.fullName)
@@ -70,7 +78,9 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
 
             userProfile && Object.keys(userProfile.contacts).map(key => {
                 // @ts-ignore
-                return formik.setFieldValue("contacts." + key, userProfile.contacts[key])
+                const item = userProfile.contacts[key]
+                const pref = (item.slice(0, 8) === "https://")
+                return formik.setFieldValue("contacts." + key, pref? item.slice(8) : item)
             })
         }
     }, [userProfile])
@@ -80,21 +90,22 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({userProfile, sav
                          errors={formik.errors.fullName} type={"text"}/>
 
             <InputFormik htmlFor={"aboutMe"} label={"About Me"} getFieldProps={formik.getFieldProps("aboutMe")}
-                            errors={formik.errors.aboutMe} type={"textarea"}/>
+                         errors={formik.errors.aboutMe} type={"textarea"}/>
 
             <CheckboxFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"}
-                         getFieldProps={formik.getFieldProps("lookingForAJob")}
-                         errors={formik.errors.lookingForAJob} />
+                            getFieldProps={formik.getFieldProps("lookingForAJob")}
+                            errors={formik.errors.lookingForAJob}/>
 
             <InputFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
-                            getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
-                            errors={formik.errors.lookingForAJobDescription}/>
+                         getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
+                         errors={formik.errors.lookingForAJobDescription}/>
 
             <ul>
                 {userProfile && Object.keys(userProfile.contacts).map(key => {
+                    // @ts-ignore
                     return <InputFormik key={key} htmlFor={key} label={key}
                                         getFieldProps={formik.getFieldProps("contacts." + key)}
-                                        errors={formik.errors.contacts} type={"text"} placeholder={"https://"}/>
+                                        errors={formik.errors.contacts} type={"text"}/>
                 })}
             </ul>
             <div>

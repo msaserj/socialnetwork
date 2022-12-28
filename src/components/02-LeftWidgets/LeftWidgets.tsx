@@ -1,6 +1,6 @@
 import React from 'react';
 import css from "./LeftWidgets.module.scss"
-import {ProfileWidget} from "../SideWidgets/ProfileWidget/ProfileWidget";
+import {ProfileWidget} from "../SideWidgets/ProfileSide/ProfileWidget";
 import {MainWidget} from "../03-Main/MainWidget/MainWidget";
 import LastMembers from "../SideWidgets/LastMembers/LastMembers";
 import {withSuspense} from "../../hoc/withSuspense";
