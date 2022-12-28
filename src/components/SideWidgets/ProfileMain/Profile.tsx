@@ -15,14 +15,9 @@ export type ProfileType = {
     savePhoto: (file: any) => void
     saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     resultCode: number
-    message: string[]
 }
 
 export const Profile = (props: ProfileType) => {
-
-
-
-
     const isAuth = useAppSelector(state => state.auth.data.id)
     if (!isAuth) {
         return <Navigate to={"/users"}/>
@@ -37,7 +32,7 @@ export const Profile = (props: ProfileType) => {
                 userProfile={props.userProfile}
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
-                saveProfile={props.saveProfile} resultCode={props.resultCode} message={props.message}/>
+                saveProfile={props.saveProfile} resultCode={props.resultCode}/>
             {/*posts*/}
             {/*<MyPostsContainer/>*/}
         </>

@@ -3,38 +3,18 @@ import {UserProfileType} from "../../../../../redux/profile-reducer";
 import {useFormik} from "formik";
 import {CheckboxFormik, InputFormik} from "../../../../00-Common/InputFormik/InputFormik";
 import {AuthButton} from "../../../../00-Common/AuthButton/AuthButton";
-
 import css from "./ProfileDataForm.module.scss"
 
 
 type ProfileDataFormType = {
     userProfile: UserProfileType | null
     saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
-    deactivateEditMode: () => void
     resultCode: number
-    message: string[]
 }
-type FormikErrorType = {
-    fullName?: string
-    aboutMe?: string
-    lookingForAJob?: boolean
-    lookingForAJobDescription?: string
-    contacts: {
-        facebook?: string
-        website?: string
-        vk?: string
-        twitter?: string
-        instagram?: string
-        youtube?: string
-        github?: string
-        mainLink?: string
-    }
-}
+
 
 export const ProfileDataForm: React.FC<ProfileDataFormType> = (
-    {userProfile, saveProfile, deactivateEditMode, resultCode, message
-
-                                                               }) => {
+    {userProfile, saveProfile, resultCode}) => {
     const formik = useFormik({
         initialValues: {
             fullName: '',
@@ -58,32 +38,44 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = (
             for (let key in values2.contacts) {
                 // @ts-ignore
                 let contact = values2.contacts[key]
-                contact = contact.length? `https://` + contact : ""
+                // @ts-ignore
+                values2.contacts[key] = contact.length && contact.slice(0, 8) === "https://" ?
+                    contact : contact.length ? "https://" + contact : ""
             }
             saveProfile(values2, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             await onSubmitProps.setSubmitting(true);
             if (resultCode === 0) {
                 formik.resetForm()
             }
+            resetFormikStatus()
         },
     });
-
-    useEffect(() => {
+    const setFields = () => {
         if (userProfile) {
             formik.setFieldValue("fullName", userProfile.fullName)
             formik.setFieldValue("aboutMe", userProfile.aboutMe)
             formik.setFieldValue("lookingForAJob", userProfile.lookingForAJob)
             formik.setFieldValue("lookingForAJobDescription", userProfile.lookingForAJobDescription)
-            // formik.setFieldValue("facebook", userProfile.contacts.facebook)
-
             userProfile && Object.keys(userProfile.contacts).map(key => {
                 // @ts-ignore
                 const item = userProfile.contacts[key]
                 const pref = (item.slice(0, 8) === "https://")
-                return formik.setFieldValue("contacts." + key, pref? item.slice(8) : item)
+                return formik.setFieldValue("contacts." + key, pref ? item.slice(8) : item)
             })
         }
+    }
+
+    const resetFormikStatus = () => {
+        setTimeout(() => {
+            formik.setStatus('')
+            setFields()
+        }, 4000)
+    }
+    useEffect(() => {
+        setFields()
     }, [userProfile])
+
+
     return (
         <form className={css.formBlock} onSubmit={formik.handleSubmit}>
             <InputFormik htmlFor={"fullName"} label={"Full Name"} getFieldProps={formik.getFieldProps("fullName")}
@@ -95,11 +87,11 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = (
             <CheckboxFormik htmlFor={"lookingForAJob"} label={"Looking For AJob"}
                             getFieldProps={formik.getFieldProps("lookingForAJob")}
                             errors={formik.errors.lookingForAJob}/>
-
-            <InputFormik htmlFor={"lookingForAJobDescription"} label={"Job description"}
+            <InputFormik onClick={() => formik.status('')} htmlFor={"lookingForAJobDescription"}
+                         label={"Job description"}
                          getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
                          errors={formik.errors.lookingForAJobDescription}/>
-
+            <div>Contacts (enter links without or with "https://" prefix):</div>
             <ul>
                 {userProfile && Object.keys(userProfile.contacts).map(key => {
                     // @ts-ignore
@@ -107,11 +99,14 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = (
                                         getFieldProps={formik.getFieldProps("contacts." + key)}
                                         errors={formik.errors.contacts} type={"text"}/>
                 })}
+
             </ul>
-            {resultCode !== 0 && message.map(e => <div style={{color: "red"}}>{e}</div>)}
+
             <div>
-                {formik.status}
-                <AuthButton type="submit">Save Changes</AuthButton>
+
+                <AuthButton disabled={formik.status} type="submit">{formik.status ?
+                    <span style={{color: "red"}}>{formik.status}</span> : "Save Changes"}</AuthButton>
             </div>
+
         </form>)
 }

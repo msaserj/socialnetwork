@@ -43,7 +43,6 @@ export type ProfilePageType = {
     status: string
     resultCode: number
     edit: boolean
-    message: string[]
 }
 export type PostType = {
     id: string
@@ -87,7 +86,6 @@ const initialState: ProfilePageType = {
     status: "",
     resultCode: 1,
     edit: false,
-    message: []
 }
 
 // reducer
