@@ -15,6 +15,7 @@ export type ProfileType = {
     savePhoto: (file: any) => void
     saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     resultCode: number
+    message: string[]
 }
 
 export const Profile = (props: ProfileType) => {
@@ -36,7 +37,7 @@ export const Profile = (props: ProfileType) => {
                 userProfile={props.userProfile}
                 isOwner={props.isOwner}
                 savePhoto={props.savePhoto}
-                saveProfile={props.saveProfile} resultCode={props.resultCode}/>
+                saveProfile={props.saveProfile} resultCode={props.resultCode} message={props.message}/>
             {/*posts*/}
             {/*<MyPostsContainer/>*/}
         </>

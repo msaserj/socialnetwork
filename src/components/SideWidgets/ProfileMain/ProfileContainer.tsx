@@ -53,19 +53,20 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
                 isAuth
                 isOwner={this.props.myId === +this.props.userId}
                 savePhoto={this.props.savePhoto}
-                saveProfile={this.props.saveProfile} resultCode={this.props.resultCode}/>
+                saveProfile={this.props.saveProfile} resultCode={this.props.resultCode} message={this.props.message}/>
         );
     }
 }
 
-const mapStateToProps = (state: RootState): { isAuth: boolean | undefined; myId: number; profile: UserProfileType; resultCode: number; status: string } => {
+const mapStateToProps = (state: RootState): {message: string[], isAuth: boolean | undefined; myId: number; profile: UserProfileType; resultCode: number; status: string } => {
     // console.log("MAP-STATE-TO-PROPS")
     return {
         resultCode: state.profilePage.resultCode,
         profile: state.profilePage.userProfile,
         status: state.profilePage.status,
         myId: state.auth.data.id,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        message: state.profilePage.message
     }
 }
 
@@ -91,6 +92,7 @@ type MapStateToPropsType = {
     status: string
     myId: number
     isAuth: boolean
+    message: string[]
 }
 
 type MapDispatchToPropsType = {

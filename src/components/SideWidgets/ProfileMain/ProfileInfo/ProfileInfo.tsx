@@ -16,6 +16,7 @@ type ProfileType = {
     savePhoto: (file: any) => void
     saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     resultCode: number
+    message: string[]
 }
 
 export const ProfileInfo = (props: ProfileType) => {
@@ -45,7 +46,7 @@ export const ProfileInfo = (props: ProfileType) => {
 
                 {editable
                     ? <ProfileDataForm userProfile={props.userProfile} saveProfile={props.saveProfile}
-                                       deactivateEditMode={deactivateEditMode} resultCode={props.resultCode}/>
+                                       deactivateEditMode={deactivateEditMode} resultCode={props.resultCode} message={props.message}/>
                     : <ProfileData userProfile={props.userProfile} isOwner={props.isOwner}
                                    // goToEditMode={activateEditMode}
                     />}

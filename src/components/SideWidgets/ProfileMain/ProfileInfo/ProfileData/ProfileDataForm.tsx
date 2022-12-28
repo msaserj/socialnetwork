@@ -12,6 +12,7 @@ type ProfileDataFormType = {
     saveProfile: (profile: any, setStatus: any, setSubmitting: any) => void
     deactivateEditMode: () => void
     resultCode: number
+    message: string[]
 }
 type FormikErrorType = {
     fullName?: string
@@ -30,11 +31,9 @@ type FormikErrorType = {
     }
 }
 
-export const ProfileDataForm: React.FC<ProfileDataFormType> = ({
-                                                                   userProfile,
-                                                                   saveProfile,
-                                                                   deactivateEditMode,
-                                                                   resultCode
+export const ProfileDataForm: React.FC<ProfileDataFormType> = (
+    {userProfile, saveProfile, deactivateEditMode, resultCode, message
+
                                                                }) => {
     const formik = useFormik({
         initialValues: {
@@ -58,11 +57,12 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({
             const values2 = {...values, contacts: {...values.contacts}}
             for (let key in values2.contacts) {
                 // @ts-ignore
-                values2.contacts[key] = values2.contacts[key].length? `https://` + values2.contacts[key]: ""
+                let contact = values2.contacts[key]
+                contact = contact.length? `https://` + contact : ""
             }
             saveProfile(values2, onSubmitProps.setStatus, onSubmitProps.setSubmitting)
             await onSubmitProps.setSubmitting(true);
-            if (!formik.status) {
+            if (resultCode === 0) {
                 formik.resetForm()
             }
         },
@@ -108,6 +108,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({
                                         errors={formik.errors.contacts} type={"text"}/>
                 })}
             </ul>
+            {resultCode !== 0 && message.map(e => <div style={{color: "red"}}>{e}</div>)}
             <div>
                 {formik.status}
                 <AuthButton type="submit">Save Changes</AuthButton>

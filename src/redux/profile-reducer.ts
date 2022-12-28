@@ -43,6 +43,7 @@ export type ProfilePageType = {
     status: string
     resultCode: number
     edit: boolean
+    message: string[]
 }
 export type PostType = {
     id: string
@@ -85,7 +86,8 @@ const initialState: ProfilePageType = {
     userProfile: {} as UserProfileType,
     status: "",
     resultCode: 1,
-    edit: false
+    edit: false,
+    message: []
 }
 
 // reducer
@@ -150,8 +152,8 @@ export const saveProfileTC = (profile: UserProfileType, setStatus: any, setSubmi
     async (dispatch, getState: () => RootState) => {
     const myId = getState().auth.data.id
     let res = await profileAPI.saveProfile(profile)
-        dispatch(editProfileAC(false))
     if (res.resultCode === 0) {
+        dispatch(editProfileAC(false))
         dispatch(getUserProfileTC(myId))
         dispatch(setResultCodeAC(0))
     }

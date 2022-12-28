@@ -10,7 +10,8 @@ const initialState: ProfilePageType = {
     userProfile: {} as UserProfileType,
     status: "",
     resultCode: 0,
-    edit: false
+    edit: false,
+    message: []
 }
 
 test('new post should be added', () => {
