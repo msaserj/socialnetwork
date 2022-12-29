@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import classes from './Dialogs.module.css'
+import React, {useEffect, useRef, useState} from "react";
+import css from './Dialogs.module.scss'
 import {DialogItem} from "./Dialogitem/Dialogsitem";
-import {Messages} from "./Message/Messages";
+import {Message} from "./Message/Message";
 import {DialogsType, getDialogsTC, MessageItemType} from "../../../redux/dialogs-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 
@@ -24,6 +24,21 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
     const messagess = useAppSelector(state => state.dialogsPage.messages)
     const userId = useAppSelector(state => state.dialogsPage.userId)
 
+    const [autoScroll, setAutoScroll] = useState(false)
+    const messagesAnchorRef = useRef<HTMLDivElement>(null)
+
+    const scrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
+        let element = e.currentTarget
+        if (element.scrollHeight - element.scrollTop === element.clientHeight) {
+            !autoScroll && setAutoScroll(true)
+        } else {
+            autoScroll && setAutoScroll(false)
+
+        }
+    }
+    useEffect(()=> {
+        autoScroll && messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
+    },[messagess, autoScroll])
 
 
     useEffect(() => {
@@ -31,12 +46,15 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
     }, [dispatch, userId])
     console.log("dialogs rendered")
     return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogItems}>
+        <div className={css.dialogs}>
+            <div style={{height: '650px', overflowY: 'auto'}} className={css.dialogWindow}>
                 {dialogss && dialogss.map(el => <DialogItem key={el.id} dialogItem={el}/>)}
             </div>
-            <div className={classes.messages}>
-                <Messages messagess={messagess}/>
+            <div className={css.messagesWindow}>
+                <div style={{height: '400px', overflowY: "auto"}} className={css.messages} onScroll={scrollHandler} >
+                    {messagess && messagess.map(el => <Message key={el.id}  message={el}/>)}
+                    <div ref={messagesAnchorRef}></div>
+                </div>
                 <SendMessageForm userId={userId}/>
             </div>
         </div>

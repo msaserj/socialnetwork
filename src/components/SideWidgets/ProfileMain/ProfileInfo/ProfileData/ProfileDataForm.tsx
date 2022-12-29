@@ -88,7 +88,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = (
                             getFieldProps={formik.getFieldProps("lookingForAJob")}
                             errors={formik.errors.lookingForAJob}/>
             <InputFormik onClick={() => formik.status('')} htmlFor={"lookingForAJobDescription"}
-                         label={"Job description"}
+                         label={"about job"}
                          getFieldProps={formik.getFieldProps("lookingForAJobDescription")}
                          errors={formik.errors.lookingForAJobDescription}/>
             <div>Contacts (enter links without or with "https://" prefix):</div>

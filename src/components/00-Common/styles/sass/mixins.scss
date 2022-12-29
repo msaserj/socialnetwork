@@ -5,3 +5,22 @@
   line-height: $lineHeight;
   color: $color;
 }
+
+@mixin messageDialog() {
+  background-color: #eeeeee;
+  border-radius: 5px;
+  border: 1px solid #e3e3e3;
+  &::-webkit-scrollbar {
+    width: 10px;
+    background-color: #e0e0e0;
+    color: #0b6c00;
+    border-radius: 8em;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    height: 30px;
+    border: 2px solid #858585;
+    background-color: #afafaf;
+    border-radius: 8em;
+  }
+}
