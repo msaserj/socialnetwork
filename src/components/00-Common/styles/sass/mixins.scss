@@ -24,3 +24,39 @@
     border-radius: 8em;
   }
 }
+
+@mixin container() {
+  width: 80%;
+  margin: 0 auto;
+}
+
+@mixin flex($direction, $justifyContent, $alignItems, $wrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justifyContent;
+  align-items: $alignItems;
+  flex-wrap: $wrap;
+}
+
+
+@mixin linkUnderline() {
+  position: relative;
+  text-decoration: none;
+  transition: 0.5s;
+  &::after {
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    content: "";
+    width: 0;
+    height: 1px;
+    background-color: $fontRedColor;
+    transition: 0.5s;
+  }
+  &:hover {
+    color: $fontRedColor;
+    &::after {
+      width: 100%;
+    }
+  }
+}
