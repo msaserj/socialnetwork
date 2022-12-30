@@ -63,12 +63,15 @@
       }
       h6 {
         margin-bottom: 5px;
-        font-size: 12px;
+        font-size: 14px;
         color: #2c3136;
+        span {
+          padding: 3px 0;
+          color: #272a2d;
+          font-size: 12px;
+        }
       }
-      p {
-        padding: 3px 0;
-      }
+
     }
     .newMessages {
       font-size: 14px;

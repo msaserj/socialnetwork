@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useAppDispatch} from "../../../../hooks/hooks";
+import {useAppDispatch, useAppSelector} from "../../../../hooks/hooks";
 import {TextAreaFormik} from "../../../00-Common/InputFormik/InputFormik";
 import {Button} from "../../../00-Common/Button/Button";
 import {sendMessageTC} from "../../../../redux/dialogs-reducer";
@@ -10,9 +10,10 @@ type SendMessageType = {
 }
 
 const SendMessageForm: React.FC<SendMessageType> = ({userId}) => {
+
+    const isFetching = useAppSelector(state => state.dialogsPage.isFetching)
+
     const[message, setMessage] = useState('')
-
-
     const dispatch = useAppDispatch()
     console.log("SendMessageForm", userId)
 
@@ -32,7 +33,7 @@ const SendMessageForm: React.FC<SendMessageType> = ({userId}) => {
                 {/*<textarea onChange={(e)=>setMessage(e.currentTarget.value)} value={message}></textarea>*/}
             </div>
             <div className={css.buttonBlock}>
-                <Button onClick={sendMessageHandler}>Send</Button>
+                <Button disabled={isFetching} onClick={sendMessageHandler}>Send</Button>
             </div>
         </div>
     );

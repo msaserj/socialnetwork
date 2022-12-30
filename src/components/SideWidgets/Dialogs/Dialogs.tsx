@@ -20,13 +20,13 @@ type DialogsPageType = {
 export const Dialogs = React.memo((props: DialogsPageType) => {
 
     const dispatch = useAppDispatch()
-    const dialogss = useAppSelector(state => state.dialogsPage.dialogs)
-    const messagess = useAppSelector(state => state.dialogsPage.messages)
+    const dialogs= useAppSelector(state => state.dialogsPage.dialogs)
+    const messages = useAppSelector(state => state.dialogsPage.messages)
     const userId = useAppSelector(state => state.dialogsPage.userId)
 
     const [autoScroll, setAutoScroll] = useState(false)
-    const messagesAnchorRef = useRef<HTMLDivElement>(null)
 
+    const messagesAnchorRef = useRef<HTMLDivElement>(null)
     const scrollHandler = (e: React.UIEvent<HTMLDivElement>) => {
         let element = e.currentTarget
         if (element.scrollHeight - element.scrollTop === element.clientHeight) {
@@ -38,7 +38,7 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
     }
     useEffect(()=> {
         autoScroll && messagesAnchorRef.current?.scrollIntoView({behavior: 'smooth'})
-    },[messagess, autoScroll])
+    },[messages, autoScroll])
 
 
     useEffect(() => {
@@ -48,11 +48,11 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
     return (
         <div className={css.dialogs}>
             <div style={{height: '650px', overflowY: 'auto'}} className={css.dialogWindow}>
-                {dialogss && dialogss.map(el => <DialogItem key={el.id} dialogItem={el}/>)}
+                {dialogs && dialogs.map(el => <DialogItem key={el.id} dialogItem={el}/>)}
             </div>
             <div className={css.messagesWindow}>
                 <div style={{height: '480px', overflowY: "auto"}} className={css.messages} onScroll={scrollHandler} >
-                    {messagess && messagess.map(el => <Message key={el.id}  message={el}/>)}
+                    {messages && messages.map(el => <Message key={el.id}  message={el} userId={userId}/>)}
                     <div ref={messagesAnchorRef}></div>
                 </div>
                 <SendMessageForm userId={userId}/>

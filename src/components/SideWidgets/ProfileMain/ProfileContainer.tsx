@@ -59,7 +59,6 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
 }
 
 const mapStateToProps = (state: RootState): MapStateToPropsType => {
-    // console.log("MAP-STATE-TO-PROPS")
     return {
         resultCode: state.profilePage.resultCode,
         profile: state.profilePage.userProfile,
@@ -68,7 +67,6 @@ const mapStateToProps = (state: RootState): MapStateToPropsType => {
         isAuth: state.auth.isAuth,
     }
 }
-
 
 // compose allows us to add new HOCs, that is wrap our component to HOCs with universal options
 export default compose<React.ComponentType>(
