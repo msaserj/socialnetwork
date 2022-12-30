@@ -69,8 +69,8 @@ export const dialogAPI = {
     getDialogs() {
         return apiInstance.get(`dialogs/`)
     },
-    getMessagesList(userid: number) {
-        return apiInstance.get(`dialogs/${userid}/messages`)
+    getMessagesList(userid: number, count: number, page: number) {
+        return apiInstance.get(`dialogs/${userid}/messages?page=${page}&count=${count}`)
     },
 
     sendMessage(userId: number | undefined, body: string) {

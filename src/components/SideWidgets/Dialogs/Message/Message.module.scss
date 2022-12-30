@@ -28,11 +28,14 @@
   }
 
   .message {
-    margin-top: 10px;
+    margin: 10px 10px 0;
     font-size: 12px;
     line-height: 1.2;
     letter-spacing: 1px;
     padding-bottom: 5px;
+    color: #2a2e33;
+    word-break: break-word;
+    text-align: justify;
   }
 
 }
