@@ -15,9 +15,12 @@ type FormikErrorType = {
 
 type SearchFormType = {
     onFilterChanged: (filter: FilterType) => void
+    isFetching: boolean
+    onPageChanged: (pgs: number, pageSize: number) => void
+    onReset: () => void
 }
 
-export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
+export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged, isFetching, onPageChanged, onReset}) => {
 
     const filter = useAppSelector(state => state.usersPage.filter)
 
@@ -42,6 +45,8 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
         onSubmit: (values, onSubmitProps) => {
             onFilterChanged(values)
             onSubmitProps.setSubmitting(true);
+            onPageChanged(1,20)
+            onReset()
         },
 
     });
@@ -61,7 +66,7 @@ export const SearchForm: React.FC<SearchFormType> = ({onFilterChanged}) => {
                     <SelectFormik selectOptions={selectOptions} {...formik.getFieldProps("friend")}/>
                 </div>
                 <div>
-                    <AuthButton type="submit">Search</AuthButton>
+                    <AuthButton disabled={isFetching} type="submit">Search</AuthButton>
                     {/*{isFetching && <PreloaderSmall/>}*/}
                 </div>
 

@@ -55,7 +55,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                 <ul className={css.profileMenu}>
                     <h3>My Profile</h3>
                     <NavLink to={"/profile/" + id}>
-                        <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> About</li>
+                        <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> Profile</li>
                     </NavLink>
                     <NavLink to={"/posts"}>
                         <li onClick={editFalseHandler}><span><FaHome/> </span> Stream</li>

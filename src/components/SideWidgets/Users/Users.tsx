@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Paginator} from "../../00-Common/Paginator/Paginator";
 import {User} from "./User";
@@ -10,13 +10,14 @@ import css from "./Users.module.css"
 import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type UsersComponentPropsType = {
-    onPageChanged: (pgs: number, pageSize: number) => void
+    onPageChanged: (pgs: number, pageSize: number, usersCount?: number) => void
     onFilterChanged: (filter: FilterType) => void
     usersComponent: UsersPropsType
     followingInProgress: string[]
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
     isFetching: boolean
+
 }
 
 export const Users: React.FC<UsersComponentPropsType> = React.memo((
@@ -32,6 +33,11 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
     const dispatch = useAppDispatch()
 
     const [searchParams, setSearchParams] = useSearchParams()
+    const [reset, setPortion] = useState(1)
+    const onReset = () => {
+        setPortion(reset+1)
+    }
+
 
     useEffect(() => {
         const result: any = {}
@@ -94,7 +100,7 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
     return (
         <div className={css.users}>
             <div>
-                <SearchForm onFilterChanged={onFilterChanged}/>
+                <SearchForm onFilterChanged={onFilterChanged} isFetching={isFetching}  onPageChanged={onPageChanged} onReset={onReset}/>
                 <div style={{height: "10px"}}>{isFetching? <PreloaderSmall/>: null}
                 </div></div>
 
@@ -116,7 +122,7 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
                     currentPage={userData.currentPage}
                     onPageChanged={onPageChanged}
                     pageSize={userData.pageSize}
-                    totalItemsCount={userData.totalUsersCount}/>
+                    totalItemsCount={userData.totalUsersCount}  reset={reset}/>
 
             </div>
         </div>

@@ -26,6 +26,8 @@ import {
 
 class UsersContainer extends React.Component<UsersPropsType> {
 
+
+
     componentDidMount() {
         this.props.getUsers(this.props.currentPage, this.props.pageSize, this.props.filter);
     }
@@ -36,8 +38,8 @@ class UsersContainer extends React.Component<UsersPropsType> {
     }
 
     onFilterChanged= (filter: FilterType) => {
-        const {currentPage, pageSize} = this.props
-        this.props.getUsers(currentPage, pageSize, filter);
+        const {pageSize} = this.props
+        this.props.getUsers(1, pageSize, filter);
     }
 
     render() {
@@ -48,7 +50,7 @@ class UsersContainer extends React.Component<UsersPropsType> {
                 usersComponent={this.props}
                 followTC={this.props.followTC}
                 followingInProgress={this.props.followingInProgress}
-                unFollowTC={this.props.unFollowTC} isFetching={this.props.isFetching}/>
+                unFollowTC={this.props.unFollowTC} isFetching={this.props.isFetching} />
 
         </>;
     }
