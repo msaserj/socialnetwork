@@ -12,7 +12,6 @@ import {CoverPhoto} from "./components/03-Main/CoverPhoto/CoverPhoto";
 import {LeftWidgets} from "./components/02-LeftWidgets/LeftWidgets";
 import {RightWidgets} from "./components/04-RightWidgets/RightWidgets";
 
-
 class App extends React.Component<AuthPropsType> {
 
     catchAllUnhandledErrors = (promiseRejectionEvent: Event) => {

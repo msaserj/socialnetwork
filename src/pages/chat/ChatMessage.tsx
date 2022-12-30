@@ -11,14 +11,17 @@ const ChatMessage: React.FC<{ message: ChatMessageType }> = ({message}) => {
         <div className={css.messageBlock}>
                 <NavLink className={css.messageUserBlock} to={"/profile/" + message.userId}>
                 <img className={css.img} src={message.photo ? message.photo : avatar} alt="avatar"/>
+
+                </NavLink>
+            <div>
                 <div className={css.username}>
                     <h3>{message.userName}</h3>
                 </div>
-                </NavLink>
-
-            <div className={css.message}>
-                {message.message}
+                <div className={css.message}>
+                    {message.message}
+                </div>
             </div>
+
 
         </div>
     );

@@ -15,6 +15,7 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo((
     const {
         id,
         photos,
+        userName,
         hasNewMessages,
         newMessagesCount,
         lastUserActivityDate,
@@ -28,16 +29,44 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo((
 
     return (
         <div className={css.dialogBlock}>
+
             <div onClick={startChat} className={css.photoBlock}>
                 <img className={css.userPhoto}
                      src={photos.small != null ? photos.small : avaNeo} alt="avatar"/>
-                <NavLink to={path}>profile</NavLink>
+                {/*<div style={{color: "green"}}>online</div>*/}
             </div>
 
-            <div>
-                <div> {hasNewMessages ? <span style={{color: "limegreen"}}>Has New {newMessagesCount} messages</span> : ""}</div>
-                <div>Activity {new Date(lastUserActivityDate).toLocaleString()}</div>
-                <div>Dialog {new Date(lastDialogActivityDate).toLocaleString()}</div>
+            <div className={css.aboutBlock}>
+                <div className={css.about}>
+                    <NavLink to={path} title={"see profile"}>
+                        <h5 className={css.name}>{userName}</h5>
+                    </NavLink>
+
+
+                    <h6>Activity</h6>
+                    <p>{new Date(lastUserActivityDate).toLocaleString
+                    ("en", {
+                        day: "numeric",
+                        month: "numeric",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    })}</p>
+                    <h6>Dialog</h6>
+                    <p>{new Date(lastDialogActivityDate).toLocaleString
+                    ("en", {
+                        day: "numeric",
+                        month: "numeric",
+                        year: "numeric",
+                        hour: "2-digit",
+                        minute: "2-digit",
+                        hour12: false
+                    })}</p>
+                </div>
+
+                <div className={css.newMessages}>. {hasNewMessages ?
+                    <span style={{color: "limegreen"}}>Has New {newMessagesCount} messages</span> : ""}</div>
             </div>
 
         </div>
