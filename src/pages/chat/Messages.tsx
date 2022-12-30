@@ -33,7 +33,7 @@ const Messages: React.FC = () => {
 
     console.log(messages)
     return (
-        <div className={css.messagesBlock} style={{height: '400px', overflowY: 'auto'}} onScroll={scrollHandler}>
+        <div className={css.messagesBlock} style={{height: '390px', overflowY: 'auto'}} onScroll={scrollHandler}>
             {messages.map((m) => <ChatMessage key={m.id} message={m}/>)}
             <div ref={messagesAnchorRef}></div>
         </div>

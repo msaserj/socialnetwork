@@ -2,7 +2,7 @@
 .menuButton {
   position: relative;
   width: 30px;
-  height: 80px;
+  height: 60px;
 
   display: flex;
   justify-content: center;
@@ -45,8 +45,6 @@
     position: absolute;
     width: 200px;
     box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
-
-
 
     .menuItem {
       cursor: pointer;

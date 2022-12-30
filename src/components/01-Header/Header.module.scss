@@ -1,7 +1,7 @@
 
 .header {
   display: flex;
-  height: 80px;
+  height: 60px;
   width: 100%;
   align-items: center;
   position: fixed;
@@ -14,7 +14,7 @@
     align-items: center;
     width: 85%;
     .header img {
-      width: 60px;
+      width: 40px;
     }
 
     .profileBlock {
@@ -28,10 +28,10 @@
         align-items: center;
 
         .ava {
-          width: 60px;
-          height: 60px;
+          width: 45px;
+          height: 45px;
           border-radius: 50%;
-          border: 3px solid white;
+          border: 2px solid white;
         }
 
         .name {

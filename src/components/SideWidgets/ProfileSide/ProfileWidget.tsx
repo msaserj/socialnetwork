@@ -61,7 +61,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                         <li onClick={editFalseHandler}><span><FaHome/> </span> Stream</li>
                     </NavLink>
                     <NavLink to="/dialogs" >
-                        <li><span><FaRegComment/></span>Messages</li>
+                        <li><span><FaRegComment/></span>Dialogs</li>
                     </NavLink>
                     <NavLink onClick={()=>dispatch(editProfileAC(true))} to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegSun/> </span> Edit Profile</li>

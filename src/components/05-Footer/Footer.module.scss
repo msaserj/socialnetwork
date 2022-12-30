@@ -8,6 +8,7 @@
   grid-row: 3;
   background-color: #2a2e33;
   margin-top: 30px;
+  height: 60px;
 
   .footerContainer {
     position: relative;
@@ -18,11 +19,11 @@
 
     @include flex(column, center, "", "");
 
-    .title {
-      margin: 10px;
-      @include text(22px, 1, $fontColor);
-      text-align: center;
-    }
+    //.title {
+    //  margin: 10px;
+    //  @include text(22px, 1, $fontColor);
+    //  text-align: center;
+    //}
 
     .social {
       @include flex(row, space-evenly, center, wrap);
@@ -40,7 +41,6 @@
     .rights {
       @include text(14px, 1.5, $fontGreyColor);
       text-align: center;
-      margin: 10px 0;
 
       a {
         text-decoration: none;
