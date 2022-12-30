@@ -58,7 +58,7 @@ class ProfileContainer extends React.Component<ProfilePropsType> {
     }
 }
 
-const mapStateToProps = (state: RootState): {isAuth: boolean | undefined; myId: number; profile: UserProfileType; resultCode: number; status: string } => {
+const mapStateToProps = (state: RootState): MapStateToPropsType => {
     // console.log("MAP-STATE-TO-PROPS")
     return {
         resultCode: state.profilePage.resultCode,
@@ -66,7 +66,6 @@ const mapStateToProps = (state: RootState): {isAuth: boolean | undefined; myId: 
         status: state.profilePage.status,
         myId: state.auth.data.id,
         isAuth: state.auth.isAuth,
-
     }
 }
 
@@ -91,7 +90,7 @@ type MapStateToPropsType = {
     profile: UserProfileType | null
     status: string
     myId: number
-    isAuth: boolean
+    isAuth: boolean | undefined
 }
 
 type MapDispatchToPropsType = {

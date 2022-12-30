@@ -8,6 +8,7 @@ export type DialogsActionsType =
     | ReturnType<typeof setDialogsAC>
     | ReturnType<typeof putDialogAC>
     | ReturnType<typeof setMessagesListAC>
+    | ReturnType<typeof toggleIsFetchingAC>
 
 // Actions
 const UPDATE_NEW_MESSAGE_TEXT = 'sn/dialogs/UPDATE-NEW-MESSAGE-TEXT'
@@ -15,16 +16,16 @@ const SEND_MESSAGE = 'sn/dialogs/SEND-MESSAGE'
 const SET_DIALOGS = 'sn/dialogs/SET-DIALOGS'
 const PUT_DIALOG = 'sn/dialogs/PUT-DIALOG'
 const SET_MESSAGES_LIST = 'sn/dialogs/SET-MESSAGES-LIST'
+const FETCHING= 'sn/dialogs/FETCHING'
 
 // ActionCreators
 export const newTextMessageOnChange = (newMessage: string) => {
-    return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage} as const
-}
+    return {type: UPDATE_NEW_MESSAGE_TEXT, newMessage: newMessage} as const}
 export const sendMessageAC = (message: string) => ({type: SEND_MESSAGE, message} as const)
-
 export const setDialogsAC = (dialogs: Array<DialogsType>) => ({type: SET_DIALOGS, dialogs: dialogs} as const)
 export const setMessagesListAC = (messages: MessageItemType[]) => ({type: SET_MESSAGES_LIST, messages} as const)
 export const putDialogAC = (userId: number) => ({type: PUT_DIALOG, userId} as const)
+export const toggleIsFetchingAC = (isFetching: boolean) => ({type: FETCHING, isFetching} as const)
 
 // types for InitialState
 
@@ -49,9 +50,9 @@ export type DialogPageType = {
     messages: MessageItemType[]
     newMessageState: string
     userId: number
-
     totalCount: number;
     error?: any;
+    isFetching: boolean
 }
 
 export type MessageType = {
@@ -82,7 +83,8 @@ const initialState: DialogPageType = {
     newMessageState: "",
     userId: 0,
     error: null,
-    totalCount: 0
+    totalCount: 0,
+    isFetching: false
 }
 console.log("asa", initialState.dialogs)
 
@@ -105,6 +107,8 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
             return {...state, messages: action.messages }
         case PUT_DIALOG:
             return {...state, userId: action.userId}
+        case FETCHING:
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -112,30 +116,30 @@ export const dialogsReducer = (state: DialogPageType = initialState, action: Act
 
 //thunks
 export const getDialogsTC = (): AppThunk => async (dispatch) => {
-    // dispatch(toggleIsFetchingAC(true));
+    dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.getDialogs()
     dispatch(setDialogsAC(data.data))
-    // dispatch(toggleIsFetchingAC(false))
+    dispatch(toggleIsFetchingAC(false))
 }
 
 export const putDialogTC = (userId: number): AppThunk => async (dispatch) => {
-    // dispatch(toggleIsFetchingAC(true));
+    dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.putDialog(userId)
     dispatch(getMessagesListTC(userId))
-    // dispatch(toggleIsFetchingAC(false))
+    dispatch(toggleIsFetchingAC(false))
 }
 
 export const sendMessageTC = (userId: number, messageBody: string): AppThunk => async (dispatch) => {
-    // dispatch(toggleIsFetchingAC(true));
+    dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.sendMessage(userId, messageBody)
     dispatch(getMessagesListTC(userId))
-    // dispatch(toggleIsFetchingAC(false))
+    dispatch(toggleIsFetchingAC(false))
 }
 export const getMessagesListTC = (userId: number): AppThunk => async (dispatch) => {
-    // dispatch(toggleIsFetchingAC(true));
+    dispatch(toggleIsFetchingAC(true));
     let data = await dialogAPI.getMessagesList(userId)
     dispatch(setMessagesListAC(data.data.items))
     dispatch(putDialogAC(userId))
-    // dispatch(toggleIsFetchingAC(false))
+    dispatch(toggleIsFetchingAC(false))
 }
 

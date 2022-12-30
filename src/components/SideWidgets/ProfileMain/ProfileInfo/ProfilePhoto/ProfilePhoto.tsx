@@ -1,15 +1,15 @@
 import React from "react";
 import css from "./ProfilePhoto.module.scss"
-import {UserPhotosProfileType} from "../../../redux/profile-reducer";
-import avaSmith from "../../../assets/images/avaSmith.png";
-import avaNeo from "../../../assets/images/avaNeo.png";
-import {PreloaderSmall} from "../PreloaderSmall/PreloaderSmall";
+import {UserPhotosProfileType} from "../../../../../redux/profile-reducer";
+import avaSmith from "../../../../../assets/images/avaSmith.png";
+import avaNeo from "../../../../../assets/images/avaNeo.png";
+import {PreloaderSmall} from "../../../../00-Common/PreloaderSmall/PreloaderSmall";
 
 import {MdOutlinePhotoCamera} from "react-icons/md";
-import {ProfileStatusWithHooks} from "../../SideWidgets/ProfileMain/ProfileInfo/ProfileStatusWithHooks";
-import {Button} from "../Button/Button";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {putDialogTC} from "../../../redux/dialogs-reducer";
+import {ProfileStatusWithHooks} from "../ProfileStatusWithHooks";
+import {Button} from "../../../../00-Common/Button/Button";
+import {useAppDispatch, useAppSelector} from "../../../../../hooks/hooks";
+import {putDialogTC} from "../../../../../redux/dialogs-reducer";
 import {NavLink} from "react-router-dom";
 
 type ProfilePhotoType = {

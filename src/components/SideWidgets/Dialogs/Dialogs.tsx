@@ -51,7 +51,7 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
                 {dialogss && dialogss.map(el => <DialogItem key={el.id} dialogItem={el}/>)}
             </div>
             <div className={css.messagesWindow}>
-                <div style={{height: '400px', overflowY: "auto"}} className={css.messages} onScroll={scrollHandler} >
+                <div style={{height: '480px', overflowY: "auto"}} className={css.messages} onScroll={scrollHandler} >
                     {messagess && messagess.map(el => <Message key={el.id}  message={el}/>)}
                     <div ref={messagesAnchorRef}></div>
                 </div>

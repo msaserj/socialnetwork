@@ -4,6 +4,7 @@ import {NavLink} from "react-router-dom";
 import {DialogsType, putDialogTC} from "../../../../redux/dialogs-reducer";
 import {useAppDispatch} from "../../../../hooks/hooks";
 import avaNeo from "../../../../assets/images/avaNeo.png";
+import {dateAgo, isOnline} from "../../../00-Common/BeautyData/BeautyData";
 
 type DialogsItemType = {
     dialogItem: DialogsType
@@ -27,13 +28,17 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo((
         dispatch(putDialogTC(id))
     }
 
+
+    const lastActivity = dateAgo(lastUserActivityDate)
+    const lastDialog = dateAgo(lastDialogActivityDate)
+
     return (
         <div className={css.dialogBlock}>
 
             <div onClick={startChat} className={css.photoBlock}>
                 <img className={css.userPhoto}
                      src={photos.small != null ? photos.small : avaNeo} alt="avatar"/>
-                {/*<div style={{color: "green"}}>online</div>*/}
+                {isOnline(lastUserActivityDate) && <div className={css.online}></div>}
             </div>
 
             <div className={css.aboutBlock}>
@@ -43,30 +48,13 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo((
                     </NavLink>
 
 
-                    <h6>Activity</h6>
-                    <p>{new Date(lastUserActivityDate).toLocaleString
-                    ("en", {
-                        day: "numeric",
-                        month: "numeric",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false
-                    })}</p>
-                    <h6>Dialog</h6>
-                    <p>{new Date(lastDialogActivityDate).toLocaleString
-                    ("en", {
-                        day: "numeric",
-                        month: "numeric",
-                        year: "numeric",
-                        hour: "2-digit",
-                        minute: "2-digit",
-                        hour12: false
-                    })}</p>
+                    <h6>Last: <span>{lastActivity}</span></h6>
+                    <h6>Dialog: <span>{lastDialog}</span></h6>
+
                 </div>
 
-                <div className={css.newMessages}>. {hasNewMessages ?
-                    <span style={{color: "limegreen"}}>Has New {newMessagesCount} messages</span> : ""}</div>
+                <div className={css.newMessages}> {hasNewMessages ?
+                    <span style={{color: "limegreen"}}>New {newMessagesCount} messages</span> : ""}</div>
             </div>
 
         </div>

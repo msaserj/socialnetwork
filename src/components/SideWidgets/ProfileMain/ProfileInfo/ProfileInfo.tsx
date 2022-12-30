@@ -4,7 +4,7 @@ import {UserProfileType} from "../../../../redux/profile-reducer";
 import {Preloader} from "../../../00-Common/Preloader/Preloader";
 import {ProfileDataForm} from "./ProfileData/ProfileDataForm";
 import {ProfileData} from "./ProfileData/ProfileData";
-import {ProfilePhoto} from "../../../00-Common/ProfilePhoto/ProfilePhoto";
+import {ProfilePhoto} from "./ProfilePhoto/ProfilePhoto";
 import {useAppSelector} from "../../../../hooks/hooks";
 
 type ProfileType = {
