@@ -7,7 +7,7 @@ export  const Footer = () => {
             <div className={css.footerContainer}>
                 {/*<h2 className={css.title}>Sergei Minko</h2>*/}
                 <div className={css.social} >
-                    <a href="https://github.com/msaserj">GitHub</a>
+                    <a href="https://github.com/msaserj/inc-socialnetwork">GitHub</a>
                     <a href="https://www.linkedin.com/in/msaserj">LinkedIn</a>
                     <a href="https://msaserj.ru">msaserj</a>
                 </div>
