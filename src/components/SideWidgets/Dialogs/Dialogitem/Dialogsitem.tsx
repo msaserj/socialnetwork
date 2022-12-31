@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {DialogsType, putDialogTC} from "../../../../redux/dialogs-reducer";
 import {useAppDispatch} from "../../../../hooks/hooks";
 import avaNeo from "../../../../assets/images/avaNeo.png";
-import {dateAgo, isOnline} from "../../../00-Common/BeautyData/BeautyData";
+import { dateAgo, isOnline} from "../../../00-Common/BeautyData/BeautyData";
 
 type DialogsItemType = {
     dialogItem: DialogsType
@@ -47,10 +47,8 @@ export const DialogItem: React.FC<DialogsItemType> = React.memo((
                         <h5 className={css.name}>{userName}</h5>
                     </NavLink>
 
-
                     <h6>Last: <span>{lastActivity}</span></h6>
                     <h6>Dialog: <span>{lastDialog}</span></h6>
-
                 </div>
 
                 <div className={css.newMessages}> {hasNewMessages ?

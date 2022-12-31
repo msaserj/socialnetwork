@@ -2,7 +2,7 @@ import React, {useEffect, useRef, useState} from "react";
 import css from './Dialogs.module.scss'
 import {DialogItem} from "./Dialogitem/Dialogsitem";
 import {Message} from "./Message/Message";
-import {DialogsType, getDialogsTC, MessageItemType} from "../../../redux/dialogs-reducer";
+import {DialogsType, getDialogsTC, getMessagesListTC, MessageItemType} from "../../../redux/dialogs-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 
 import SendMessageForm from "./Message/SendMessageForm";
@@ -37,18 +37,20 @@ export const Dialogs = React.memo((props: DialogsPageType) => {
 
     const scrollBottomHandler = (e: React.UIEvent<HTMLDivElement>) => {
         let element = e.currentTarget
+
+        if(element.scrollTop <= 0 && totalCount > autoPage*10) {
+            setAutoPage(autoPage+1)
+            // dispatch(getMessagesListTC(userId, 10, autoPage))
+        }
         if (element.scrollHeight - element.scrollTop === element.clientHeight) {
             !autoScroll && setAutoScroll(true)
-            setAutoPage(autoPage-1)
+            // setAutoPage(autoPage-1)
             // dispatch(getMessagesListTC(userId, 10, autoPage))
         } else {
             autoScroll && setAutoScroll(false)
         }
 
-        if(element.scrollTop < 0 && totalCount > autoPage*10) {
-            setAutoPage(autoPage+1)
-            // dispatch(getMessagesListTC(userId, 10, autoPage))
-        }
+
 
     }
     useEffect(()=> {
