@@ -13,22 +13,17 @@ type MyPostType = {
 }
 
 export class MyPosts extends React.PureComponent<MyPostType> {
-    // PureComponent as shouldComponentUpdate
-    // but for functional component use HOC React.memo() -> wrap in this hoc your component
-
-    // shouldComponentUpdate(nextProps: Readonly<MyPostType>, nextState: Readonly<{}>, nextContext: any): boolean {
-    //     return  nextProps !== this.props || nextState !== this.state
-    // }
-
     render() {
-        // console.log("MyPosts render")
-        let postsElements = this.props.profilePage.posts.map((el, index) => <Post key={index} id={el.id} message={el.message}
-                                                                         likesCount={el.likesCount}/>)
+        let postsElements = this.props.profilePage.posts.map((el, index) =>
+            <Post
+                key={index} id={el.id}
+                message={el.message}
+                likesCount={el.likesCount}/>)
         const postOnClickHandler = () => {
             this.props.addPostOnClick()
         }
         const postOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-            // props.dispatch(updateNewPostAC(e.currentTarget.value))
+
             this.props.newPostTextOnChange(e.currentTarget.value)
         }
 
@@ -42,6 +37,10 @@ export class MyPosts extends React.PureComponent<MyPostType> {
                     </div>
                     <div>
                         <Button onClick={postOnClickHandler}>Add post</Button>
+                        <audio controls onVolumeChangeCapture={(e)=>e.currentTarget.volume === 0.2} >
+
+                                <source src="http://sc.schwarze-welle.de:7500/;&type=mp3" type="audio/mp3"/>
+                        </audio>
                     </div>
 
                     <div className={classes.item}>
@@ -55,3 +54,10 @@ export class MyPosts extends React.PureComponent<MyPostType> {
         )
     }
 }
+
+// PureComponent as shouldComponentUpdate
+// but for functional component use HOC React.memo() -> wrap in this hoc your component
+
+// shouldComponentUpdate(nextProps: Readonly<MyPostType>, nextState: Readonly<{}>, nextContext: any): boolean {
+//     return  nextProps !== this.props || nextState !== this.state
+// }

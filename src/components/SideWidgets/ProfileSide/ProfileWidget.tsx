@@ -57,8 +57,8 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <NavLink to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> Profile</li>
                     </NavLink>
-                    <NavLink to={"/posts"}>
-                        <li onClick={editFalseHandler}><span><FaHome/> </span> Stream</li>
+                    <NavLink to={"/player"}>
+                        <li onClick={editFalseHandler}><span><FaHome/> </span> Player</li>
                     </NavLink>
                     <NavLink to="/dialogs" >
                         <li><span><FaRegComment/></span>Dialogs</li>
