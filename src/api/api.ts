@@ -101,7 +101,7 @@ export const dialogAPI = {
 
 const apiRadioInstanse = axios.create({
     // withCredentials: true,
-    baseURL: "http://sc.schwarze-welle.de:7500"
+    baseURL: "https://sc.schwarze-welle.de:7500"
     // headers: {
     //     "API-KEY": "43312b93-73fd-4342-90f4-f7fe2aad1adb"
     // }
