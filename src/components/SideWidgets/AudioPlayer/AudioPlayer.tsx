@@ -1,7 +1,6 @@
 import React, {useEffect, useRef, useState} from 'react';
 import {Button} from "../../00-Common/Button/Button";
 import css from "./AudioPlayer.module.scss"
-import {radioAPI} from "../../../api/api";
 
 export const AudioPlayer = () => {
 
@@ -9,24 +8,23 @@ export const AudioPlayer = () => {
     const [duration, setDuration] = useState<number>(0)
     const [currentTime, setCurrentTime] = useState<number>(0)
 
-    const audioPlayer = useRef<any>() // ref for audio
-    const progressBar = useRef<any>() // ref for progress bar
+    const audioPlayer = useRef<HTMLAudioElement>(null) // ref for audio
+    const progressBar = useRef<any>(null) // ref for progress bar
     const animationRef = useRef<any>() // ref for animate knobby
 
     const togglePlay = () => {
         const prevPlay = isPlaying;
         setIsPlaying(!prevPlay)
         if (!prevPlay) {
-            audioPlayer.current.play()
-            audioPlayer.current.volume = 0.4
+            audioPlayer.current?.play()
             animationRef.current = requestAnimationFrame(whilePlaying)
         } else {
-            audioPlayer.current.pause()
+            audioPlayer.current?.pause()
             cancelAnimationFrame(animationRef.current)
         }
     }
     const whilePlaying = () => {
-        progressBar.current.value = audioPlayer.current.currentTime
+        progressBar.current.value = audioPlayer.current?.currentTime
         changePlayerCurrentTime()
         animationRef.current = requestAnimationFrame(whilePlaying)
 
@@ -39,7 +37,7 @@ export const AudioPlayer = () => {
         return `${returnedMinutes} : ${returnedSeconds}`
     }
     const changeRange = () => {
-        audioPlayer.current.currentTime = progressBar.current.value;
+        audioPlayer.current!.currentTime = progressBar.current.value;
         changePlayerCurrentTime()
     }
     const changePlayerCurrentTime = () => {
@@ -47,7 +45,7 @@ export const AudioPlayer = () => {
         progressBar.current.style.setProperty('--seek-before-width', `${widthBar}%`)
         setCurrentTime(progressBar.current.value)
     }
-    
+
     const backTen = () => {
       progressBar.current.value = Number(progressBar.current.value - 10);
       changeRange()
@@ -58,17 +56,15 @@ export const AudioPlayer = () => {
     }
 
     useEffect(() => {
-        const seconds = Math.floor(audioPlayer.current.duration)
+        const seconds = Math.floor(audioPlayer.current!.duration)
         setDuration(seconds);
         progressBar.current.max = seconds;
 
-    }, [audioPlayer?.current?.loadedmetadata, audioPlayer?.current?.readyState])
+    }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState])
 
     useEffect(() => {
-        audioPlayer.current.volume = 0.4
-        const radio = radioAPI.getSong()
-        console.log(radio)
-
+        console.log("")
+        audioPlayer.current!.volume = 0.4
     }, [])
     return (
         <div>
@@ -89,7 +85,6 @@ export const AudioPlayer = () => {
 
             {/*progress bar*/}
             <div>
-
                 <input
                     ref={progressBar}
                     className={css.progressBar}
