@@ -3,7 +3,7 @@ import css from "./Preloader.module.scss"
 
 export const Preloader = () => {
   const divStyle = {
-    height: '100px'
+    height: '200px'
   }
   return <div className={css.preloader}>
       <img alt="preloader" style={divStyle}

@@ -7,6 +7,7 @@ export const AudioPlayer = () => {
     const [isPlaying, setIsPlaying] = useState<boolean>(false)
     const [duration, setDuration] = useState<number>(0)
     const [currentTime, setCurrentTime] = useState<number>(0)
+    const [volume, setVolume] = useState(1);
 
     const audioPlayer = useRef<HTMLAudioElement>(null) // ref for audio
     const progressBar = useRef<any>(null) // ref for progress bar
@@ -54,6 +55,15 @@ export const AudioPlayer = () => {
         progressBar.current.value = Number(progressBar.current.value + 10);
         changeRange()
     }
+    function changeVolume(newVolume: number) {
+        if (audioPlayer.current) {
+            audioPlayer.current.volume = newVolume;
+            setVolume(newVolume);
+        }
+    }
+    const handleMouseWheel = (event: any) => {
+        console.log(event.deltaX)
+    }
 
     useEffect(() => {
         const seconds = Math.floor(audioPlayer.current!.duration)
@@ -91,6 +101,18 @@ export const AudioPlayer = () => {
                     type="range"
                     defaultValue={0}
                     onChange={changeRange}/>
+            </div>
+            <div>
+                <input
+                    id="volume-range"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.05"
+                    value={volume}
+                    onWheel={handleMouseWheel}
+                    onChange={(event) => changeVolume(event.target.valueAsNumber)}
+                />
             </div>
 
             {/*    duration*/}
