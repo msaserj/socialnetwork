@@ -8,7 +8,7 @@ import Chat from "../../pages/chat/Chat";
 import {MainWidget} from "./MainWidget/MainWidget";
 import Registration from "../SideWidgets/Registration/Registration";
 import RecoveryPass from "../SideWidgets/RecoveryPass/RecoveryPass";
-import {AudioPlayer} from "../SideWidgets/AudioPlayer/AudioPlayer";
+import {AudioPlayer} from "../01-Header/AudioPlayer/AudioPlayer";
 
 const DialogsContainer = React.lazy(()=>
     import("../SideWidgets/Dialogs/DialogsContainer")

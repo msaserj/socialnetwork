@@ -1,6 +1,14 @@
 import React, {useEffect, useRef, useState} from 'react';
-import {Button} from "../../00-Common/Button/Button";
 import css from "./AudioPlayer.module.scss"
+import {
+    MdFastForward,
+    MdFastRewind,
+    MdPause,
+    MdPlayArrow,
+    MdSkipNext,
+    MdSkipPrevious,
+    MdVolumeUp
+} from "react-icons/md";
 
 export const AudioPlayer = () => {
 
@@ -77,46 +85,60 @@ export const AudioPlayer = () => {
         audioPlayer.current!.volume = 0.4
     }, [])
     return (
-        <div>
+        <div className={css.player}>
             <audio
                 ref={audioPlayer}
-                src="http://sc.schwarze-welle.de:7500/;&type=mp3"
-                // src="http://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3"
-                preload="metadata"></audio>
+                // src="http://sc.schwarze-welle.de:7500/;&type=mp3"
+                src="http://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3"
+                preload="metadata"/>
+            <div className={css.controls}>
+                <div className={css.control} ><MdSkipPrevious/></div>
+                <div className={css.control} onClick={backTen}><MdFastRewind/></div>
 
-            <Button onClick={backTen}>{"<<"}</Button>
-            <Button onClick={togglePlay}>
-                {isPlaying ? "Pause" : " Play "}
-            </Button>
-            <Button onClick={forwardTen}>{">>"}</Button>
+                <div className={css.control} onClick={togglePlay}>{isPlaying ?<MdPause/> : <MdPlayArrow/>}</div>
 
-            {/*    current time*/}
-            <div>{calcTime(currentTime)}</div>
+                <div className={css.control} onClick={forwardTen}><MdFastForward/></div>
+                <div className={css.control}><MdSkipNext/></div>
 
-            {/*progress bar*/}
-            <div>
-                <input
-                    ref={progressBar}
-                    className={css.progressBar}
-                    type="range"
-                    defaultValue={0}
-                    onChange={changeRange}/>
             </div>
-            <div>
-                <input
-                    id="volume-range"
-                    type="range"
-                    min="0"
-                    max="1"
-                    step="0.05"
-                    value={volume}
-                    onWheel={handleMouseWheel}
-                    onChange={(event) => changeVolume(event.target.valueAsNumber)}
-                />
+            <div className={css.rangers}>
+                <div className={css.progressBarBlock}>
+                    <div className={css.timers}>
+                        <div>{calcTime(currentTime)}</div>
+                        <div>{(duration && !isNaN(duration) && duration < 356400) ? calcTime(duration) : "00 : 00"}</div>
+                    </div>
+                    <div className={css.progress}>
+                        <input
+                            ref={progressBar}
+                            className={css.progressBar}
+                            type="range"
+                            defaultValue={0}
+                            onChange={changeRange}/>
+                    </div>
+                </div>
+
+                <div className={css.soundBlock}>
+                    <div className={css.sound}>
+                        <input
+                            className={css.progressBar}
+                            style={{width: "80px"}}
+                            id="volume-range"
+                            type="range"
+                            min="0"
+                            max="1"
+                            step="0.05"
+                            value={volume}
+                            onWheel={handleMouseWheel}
+                            onChange={(event) => changeVolume(event.target.valueAsNumber)}
+                        />
+                    </div>
+                    <div className={css.speaker}>< MdVolumeUp/></div>
+                </div>
+
             </div>
 
-            {/*    duration*/}
-            <div>{(duration && !isNaN(duration) && duration < 356400) ? calcTime(duration) : "00 : 00"}</div>
+
+
         </div>
     );
 };

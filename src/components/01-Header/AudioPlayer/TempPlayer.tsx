@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 
-export function AudioPlayerr() {
+export function TempPlayer() {
     const audioRef = useRef<HTMLAudioElement>(null);
     const [volume, setVolume] = useState(1);
     const [currentTrack, setCurrentTrack] = useState(1);
