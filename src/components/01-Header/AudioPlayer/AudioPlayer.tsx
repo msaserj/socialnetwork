@@ -17,6 +17,7 @@ type AudioPlayerType = {
     duration: number
     progressBar: any
     changeRange: any
+
     audioPlayer: any
     children: ReactNode
     changeVolume: (newVolume: any)=> void
@@ -53,6 +54,8 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
                     </div>
                     <div className={css.progress}>
                         <input
+                            min="0"
+                            max={!isNaN? duration : "0"}
                             ref={progressBar}
                             className={css.progressBar}
                             type="range"
