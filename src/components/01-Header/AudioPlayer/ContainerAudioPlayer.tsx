@@ -13,7 +13,7 @@ import {
 import {AudioPlayer} from "./AudioPlayer";
 
 export const ContainerAudioPlayer = () => {
-    const playList = pl.playlist1
+    const playList = pl.playlist2
 
     const dispatch = useAppDispatch()
     const muted = useAppSelector(state => state.audioPlayer.muted)
@@ -23,12 +23,15 @@ export const ContainerAudioPlayer = () => {
     const volume = useAppSelector(state => state.audioPlayer.volume)
     const currentTrack = useAppSelector(state => state.audioPlayer.currentTrack)
 
-    console.log("audio")
-
     const audioPlayer = useRef<HTMLAudioElement>(null) // ref for audio
     const progressBar = useRef<any>(null) // ref for progress bar
     const soundBar = useRef<any>() // ref for sound range
     const animationRef = useRef<any>() // ref for animate knobby
+
+    console.log("audio")
+
+
+
 
     const togglePlay = () => {
         const prevPlay = isPlaying;
@@ -69,6 +72,8 @@ export const ContainerAudioPlayer = () => {
     function changeVolume(newVolume: any) {
         if (audioPlayer.current) {
             dispatch(volumeAC(newVolume.target.valueAsNumber));
+            const titlee = audioPlayer.current!.srcObject
+            console.log("titleE", titlee)
         }
     }
 
@@ -82,19 +87,19 @@ export const ContainerAudioPlayer = () => {
     const toggleNextTrack = () => {
       if(currentTrack >= playList.length - 1) {
           dispatch(currentTrackAC(0))
-          audioPlayer.current!.src = playList[0];
+          audioPlayer.current!.src = playList[0].src;
           audioPlayer.current!.play()
       } else {
 
           dispatch(currentTrackAC(currentTrack + 1))
-          audioPlayer.current!.src = playList[currentTrack + 1];
+          audioPlayer.current!.src = playList[currentTrack + 1].src;
           audioPlayer.current!.play()
       }
     }
     const togglePreviousTrack = () => {
         if(currentTrack > 0) {
             dispatch(currentTrackAC(currentTrack - 1));
-            audioPlayer.current!.src = playList[currentTrack - 1];
+            audioPlayer.current!.src = playList[currentTrack - 1].src;
             audioPlayer.current!.play()
         }
     }
@@ -109,22 +114,18 @@ export const ContainerAudioPlayer = () => {
         progressBar.current.max = seconds;
 
     }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState])
-    useEffect(()=>{
-        audioPlayer.current!.src = playList[currentTrack]
-    },[])
-    useEffect(() => {
-        if (audioPlayer) {
 
-            const widthBar = progressBar.current.value/duration *100
-            progressBar.current.style.setProperty('--seek-before-width', `${widthBar}%`)
-        }
-    }, [currentTime])
+    useEffect(()=>{
+        audioPlayer.current!.src = playList[currentTrack].src
+
+    },[])
 
     useEffect(() => {
         if (audioPlayer) {
             audioPlayer.current!.volume = volume / 100
             const widthBar = soundBar.current.value
             soundBar.current.style.setProperty('--seek-before-width', `${widthBar}%`)
+
         }
     }, [volume])
     return (

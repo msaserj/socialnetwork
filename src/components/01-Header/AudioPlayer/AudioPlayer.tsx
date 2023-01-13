@@ -55,7 +55,7 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
                     <div className={css.progress}>
                         <input
                             min="0"
-                            max={!isNaN? duration : "0"}
+                            max={duration > 9999999? 9999999 : duration}
                             ref={progressBar}
                             className={css.progressBar}
                             type="range"
