@@ -6,11 +6,17 @@
   gap: 10px;
   .controls {
     display: inherit;
-    font-size: 36px;
+    font-size: 28px;
     color: silver;
     gap: 10px;
+    cursor: pointer;
+    }
     .control {
       display: inherit;
+      transition: color 0.8s;
+      &:hover{
+        transition: color 0.2s;
+        color: #2ee700;
     }
   }
   .rangers {
@@ -26,6 +32,9 @@
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px ;
+        .timer{
+          color: silver;
+        }
       }
       .progress {
         display: inherit;
@@ -42,8 +51,15 @@
       }
       .speaker {
         display: inherit;
-        font-size: 36px;
+        align-items: start;
+        font-size: 28px;
         color: silver;
+        transition: color 1s;
+        cursor: pointer;
+        &:hover{
+          transition: color 0.2s;
+          color: #2ee700;
+        }
       }
     }
   }
@@ -55,9 +71,9 @@
 
   --bar-bg: #8a8a8a;
   --seek-before-width: 0;
-  --seek-before-color: #e5e5e5;
+  --seek-before-color: #ececec;
   --knobby: silver;
-  --selectedKnobby: #8a7070;
+  --selectedKnobby: #ececec;
 
   appearance: none;
   background-color: var(--bar-bg);
@@ -66,6 +82,7 @@
   height: 4px;
   outline: none;
   width: 250px;
+  cursor: pointer;
 }
 
 // progress bar - safari
@@ -133,6 +150,11 @@
   margin: -3px 0 0 0;
   z-index: 3;
   box-sizing: border-box;
+  transition: background-color 0.2s;
+  &:hover{
+    transition: background-color 0.2s;
+    background-color: var(--selectedKnobby);
+  }
 }
 
 //knobby while dragging - chrome and safari
@@ -154,6 +176,7 @@
   position: relative;
   z-index: 3;
   box-sizing: border-box;
+  display: none;
 }
 
 //knobby while dragging firefox

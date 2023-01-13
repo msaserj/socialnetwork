@@ -1,7 +1,7 @@
 import React from "react";
 import {MessageItemType} from "../../../../redux/dialogs-reducer";
 import css from "./Message.module.scss"
-import {dateAgo} from "../../../00-Common/BeautyData/BeautyData";
+import {dateAgo} from "../../../../utils/BeautyData/BeautyData";
 
 type MessageType = {
     message: MessageItemType
@@ -27,8 +27,6 @@ export const Message: React.FC<MessageType> = (
             {/*<div className={css.viewed}>viewed {message.viewed}</div>*/}
         </div>
         )
-
-
 
 
 }

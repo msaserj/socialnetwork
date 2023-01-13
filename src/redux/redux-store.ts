@@ -9,6 +9,7 @@ import {AppActionsType, appReducer} from "./app-reducer";
 import {ChatActionsType, chatReducer} from "./chat-reducer";
 import {MembersActionsType, membersReducer} from "./members-reducer";
 import {myProfileActionsType, myProfileReducer} from "./myProfile-reducer";
+import {audioPlayerReducer, PlayerActionsType} from "./audioPlayer-reducer";
 
 let rootReducer = combineReducers({
     profilePage: profileReducer,
@@ -19,7 +20,8 @@ let rootReducer = combineReducers({
     app: appReducer,
     chat: chatReducer,
     members: membersReducer,
-    myProfile: myProfileReducer
+    myProfile: myProfileReducer,
+    audioPlayer: audioPlayerReducer
 })
 
 // для работы с REDUX_DEVTOOLS: Window c Большой Буквы Window
@@ -51,5 +53,6 @@ export type ActionsType =
     | ChatActionsType
     | MembersActionsType
     | myProfileActionsType
+    | PlayerActionsType
 
 

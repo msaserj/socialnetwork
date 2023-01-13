@@ -17,3 +17,11 @@ export const followUnfollow = async (dispatch: any, userId: number, apiMethod: a
     }
     dispatch(toggleIsFollowingAC(false, userId))
 }
+
+export const calcTime = (secs: number) => {
+    const minutes = Math.floor(secs / 60);
+    const returnedMinutes = minutes < 10 ? `0${minutes}` : minutes;
+    const seconds = Math.floor(secs % 60);
+    const returnedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${returnedMinutes} : ${returnedSeconds}`
+}

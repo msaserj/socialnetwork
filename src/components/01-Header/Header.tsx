@@ -6,7 +6,7 @@ import logo from "../../assets/images/logo.png"
 import {Nav} from "./Nav/Nav";
 import avaNeo from "../../assets/images/avaNeo.png"
 import {UserPhotosProfileType} from "../../redux/profile-reducer";
-import {AudioPlayer} from "./AudioPlayer/AudioPlayer";
+import {ContainerAudioPlayer} from "./AudioPlayer/ContainerAudioPlayer";
 
 type HeaderType = {
     authHeader: DataType
@@ -24,7 +24,7 @@ export const Header = (props: HeaderType) => {
 
             <div className={css.flexContainer}>
                 <img src={logo} alt="logo"/>
-                <AudioPlayer/>
+                <ContainerAudioPlayer/>
                 {!props.authHeader.id
                     ? <NavLink to={'/registr'}>Registration</NavLink>
                     : <div className={css.profileBlock}>

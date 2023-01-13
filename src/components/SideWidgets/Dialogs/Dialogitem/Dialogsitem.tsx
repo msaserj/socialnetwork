@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 import {DialogsType, putDialogTC} from "../../../../redux/dialogs-reducer";
 import {useAppDispatch} from "../../../../hooks/hooks";
 import avaNeo from "../../../../assets/images/avaNeo.png";
-import { dateAgo, isOnline} from "../../../00-Common/BeautyData/BeautyData";
+import { dateAgo, isOnline} from "../../../../utils/BeautyData/BeautyData";
 
 type DialogsItemType = {
     dialogItem: DialogsType
