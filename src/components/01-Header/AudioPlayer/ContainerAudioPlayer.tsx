@@ -13,7 +13,7 @@ import {
 import {AudioPlayer} from "./AudioPlayer";
 
 export const ContainerAudioPlayer = () => {
-    const playList = pl.playlist2
+    const playList = pl.playlist1
 
     const dispatch = useAppDispatch()
     const muted = useAppSelector(state => state.audioPlayer.muted)
@@ -23,60 +23,30 @@ export const ContainerAudioPlayer = () => {
     const volume = useAppSelector(state => state.audioPlayer.volume)
     const currentTrack = useAppSelector(state => state.audioPlayer.currentTrack)
 
+
     const audioPlayer = useRef<HTMLAudioElement>(null) // ref for audio
     const progressBar = useRef<any>(null) // ref for progress bar
     const soundBar = useRef<any>() // ref for sound range
-    const animationRef = useRef<any>() // ref for animate knobby
-
-    console.log("audio")
-
-
-
 
     const togglePlay = () => {
-        const prevPlay = isPlaying;
-        dispatch(playingAC(!prevPlay))
-        // setIsPlaying(!prevPlay)
-        if (!prevPlay) {
+        dispatch(playingAC(!isPlaying))
+        if (!isPlaying) {
+            audioPlayer.current!.src = playList[currentTrack]
             audioPlayer.current?.play()
-            animationRef.current = requestAnimationFrame(whilePlaying)
+            dispatch(durationAC(Math.floor(audioPlayer.current!.duration)))
         } else {
             audioPlayer.current?.pause()
-            cancelAnimationFrame(animationRef.current)
         }
     }
-    const whilePlaying = () => {
-        progressBar.current.value = audioPlayer.current?.currentTime
-        changePlayerCurrentTime()
-        animationRef.current = requestAnimationFrame(whilePlaying)
-
-    }
     const changeRange = () => {
-        audioPlayer.current!.currentTime = progressBar.current.value;
-        changePlayerCurrentTime()
+        audioPlayer.current!.currentTime = duration/100 * progressBar.current.value;
+        dispatch(currentTimeAC(audioPlayer.current!.currentTime))
     }
-    const changePlayerCurrentTime = () => {
-        const widthBar = progressBar.current.value / duration * 100
-        progressBar.current.style.setProperty('--seek-before-width', `${widthBar}%`)
-        dispatch(currentTimeAC(progressBar.current.value))
-    }
-
-    const backTen = () => {
-
-        audioPlayer.current!.currentTime -= 10;
-    }
-    const forwardTen = () => {
-        audioPlayer.current!.currentTime += 10;
-    }
-
     function changeVolume(newVolume: any) {
         if (audioPlayer.current) {
             dispatch(volumeAC(newVolume.target.valueAsNumber));
-            const titlee = audioPlayer.current!.srcObject
-            console.log("titleE", titlee)
         }
     }
-
     function VolumeSpeakers() {
         return muted
             ? <MdVolumeOff/>
@@ -84,50 +54,56 @@ export const ContainerAudioPlayer = () => {
                 : volume <= 70 ? <MdVolumeDown/>
                     : <MdVolumeUp/>
     }
-    const toggleNextTrack = () => {
-      if(currentTrack >= playList.length - 1) {
-          dispatch(currentTrackAC(0))
-          audioPlayer.current!.src = playList[0].src;
-          audioPlayer.current!.play()
-      } else {
+    const toggleMuted = () => {
+        dispatch(mutedAC(!muted))
+    }
 
-          dispatch(currentTrackAC(currentTrack + 1))
-          audioPlayer.current!.src = playList[currentTrack + 1].src;
-          audioPlayer.current!.play()
-      }
+    const backTen = () => {
+        audioPlayer.current!.currentTime -= 10;
+    }
+    const forwardTen = () => {
+        audioPlayer.current!.currentTime += 10;
+    }
+    const toggleNextTrack = () => {
+        if(currentTrack >= playList.length - 1) {
+            dispatch(currentTrackAC(0))
+            audioPlayer.current!.src = playList[0];
+            audioPlayer.current!.play()
+        } else {
+
+            dispatch(currentTrackAC(currentTrack + 1))
+            audioPlayer.current!.src = playList[currentTrack + 1];
+            audioPlayer.current!.play()
+        }
     }
     const togglePreviousTrack = () => {
         if(currentTrack > 0) {
             dispatch(currentTrackAC(currentTrack - 1));
-            audioPlayer.current!.src = playList[currentTrack - 1].src;
+            audioPlayer.current!.src = playList[currentTrack - 1];
             audioPlayer.current!.play()
         }
     }
-    const toggleMuted = () => {
-      dispatch(mutedAC(!muted))
+    const progressBarMover = () => {
+        progressBar.current.style.setProperty('--seek-before-width',
+            `${(duration && !isNaN(duration) && duration < 356400 && duration) ? (currentTime/duration*100) : 0}%`)
     }
-
-    useEffect(() => {
-
-        const seconds = Math.floor(audioPlayer.current!.duration)
-        dispatch(durationAC(seconds))
-        progressBar.current.max = seconds;
-
-    }, [audioPlayer?.current?.onloadedmetadata, audioPlayer?.current?.readyState])
-
-    useEffect(()=>{
-        audioPlayer.current!.src = playList[currentTrack].src
-
-    },[])
-
+    isPlaying && progressBarMover()
     useEffect(() => {
         if (audioPlayer) {
             audioPlayer.current!.volume = volume / 100
             const widthBar = soundBar.current.value
             soundBar.current.style.setProperty('--seek-before-width', `${widthBar}%`)
-
         }
-    }, [volume])
+        if(isPlaying) {
+            const intervalId = setInterval(() => {
+                dispatch(currentTimeAC(Math.floor(audioPlayer.current!.currentTime)))
+                dispatch(durationAC(Math.floor(audioPlayer.current!.duration)))
+            }, 1000);
+            return () => {
+                clearInterval(intervalId);
+            };
+        }
+    }, [volume, isPlaying])
     return (
         <>
             <AudioPlayer

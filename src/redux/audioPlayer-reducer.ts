@@ -11,6 +11,7 @@ export type PlayerActionsType =
 
 
 
+
 // Actions
 const SET_MUTED = 'sn/audioPlayer/SET-MUTED'
 const SET_PLAYING = 'sn/audioPlayer/SET-PLAYING'
