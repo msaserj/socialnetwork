@@ -12,7 +12,7 @@ const lists = {
         },
         {
             title: "David Keller - Vosstanie peshehodov (mds).",
-            src: "http://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3"
+            src: "https://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3"
         },
         {
             title: "Sajmon Klark - Bajki Mogilschika (mds).",
@@ -20,7 +20,7 @@ const lists = {
         },
         {
             title: "Kliford Saimak - Pokolenie, dostigshee celi (mds).",
-            src: "http://mds.kallisto.ru/mcleo/2006.10.12/625._Kliford_Saimak._Pokolenie,_dostigshee_celi.mp3"
+            src: "https://mds.kallisto.ru/mcleo/2006.10.12/625._Kliford_Saimak._Pokolenie,_dostigshee_celi.mp3"
         }
     ]
 }
