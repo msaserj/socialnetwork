@@ -8,7 +8,8 @@ import Chat from "../../pages/chat/Chat";
 import {MainWidget} from "./MainWidget/MainWidget";
 import Registration from "../SideWidgets/Registration/Registration";
 import RecoveryPass from "../SideWidgets/RecoveryPass/RecoveryPass";
-import {MusicPlayList} from "../SideWidgets/Music/MusicPlayList";
+import {Music} from "../SideWidgets/Music/Music";
+import {Video} from "../SideWidgets/Video/Video";
 
 const DialogsContainer = React.lazy(()=>
     import("../SideWidgets/Dialogs/DialogsContainer")
@@ -35,7 +36,8 @@ const Main = () => {
                 </Route>
                 <Route path="/users" element={<MainWidget title={"Users"}><UsersContainer/></MainWidget>}/>
                 <Route path="/chat" element={ <MainWidget title={"CommonChat"}><Chat/></MainWidget> }/>
-                <Route path="/player" element={ <MainWidget title={"Player"}><MusicPlayList/></MainWidget> }/>
+                <Route path="/music" element={ <MainWidget title={"Music"}><Music/></MainWidget> }/>
+                <Route path="/video" element={ <MainWidget title={"Video"}><Video/></MainWidget> }/>
                 <Route path="*" element={<div>404</div>}/>
                 <Route path="/" element={<Navigate to={"/profile"}/>}/>
                 <Route path="/registr" element={<MainWidget title={"Registration"}><Registration/></MainWidget> }/>

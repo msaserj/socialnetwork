@@ -4,16 +4,7 @@ import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {getMyProfileTC} from "../../../redux/myProfile-reducer";
 import {NavLink} from "react-router-dom";
 import {editProfileAC} from "../../../redux/profile-reducer";
-import {logoutTC} from "../../../redux/auth-reducer";
-import {
-    FaHome,
-    FaRegArrowAltCircleLeft,
-    FaRegComment,
-    FaRegComments,
-    FaRegSun,
-    FaRegUserCircle,
-    FaUsers
-} from "react-icons/fa";
+import {FaMusic, FaRegComment, FaRegComments, FaRegSun, FaRegUserCircle, FaUsers, FaVideo} from "react-icons/fa";
 import avaNeo from "../../../assets/images/avaNeo.png"
 import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
@@ -26,9 +17,6 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
     const id = useAppSelector(state => state.myProfile.myProfile.userId)
 
-    const logoutHandler = () => {
-        dispatch(logoutTC())
-    }
     const editFalseHandler = () => {
         dispatch(editProfileAC(false))
     }
@@ -57,14 +45,14 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <NavLink to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> Profile</li>
                     </NavLink>
-                    <NavLink to={"/player"}>
-                        <li onClick={editFalseHandler}><span><FaHome/> </span> Player</li>
-                    </NavLink>
-                    <NavLink to="/dialogs" >
-                        <li><span><FaRegComment/></span>Dialogs</li>
-                    </NavLink>
                     <NavLink onClick={()=>dispatch(editProfileAC(true))} to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegSun/> </span> Edit Profile</li>
+                    </NavLink>
+                    <NavLink to={"/music"}>
+                        <li><span><FaMusic/> </span>Music</li>
+                    </NavLink>
+                    <NavLink to="/video" >
+                        <li><span><FaVideo/></span>Video</li>
                     </NavLink>
                 </ul>
 
@@ -74,12 +62,15 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <NavLink to="/users" >
                         <li><span><FaUsers/></span>Users</li>
                     </NavLink>
+                    <NavLink to="/dialogs" >
+                        <li><span><FaRegComment/></span>Dialogs</li>
+                    </NavLink>
                     <NavLink to="/chat" >
                         <li ><span><FaRegComments/></span>Common Chat</li>
                     </NavLink>
-                    <li style={{cursor: "pointer"}} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log
-                        Out
-                    </li>
+                    {/*<li style={{cursor: "pointer"}} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log*/}
+                    {/*    Out*/}
+                    {/*</li>*/}
                 </ul>
             </div>
         </div>

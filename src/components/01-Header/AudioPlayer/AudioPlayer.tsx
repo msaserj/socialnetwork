@@ -48,9 +48,10 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
             <div className={css.rangers}>
                 <div className={css.progressBarBlock}>
                     <div className={css.timers}>
-                        <div className={css.timer}>{calcTime(currentTime)}</div>
-                        <div
-                            className={css.timer}>{(duration && !isNaN(duration) && duration < 356400) ? calcTime(duration) : "00 : 00"}</div>
+                        <div className={css.timer}>
+                            {calcTime(currentTime)}</div>
+                        <div className={css.timer}>
+                            {(duration && !isNaN(duration) && duration < 35640) ? calcTime(duration) : "00 : 00"}</div>
                     </div>
                     <div className={css.progress}>
                         <input

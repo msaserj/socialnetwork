@@ -20,7 +20,7 @@ const lists = {
         },
         {
             title: "Kliford Saimak - Pokolenie, dostigshee celi (mds).",
-            src: "https://mds.kallisto.ru/mcleo/2006.10.12/625._Kliford_Saimak._Pokolenie,_dostigshee_celi.mp3"
+            src: "https://ms01.spac.me/m/010074215048204255253104053225017048048105147132078049136115/1673966668/94244069/0/8767fe3a0b216a5dc4af92ef40e78674/MDS-Klifford_Sajmak_Pokolenie_dostigwee_celi-spcs.life.mp3"
         }
     ]
 }

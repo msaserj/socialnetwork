@@ -1,11 +1,11 @@
 import React from "react";
-import css from './MusicPlayList.module.scss'
+import css from './Music.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import pl from "../../01-Header/AudioPlayer/lists"
 import {currentTrackAC, playingAC, selectTrackAC} from "../../../redux/audioPlayer-reducer";
 
 
-export const MusicPlayList = () => {
+export const Music = () => {
 
     const playList = pl.playlist2
     const dispatch = useAppDispatch()
@@ -16,18 +16,14 @@ export const MusicPlayList = () => {
         dispatch(playingAC(true))
       dispatch(currentTrackAC(index))
       dispatch(selectTrackAC(!selectTrack))
-
-        console.log(index)
     }
 
     return(
         <nav className={css.hash}>
             {
                 playList.map((p, index)=>{
-
                     // @ts-ignore
                     const resultStyle = index === currentTrack? css.selected : ''
-
                     return <div
                         className={`${css.playList} ${resultStyle}`}
                         key={index}
