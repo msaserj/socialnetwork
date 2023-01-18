@@ -1,26 +1,58 @@
 const lists = {
     playlist1: [
-        "http://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3",
-        "http://mds.kallisto.ru/grey2000/2021/10/01_Daliia_Truskinovskaia_-_Pedagogicheskii_shabash.mp3",
-        "https://muz16.z2.fm/9/2a/sajmon_klark_-_bajki_mogilshchika_(zf.fm).mp3",
-        "https://sc.schwarze-welle.de:7500/;&type=mp3"
+        {
+            title: "Time-lapse Kostroma.",
+            src: "https://msaserj.ru/video/Kostroma_lapse.mp4"
+        },
+        {
+            title: "Time-lapse Minsk Academy Of Science (clouds).",
+            src: "https://msaserj.ru/video/Minsk_academy_of_science_clouds.mp4"
+        },
+        {
+            title: "Time-lapse Minsk Academy Of Science (night).",
+            src: "https://msaserj.ru/video/Minsk_academy_of_science_night.mp4"
+        },
+        {
+            title: "Tbilisi Saburtalo (crane work)",
+            src: "https://msaserj.ru/video/Tbilisi_crane.mp4"
+        },
+        {
+            title: "Tbilisi Saburtalo (night).",
+            src: "https://msaserj.ru/video/Tbilisi_night.mp4"
+        }
     ],
     playlist2: [
         {
-            title: "Radio Schwarze-Welle.",
+            title: "Radio Schwarze-Welle. https://schwarze-welle.com/",
             src: "https://sc.schwarze-welle.de:7500/;&type=mp3"
         },
         {
-            title: "David Keller - Vosstanie peshehodov (mds).",
-            src: "https://mds.kallisto.ru/hell/2020/02/Devid_Keller_-_Vosstanie_peshehodov.mp3"
+            title: "Devid Keller - Vosstanie peshehodov (mds).",
+            src: "https://msaserj.ru/audio/Devid_Keller_-_Vosstanie_peshehodov.mp3"
         },
         {
-            title: "Sajmon Klark - Bajki Mogilschika (mds).",
-            src: "https://muz16.z2.fm/9/2a/sajmon_klark_-_bajki_mogilshchika_(zf.fm).mp3"
+            title: "Leonid Kaganov - Mne povezet (mds).",
+            src: "https://msaserj.ru/audio/Leonid_Kaganov_-_Mne_povezet.mp3"
         },
         {
-            title: "Kliford Saimak - Pokolenie, dostigshee celi (mds).",
-            src: "https://ms01.spac.me/m/010074215048204255253104053225017048048105147132078049136115/1673966668/94244069/0/8767fe3a0b216a5dc4af92ef40e78674/MDS-Klifford_Sajmak_Pokolenie_dostigwee_celi-spcs.life.mp3"
+            title: "Leonid Kaganov - Problema razmernosti (mds).",
+            src: "https://msaserj.ru/audio/Leonid_Kaganov_-_Problema_razmernosti.mp3"
+        },
+        {
+            title: "Leonid Kaganov - Vremja Bylo (mds).",
+            src: "https://msaserj.ru/audio/Leonid_Kaganov_-_Vremja_Bylo.mp3"
+        },
+        {
+            title: "Sajmon Klark - Bajki mogilschika (mds).",
+            src: "https://msaserj.ru/audio/Saimon_Klark_-_Bajki_mogilschika.mp3"
+        },
+        {
+            title: "Sajmak Klifford - Pokolenie dostigshee celi (mds).",
+            src: "https://msaserj.ru/audio/Sajmak_Klifford_-_Pokolenie_dostigshee_celi.mp3"
+        },
+        {
+            title: "Shekli Robert - Ja Vizhu, chelovek sidit na stule (mds).",
+            src: "https://msaserj.ru/audio/Shekli_Robert%20-%20Ja_vizhu_%20chelovek_sidit_na_stule.mp3"
         }
     ]
 }

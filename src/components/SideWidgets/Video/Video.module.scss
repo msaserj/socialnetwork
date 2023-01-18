@@ -5,6 +5,16 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: space-between;
+  .controls {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    .title {
+      font-size: 18px;
+    }
+  }
   .videoItem {
     width: 100%;
   }
