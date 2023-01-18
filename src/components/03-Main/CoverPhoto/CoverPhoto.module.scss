@@ -17,6 +17,7 @@
     align-items: center;
     width: 100%;
 
+
     .photo {
       //position: fixed;
       overflow: hidden;
@@ -26,9 +27,17 @@
       height: auto;
       width: 100%;
       margin-top: -370px;
+      @media screen and (max-width: 750px) {
+        margin-top: -180px;
+        }
     }
   }
-
+  @media screen and (max-width: 1050px) {
+    height: 250px;
+    .photoBlock {
+      height: 170px;
+    }
+  }
   .coverMenu {
     background-color: #fff;
     //border: 5px solid #881313;
