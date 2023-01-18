@@ -21,7 +21,7 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
         isFetching,
         reset
     }) => {
-    const portionSize = 6
+    const portionSize = 5
     let pagesCount = Math.ceil(totalItemsCount / pageSize)
     console.log(totalItemsCount)
     let pages = []
@@ -51,7 +51,6 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
     return (
         <div className={css.paginator}>
             <div className={css.buttonBlock}>
-
                     <Button disabled={portionNumber < 2 || isFetching} onClick={() => {
                         setPortionNumber(portionNumber - 1); // @ts-ignore
                         onPageChanged(leftPortionPageNumber-1, size)}}>{"<<"}</Button>
