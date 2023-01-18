@@ -15,6 +15,18 @@
     color: silver;
     gap: 10px;
     cursor: pointer;
+    .soundBlockMobile {
+      display: inherit;
+      align-items: center;
+      gap: 10px;
+      @media screen and (min-width: 730px) {
+        display: none;
+      }
+      .sound {
+        display: inherit;
+      }
+
+    }
   }
 
   .control {
@@ -25,7 +37,6 @@
       transition: color 0.2s;
       color: #2ee700;
     }
-
   }
   .rewind {
     @media screen and (max-width: 730px) {

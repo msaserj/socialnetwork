@@ -8,7 +8,7 @@
   position: fixed;
   background-color: #363c42;
   z-index: 5;
-  @media screen and (max-width: 730px) {
+  @media screen and (max-width: 950px) {
     height: 90px;
   }
   .flexContainer {
@@ -17,7 +17,8 @@
     justify-content: space-between;
     align-items: center;
     width: 85%;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 10px;
     @media screen and (max-width: 730px) {
       flex-wrap: nowrap;
     }

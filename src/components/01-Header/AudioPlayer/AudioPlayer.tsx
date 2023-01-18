@@ -2,6 +2,7 @@ import React, {ReactNode} from 'react';
 import css from "./AudioPlayer.module.scss";
 import {MdFastForward, MdFastRewind, MdPause, MdPlayArrow, MdSkipNext, MdSkipPrevious} from "react-icons/md";
 import {calcTime} from "../../../utils/object-helpers";
+import {SoundBar} from "./SoundBar";
 
 
 type AudioPlayerType = {
@@ -43,6 +44,9 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
 
                 <div className={`${css.control} ${css.rewind}`} onClick={forwardTen}><MdFastForward/></div>
                 <div className={css.control} onClick={toggleNextTrack}><MdSkipNext/></div>
+                <div className={css.soundBlockMobile}>
+                    <SoundBar soundBar={soundBar} volume={volume} changeVolume={changeVolume} setMuted={setMuted} muted={muted} children={children}/>
+                </div>
 
             </div>
             <div className={css.rangers}>
@@ -66,21 +70,7 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
                 </div>
 
                 <div className={css.soundBlock}>
-                    <div className={css.sound}>
-                        <input
-                            ref={soundBar}
-                            className={css.progressBar}
-                            style={{width: "80px"}}
-                            id="volume-range"
-                            type="range"
-                            min="0"
-                            max="100"
-                            step="5"
-                            value={volume}
-                            onChange={changeVolume}
-                        />
-                    </div>
-                    <div onClick={() => setMuted(!muted)} className={css.speaker}>{children}</div>
+                    <SoundBar soundBar={soundBar} volume={volume} changeVolume={changeVolume} setMuted={setMuted} muted={muted} children={children}/>
                 </div>
             </div>
         </div>

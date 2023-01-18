@@ -3,12 +3,14 @@
   position: relative;
   width: 30px;
   height: 60px;
-
+  background-color: #3a3a3a;
   display: flex;
   justify-content: center;
   align-items: center;
   transition: 0.2s;
-
+  @media screen and (max-width: 950px) {
+    height: 90px;
+  }
   .menuIcon {
     position: relative;
     width: 12px;
@@ -45,6 +47,7 @@
     position: absolute;
     width: 200px;
     box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
+    z-index: 10;
 
     .menuItem {
       cursor: pointer;
