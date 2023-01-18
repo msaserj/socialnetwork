@@ -37,11 +37,11 @@ export const AudioPlayer:React.FC<AudioPlayerType> = (
                 preload="metadata"/>
             <div className={css.controls}>
                 <div className={css.control} onClick={togglePreviousTrack}><MdSkipPrevious/></div>
-                <div className={css.control} onClick={backTen}><MdFastRewind/></div>
+                <div className={`${css.control} ${css.rewind}`} onClick={backTen}><MdFastRewind/></div>
 
                 <div className={css.control} onClick={togglePlay}>{isPlaying ? <MdPause/> : <MdPlayArrow/>}</div>
 
-                <div className={css.control} onClick={forwardTen}><MdFastForward/></div>
+                <div className={`${css.control} ${css.rewind}`} onClick={forwardTen}><MdFastForward/></div>
                 <div className={css.control} onClick={toggleNextTrack}><MdSkipNext/></div>
 
             </div>

@@ -7,6 +7,7 @@
   justify-content: flex-start;
   margin-bottom: 40px;
 
+
   .photoBlock {
     position: relative;
     width: 150px;
@@ -19,7 +20,14 @@
       padding: 1px;
 
     }
-
+    @media screen and (max-width: 550px) {
+      width: 90px;
+      height: 90px;
+      .userPhoto {
+        width: 90px;
+        height: 90px;
+      }
+    }
     .divinput {
       position: absolute;
       width: 50px;
@@ -35,7 +43,10 @@
       cursor: pointer;
       bottom: 0;
       right: 0;
-
+      @media screen and (max-width: 550px) {
+        width: 30px;
+        height: 30px;
+      }
       &:hover {
         opacity: 60%;
       }

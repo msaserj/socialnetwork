@@ -1,12 +1,16 @@
 
 .header {
   display: flex;
+  min-height: 60px;
   max-height: 200px;
   width: 100%;
   align-items: center;
   position: fixed;
   background-color: #363c42;
   z-index: 5;
+  @media screen and (max-width: 730px) {
+    height: 90px;
+  }
   .flexContainer {
     margin: 0 auto;
     display: flex;
@@ -14,8 +18,14 @@
     align-items: center;
     width: 85%;
     flex-wrap: wrap;
-    .header img {
-      width: 40px;
+    @media screen and (max-width: 730px) {
+      flex-wrap: nowrap;
+    }
+    .logo {
+      width: 60px;
+      @media screen and (max-width: 730px) {
+        display: none;
+      }
     }
 
     .profileBlock {
@@ -27,7 +37,9 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-
+        @media screen and (max-width: 730px) {
+          display: none;
+        }
         .ava {
           width: 45px;
           height: 45px;

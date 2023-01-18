@@ -5,19 +5,31 @@
   align-items: center;
   flex-wrap: wrap;
   gap: 10px;
+  @media screen and (max-width: 730px) {
+    flex-direction: column;
+  }
+
   .controls {
     display: inherit;
     font-size: 28px;
     color: silver;
     gap: 10px;
     cursor: pointer;
+  }
+
+  .control {
+    display: inherit;
+    transition: color 0.8s;
+
+    &:hover {
+      transition: color 0.2s;
+      color: #2ee700;
     }
-    .control {
-      display: inherit;
-      transition: color 0.8s;
-      &:hover{
-        transition: color 0.2s;
-        color: #2ee700;
+
+  }
+  .rewind {
+    @media screen and (max-width: 730px) {
+      display: none;
     }
   }
   .rangers {
@@ -33,24 +45,31 @@
       .timers {
         display: flex;
         justify-content: space-between;
-        margin-bottom: 10px ;
-        .timer{
+        margin-bottom: 10px;
+
+        .timer {
           color: silver;
         }
       }
+
       .progress {
         display: inherit;
       }
 
     }
+
     .soundBlock {
       display: inherit;
       align-items: center;
       gap: 10px;
+      @media screen and (max-width: 730px) {
+        display: none;
+      }
 
-      .sound{
+      .sound {
         display: inherit;
       }
+
       .speaker {
         display: inherit;
         align-items: start;
@@ -58,7 +77,8 @@
         color: silver;
         transition: color 1s;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
           transition: color 0.2s;
           color: #2ee700;
         }
@@ -154,7 +174,8 @@
   z-index: 3;
   box-sizing: border-box;
   transition: background-color 0.2s;
-  &:hover{
+
+  &:hover {
     transition: background-color 0.2s;
     background-color: var(--selectedKnobby);
   }
