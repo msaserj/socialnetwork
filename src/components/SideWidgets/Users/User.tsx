@@ -23,10 +23,15 @@ export const User: React.FC<UsersComponentPropsType> = (
     return (
         <div className={css.userBlock}>
             <div className={css.photoBlock}>
-                <NavLink to={"/profile/" + usr.id}>
+                {!!isAuth?
+                    <NavLink to={"/profile/" + usr.id}>
+                        <img className={css.userPhoto} src={usr.photos.small != null
+                            ? usr.photos.small : userPhoto} alt=""/>
+                    </NavLink> :
                     <img className={css.userPhoto} src={usr.photos.small != null
                         ? usr.photos.small : userPhoto} alt=""/>
-                </NavLink>
+                }
+
                 <div className={css.buttons}>
                     {usr.followed
                         ? !!isAuth && <Button disabled={followingInProgress.some(id => +id === usr.id)}

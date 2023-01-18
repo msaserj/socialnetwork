@@ -2,17 +2,19 @@ import React, {useEffect, useRef, useState} from "react";
 import css from './Video.module.scss'
 import pl from "../../01-Header/AudioPlayer/lists";
 import {Button} from "../../00-Common/Button/Button";
+import {useAppSelector} from "../../../hooks/hooks";
+import {useNavigate} from "react-router-dom";
 
 
 export const Video = () => {
     const playList = pl.playlist1
     const videoRef = useRef<HTMLVideoElement>(null);
-    const play = () => videoRef && videoRef.current && videoRef.current.play();
-    const pause = () => videoRef && videoRef.current && videoRef.current.pause();
+    const userId = useAppSelector(state => state.auth.data.id)
+    const navigate = useNavigate()
+
 
     // const [controls, setControls] = useState(false);
     const [currentVideo, setCurrentVideo] = useState(0);
-
 
     const toggleNextVideo = () => {
         if (currentVideo >= playList.length - 1) {
@@ -33,9 +35,14 @@ export const Video = () => {
             // play()
         }
     }
+
     useEffect(()=>{
         videoRef.current!.src = playList[0].src
     }, [])
+    useEffect(()=>{
+        !userId && navigate("/")
+    },[])
+
 
     return(
         <nav className={css.video}>

@@ -16,6 +16,7 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
     const name = useAppSelector(state => state.myProfile.myProfile.fullName)
     const avatar = useAppSelector(state => state.myProfile.myProfile.photos)
     const id = useAppSelector(state => state.myProfile.myProfile.userId)
+    const userId = useAppSelector(state => state.auth.data.id)
 
     const editFalseHandler = () => {
         dispatch(editProfileAC(false))
@@ -45,28 +46,32 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
                     <NavLink to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegUserCircle/> </span> Profile</li>
                     </NavLink>
-                    <NavLink onClick={()=>dispatch(editProfileAC(true))} to={"/profile/" + id}>
+                    <NavLink onClick={() => dispatch(editProfileAC(true))} to={"/profile/" + id}>
                         <li onClick={editFalseHandler}><span><FaRegSun/> </span> Edit Profile</li>
                     </NavLink>
-                    <NavLink to={"/music"}>
-                        <li><span><FaMusic/> </span>Music</li>
-                    </NavLink>
-                    <NavLink to="/video" >
-                        <li><span><FaVideo/></span>Video</li>
-                    </NavLink>
+                    {userId &&
+                        <NavLink to={"/music"}>
+                            <li><span><FaMusic/> </span>Music</li>
+                        </NavLink>}
+                    {userId &&
+                        <NavLink to="/video">
+                            <li><span><FaVideo/></span>Video</li>
+                        </NavLink>
+                    }
+
                 </ul>
 
                 <ul className={css.profileMenu}>
                     <h3>Community</h3>
 
-                    <NavLink to="/users" >
+                    <NavLink to="/users">
                         <li><span><FaUsers/></span>Users</li>
                     </NavLink>
-                    <NavLink to="/dialogs" >
+                    <NavLink to="/dialogs">
                         <li><span><FaRegComment/></span>Dialogs</li>
                     </NavLink>
-                    <NavLink to="/chat" >
-                        <li ><span><FaRegComments/></span>Common Chat</li>
+                    <NavLink to="/chat">
+                        <li><span><FaRegComments/></span>Common Chat</li>
                     </NavLink>
                     {/*<li style={{cursor: "pointer"}} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log*/}
                     {/*    Out*/}

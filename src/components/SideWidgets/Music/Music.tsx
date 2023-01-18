@@ -1,22 +1,28 @@
-import React from "react";
+import React, {useEffect} from "react";
 import css from './Music.module.scss'
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import pl from "../../01-Header/AudioPlayer/lists"
 import {currentTrackAC, playingAC, selectTrackAC} from "../../../redux/audioPlayer-reducer";
+import {useNavigate} from "react-router-dom";
 
 
 export const Music = () => {
 
     const playList = pl.playlist2
     const dispatch = useAppDispatch()
+    const navigate = useNavigate()
     const selectTrack = useAppSelector(state => state.audioPlayer.selectTrack)
     const currentTrack = useAppSelector(state => state.audioPlayer.currentTrack)
+    const userId = useAppSelector(state => state.auth.data.id)
 
     const changeTrack = (index: any) => {
         dispatch(playingAC(true))
       dispatch(currentTrackAC(index))
       dispatch(selectTrackAC(!selectTrack))
     }
+    useEffect(()=>{
+        !userId && navigate("/")
+    },[])
 
     return(
         <nav className={css.hash}>
