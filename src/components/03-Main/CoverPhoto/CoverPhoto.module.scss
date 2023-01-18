@@ -28,16 +28,17 @@
       width: 100%;
       margin-top: -370px;
       @media screen and (max-width: 750px) {
-        margin-top: -180px;
+        margin-top: -130px;
         }
     }
   }
   @media screen and (max-width: 1050px) {
-    height: 250px;
+    height: 230px;
     .photoBlock {
       height: 170px;
     }
   }
+
   .coverMenu {
     background-color: #fff;
     //border: 5px solid #881313;
