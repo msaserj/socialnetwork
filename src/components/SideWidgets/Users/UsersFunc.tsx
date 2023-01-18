@@ -1,5 +1,5 @@
 import React from "react";
-import classes from './Users.module.css'
+import classes from './Users.module.scss'
 import {UsersPropsType} from "./UsersContainer";
 import axios from "axios";
 import userPhoto from "../../../assets/images/profileImage.png"

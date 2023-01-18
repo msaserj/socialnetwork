@@ -6,7 +6,9 @@
   width: 45%;
   min-width: 200px;
   box-sizing: border-box;
-
+  @media screen and (max-width: 730px) {
+    width: 90%;
+  }
   .photoBlock {
     display: flex;
     flex-direction: column;

@@ -21,11 +21,13 @@
     grid-template-rows:
             minmax(auto, 450px)
             1fr;
-    grid-template-columns:0.8fr 2fr 4fr 2fr 0.8fr;
+    grid-template-columns:0.6fr 2fr 4fr 2fr 0.6fr;
     grid-gap: 30px;
     /*align-items: start;*/
     align-content: start;
-
+    @media screen and (max-width: 1150px){
+        grid-template-columns:0.1fr 2fr 4fr 2fr 0.1fr;
+    }
 
 }
 

@@ -24,9 +24,8 @@ export const Header = (props: HeaderType) => {
 
             <div className={css.flexContainer}>
                 <img src={logo} alt="logo"/>
-                {props.authHeader.id && <ContainerAudioPlayer/>}
+                {!!props.authHeader.id && <ContainerAudioPlayer/>}
                 {!props.authHeader.id
-
                     ? <NavLink to={'/registr'}>Registration</NavLink>
                     : <div className={css.profileBlock}>
                         <NavLink className={css.profile} to={"/profile/" + props.id}>

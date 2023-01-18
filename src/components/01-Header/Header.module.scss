@@ -1,7 +1,7 @@
 
 .header {
   display: flex;
-  height: 60px;
+  max-height: 200px;
   width: 100%;
   align-items: center;
   position: fixed;
@@ -13,6 +13,7 @@
     justify-content: space-between;
     align-items: center;
     width: 85%;
+    flex-wrap: wrap;
     .header img {
       width: 40px;
     }

@@ -54,7 +54,7 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
 
                     <Button disabled={portionNumber < 2 || isFetching} onClick={() => {
                         setPortionNumber(portionNumber - 1); // @ts-ignore
-                        onPageChanged(leftPortionPageNumber-1, size)}}>PREV</Button>
+                        onPageChanged(leftPortionPageNumber-1, size)}}>{"<<"}</Button>
 
             </div>
 
@@ -70,10 +70,10 @@ export const Paginator: React.FC<UsersComponentPropsType> = (
             <div className={css.buttonBlock}>
 
                     <Button disabled={portionCount < portionNumber - 1 || isFetching} onClick={() => {
-                        setPortionNumber(portionNumber + 1); onPageChanged(rightPortionPageNumber+1, size)}}>NEXT</Button>
+                        setPortionNumber(portionNumber + 1); onPageChanged(rightPortionPageNumber+1, size)}}>{">>"}</Button>
 
             </div>
-            <div>
+            <div className={css.countSelector}>
                 <SelectFormik value={size} selectOptions={selectOptions} onChange={onChangeCallback}/>
             </div>
         </div>

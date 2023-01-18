@@ -6,7 +6,7 @@ import {SearchForm} from "./SearchForm";
 import {FilterType, getUsersTC} from "../../../redux/users-reducer";
 import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
 import {useSearchParams} from 'react-router-dom'
-import css from "./Users.module.css"
+import css from "./Users.module.scss"
 import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
 
 type UsersComponentPropsType = {

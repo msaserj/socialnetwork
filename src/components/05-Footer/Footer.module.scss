@@ -29,6 +29,9 @@
       @include flex(row, space-evenly, center, wrap);
       min-width: 400px;
       height: 30px;
+      @media screen and (max-width: 730px) {
+        min-width: 300px;
+      }
 
       a {
         @include text(14px, 1, $fontGreyColor2);

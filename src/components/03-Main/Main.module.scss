@@ -2,7 +2,8 @@
   grid-column: 3/4;
   grid-row: 2;
   align-self: start;
-  @media screen and (max-width: 1050px) {
+  @media screen and (max-width: 930px) {
     grid-column: 2/5;
+    position: inherit;
   }
 }
