@@ -1,7 +1,8 @@
+@import "../00-Common/styles/sass/mixins";
+@import "../00-Common/styles/sass/variables";
 
 .sideSection {
-  display: flex;
-  flex-direction: column;
+  @include flex(column, '', '', nowrap);
   gap: 30px;
   top: 90px;
   position: sticky;

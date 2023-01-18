@@ -1,9 +1,8 @@
+@import "../../00-Common/styles/sass/mixins";
+@import "../../00-Common/styles/sass/variables";
 
 .player {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  flex-wrap: wrap;
+  @include flex(row, center, center, wrap);
   gap: 10px;
   @media screen and (max-width: 730px) {
     flex-direction: column;
@@ -32,10 +31,9 @@
   .control {
     display: inherit;
     transition: color 0.8s;
-
     &:hover {
       transition: color 0.2s;
-      color: #2ee700;
+      color: $fontTitleColor;
     }
   }
   .rewind {
@@ -51,24 +49,19 @@
     .progressBarBlock {
       display: flex;
       flex-direction: column;
-      //justify-content: space-between;
-
       .timers {
         display: flex;
         justify-content: space-between;
         margin-bottom: 10px;
-
         .timer {
           color: silver;
         }
       }
-
       .progress {
         display: inherit;
       }
 
     }
-
     .soundBlock {
       display: inherit;
       align-items: center;
@@ -76,7 +69,6 @@
       @media screen and (max-width: 730px) {
         display: none;
       }
-
       .sound {
         display: inherit;
       }

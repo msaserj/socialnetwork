@@ -1,16 +1,15 @@
 @import "../styles/sass/variables";
+@import "../styles/sass/mixins";
 
 
 .form{
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flex(row, space-between, center, nowrap);
   .label {
     margin-bottom: 15px;
-    font-size: 18px;
     padding: 0 30px 0 0;
     white-space: nowrap;
     width: 30%;
+    @include text(18px, 1, $greyText4, 400);
     span {
       color: red;
     }
@@ -28,12 +27,9 @@
       -webkit-appearance: none;
       padding: 9px 21px;
       height: auto;
-
       box-sizing: border-box;
-      color: $greyText2;
-      font-size: 14px;
-      line-height: 22px;
       border-radius: 21px;
+      @include text(14px, 22px, $greyText2, 400);
       &:focus {
         border: 2px solid $selectedText;
       }
@@ -46,8 +42,7 @@
     }
   }
   @media screen and (max-width: 750px){
-    flex-direction: column;
-    align-items: start;
+    @include flex(column, start, start, nowrap);
     .inputBlock {
       width: 100%;
     }
@@ -60,7 +55,7 @@
   box-sizing: border-box;
   height: 14px;
   font-size: 14px;
-  color: #dc2e2e;
+  color: $red;
 }
 
 .checkboxBlock {
@@ -104,11 +99,10 @@
   border-radius: 17px;
 
   .option {
-    font-size: 16px;
-    color: red;
+    @include text(16px, 1, $red, 400);
     &:checked {
-      background: #6f8cff;
-      color: #b4ccff;
+      background: $selectedText;
+      color: $greyText;
     }
   }
 }

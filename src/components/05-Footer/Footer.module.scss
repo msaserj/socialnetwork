@@ -9,22 +9,12 @@
   background-color: #2a2e33;
   margin-top: 30px;
   height: 60px;
-
   .footerContainer {
     position: relative;
-
     &::after {
       display: none;
     }
-
     @include flex(column, center, "", "");
-
-    //.title {
-    //  margin: 10px;
-    //  @include text(22px, 1, $fontColor);
-    //  text-align: center;
-    //}
-
     .social {
       @include flex(row, space-evenly, center, wrap);
       min-width: 400px;
@@ -34,15 +24,14 @@
       }
 
       a {
-        @include text(14px, 1, $fontGreyColor2);
+        @include text(14px, 1, $fontGreyColor2, 400);
         position: relative;
         text-decoration: none;
         @include linkUnderline();
       }
     }
-
     .rights {
-      @include text(14px, 1.5, $fontGreyColor);
+      @include text(14px, 1.5, $fontGreyColor, 400);
       text-align: center;
 
       a {
@@ -53,7 +42,6 @@
     }
   }
 }
-
 
 .footer {
 

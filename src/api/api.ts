@@ -124,6 +124,12 @@ export const authAPI = {
     },
 }
 
+export const securityAPI = {
+    getCaptcha() {
+        return apiInstance.get(`security/get-captcha-url`).then(res => res.data)
+    }
+}
+
 type MeResType = {
     data: {
         id: number
@@ -149,10 +155,6 @@ export enum ResultCodeEnum {
     CaptchaIsRequired = 10
 }
 
-export const securityAPI = {
-    getCaptcha() {
-        return apiInstance.get(`security/get-captcha-url`).then(res => res.data)
-    }
-}
+
 
 

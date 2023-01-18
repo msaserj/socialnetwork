@@ -58,15 +58,6 @@ export const Video = () => {
                 controls={true}
                 ref={videoRef}
             />
-            {/*<video src="../../../assets/123-6002.mp4"  controls/>*/}
-            {/*<iframe*/}
-            {/*    width="100%"*/}
-            {/*    height="100%"*/}
-            {/*    src="../../../assets/123-6002.mp4"*/}
-            {/*    frameBorder="0"*/}
-            {/*    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"*/}
-            {/*    allowFullScreen*/}
-            {/*/>*/}
         </nav>
     )
 }

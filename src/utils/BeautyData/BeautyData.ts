@@ -12,7 +12,7 @@ export const BeautyDate = (date?: Date) => {
 
 export const dateAgo = (date: any) => {
     const time: number = Math.ceil( new Date().getTime() - new Date(date).getTime());
-    const last = Math.ceil(time/1000000)
+    const last = Math.ceil(time/1000)
     if(last < 60) {
         return last + " min. ago"
     } else if(last > 60 && last < 1440) {

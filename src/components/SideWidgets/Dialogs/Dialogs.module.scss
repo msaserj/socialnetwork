@@ -13,9 +13,7 @@
     @include messageDialog()
   }
   .messagesWindow {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    @include flex(column, space-between, '', nowrap);
     width: 65%;
     .messages {
       @include messageDialog()

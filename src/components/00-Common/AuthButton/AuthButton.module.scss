@@ -10,7 +10,6 @@
   border-radius: 21px;
   box-sizing: border-box;
   background-color: $buttonPressed;
-  color: $fontWhiteColor;
   padding: 8px 21px;
   font-weight: 600;
   white-space: nowrap;
@@ -19,6 +18,7 @@
   font-size: 13px;
   line-height: 14px;
   cursor: pointer;
+  @include text(13px, 1.4, $fontWhiteColor, 600);
   &:hover {
     transition: 0.5s;
     background-color: $buttonHover;
@@ -33,7 +33,6 @@
     color: $buttonHover;
     &:hover {
       background-color: $buttonNormal;
-
       cursor: default;
     }
   }

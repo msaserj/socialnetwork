@@ -48,7 +48,7 @@ const lists = {
         },
         {
             title: "Sajmak Klifford - Pokolenie dostigshee celi (mds).",
-            src: "https://msaserj.ru/audio/Sajmak_Klifford_-_Pokolenie_dostigshee_celi.mp3"
+            src: "https://msaserj.ru/audio/Kliford_Saimak_-_Pokolenie_dostigshee_celi.mp3"
         },
         {
             title: "Shekli Robert - Ja Vizhu, chelovek sidit na stule (mds).",

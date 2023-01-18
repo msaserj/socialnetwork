@@ -1,10 +1,21 @@
 @import "variables";
-@mixin text($fontSize, $lineHeight, $color) {
+@mixin text($fontSize, $lineHeight, $color, $weigh) {
   //font-family: $montserratFontFamily;
   font-size: $fontSize;
   line-height: $lineHeight;
   color: $color;
+  font-weight: $weigh;
 }
+
+@mixin widget(){
+  min-height: 80px;
+  background-color: #fff;
+  box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
+  border-radius: 7px;
+  padding: 30px;
+  box-sizing: border-box;
+}
+
 
 @mixin messageDialog() {
   background-color: #eeeeee;
@@ -25,10 +36,6 @@
   }
 }
 
-@mixin container() {
-  width: 80%;
-  margin: 0 auto;
-}
 
 @mixin flex($direction, $justifyContent, $alignItems, $wrap) {
   display: flex;

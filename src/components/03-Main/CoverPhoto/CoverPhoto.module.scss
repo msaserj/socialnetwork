@@ -1,29 +1,21 @@
+@import "../../00-Common/styles/sass/mixins";
+@import "../../00-Common/styles/sass/variables";
+
 .coverPhoto {
   height: 480px;
   grid-column: 1/6;
   grid-row: 1;
   z-index: -1;
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
+  @include flex(column, center, center, nowrap);
   .photoBlock {
     //border: 5px solid #881313;
     height: 420px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flex(row, center, center, nowrap);
     width: 100%;
-
-
     .photo {
-      //position: fixed;
       overflow: hidden;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      @include flex(row, center, center, nowrap);
       height: auto;
       width: 100%;
       margin-top: -370px;
@@ -44,9 +36,7 @@
     //border: 5px solid #881313;
     width: 100%;
     height: 60px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
+    @include flex(row, start, center, nowrap);
     .menuItem {
       margin: 0 30px;
     }
