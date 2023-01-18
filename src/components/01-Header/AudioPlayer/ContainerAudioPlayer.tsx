@@ -74,18 +74,19 @@ export const ContainerAudioPlayer = () => {
         audioPlayer.current!.currentTime += 10;
     }
     const toggleNextTrack = () => {
+        dispatch(playingAC(true))
         if (currentTrack >= playList.length - 1) {
             dispatch(currentTrackAC(0))
             audioPlayer.current!.src = playList[0].src;
             audioPlayer.current!.play()
         } else {
-
             dispatch(currentTrackAC(currentTrack + 1))
             audioPlayer.current!.src = playList[currentTrack + 1].src;
             audioPlayer.current!.play()
         }
     }
     const togglePreviousTrack = () => {
+        dispatch(playingAC(true))
         if (currentTrack > 0) {
             dispatch(currentTrackAC(currentTrack - 1));
             audioPlayer.current!.src = playList[currentTrack - 1].src;
