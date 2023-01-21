@@ -108,7 +108,7 @@ export const ContainerAudioPlayer = () => {
             const intervalId = setInterval(() => {
                 dispatch(currentTimeAC(Math.floor(audioPlayer.current!.currentTime)))
                 dispatch(durationAC(Math.floor(audioPlayer.current!.duration)))
-            }, 1000);
+            }, 200);
             return () => {
                 clearInterval(intervalId);
             };

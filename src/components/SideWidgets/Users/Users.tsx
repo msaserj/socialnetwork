@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import {UsersPropsType} from "./UsersContainer";
 import {Paginator} from "../../00-Common/Paginator/Paginator";
 import {User} from "./User";
@@ -71,17 +71,26 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
         // eslint-disable-next-line
     }, [])
 
-    const sortedUsers = userData.users.sort(function (a, b){
-
-            if (!a.photos.small > !b.photos.small ) {
-                return 1;
-            } else {
-                return -1;
-            }
-            // a должно быть равным b
-
-
-    })
+    // const sortedUsers = userData.users.sort(function (a, b){
+    //
+    //         if (!a.photos.small > !b.photos.small ) {
+    //             return 1;
+    //         } else {
+    //             return -1;
+    //         }
+    //         // a должно быть равным b
+    //
+    //
+    // })
+    const users = useMemo(()=> userData.users.map((usr, index) => {
+        return <User
+            isAuth={isAuth}
+            key={index}
+            usersComponent={usr}
+            followTC={followTC}
+            followingInProgress={followingInProgress}
+            unFollowTC={unFollowTC}/>
+    }), [userData.users])
 
     useEffect(() => {
 
@@ -106,15 +115,7 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
 
 
             <div className={css.usersBlock}>
-                {
-                    sortedUsers.map((usr, index) => <User
-                        isAuth={isAuth}
-                        key={index}
-                        usersComponent={usr}
-                        followTC={followTC}
-                        followingInProgress={followingInProgress}
-                        unFollowTC={unFollowTC}/>)
-                }
+                {users}
             </div>
             <div className={css.paginator}>
                 <Paginator

@@ -124,7 +124,17 @@ export const usersReducer = (state: UsersPageType = initialState, action: Action
                 users: updateObjectInArray(state.users, action.userId, "id", {followed: false})
             } as UsersPageType
         case SET_USERS:
-            return {...state, users: action.users}
+            return {...state, users: action.users.sort(function (a, b){
+
+                    if (!a.photos.small > !b.photos.small ) {
+                        return 1;
+                    } else {
+                        return -1;
+                    }
+                    // a должно быть равным b
+
+
+                })}
         case SET_FILTER:
             return {...state, filter: action.filter}
         case SORT_USERS:
