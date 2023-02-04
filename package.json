@@ -16,6 +16,7 @@
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
     "gh-pages": "^4.0.0",
+
     "jest": "^27.5.1",
     "node-sass": "^8.0.0",
     "react-icons": "^4.7.1",
