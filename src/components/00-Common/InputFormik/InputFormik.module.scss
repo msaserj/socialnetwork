@@ -1,8 +1,7 @@
-@import "../styles/sass/variables";
-@import "../styles/sass/mixins";
+@import '../styles/sass/variables';
+@import '../styles/sass/mixins';
 
-
-.form{
+.form {
   @include flex(row, space-between, center, nowrap);
   .label {
     margin-bottom: 15px;
@@ -19,7 +18,7 @@
     .input {
       width: 100%;
       //white-space: nowrap;
-      margin:  10px  0;
+      margin: 10px 0;
       background-color: $backgroundMain;
       border: 2px solid $inputBorder;
       box-shadow: none;
@@ -41,17 +40,16 @@
       resize: none;
     }
   }
-  @media screen and (max-width: 750px){
+  @media screen and (max-width: 750px) {
     @include flex(column, start, start, nowrap);
     .inputBlock {
       width: 100%;
     }
-
   }
 }
 
 .errorField {
-  margin-left:  23px;
+  margin-left: 23px;
   box-sizing: border-box;
   height: 14px;
   font-size: 14px;
@@ -74,13 +72,13 @@
     position: relative;
     &:checked {
       &::before {
-        content: "";
+        content: '';
         position: absolute;
         width: 16px;
         height: 16px;
         top: 2px;
         left: 2px;
-        background-color:  $selectedText;
+        background-color: $selectedText;
         border-radius: 5px;
       }
     }

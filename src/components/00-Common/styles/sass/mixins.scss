@@ -1,4 +1,4 @@
-@import "variables";
+@import 'variables';
 @mixin text($fontSize, $lineHeight, $color, $weigh) {
   //font-family: $montserratFontFamily;
   font-size: $fontSize;
@@ -7,7 +7,7 @@
   font-weight: $weigh;
 }
 
-@mixin widget(){
+@mixin widget() {
   min-height: 80px;
   background-color: #fff;
   box-shadow: 0 0 21px rgba(188, 194, 197, 0.7);
@@ -15,7 +15,6 @@
   padding: 30px;
   box-sizing: border-box;
 }
-
 
 @mixin messageDialog() {
   background-color: #eeeeee;
@@ -36,7 +35,6 @@
   }
 }
 
-
 @mixin flex($direction, $justifyContent, $alignItems, $wrap) {
   display: flex;
   flex-direction: $direction;
@@ -44,7 +42,6 @@
   align-items: $alignItems;
   flex-wrap: $wrap;
 }
-
 
 @mixin linkUnderline() {
   position: relative;
@@ -54,7 +51,7 @@
     position: absolute;
     bottom: -1px;
     left: 0;
-    content: "";
+    content: '';
     width: 0;
     height: 1px;
     background-color: $fontRedColor;

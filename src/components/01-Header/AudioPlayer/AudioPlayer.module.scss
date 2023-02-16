@@ -1,5 +1,5 @@
-@import "../../00-Common/styles/sass/mixins";
-@import "../../00-Common/styles/sass/variables";
+@import '../../00-Common/styles/sass/mixins';
+@import '../../00-Common/styles/sass/variables';
 
 .player {
   @include flex(row, center, center, wrap);
@@ -24,7 +24,6 @@
       .sound {
         display: inherit;
       }
-
     }
   }
 
@@ -60,7 +59,6 @@
       .progress {
         display: inherit;
       }
-
     }
     .soundBlock {
       display: inherit;
@@ -88,12 +86,9 @@
       }
     }
   }
-
 }
 
-
 .progressBar {
-
   --bar-bg: #8a8a8a;
   --seek-before-width: 0;
   --seek-before-color: #ececec;
@@ -139,7 +134,7 @@
 // progress bar - chrome and safari
 
 .progressBar::before {
-  content: "";
+  content: '';
   height: 6px;
   width: var(--seek-before-width);
   background-color: var(--seek-before-color);
@@ -212,4 +207,3 @@
   transform: scale(1.2);
   background: var(--selectedKnobby);
 }
-

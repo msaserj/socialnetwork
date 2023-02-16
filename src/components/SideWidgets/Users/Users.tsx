@@ -1,75 +1,71 @@
-import React, {useEffect, useMemo, useState} from "react";
-import {UsersPropsType} from "./UsersContainer";
-import {Paginator} from "../../00-Common/Paginator/Paginator";
-import {User} from "./User";
-import {SearchForm} from "./SearchForm";
-import {FilterType, getUsersTC} from "../../../redux/users-reducer";
-import {useAppDispatch, useAppSelector} from "../../../hooks/hooks";
-import {useSearchParams} from 'react-router-dom'
-import css from "./Users.module.scss"
-import {PreloaderSmall} from "../../00-Common/PreloaderSmall/PreloaderSmall";
+import React, { useEffect, useMemo, useState } from 'react';
+import { UsersPropsType } from './UsersContainer';
+import { Paginator } from '../../00-Common/Paginator/Paginator';
+import { User } from './User';
+import { SearchForm } from './SearchForm';
+import { FilterType, getUsersTC } from '../../../redux/users-reducer';
+import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
+import { useSearchParams } from 'react-router-dom';
+import css from './Users.module.scss';
+import { PreloaderSmall } from '../../00-Common/PreloaderSmall/PreloaderSmall';
 
 type UsersComponentPropsType = {
-    onPageChanged: (pgs: number, pageSize: number, usersCount?: number) => void
-    onFilterChanged: (filter: FilterType) => void
-    usersComponent: UsersPropsType
-    followingInProgress: string[]
-    followTC: (userId: number) => void
-    unFollowTC: (userId: number) => void
-    isFetching: boolean
+  onPageChanged: (pgs: number, pageSize: number, usersCount?: number) => void;
+  onFilterChanged: (filter: FilterType) => void;
+  usersComponent: UsersPropsType;
+  followingInProgress: string[];
+  followTC: (userId: number) => void;
+  unFollowTC: (userId: number) => void;
+  isFetching: boolean;
+};
 
-}
+export const Users: React.FC<UsersComponentPropsType> = React.memo(
+  ({ usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged, isFetching }) => {
+    let userData = usersComponent;
+    const filter = useAppSelector(state => state.usersPage.filter);
+    const currentPage = useAppSelector(state => state.usersPage.currentPage);
+    const pageSize = useAppSelector(state => state.usersPage.pageSize);
+    const isAuth = useAppSelector(state => state.auth.data.id);
 
-export const Users: React.FC<UsersComponentPropsType> = React.memo((
-    {usersComponent, onPageChanged, followTC, unFollowTC, followingInProgress, onFilterChanged, isFetching}) => {
+    const dispatch = useAppDispatch();
 
-    let userData = usersComponent
-    const filter = useAppSelector(state => state.usersPage.filter)
-    const currentPage = useAppSelector(state => state.usersPage.currentPage)
-    const pageSize = useAppSelector(state => state.usersPage.pageSize)
-    const isAuth = useAppSelector(state => state.auth.data.id)
-
-
-    const dispatch = useAppDispatch()
-
-    const [searchParams, setSearchParams] = useSearchParams()
-    const [reset, setPortion] = useState(1)
+    const [searchParams, setSearchParams] = useSearchParams();
+    const [reset, setPortion] = useState(1);
     const onReset = () => {
-        setPortion(reset+1)
-    }
-
+      setPortion(reset + 1);
+    };
 
     useEffect(() => {
-        const result: any = {}
+      const result: any = {};
 
-        // @ts-ignore
-        for (const [key, value] of searchParams.entries()) {
-            let value2: any = +value
-            if (isNaN(value2)) {
-                value2 = value
-            }
-            if (value === 'true') {
-                value2 = true
-            } else if (value === 'false') {
-                value2 = false
-            }
-            result[key] = value2
+      // @ts-ignore
+      for (const [key, value] of searchParams.entries()) {
+        let value2: any = +value;
+        if (isNaN(value2)) {
+          value2 = value;
         }
-
-        let actualPage = result.page || currentPage
-        let term = result.term || filter.term
-
-        let friend = result.friend || filter.friend
-        if (result.friend === false) {
-            friend = result.friend
+        if (value === 'true') {
+          value2 = true;
+        } else if (value === 'false') {
+          value2 = false;
         }
+        result[key] = value2;
+      }
 
-        const actualFilter = {friend, term}
+      let actualPage = result.page || currentPage;
+      let term = result.term || filter.term;
 
-        dispatch(getUsersTC(actualPage, pageSize, actualFilter))
+      let friend = result.friend || filter.friend;
+      if (result.friend === false) {
+        friend = result.friend;
+      }
 
-        // eslint-disable-next-line
-    }, [])
+      const actualFilter = { friend, term };
+
+      dispatch(getUsersTC(actualPage, pageSize, actualFilter));
+
+      // eslint-disable-next-line
+    }, []);
 
     // const sortedUsers = userData.users.sort(function (a, b){
     //
@@ -82,50 +78,60 @@ export const Users: React.FC<UsersComponentPropsType> = React.memo((
     //
     //
     // })
-    const users = useMemo(()=> userData.users.map((usr, index) => {
-        return <User
-            isAuth={isAuth}
-            key={index}
-            usersComponent={usr}
-            followTC={followTC}
-            followingInProgress={followingInProgress}
-            unFollowTC={unFollowTC}/>
-    }), [userData.users])
+    const users = useMemo(
+      () =>
+        userData.users.map((usr, index) => {
+          return (
+            <User
+              isAuth={isAuth}
+              key={index}
+              usersComponent={usr}
+              followTC={followTC}
+              followingInProgress={followingInProgress}
+              unFollowTC={unFollowTC}
+            />
+          );
+        }),
+      [userData.users]
+    );
 
     useEffect(() => {
+      const term = filter.term;
+      const friend = filter.friend;
 
-        const term = filter.term
-        const friend = filter.friend
+      let urlQuery =
+        (term === '' ? '' : `&term=${term}`) +
+        (friend === null ? '' : `&friend=${friend}`) +
+        (currentPage === 1 ? '' : `&page=${currentPage}`);
 
-        let urlQuery =
-            (term === '' ? '' : `&term=${term}`)
-            + (friend === null ? '' : `&friend=${friend}`)
-            + (currentPage === 1 ? '' : `&page=${currentPage}`)
+      setSearchParams(urlQuery);
 
-        setSearchParams(urlQuery)
-
-        // eslint-disable-next-line
-    }, [filter, currentPage])
+      // eslint-disable-next-line
+    }, [filter, currentPage]);
     return (
-        <div className={css.users}>
-            <div>
-                <SearchForm onFilterChanged={onFilterChanged} isFetching={isFetching}  onPageChanged={onPageChanged} onReset={onReset}/>
-                <div style={{height: "10px"}}>{isFetching? <PreloaderSmall/>: null}
-                </div></div>
-
-
-            <div className={css.usersBlock}>
-                {users}
-            </div>
-            <div className={css.paginator}>
-                <Paginator
-                    isFetching={isFetching}
-                    currentPage={userData.currentPage}
-                    onPageChanged={onPageChanged}
-                    pageSize={userData.pageSize}
-                    totalItemsCount={userData.totalUsersCount}  reset={reset}/>
-
-            </div>
+      <div className={css.users}>
+        <div>
+          <SearchForm
+            onFilterChanged={onFilterChanged}
+            isFetching={isFetching}
+            onPageChanged={onPageChanged}
+            onReset={onReset}
+          />
+          <div style={{ height: '10px' }}>{isFetching ? <PreloaderSmall /> : null}</div>
         </div>
-    )
-})
+
+        <div className={css.usersBlock}>{users}</div>
+        <div className={css.paginator}>
+          <Paginator
+            isFetching={isFetching}
+            currentPage={userData.currentPage}
+            onPageChanged={onPageChanged}
+            pageSize={userData.pageSize}
+            totalItemsCount={userData.totalUsersCount}
+            reset={reset}
+          />
+        </div>
+      </div>
+    );
+  }
+);

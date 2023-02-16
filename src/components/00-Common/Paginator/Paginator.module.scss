@@ -1,6 +1,5 @@
-@import "../styles/sass/variables";
-@import "../styles/sass/mixins";
-
+@import '../styles/sass/variables';
+@import '../styles/sass/mixins';
 
 .paginator {
   @include flex(row, center, center, nowrap);
@@ -43,4 +42,3 @@
     }
   }
 }
-

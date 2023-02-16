@@ -1,32 +1,32 @@
 .form {
-    display: flex;
-    flex-direction: row;
-    gap: 10px
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }
 
-.inactiveLink{
-    color: #565656;
-    text-decoration: none;
+.inactiveLink {
+  color: #565656;
+  text-decoration: none;
 }
 
 .activeLink {
-    color: black;
-    text-decoration: none;
+  color: black;
+  text-decoration: none;
 }
 
 .tag {
-    display: inline-block;
-    margin: 5px;
-    padding: 7px 14px;
-    color: #2a2e33 !important;
-    line-height: 14px;
-    background-color: #e3e6e9;
-    border-radius: 14px;
-    font-size: 12px;
-    transition: all .3s ease;
+  display: inline-block;
+  margin: 5px;
+  padding: 7px 14px;
+  color: #2a2e33 !important;
+  line-height: 14px;
+  background-color: #e3e6e9;
+  border-radius: 14px;
+  font-size: 12px;
+  transition: all 0.3s ease;
 }
 .tag:hover {
-    color: #fff;
-    background-color: #2186c3;
-    transition: all .3s ease;
+  color: #fff;
+  background-color: #2186c3;
+  transition: all 0.3s ease;
 }

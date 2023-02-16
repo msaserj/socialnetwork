@@ -1,34 +1,32 @@
 import React from 'react';
-import {RootState} from "../../../redux/redux-store";
-import {connect} from "react-redux";
-import {RecoveryPassForm} from "./RecoveryPassForm";
-import {recoveryTC} from "../../../redux/auth-reducer";
+import { RootState } from '../../../redux/redux-store';
+import { connect } from 'react-redux';
+import { RecoveryPassForm } from './RecoveryPassForm';
+import { recoveryTC } from '../../../redux/auth-reducer';
 
-const RecoveryPass:React.FC<RecoveryPassPropsType> = () => {
-    return (
-        <>
-            <RecoveryPassForm recoveryTC={()=>{}}/>
-        </>
-    );
+const RecoveryPass: React.FC<RecoveryPassPropsType> = () => {
+  return (
+    <>
+      <RecoveryPassForm recoveryTC={() => {}} />
+    </>
+  );
 };
 
 const mapStateToProps = (state: RootState): MapStateToPropsType => {
-    return {
-        isAuth: state.auth.isAuth,
-    } as MapStateToPropsType
-}
+  return {
+    isAuth: state.auth.isAuth
+  } as MapStateToPropsType;
+};
 
-export default connect(mapStateToProps, {recoveryTC})(RecoveryPass)
-
+export default connect(mapStateToProps, { recoveryTC })(RecoveryPass);
 
 // types
 type MapStateToPropsType = {
-    isAuth: boolean
-}
+  isAuth: boolean;
+};
 
 type MapDispatchToPropsType = {
-    recoveryTC: (email: string, setStatus: any, setSubmitting: any) => void
-}
+  recoveryTC: (email: string, setStatus: any, setSubmitting: any) => void;
+};
 
-export type RecoveryPassPropsType = MapStateToPropsType & MapDispatchToPropsType
-
+export type RecoveryPassPropsType = MapStateToPropsType & MapDispatchToPropsType;

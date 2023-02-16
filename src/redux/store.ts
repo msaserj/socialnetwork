@@ -1,4 +1,4 @@
-  import {v1} from "uuid";
+import { v1 } from 'uuid';
 // import {ProfileActionsType, profileReducer} from "./profile-reducer";
 // import {sidebarReducer} from "./sidebar-reducer";
 // import {DialogsActionsType, dialogsReducer} from "./dialogs-reducer";

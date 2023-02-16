@@ -1,5 +1,5 @@
-@import "../../00-Common/styles/sass/mixins";
-@import "../../00-Common/styles/sass/variables";
+@import '../../00-Common/styles/sass/mixins';
+@import '../../00-Common/styles/sass/variables';
 
 .menuButton {
   @include flex(row, center, center, nowrap);
@@ -23,7 +23,7 @@
       width: 100%;
       font-size: 24px;
       height: 100%;
-      content: "^";
+      content: '^';
       padding: 0;
       top: -4px;
       left: 0;
@@ -36,7 +36,6 @@
       rotate: -180deg;
     }
   }
-
 
   .menu {
     display: none;

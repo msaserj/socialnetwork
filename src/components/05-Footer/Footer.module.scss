@@ -1,8 +1,8 @@
-@import "../00-Common/styles/sass/variables";
-@import "../00-Common/styles/sass/mixins";
+@import '../00-Common/styles/sass/variables';
+@import '../00-Common/styles/sass/mixins';
 
 .footerBlock {
-  @include flex(column, center, center, "");
+  @include flex(column, center, center, '');
   box-sizing: border-box;
   grid-column: 1/4;
   grid-row: 3;
@@ -14,7 +14,7 @@
     &::after {
       display: none;
     }
-    @include flex(column, center, "", "");
+    @include flex(column, center, '', '');
     .social {
       @include flex(row, space-evenly, center, wrap);
       min-width: 400px;
@@ -44,5 +44,4 @@
 }
 
 .footer {
-
 }

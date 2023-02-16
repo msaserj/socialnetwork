@@ -1,24 +1,21 @@
-
-
 .loginForm {
-
 }
 .buttonBlock {
-    margin-top: 20px;
+  margin-top: 20px;
+  display: flex;
+  justify-items: center;
+  justify-content: space-between;
+  .forgot {
+    padding: 5px 0 5px;
+    box-sizing: border-box;
     display: flex;
-    justify-items: center;
+    flex-direction: column;
     justify-content: space-between;
-    .forgot {
-        padding: 5px 0 5px;
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        .navlink {
-            color: #2671bb;
-            &:hover {
-                color: #8d8dff;
-            }
-        }
+    .navlink {
+      color: #2671bb;
+      &:hover {
+        color: #8d8dff;
+      }
     }
+  }
 }

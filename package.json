@@ -13,7 +13,7 @@
     "@testing-library/user-event": "^13.2.1",
     "@types/jest": "^29.1.2",
     "@types/node": "^16.7.13",
-    "@types/react": "^18.0.27",
+    "@types/react": "^18.0.0",
     "@types/react-dom": "^18.0.0",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
@@ -49,7 +49,9 @@
     "deploy": "gh-pages -d build",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public",
-    "serve-storybook": "serve storybook-static"
+    "serve-storybook": "serve storybook-static",
+    "prepare": "husky install",
+    "pretty": "prettier --write ."
   },
   "eslintConfig": {
     "extends": [
@@ -91,16 +93,19 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.16",
     "@storybook/testing-library": "^0.0.13",
-    "@types/node": "16.7.13",
-    "@types/react": "18.0.0",
-    "@types/react-dom": "17.0.9",
     "@types/react-redux": "^7.1.24",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-test-renderer": "^18.0.0",
     "@types/redux-form": "8.3.3",
     "@types/uuid": "8.3.4",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.1.2",
+    "prettier": "2.8.4",
     "prop-types": "^15.8.1",
     "webpack": "^5.75.0"
+  },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
   }
 }

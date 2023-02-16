@@ -1,13 +1,13 @@
 <h1 align="center">Social Network</h1>
 <h2 align="center">
 
-[//]: # ([![Mentioned in Awesome Vue.js]&#40;https://awesome.re/mentioned-badge.svg&#41;]&#40;https://github.com/vuejs/awesome-vue&#41;)
+[//]: # '[![Mentioned in Awesome Vue.js](https://awesome.re/mentioned-badge.svg)](https://github.com/vuejs/awesome-vue)'
 
 </h2>
 
 <p align="center">
 
-[//]: # (<img src="https://img.shields.io/npm/dy/msaserj">)
+[//]: # '<img src="https://img.shields.io/npm/dy/msaserj">'
 
 <img src="https://img.shields.io/badge/made%20by-msaserj-blue.svg" >
 
@@ -23,10 +23,9 @@
 
 </p>
 
-
 <h2 align="center"><a  href="https://msaserj.github.io/inc-socialnetwork">Live Demo</a></h2>
 
-[//]: # (### [Contributions are Welcome]&#40;https://github.com/silent-lad/VueSolitaire/blob/master/CONTRIBUTING.md&#41;)
+[//]: # '### [Contributions are Welcome](https://github.com/silent-lad/VueSolitaire/blob/master/CONTRIBUTING.md)'
 
 ## Description
 
@@ -59,7 +58,9 @@ You can also register and test this project.
 npm install
 npm run serve
 ```
+
 #### use yarn
+
 ```
 yarn
 yarn start

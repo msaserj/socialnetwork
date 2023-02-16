@@ -1,5 +1,5 @@
-@import "../00-Common/styles/sass/mixins";
-@import "../00-Common/styles/sass/variables";
+@import '../00-Common/styles/sass/mixins';
+@import '../00-Common/styles/sass/variables';
 
 .sideSection {
   @include flex(column, '', '', nowrap);
@@ -8,7 +8,7 @@
   position: sticky;
   align-self: start;
   grid-column: 2/3;
-  @media screen and (max-width: 930px){
+  @media screen and (max-width: 930px) {
     grid-column: 2/5;
     position: inherit;
   }

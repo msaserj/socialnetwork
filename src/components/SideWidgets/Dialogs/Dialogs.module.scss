@@ -1,5 +1,5 @@
-@import "./src/components/00-Common/styles/sass/variables";
-@import "./src/components/00-Common/styles/sass/mixins";
+@import './src/components/00-Common/styles/sass/variables';
+@import './src/components/00-Common/styles/sass/mixins';
 
 .dialogs {
   display: flex;
@@ -10,15 +10,13 @@
 
   .dialogWindow {
     width: 35%;
-    @include messageDialog()
+    @include messageDialog();
   }
   .messagesWindow {
     @include flex(column, space-between, '', nowrap);
     width: 65%;
     .messages {
-      @include messageDialog()
+      @include messageDialog();
     }
   }
 }
-
-
