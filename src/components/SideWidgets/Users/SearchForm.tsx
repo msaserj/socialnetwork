@@ -67,7 +67,6 @@ export const SearchForm: React.FC<SearchFormType> = ({ onFilterChanged, isFetchi
           <AuthButton disabled={isFetching} type="submit">
             Search
           </AuthButton>
-          {/*{isFetching && <PreloaderSmall/>}*/}
         </div>
       </form>
     </div>

@@ -47,11 +47,7 @@ export const ProfileInfo = (props: ProfileType) => {
             resultCode={props.resultCode}
           />
         ) : (
-          <ProfileData
-            userProfile={props.userProfile}
-            isOwner={props.isOwner}
-            // goToEditMode={activateEditMode}
-          />
+          <ProfileData userProfile={props.userProfile} isOwner={props.isOwner} />
         )}
       </div>
     </div>

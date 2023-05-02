@@ -5,7 +5,6 @@ export const Footer = () => {
   return (
     <footer className={css.footerBlock}>
       <div className={css.footerContainer}>
-        {/*<h2 className={css.title}>Sergei Minko</h2>*/}
         <div className={css.social}>
           <a href="https://github.com/msaserj/inc-socialnetwork">GitHub</a>
           <a href="https://www.linkedin.com/in/msaserj">LinkedIn</a>

@@ -20,7 +20,6 @@ const LastMembers = () => {
       {members.map((m, key) => (
         <Member key={key} name={m.name} photo={m.photos} id={m.id} />
       ))}
-      {/*<Button onClick={()=>getMembersTC()}>set</Button>*/}
     </div>
   );
 };

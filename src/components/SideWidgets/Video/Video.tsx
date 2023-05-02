@@ -10,8 +10,6 @@ export const Video = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const userId = useAppSelector(state => state.auth.data.id);
   const navigate = useNavigate();
-
-  // const [controls, setControls] = useState(false);
   const [currentVideo, setCurrentVideo] = useState(0);
 
   const toggleNextVideo = () => {

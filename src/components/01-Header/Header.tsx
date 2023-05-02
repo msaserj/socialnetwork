@@ -17,7 +17,6 @@ type HeaderType = {
 };
 
 export const Header = (props: HeaderType) => {
-  //let data = props.authHeader.data
   console.log('header', props.authHeader.id);
   return (
     <header className={css.header}>

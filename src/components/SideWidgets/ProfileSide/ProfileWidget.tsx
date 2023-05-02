@@ -106,9 +106,6 @@ export const ProfileWidget: React.FC<ProfileWidgetType> = () => {
               Common Chat
             </li>
           </NavLink>
-          {/*<li style={{cursor: "pointer"}} onClick={logoutHandler}><span><FaRegArrowAltCircleLeft/></span>Log*/}
-          {/*    Out*/}
-          {/*</li>*/}
         </ul>
       </div>
     </div>

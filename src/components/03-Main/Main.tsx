@@ -33,7 +33,6 @@ const Main = () => {
             </MainWidget>
           }
         />
-        {/*<Route path="/posts/" element={<MainWidget title={"My Posts"}><MyPostsContain/></MainWidget>}/>*/}
         <Route
           path="/profile"
           element={

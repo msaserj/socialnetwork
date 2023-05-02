@@ -48,10 +48,3 @@ export class MyPosts extends React.PureComponent<MyPostType> {
     );
   }
 }
-
-// PureComponent as shouldComponentUpdate
-// but for functional component use HOC React.memo() -> wrap in this hoc your component
-
-// shouldComponentUpdate(nextProps: Readonly<MyPostType>, nextState: Readonly<{}>, nextContext: any): boolean {
-//     return  nextProps !== this.props || nextState !== this.state
-// }

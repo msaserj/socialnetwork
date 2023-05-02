@@ -7,7 +7,6 @@ import css from './ProfileData.module.scss';
 type ProfileDataType = {
   userProfile: UserProfileType | null;
   isOwner: boolean;
-  // goToEditMode: () => void
 };
 
 export const ProfileData: React.FC<ProfileDataType> = ({ userProfile }) => {

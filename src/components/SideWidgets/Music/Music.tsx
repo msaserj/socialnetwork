@@ -25,7 +25,6 @@ export const Music = () => {
   return (
     <nav className={css.hash}>
       {playList.map((p, index) => {
-        // @ts-ignore
         const resultStyle = index === currentTrack ? css.selected : '';
         return (
           <div

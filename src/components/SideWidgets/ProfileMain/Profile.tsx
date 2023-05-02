@@ -34,8 +34,6 @@ export const Profile = (props: ProfileType) => {
         saveProfile={props.saveProfile}
         resultCode={props.resultCode}
       />
-      {/*posts*/}
-      {/*<MyPostsContainer/>*/}
     </>
   );
 };
