@@ -23,14 +23,6 @@ const lists = {
   ],
   playlist2: [
     {
-      title: 'Radio Schwarze-Welle. https://schwarze-welle.com/',
-      src: 'https://sc.schwarze-welle.de:7500/;&type=mp3'
-    },
-    {
-      title: 'Devid Keller - Vosstanie peshehodov (mds).',
-      src: 'https://msaserj.ru/audio/Devid_Keller_-_Vosstanie_peshehodov.mp3'
-    },
-    {
       title: 'Leonid Kaganov - Mne povezet (mds).',
       src: 'https://msaserj.ru/audio/Leonid_Kaganov_-_Mne_povezet.mp3'
     },
@@ -47,12 +39,20 @@ const lists = {
       src: 'https://msaserj.ru/audio/Saimon_Klark_-_Bajki_mogilschika.mp3'
     },
     {
+      title: 'Devid Keller - Vosstanie peshehodov (mds).',
+      src: 'https://msaserj.ru/audio/Devid_Keller_-_Vosstanie_peshehodov.mp3'
+    },
+    {
       title: 'Sajmak Klifford - Pokolenie dostigshee celi (mds).',
       src: 'https://msaserj.ru/audio/Kliford_Saimak_-_Pokolenie_dostigshee_celi.mp3'
     },
     {
       title: 'Shekli Robert - Ja Vizhu, chelovek sidit na stule (mds).',
       src: 'https://msaserj.ru/audio/Shekli_Robert%20-%20Ja_vizhu_%20chelovek_sidit_na_stule.mp3'
+    },
+    {
+      title: 'Radio Schwarze-Welle (SynthPop, Gothic). https://schwarze-welle.com/',
+      src: 'http://sc.schwarze-welle.de:7500/;&type=mp3'
     }
   ]
 };
