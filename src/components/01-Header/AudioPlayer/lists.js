@@ -1,16 +1,16 @@
 const lists = {
   playlist1: [
     {
-      title: 'Time-lapse Kostroma.',
-      src: 'https://msaserj.ru/video/Kostroma_lapse.mp4'
-    },
-    {
       title: 'Time-lapse Minsk Academy Of Science (clouds).',
       src: 'https://msaserj.ru/video/Minsk_academy_of_science_clouds.mp4'
     },
     {
       title: 'Time-lapse Minsk Academy Of Science (night).',
       src: 'https://msaserj.ru/video/Minsk_academy_of_science_night.mp4'
+    },
+    {
+      title: 'Time-lapse Kostroma.',
+      src: 'https://msaserj.ru/video/Kostroma_lapse.mp4'
     },
     {
       title: 'Tbilisi Saburtalo (crane work)',
