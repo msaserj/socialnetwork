@@ -51,7 +51,7 @@ const lists = {
       src: 'https://msaserj.ru/audio/Shekli_Robert%20-%20Ja_vizhu_%20chelovek_sidit_na_stule.mp3'
     },
     {
-      title: 'Radio Schwarze-Welle (SynthPop, Gothic). https://schwarze-welle.com/',
+      title: 'Radio Schwarze-Welle (SynthPop, Gothic). https://schwarze-welle.com',
       src: 'http://sc.schwarze-welle.de:7500/;&type=mp3'
     }
   ]
