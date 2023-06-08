@@ -19,7 +19,7 @@
 
 <img src="https://img.shields.io/github/languages/top/msaserj/inc-socialnetwork.svg">
 
-<img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >
+[//]: # (<img src="https://badges.frapsoft.com/os/v1/open-source.svg?v=103" >)
 
 </p>
 
