@@ -49,6 +49,7 @@ You can also register and test this project.
 
 **React**,
 **Redux**,
+**Redux-Toolkit**,
 **TS**,
 **SCSS**.
 
