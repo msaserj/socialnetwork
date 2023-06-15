@@ -27,13 +27,13 @@
 
 [//]: # '### [Contributions are Welcome](https://github.com/silent-lad/VueSolitaire/blob/master/CONTRIBUTING.md)'
 
-## Description
+## ✏️ Description
 
 **This is a tutorial project on creating a social network interface. The interaction takes place with a real backend.**
 
 <p align="center"><img src="./src/assets/images/demo_social.png" width="80%"></p>
 
-## About the project.
+## 📝 About the project.
 
 What is implemented here?
 
