@@ -109,7 +109,7 @@ const initialState: UsersPageType = {
     friend: false
   }
 };
-console.log('users', initialState.users);
+
 // reducer
 export const usersReducer = (state: UsersPageType = initialState, action: ActionsType): UsersPageType => {
   switch (action.type) {

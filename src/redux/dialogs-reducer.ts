@@ -87,7 +87,6 @@ const initialState: DialogPageType = {
   isFetching: false,
   count: 10
 };
-console.log('asa', initialState.dialogs);
 
 // reducer
 export const dialogsReducer = (state: DialogPageType = initialState, action: ActionsType): DialogPageType => {

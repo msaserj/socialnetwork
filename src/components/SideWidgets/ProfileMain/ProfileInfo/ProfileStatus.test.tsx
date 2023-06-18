@@ -1,8 +1,9 @@
 import React from 'react';
-import { create } from 'react-test-renderer';
+
 import { ProfileStatus } from './ProfileStatus';
 import { Provider } from 'react-redux';
 import { store } from '../../../../redux/redux-store';
+import { create } from 'react-test-renderer';
 
 describe('ProfileStatus component', () => {
   //store.getState().profilePage.status = 'It-kamasutra.com'

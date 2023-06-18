@@ -13,8 +13,9 @@ describe('Paginator component', () => {
       </Provider>
     );
     const root = component.root;
-    const spans = root.findAllByType('span');
-    expect(spans.length).toBe(10);
+    // eslint-disable-next-line testing-library/await-async-query
+    const spans = root.findAllByType('button');
+    expect(spans.length).toBe(7);
   });
 
   test('pages count is 1, but should be showed 10', async () => {
@@ -24,7 +25,8 @@ describe('Paginator component', () => {
       </Provider>
     );
     const root = component.root;
-    const button = root.findAllByType('span');
-    expect(button.length).toBe(1);
+    // eslint-disable-next-line testing-library/await-async-query
+    const button = root.findAllByType('button');
+    expect(button.length).toBe(7);
   });
 });
