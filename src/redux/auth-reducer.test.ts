@@ -9,7 +9,7 @@ const initialState: AuthType = {
   captcha: null
 };
 
-it('should set user data', () => {
+test('should set user data', () => {
   const payload: AuthType = {
     data: { id: 1, login: 'example', email: 'example@example.com' },
     messages: ['User data updated successfully.'],
@@ -26,7 +26,7 @@ it('should set user data', () => {
   expect(newState.resultCode).toEqual(payload.resultCode);
 });
 
-it('should set isAuth', () => {
+test('should set isAuth', () => {
   const isAuth = true;
   const action = setIsAuth(isAuth);
 
@@ -35,7 +35,7 @@ it('should set isAuth', () => {
   expect(newState.isAuth).toBe(isAuth);
 });
 
-it('should get captcha', () => {
+test('should get captcha', () => {
   const captcha = 'abc123';
   const action = getCaptchaAC(captcha);
 
@@ -44,7 +44,7 @@ it('should get captcha', () => {
   expect(newState.captcha).toBe(captcha);
 });
 
-it('should reset user authentication data', () => {
+test('should reset user authentication data', () => {
   const action = resetAuthDataAC();
 
   const newState = authReducer(initialState, action);
