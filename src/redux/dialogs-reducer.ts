@@ -58,13 +58,6 @@ export type DialogPageType = {
   count: number;
 };
 
-export type MessageType = {
-  data: {};
-  messages: any[];
-  fieldsErrors: any[];
-  resultCode: number;
-};
-
 export type MessageItemType = {
   id: string;
   body: string;
