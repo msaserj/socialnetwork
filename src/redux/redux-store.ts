@@ -1,6 +1,5 @@
 import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
 import { ProfileActionsType, profileReducer } from './profile-reducer';
-import { sidebarReducer } from './sidebar-reducer';
 import { DialogsActionsType, dialogsReducer } from './dialogs-reducer';
 import { UsersActionsType, usersReducer } from './users-reducer';
 import { AuthActionsType, authReducer } from './auth-reducer';
@@ -13,7 +12,6 @@ import { audioPlayerReducer, PlayerActionsType } from './audioPlayer-reducer';
 
 let rootReducer = combineReducers({
   profilePage: profileReducer,
-  sidebar: sidebarReducer,
   usersPage: usersReducer,
   dialogsPage: dialogsReducer,
   auth: authReducer,
