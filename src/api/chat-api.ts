@@ -12,7 +12,6 @@ let ws: WebSocket;
 type EventsType = 'messages-received' | 'status-changed';
 
 const closeHandler = () => {
-  console.log('close ws');
   notifyStatus('pending');
   setTimeout(createChanel, 3000);
 };
@@ -27,7 +26,6 @@ const openHandler = () => {
 
 const errorHandler = () => {
   notifyStatus('error');
-  console.error('restart page');
 };
 
 const cleanUp = () => {

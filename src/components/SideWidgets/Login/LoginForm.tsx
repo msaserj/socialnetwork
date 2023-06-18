@@ -28,7 +28,6 @@ type LoginFormType = {
 
 export const LoginForm: React.FC<LoginFormType> = ({ loginTC, captchaUrl }) => {
   const isFetching = useAppSelector(state => state.app.fetching);
-  console.log('RERENDER');
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -66,7 +65,6 @@ export const LoginForm: React.FC<LoginFormType> = ({ loginTC, captchaUrl }) => {
   if (isAuth) {
     return <Navigate to={'/profile/' + isAuth} />;
   }
-  console.log(isFetching);
   const onCancelClick = () => {
     formik.resetForm();
     formik.setTouched({});

@@ -129,7 +129,6 @@ export const getStatusTC =
   (profileId: string): AppThunk =>
   async dispatch => {
     let res = await profileAPI.getStatus(profileId);
-    // console.log(res.data)
     dispatch(setStatusAC(res.data));
   };
 

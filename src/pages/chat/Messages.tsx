@@ -10,9 +10,7 @@ export type ChatMessageType = {
   userName: string;
 };
 const Messages: React.FC = () => {
-  console.log('render');
   const [autoScroll, setAutoScroll] = useState(false);
-
   const messages = useAppSelector(state => state.chat.messages);
   const messagesAnchorRef = useRef<HTMLDivElement>(null);
 
@@ -28,7 +26,6 @@ const Messages: React.FC = () => {
     autoScroll && messagesAnchorRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages, autoScroll]);
 
-  console.log(messages);
   return (
     <div className={css.messagesBlock} style={{ height: '390px', overflowY: 'auto' }} onScroll={scrollHandler}>
       {messages.map(m => (

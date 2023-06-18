@@ -43,7 +43,6 @@ export const RecoveryPassForm: React.FC<RecoveryFormType> = ({ recoveryTC }) => 
   if (isAuth) {
     return <Navigate to={'/profile/' + isAuth} />;
   }
-  console.log(isFetching);
   return (
     <form className={css.loginForm} onSubmit={formik.handleSubmit}>
       <p>

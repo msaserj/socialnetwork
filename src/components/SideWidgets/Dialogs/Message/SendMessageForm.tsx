@@ -11,11 +11,8 @@ type SendMessageType = {
 
 const SendMessageForm: React.FC<SendMessageType> = ({ userId }) => {
   const isFetching = useAppSelector(state => state.dialogsPage.isFetching);
-
   const [message, setMessage] = useState('');
   const dispatch = useAppDispatch();
-  console.log('SendMessageForm', userId);
-
   const sendMessageHandler = () => {
     if (!message) {
       return;

@@ -28,7 +28,6 @@ type RegistrationFormType = {
 
 export const RegistrationForm: React.FC<RegistrationFormType> = ({ registrTC }) => {
   const isFetching = useAppSelector(state => state.app.fetching);
-  console.log('RERENDER');
   const formik = useFormik({
     initialValues: {
       login: '',
@@ -73,7 +72,6 @@ export const RegistrationForm: React.FC<RegistrationFormType> = ({ registrTC }) 
   if (isAuth) {
     return <Navigate to={'/profile/' + isAuth} />;
   }
-  console.log(isFetching);
   return (
     <form className={css.loginForm} onSubmit={formik.handleSubmit}>
       <p>

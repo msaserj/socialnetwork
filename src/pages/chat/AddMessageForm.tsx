@@ -6,7 +6,6 @@ import { Button } from '../../components/00-Common/Button/Button';
 
 const AddMessageForm: React.FC = () => {
   const [message, setMessage] = useState('');
-  console.log(message);
   const status = useAppSelector(state => state.chat.status);
 
   const dispatch = useAppDispatch();
