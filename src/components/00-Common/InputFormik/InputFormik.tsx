@@ -1,7 +1,6 @@
 import React, { DetailedHTMLProps, InputHTMLAttributes, ReactNode } from 'react';
 import css from './InputFormik.module.scss';
 
-// тип пропсов обычной кнопки, children в котором храниться название кнопки там уже описан
 type InputPropsType = DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 type SelectOptionsType = {
   value: string | number;
