@@ -54,11 +54,10 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({ userProfile, sa
       formik.setFieldValue('lookingForAJob', userProfile.lookingForAJob);
       formik.setFieldValue('lookingForAJobDescription', userProfile.lookingForAJobDescription);
       userProfile &&
-        Object.keys(userProfile.contacts).map(key => {
-          // @ts-ignore
-          const item = userProfile.contacts[key];
+        Object.entries(userProfile.contacts).map(([key, value]) => {
+          const item = value;
           const pref = item.slice(0, 8) === 'https://';
-          return formik.setFieldValue('contacts.' + key, pref ? item.slice(8) : item);
+          return formik.setFieldValue(`contacts.${key}`, pref ? item.slice(8) : item);
         });
     }
   };
@@ -98,7 +97,7 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({ userProfile, sa
         errors={formik.errors.lookingForAJob}
       />
       <InputFormik
-        onClick={() => formik.status('')}
+        // onClick={() => formik.status('')}
         htmlFor={'lookingForAJobDescription'}
         label={'about job'}
         getFieldProps={formik.getFieldProps('lookingForAJobDescription')}
@@ -107,21 +106,20 @@ export const ProfileDataForm: React.FC<ProfileDataFormType> = ({ userProfile, sa
       <div>Contacts (enter links without or with "https://" prefix):</div>
       <ul>
         {userProfile &&
-          Object.keys(userProfile.contacts).map(key => {
-            // @ts-ignore
+          userProfile &&
+          Object.entries(userProfile.contacts).map(([key, value]) => {
             return (
               <InputFormik
                 key={key}
                 htmlFor={key}
                 label={key}
-                getFieldProps={formik.getFieldProps('contacts.' + key)}
+                getFieldProps={formik.getFieldProps(`contacts.${key}`)}
                 errors={formik.errors.contacts}
                 type={'text'}
               />
             );
           })}
       </ul>
-
       <div>
         <AuthButton disabled={formik.status} type="submit">
           {formik.status ? <span style={{ color: 'red' }}>{formik.status}</span> : 'Save Changes'}
