@@ -23,7 +23,6 @@ const AddMessageForm: React.FC = () => {
     <div>
       <div>
         <TextAreaFormik onChange={e => setMessage(e.currentTarget.value)} value={message} />
-        {/*<textarea onChange={(e)=>setMessage(e.currentTarget.value)} value={message}></textarea>*/}
       </div>
       <div>
         <Button disabled={status !== 'ready'} onClick={sendMessageHandler}>
