@@ -35,18 +35,15 @@ export const ProfileData: React.FC<ProfileDataType> = ({ userProfile }) => {
           <p>I'm not looking for a job.</p>
         )}
       </div>
-
       <div className={css.aboutItem}>
         <p>
           <b>Contacts:</b>
         </p>
       </div>
-
       <ul className={css.contacts}>
         {contacts &&
-          Object.keys(contacts).map(key => {
-            // @ts-ignore
-            return <Contact key={key} contactTitle={key} contactValue={contacts[key]} />;
+          Object.entries(contacts).map(([key, value]) => {
+            return <Contact key={key} contactTitle={key} contactValue={value} />;
           })}
       </ul>
     </div>
