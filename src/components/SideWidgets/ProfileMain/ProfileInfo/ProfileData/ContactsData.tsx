@@ -14,7 +14,7 @@ type ContactType = {
   contactValue: string;
 };
 export const Contact: React.FC<ContactType> = ({ contactTitle, contactValue }) => {
-  const icon = {
+  const icon: any = {
     vk: vk,
     facebook: facebook,
     youtube: youtube,
@@ -25,9 +25,7 @@ export const Contact: React.FC<ContactType> = ({ contactTitle, contactValue }) =
     instagram: instagram
   };
 
-  // @ts-ignore
   const link = icon[contactTitle];
-
   if (!contactValue) {
     return null;
   }
