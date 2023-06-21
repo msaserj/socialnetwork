@@ -21,7 +21,6 @@ class App extends React.Component<AuthPropsType> {
     this.props.initializeApp();
     window.addEventListener('unhandledrejection', this.catchAllUnhandledErrors);
   }
-
   render() {
     if (!this.props.initialized) {
       return <Preloader />;
@@ -31,7 +30,6 @@ class App extends React.Component<AuthPropsType> {
         <HeaderContainer />
         <div className="main-section">
           <CoverPhoto />
-
           <LeftWidgets />
           <Main />
           <RightWidgets />
