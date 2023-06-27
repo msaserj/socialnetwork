@@ -55,14 +55,14 @@ You can also register and test this project.
 
 ## Project setup
 
-```
+```sh
 npm install
 npm run serve
 ```
 
 #### use yarn
 
-```
+```sh
 yarn
 yarn start
 ```
