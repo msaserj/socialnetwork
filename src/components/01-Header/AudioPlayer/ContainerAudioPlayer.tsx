@@ -98,7 +98,6 @@ export const ContainerAudioPlayer = () => {
       `${duration && !isNaN(duration) && duration < 356400 && duration ? (currentTime / duration) * 100 : 0}%`
     );
   };
-  console.log('meta', audioPlayer.current!.onloadedmetadata);
   isPlaying && progressBarMover();
   useEffect(() => {
     if (audioPlayer) {
