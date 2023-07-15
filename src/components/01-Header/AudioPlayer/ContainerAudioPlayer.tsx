@@ -86,6 +86,10 @@ export const ContainerAudioPlayer = () => {
       dispatch(currentTrackAC(currentTrack - 1));
       audioPlayer.current!.src = playList[currentTrack - 1].src;
       audioPlayer.current!.play();
+    } else if (currentTrack === 0) {
+      dispatch(currentTrackAC(playList.length - 1));
+      audioPlayer.current!.src = playList[playList.length - 1].src;
+      audioPlayer.current!.play();
     }
   };
   const progressBarMover = () => {
@@ -94,6 +98,7 @@ export const ContainerAudioPlayer = () => {
       `${duration && !isNaN(duration) && duration < 356400 && duration ? (currentTime / duration) * 100 : 0}%`
     );
   };
+  console.log('meta', audioPlayer.current!.onloadedmetadata);
   isPlaying && progressBarMover();
   useEffect(() => {
     if (audioPlayer) {
