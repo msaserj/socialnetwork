@@ -28,10 +28,10 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^4.7.1",
-    "react-test-renderer": "^18.2.0",
     "react-redux": "8.0.2",
     "react-router-dom": "6.3.0",
     "react-scripts": "5.0.1",
+    "react-test-renderer": "^18.2.0",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
     "reselect": "^4.1.6",
@@ -51,7 +51,8 @@
     "build-storybook": "build-storybook -s public",
     "serve-storybook": "serve storybook-static",
     "prepare": "husky install",
-    "pretty": "prettier --write ."
+    "pretty": "prettier --write .",
+    "chromatic": "npx chromatic --project-token=chpt_a86b8c568fa2106"
   },
   "eslintConfig": {
     "extends": [
@@ -98,6 +99,7 @@
     "@types/react-test-renderer": "^18.0.0",
     "@types/uuid": "8.3.4",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "chromatic": "^6.19.9",
     "husky": "^8.0.3",
     "lint-staged": "^13.1.2",
     "prettier": "2.8.4",
@@ -106,5 +108,7 @@
   },
   "lint-staged": {
     "**/*": "prettier --write --ignore-unknown"
-  }
+  },
+  "readme": "ERROR: No README data found!",
+  "_id": "samurai-way@0.1.0"
 }
