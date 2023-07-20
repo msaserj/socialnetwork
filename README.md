@@ -5,22 +5,19 @@
 
 <p align="center">
 
-
 <img src="https://img.shields.io/badge/made%20by-msaserj-blue.svg" >
 
-<img src="https://img.shields.io/github/stars/msaserj/inc-socialnetwork.svg?style=flat">
+<img src="https://img.shields.io/github/stars/msaserj/socialnetwork.svg?style=flat">
 
 <img src="https://img.shields.io/badge/React-17.0.2-green.svg">
 
-<img src="https://img.shields.io/github/languages/count/msaserj/inc-socialnetwork">
+<img src="https://img.shields.io/github/languages/count/msaserj/socialnetwork">
 
-<img src="https://img.shields.io/github/languages/top/msaserj/inc-socialnetwork.svg">
-
+<img src="https://img.shields.io/github/languages/top/msaserj/socialnetwork.svg">
 
 </p>
 
-<h2 align="center"><a  href="https://msaserj.github.io/inc-socialnetwork">Live Demo</a></h2>
-
+<h2 align="center"><a  href="https://msaserj.github.io/socialnetwork">Live Demo</a></h2>
 
 ## ✏️ Description
 
