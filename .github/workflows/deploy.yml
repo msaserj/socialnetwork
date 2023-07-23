@@ -1,0 +1,33 @@
+name: social-network test&deploy
+
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Tests:
+    name: unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install deps
+        uses: yarn
+
+      - name: unit tests
+        uses: yarn test
+
+  Build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: Tests
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install deps
+        uses: yarn
+
+      - name: deploy
+        uses: yarn deploy
