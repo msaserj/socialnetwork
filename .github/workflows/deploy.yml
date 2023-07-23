@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: actions/checkout@master
+        uses: msaserj/socialnetwork@master
 
       - name: install deps
         uses: yarn
@@ -24,7 +24,7 @@ jobs:
     needs: Tests
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: msaserj/socialnetwork@master
 
       - name: install deps
         uses: yarn
