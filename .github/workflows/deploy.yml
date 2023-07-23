@@ -1,4 +1,6 @@
 name: social-network test&deploy
+env:
+  CI: false
 
 on:
   push:
@@ -37,7 +39,7 @@ jobs:
           node-version: '16'
 
       - name: install deps
-        run: yarn | unset CI
+        run: yarn
 
       - name: deploy
         run: yarn deploy
