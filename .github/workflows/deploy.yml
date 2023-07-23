@@ -37,7 +37,7 @@ jobs:
           node-version: '16'
 
       - name: install deps
-        run: yarn
+        run: yarn | unset CI
 
       - name: deploy
         run: yarn deploy

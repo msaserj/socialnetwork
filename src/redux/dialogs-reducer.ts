@@ -122,7 +122,6 @@ export const putDialogTC =
   async (dispatch, getState) => {
     const count = getState().dialogsPage.count;
     dispatch(toggleIsFetchingAC(true));
-    let data = await dialogAPI.putDialog(userId);
     dispatch(getMessagesListTC(userId, count, 1));
     dispatch(toggleIsFetchingAC(false));
   };
@@ -132,7 +131,6 @@ export const sendMessageTC =
   async (dispatch, getState) => {
     const count = getState().dialogsPage.count;
     dispatch(toggleIsFetchingAC(true));
-    let data = await dialogAPI.sendMessage(userId, messageBody);
     dispatch(getMessagesListTC(userId, count, 1));
     dispatch(toggleIsFetchingAC(false));
   };
