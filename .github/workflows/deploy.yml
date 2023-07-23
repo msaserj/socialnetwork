@@ -3,7 +3,7 @@ name: social-network test&deploy
 on:
   push:
     branches:
-      - main
+      - master
 jobs:
   Tests:
     name: unit tests
