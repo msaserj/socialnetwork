@@ -10,13 +10,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
-        uses: msaserj/socialnetwork@master
+        uses: actions/checkout@v2
 
       - name: install deps
-        uses: yarn
+        run: yarn
 
       - name: unit tests
-        uses: yarn test
+        run: yarn test
 
   Build:
     name: Build
@@ -24,10 +24,10 @@ jobs:
     needs: Tests
     steps:
       - name: checkout
-        uses: msaserj/socialnetwork@master
+        uses: actions/checkout@v2
 
       - name: install deps
-        uses: yarn
+        run: yarn
 
       - name: deploy
-        uses: yarn deploy
+        run: yarn deploy
