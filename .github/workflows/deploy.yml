@@ -1,4 +1,6 @@
 name: social-network test&deploy
+env:
+  CI: false
 on:
   push:
     branches:
