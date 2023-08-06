@@ -5,7 +5,7 @@ export const SiteInfo = () => {
   return (
     <>
       <div className={css.header}>
-        <strong>Dear HR`s and TechLid`s, login below to see all the features:</strong>
+        <strong>Demo login & password:</strong>
       </div>
       <div className={css.text}>
         <p>If you want to see a regular user account, please login with:</p>
