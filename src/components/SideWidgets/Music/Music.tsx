@@ -37,6 +37,10 @@ export const Music = () => {
           </div>
         );
       })}
+
+      <a target="_blank" href="http://www.4duk.ru/">
+        <img src="http://4duk.ru/images/banner/pakanedagonyat.gif" alt="4duk" />
+      </a>
     </nav>
   );
 };

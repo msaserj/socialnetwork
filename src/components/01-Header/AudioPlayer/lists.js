@@ -23,6 +23,10 @@ const lists = {
   ],
   playlist2: [
     {
+      title: 'Radio Chipl`duk (128kbt/s). https://4duk.ru',
+      src: 'http://radio.4duk.ru/4duk128.mp3'
+    },
+    {
       title: 'Leonid Kaganov - Mne povezet (mds).',
       src: 'https://msaserj.ru/audio/Leonid_Kaganov_-_Mne_povezet.mp3'
     },
@@ -49,10 +53,6 @@ const lists = {
     {
       title: 'Shekli Robert - Ja Vizhu, chelovek sidit na stule (mds).',
       src: 'https://msaserj.ru/audio/Shekli_Robert%20-%20Ja_vizhu_%20chelovek_sidit_na_stule.mp3'
-    },
-    {
-      title: 'Radio Schwarze-Welle (SynthPop, Gothic). https://schwarze-welle.com',
-      src: 'http://sc.schwarze-welle.de:7500/;&type=mp3'
     }
   ]
 };
