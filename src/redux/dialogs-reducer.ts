@@ -121,6 +121,7 @@ export const putDialogTC =
   (userId: number): AppThunk =>
   async (dispatch, getState) => {
     const count = getState().dialogsPage.count;
+    await dialogAPI.putDialog(userId);
     dispatch(toggleIsFetchingAC(true));
     dispatch(getMessagesListTC(userId, count, 1));
     dispatch(toggleIsFetchingAC(false));
@@ -130,6 +131,7 @@ export const sendMessageTC =
   (userId: number, messageBody: string): AppThunk =>
   async (dispatch, getState) => {
     const count = getState().dialogsPage.count;
+    await dialogAPI.sendMessage(userId, messageBody);
     dispatch(toggleIsFetchingAC(true));
     dispatch(getMessagesListTC(userId, count, 1));
     dispatch(toggleIsFetchingAC(false));

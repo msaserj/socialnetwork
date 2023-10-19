@@ -13,6 +13,9 @@ export function dateAgo(lastDialogActivityDate: Date): string {
   const now = new Date();
   const activityDate = new Date(lastDialogActivityDate);
 
+  // Устанавливаем часовой пояс пользователя
+  activityDate.setTime(activityDate.getTime() - activityDate.getTimezoneOffset() * 60 * 1000);
+
   // Разница в миллисекундах
   const timeDifference = now.getTime() - activityDate.getTime();
   const oneMinute = 60 * 1000;
@@ -40,7 +43,7 @@ export function dateAgo(lastDialogActivityDate: Date): string {
   } else {
     // Больше 365 дней назад
     const day = activityDate.getDate();
-    const month = activityDate.getMonth() + 1;
+    const month = activityDate.getMonth() + 1; // Месяцы в JavaScript начинаются с 0
     const year = activityDate.getFullYear();
 
     // Форматируем дату как "dd.mm.yyyy"
