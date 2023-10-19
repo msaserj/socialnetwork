@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../../hooks/hooks';
 import pl from '../../01-Header/AudioPlayer/lists';
 import { currentTrackAC, playingAC, selectTrackAC } from '../../../redux/audioPlayer-reducer';
 import { useNavigate } from 'react-router-dom';
+import chduk from '../../../assets/images/pakanedagonyat.gif';
 
 export const Music = () => {
   const playList = pl.playlist2;
@@ -39,7 +40,7 @@ export const Music = () => {
       })}
 
       <a rel="noreferrer" target="_blank" href="http://www.4duk.ru/">
-        <img src="http://4duk.ru/images/banner/pakanedagonyat.gif" alt="4duk" />
+        <img src={chduk} alt="4duk" />
       </a>
     </nav>
   );
