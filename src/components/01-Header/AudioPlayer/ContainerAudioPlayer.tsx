@@ -116,9 +116,6 @@ export const ContainerAudioPlayer = () => {
     }
   }, [volume, isPlaying]);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-expressions
-  console.log(audioPlayer.current!.src);
-
   useEffect(() => {
     toggleSelectTrack();
   }, [selectTrack]);
