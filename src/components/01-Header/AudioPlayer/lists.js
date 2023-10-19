@@ -24,7 +24,7 @@ const lists = {
   playlist2: [
     {
       title: 'Radio Chipl`duk (128kbt/s). https://4duk.ru',
-      src: 'http://radio.4duk.ru/4duk128.mp3'
+      src: 'https://msaserj.ru/4duk'
     },
     {
       title: 'Leonid Kaganov - Mne povezet (mds).',
